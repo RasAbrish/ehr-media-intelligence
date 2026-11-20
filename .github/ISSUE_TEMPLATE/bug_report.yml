@@ -1,0 +1,25 @@
+name: Bug report
+description: Something does not work as specified
+labels: [bug]
+body:
+  - type: input
+    id: requirement
+    attributes:
+      label: Requirement id
+      description: FR or NFR id from docs/01-SPEC.md, if any
+      placeholder: FR-4.4
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: Do not paste real patient data. This project uses synthetic data only.
