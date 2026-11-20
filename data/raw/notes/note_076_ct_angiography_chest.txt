@@ -1,0 +1,6 @@
+PATIENT: Dr. Kayla Santana       MRN: 06368113        DOB: 1938-03-12
+DATE OF SERVICE: 2025/01/11    DOCUMENT: CT ANGIOGRAPHY CHEST
+ENCOUNTER: ENC-88696
+---
+FINDINGS: Filling defects in the right main and right lower lobe pulmonary arteries. RV to LV ratio 1.1.
+IMPRESSION: Acute pulmonary embolism with mild right heart strain.

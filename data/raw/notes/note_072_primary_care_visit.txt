@@ -1,0 +1,7 @@
+PATIENT: STEVENS, ROBERT X       MRN: mrn 7546477     DOB: 13-Nov-1990
+DATE OF SERVICE: 2025-01-09    DOCUMENT: PRIMARY CARE VISIT
+ENCOUNTER: ENC-80545
+---
+SUBJECTIVE: A 34-year-old man reports fatigue and decreased appetite.
+ASSESSMENT: Chronic kidney disease, hypertension.
+PLAN: Nephrology referral placed. Avoid NSAIDs.

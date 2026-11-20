@@ -1,0 +1,6 @@
+PATIENT: William Parker          MRN: 948483          DOB: July 20, 1958
+DATE OF SERVICE: Nov 1 2024    DOCUMENT: CHEST X-RAY PA AND LATERAL
+ENCOUNTER: ENC-16734
+---
+FINDINGS: Cardiomegaly. Bilateral interstitial opacities and small pleural effusions.
+IMPRESSION: Findings consistent with pulmonary edema.

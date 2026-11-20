@@ -1,0 +1,13 @@
+PATIENT: SANTANA, KAYLA          MRN: MRN6368113      DOB: March 12, 1938
+DATE OF SERVICE: 2025-01-11    DOCUMENT: ED PROVIDER NOTE
+ENCOUNTER: ENC-88696
+---
+HPI: Ms.  Santana, a 86-year-old woman, presents with sudden shortness of breath and pleuritic chest pain after a long flight.
+
+EXAM: Heart rate 122 bpm, SpO2 90% on room air.
+
+LABS: Troponin I 0.199 ng/mL.
+
+ASSESSMENT: Suspected pulmonary embolism.  CT angiography ordered.
+
+PLAN: Start heparin infusion.  Admit to telemetry.

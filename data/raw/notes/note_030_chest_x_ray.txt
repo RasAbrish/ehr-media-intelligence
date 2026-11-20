@@ -1,0 +1,6 @@
+PATIENT: James Taylor            MRN: 7862574         DOB: Jun 21 1985
+DATE OF SERVICE: 06/05/2025    DOCUMENT: CHEST X-RAY
+ENCOUNTER: ENC-52081
+---
+FINDINGS: Hyperinflated lungs with flattened diaphragms. No focal consolidation.
+IMPRESSION: Emphysematous changes without acute infiltrate.

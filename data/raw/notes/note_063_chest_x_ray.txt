@@ -1,0 +1,6 @@
+PATIENT: JOHNSON, STEPHANIE      MRN: MRN-03704634    DOB: 08/24/38
+DATE OF SERVICE: Aug 9 2024    DOCUMENT: CHEST X-RAY
+ENCOUNTER: ENC-75771
+---
+FINDINGS: Hyperinflated lungs with flattened diaphragms. No focal consolidation.
+IMPRESSION: Emphysematous changes without acute infiltrate.

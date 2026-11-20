@@ -1,0 +1,6 @@
+PATIENT: katie  mahoney          MRN: 08947326        DOB: 13/04/1949
+DATE OF SERVICE: 25-Mar-2024   DOCUMENT: CHEST X-RAY
+ENCOUNTER: ENC-66881
+---
+FINDINGS: Focal consolidation in the right lower lobe with air bronchograms. No pneumothorax.
+IMPRESSION: Right lower lobe pneumonia.

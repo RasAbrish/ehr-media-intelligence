@@ -1,0 +1,8 @@
+PATIENT: FIGUEROA, MARGARET A    MRN: MRN429610       DOB: 19620904
+DATE OF SERVICE: 2025/08/11    DOCUMENT: ENDOCRINOLOGY FOLLOW-UP
+ENCOUNTER: ENC-95990
+---
+SUBJECTIVE: A 62-year-old woman presents for diabetes follow-up. Reports polyuria and fatigue. Adherent to metformin 1000 mg twice daily.
+OBJECTIVE: HbA1c 8.3% today, up from 7.4% at the prior visit. Fasting glucose 231 mg/dL.
+ASSESSMENT: Type 2 diabetes mellitus with worsening glycemic control.
+PLAN: Add empagliflozin 10 mg daily. Diabetes education referral. Repeat HbA1c in 3 months.

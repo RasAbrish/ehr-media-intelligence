@@ -1,0 +1,8 @@
+PATIENT: Dr. Joshua Sanchez      MRN: MRN-06204416    DOB: 04/05/1990
+DATE OF SERVICE: 20240507      DOCUMENT: PRIMARY CARE VISIT
+ENCOUNTER: ENC-92831
+---
+SUBJECTIVE: Mx. Sanchez, a 34-year-old patient, is seen for routine care. No chest pain.
+OBJECTIVE: LDL 130 mg/dL on the latest lipid panel.
+ASSESSMENT: Hyperlipidemia above goal in a patient with diabetes.
+PLAN: Start atorvastatin 40 mg nightly. Recheck lipids in 12 weeks.

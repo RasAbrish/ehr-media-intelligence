@@ -1,0 +1,6 @@
+PATIENT: Wanda J. Carroll        MRN: 01828692        DOB: 10-Jul-1991
+DATE OF SERVICE: 05/23/2025    DOCUMENT: MRI BRAIN WITHOUT CONTRAST
+ENCOUNTER: 
+---
+FINDINGS: Restricted diffusion in the left middle cerebral artery territory involving the insula and frontal operculum. No hemorrhage.
+IMPRESSION: Acute left MCA territory infarct.

@@ -1,0 +1,6 @@
+PATIENT: David Ryan              MRN: mrn 1176941     DOB: 10-Feb-1942
+DATE OF SERVICE: 02-Apr-2025   DOCUMENT: SURGICAL PATHOLOGY REPORT
+ENCOUNTER: ENC-67080
+---
+SPECIMEN: Left breast, core needle biopsy at 2 o'clock.
+DIAGNOSIS: Invasive ductal carcinoma, Nottingham grade 2. ER positive, PR positive, HER2 negative.

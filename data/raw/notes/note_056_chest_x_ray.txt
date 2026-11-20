@@ -1,0 +1,6 @@
+PATIENT: Maria P. West           MRN: 02602974        DOB: 03/29/1959
+DATE OF SERVICE: 19-Mar-2024   DOCUMENT: CHEST X-RAY
+ENCOUNTER: ENC-36144
+---
+FINDINGS: Focal consolidation in the right lower lobe with air bronchograms. No pneumothorax.
+IMPRESSION: Right lower lobe pneumonia.

@@ -1,0 +1,6 @@
+PATIENT: Jason Davis             MRN: mrn 9007381     DOB: Apr 17 1994
+DATE OF SERVICE: 2024-02-24    DOCUMENT: THYROID ULTRASOUND
+ENCOUNTER: ENC-42816
+---
+FINDINGS: Diffusely heterogeneous thyroid gland without discrete nodules.
+IMPRESSION: Findings suggestive of chronic thyroiditis.

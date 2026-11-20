@@ -1,0 +1,6 @@
+PATIENT: WEST, MARIA P           MRN: 02602974        DOB: March 29, 1959
+DATE OF SERVICE: March 22, 2024  DOCUMENT: DISCHARGE SUMMARY
+ENCOUNTER: ENC-36144
+---
+HOSPITAL COURSE: Treated for right lower lobe pneumonia with IV antibiotics. Afebrile for 48 hours before discharge.
+PLAN: Complete 5 days of oral amoxicillin-clavulanate. Repeat chest X-ray in 6 weeks.

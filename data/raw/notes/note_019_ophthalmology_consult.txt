@@ -1,0 +1,7 @@
+PATIENT: Jennifer Sanchez        MRN: 09059278        DOB: Jul 31 1985
+DATE OF SERVICE: August 8, 2025  DOCUMENT: OPHTHALMOLOGY CONSULT
+ENCOUNTER: ENC-34727
+---
+REASON: Diabetic eye screening.
+FINDINGS: Mild nonproliferative diabetic retinopathy in both eyes. No macular edema.
+PLAN: Repeat dilated exam in 12 months.

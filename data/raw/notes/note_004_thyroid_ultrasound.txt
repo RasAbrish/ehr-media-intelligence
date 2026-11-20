@@ -1,0 +1,6 @@
+PATIENT: WALKER, DAVID J         MRN: MRN-09334245    DOB: 05/19/97
+DATE OF SERVICE: 2024-12-27    DOCUMENT: THYROID ULTRASOUND
+ENCOUNTER: ENC-13794
+---
+FINDINGS: Diffusely heterogeneous thyroid gland without discrete nodules.
+IMPRESSION: Findings suggestive of chronic thyroiditis.

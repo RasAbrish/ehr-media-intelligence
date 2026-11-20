@@ -1,0 +1,6 @@
+PATIENT: MCLAUGHLIN, MICHAEL     MRN: 9007381         DOB: April 1, 1978
+DATE OF SERVICE: 14/11/2024    DOCUMENT: CHEST X-RAY PA AND LATERAL
+ENCOUNTER: ENC-18330
+---
+FINDINGS: Cardiomegaly. Bilateral interstitial opacities and small pleural effusions.
+IMPRESSION: Findings consistent with pulmonary edema.

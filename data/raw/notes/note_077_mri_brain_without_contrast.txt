@@ -1,0 +1,6 @@
+PATIENT: Victoria House          MRN: MRN2663446      DOB: 19780915
+DATE OF SERVICE: 2025-03-08    DOCUMENT: MRI BRAIN WITHOUT CONTRAST
+ENCOUNTER: ENC-94896
+---
+FINDINGS: Restricted diffusion in the left middle cerebral artery territory involving the insula and frontal operculum. No hemorrhage.
+IMPRESSION: Acute left MCA territory infarct.

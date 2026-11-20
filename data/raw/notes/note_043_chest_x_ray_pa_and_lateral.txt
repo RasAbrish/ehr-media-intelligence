@@ -1,0 +1,6 @@
+PATIENT: Daniel Guzman           MRN: 7088673         DOB: 1940/11/07
+DATE OF SERVICE: 20250706      DOCUMENT: CHEST X-RAY PA AND LATERAL
+ENCOUNTER: ENC-45992
+---
+FINDINGS: Cardiomegaly. Bilateral interstitial opacities and small pleural effusions.
+IMPRESSION: Findings consistent with pulmonary edema.

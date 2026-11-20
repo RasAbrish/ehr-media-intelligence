@@ -1,0 +1,7 @@
+PATIENT: MCLAUGHLIN, MICHAEL X   MRN: 9007381         DOB: 1978/04/01
+DATE OF SERVICE: 17-Sep-2024   DOCUMENT: DISCHARGE SUMMARY
+ENCOUNTER: ENC-16868
+---
+hospital course: a 46-year-old man was admitted with dyspnea, orthopnea and leg edema. bnp was 967 pg/ml. diuresed with iv furosemide with 4 kg net weight loss. sodium 132 mmol/l on admission.
+assessment: acute on chronic systolic heart failure.
+plan: furosemide 40 mg daily, carvedilol 6.25 mg twice daily. daily weights, 2 g sodium diet. cardiology follow-up in 1 week.

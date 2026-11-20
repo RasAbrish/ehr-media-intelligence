@@ -1,0 +1,6 @@
+PATIENT: Dr. Thomas Bryant       MRN: MRN-08446429    DOB: August 25, 1985
+DATE OF SERVICE: 20240624      DOCUMENT: SURGICAL PATHOLOGY REPORT
+ENCOUNTER: ENC-68079
+---
+SPECIMEN: Left breast, core needle biopsy at 2 o'clock.
+DIAGNOSIS: Invasive ductal carcinoma, Nottingham grade 2. ER positive, PR positive, HER2 negative.

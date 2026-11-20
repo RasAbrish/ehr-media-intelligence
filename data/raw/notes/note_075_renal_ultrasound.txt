@@ -1,0 +1,6 @@
+PATIENT: STEVENS, ROBERT X       MRN: mrn 7546477     DOB: 13/11/1990
+DATE OF SERVICE: Jan 9 2025    DOCUMENT: RENAL ULTRASOUND
+ENCOUNTER: ENC-80545
+---
+FINDINGS: Both kidneys are small with increased cortical echogenicity. No hydronephrosis.
+IMPRESSION: Findings consistent with chronic medical renal disease.

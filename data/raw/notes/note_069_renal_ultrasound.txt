@@ -1,0 +1,6 @@
+PATIENT: Matthew A. Contreras    MRN: MRN-08862897    DOB: 1992-06-02
+DATE OF SERVICE: 04-Apr-2024   DOCUMENT: RENAL ULTRASOUND
+ENCOUNTER: 
+---
+FINDINGS: Both kidneys are small with increased cortical echogenicity. No hydronephrosis.   
+IMPRESSION: Findings consistent with chronic medical renal disease.   

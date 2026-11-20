@@ -1,0 +1,6 @@
+PATIENT: Laura Horton            MRN: 09727032        DOB: 19860823
+DATE OF SERVICE: 2025/03/01    DOCUMENT: CHEST X-RAY
+ENCOUNTER: ENC-38197
+---
+FINDINGS: Hyperinflated lungs with flattened diaphragms. No focal consolidation.
+IMPRESSION: Emphysematous changes without acute infiltrate.

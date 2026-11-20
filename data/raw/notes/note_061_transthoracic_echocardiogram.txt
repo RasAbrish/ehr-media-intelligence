@@ -1,0 +1,6 @@
+PATIENT: Michael Mclaughlin      MRN: 09007381        DOB: April 1, 1978
+DATE OF SERVICE: 2024/09/16    DOCUMENT: TRANSTHORACIC ECHOCARDIOGRAM
+ENCOUNTER: ENC-16868
+---
+FINDINGS: Dilated left ventricle with global hypokinesis. Left ventricular ejection fraction estimated at 30%. Moderate mitral regurgitation.
+IMPRESSION: Reduced ejection fraction of 30% consistent with systolic heart failure.

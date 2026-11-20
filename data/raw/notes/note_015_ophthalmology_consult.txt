@@ -1,0 +1,7 @@
+PATIENT: Ashley Reed             MRN: mrn 1661177     DOB: 19430610
+DATE OF SERVICE: 14-Dec-2024   DOCUMENT: OPHTHALMOLOGY CONSULT
+ENCOUNTER: ENC-37152
+---
+REASON: Diabetic eye screening.
+FINDINGS: Mild nonproliferative diabetic retinopathy in both eyes. No macular edema.
+PLAN: Repeat dilated exam in 12 months.

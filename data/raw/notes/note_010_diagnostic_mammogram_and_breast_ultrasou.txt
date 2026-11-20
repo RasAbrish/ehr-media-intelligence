@@ -1,0 +1,6 @@
+PATIENT: Michael Deleon          MRN: mrn 5553670     DOB: May 10, 1944
+DATE OF SERVICE: January 29, 2024  DOCUMENT: DIAGNOSTIC MAMMOGRAM AND BREAST ULTRASOUND
+ENCOUNTER: ENC-58311
+---
+FINDINGS: Irregular spiculated mass in the left breast at 11 o'clock measuring 1.7 cm. No axillary adenopathy.
+IMPRESSION: BI-RADS 5, highly suggestive of malignancy. Ultrasound guided biopsy recommended.

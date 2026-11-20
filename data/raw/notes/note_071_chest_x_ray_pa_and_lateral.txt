@@ -1,0 +1,6 @@
+PATIENT: michael  allen          MRN: MRN981823       DOB: 1959/08/11
+DATE OF SERVICE: 03-Jul-2024   DOCUMENT: CHEST X-RAY PA AND LATERAL
+ENCOUNTER: ENC-91691
+---
+FINDINGS: Cardiomegaly. Bilateral interstitial opacities and small pleural effusions.
+IMPRESSION: Findings consistent with pulmonary edema.

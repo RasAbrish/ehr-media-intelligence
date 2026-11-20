@@ -1,0 +1,6 @@
+PATIENT: Gregg Pierce            MRN: 6917400         DOB: 19980206
+DATE OF SERVICE: 17-Aug-2024   DOCUMENT: RENAL ULTRASOUND
+ENCOUNTER: ENC-58148
+---
+FINDINGS: Both kidneys are small with increased cortical echogenicity. No hydronephrosis.
+IMPRESSION: Findings consistent with chronic medical renal disease.

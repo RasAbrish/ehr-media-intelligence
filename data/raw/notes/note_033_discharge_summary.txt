@@ -1,0 +1,6 @@
+PATIENT: James Taylor            MRN: 7862574         DOB: 21-Jun-1985
+DATE OF SERVICE: 2025/07/29    DOCUMENT: DISCHARGE SUMMARY
+ENCOUNTER: ENC-47777
+---
+HOSPITAL COURSE: Improved with bronchodilators and steroids. FEV1 48% predicted on prior testing.
+PLAN: Complete prednisone taper. Pulmonary rehabilitation referral.

@@ -1,0 +1,6 @@
+PATIENT: Michael Hernandez       MRN: mrn 1945113     DOB: Jun 8 1961
+DATE OF SERVICE: 2024/06/24    DOCUMENT: DIAGNOSTIC MAMMOGRAM AND BREAST ULTRASOUND
+ENCOUNTER: ENC-39391
+---
+FINDINGS: Irregular spiculated mass in the left breast at 10 o'clock measuring 2.6 cm. No axillary adenopathy.
+IMPRESSION: BI-RADS 5, highly suggestive of malignancy. Ultrasound guided biopsy recommended.

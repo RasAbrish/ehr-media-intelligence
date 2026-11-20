@@ -1,0 +1,6 @@
+PATIENT: Sheila Shaffer          MRN: MRN-00455199    DOB: 08-May-1988
+DATE OF SERVICE: 2025-03-15    DOCUMENT: CHEST X-RAY
+ENCOUNTER: ENC-18161
+---
+FINDINGS: Focal consolidation in the right lower lobe with air bronchograms. No pneumothorax.
+IMPRESSION: Right lower lobe pneumonia.
