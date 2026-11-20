@@ -1,0 +1,21 @@
+name: Feature request
+description: Propose a change or new capability
+labels: [enhancement]
+body:
+  - type: input
+    id: requirement
+    attributes:
+      label: Requirement id
+      description: Existing FR or NFR id, or "new"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal and acceptance criteria
