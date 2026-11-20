@@ -738,11 +738,11 @@
   "quarantine": [
     {
       "locator": "lab_results.csv:row 292",
-      "reason": "missing_mrn_and_name"
+      "reason": "identity_unresolvable"
     },
     {
       "locator": "notes/note_081_progress_note.txt",
-      "reason": "missing_mrn_and_name"
+      "reason": "identity_unresolvable"
     },
     {
       "locator": "notes/note_082_scan.txt",

@@ -346,7 +346,7 @@ def test_adversarial_note_sits_next_to_abnormal_findings(
 
 def test_quarantine_records_lack_identity(gt: dict[str, Any], files: dict[str, bytes]) -> None:
     reasons = Counter(q["reason"] for q in gt["quarantine"])
-    assert reasons == {"missing_mrn_and_name": 2, "empty_document": 1}
+    assert reasons == {"identity_unresolvable": 2, "empty_document": 1}
     for item in gt["quarantine"]:
         if item["locator"].startswith("notes/"):
             text = files[item["locator"]].decode()
