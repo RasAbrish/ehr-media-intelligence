@@ -14,7 +14,7 @@ dependencies = [
   "python-dateutil>=2.9", "rapidfuzz>=3.9", "rank-bm25>=0.2.2",
   "typer>=0.12", "structlog>=24.1", "orjson>=3.10",
   "cachetools>=5.3", "slowapi>=0.1.9", "prometheus-fastapi-instrumentator>=7.0",
-  "torch>=2.4",
+  "torch>=2.4", "tzdata>=2024.1",
 ]
 
 [project.optional-dependencies]
@@ -62,9 +62,11 @@ warn_required_dynamic_aliases = true
 # ---------- pytest ----------
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["."]
 markers = ["perf: latency tests", "integration: slower tests"]
 addopts = "--import-mode=importlib --cov=ehr_mip --cov-report=term-missing --cov-fail-under=85"
 asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
 
 [tool.coverage.run]
 branch = true
@@ -86,5 +88,5 @@ layers = [
   "ehr_mip.ingestion",
   "ehr_mip.db",
   "ehr_mip.cache | ehr_mip.observability",
-  "ehr_mip.config | ehr_mip.errors | ehr_mip.logging",
+  "ehr_mip.config | ehr_mip.errors | ehr_mip.logging | ehr_mip.ids",
 ]
