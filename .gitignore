@@ -1,0 +1,59 @@
+# Secrets and local config
+.env
+.env.*
+!.env.example
+
+# Generated data and stores (never commit)
+data/generated/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+chroma/
+hf-cache/
+.cache/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.hypothesis/
+.import_linter_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+*.egg-info/
+build/
+
+# Node / frontend
+node_modules/
+dist/
+dist-ssr/
+storybook-static/
+coverage/
+.lighthouseci/
+playwright-report/
+test-results/
+*.tsbuildinfo
+.vite/
+
+# Reports: generated, only curated samples are committed
+reports/*
+!reports/.gitkeep
+!reports/validation_report.md
+!reports/eval_report.md
+
+# Editors and OS
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+*.swp
+*.log
+
+# Local agent tooling
+.claude/

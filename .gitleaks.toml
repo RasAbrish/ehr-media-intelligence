@@ -1,0 +1,12 @@
+# gitleaks configuration: default rules plus narrow allowlists for known false positives.
+title = "ehr-mip gitleaks config"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Example patient_key and cache_key hashes in the API contract are not secrets"
+condition = "AND"
+paths = ['''^docs/04-API-CONTRACT\.md$''']
+regexTarget = "line"
+regexes = ['''"(patient_key|cache_key)":\s*"[0-9a-f-]{8,64}"''']
