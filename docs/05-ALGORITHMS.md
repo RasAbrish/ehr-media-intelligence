@@ -56,12 +56,17 @@ Two-digit years pivot at the current year; a DOB is never in the future (subtrac
 | mrn | `mrn.invalid` (error) | no digits or more than 8 digits → None |
 | name | `name.normalize` | collapse spaces, strip titles (`Dr.`, `Mr.`, `Mrs.`, `Ms.`), parse `FAMILY, GIVEN MIDDLE` or `Given Middle Family`, smart title-case (`McDonald`, `O'Brien`, hyphens) |
 | text | `text.normalize` | NFC, smart quotes to ASCII, `\r\n → \n`, collapse 3+ blank lines, strip trailing spaces |
-| doc type | `doctype.map` | keyword map (`CT`, `MRI`, `X-RAY`, `ULTRASOUND`, `MAMMO` → imaging; `DISCHARGE` → discharge_summary; `PATHOLOGY`, `BIOPSY` → pathology; `PROGRESS` → progress_note; `CONSULT` → consult_note); default `scanned_document` (info) |
+| doc type | `doctype.map` | keyword map over `doc_type` and title, first match wins: `PATHOLOGY`, `BIOPSY` → pathology; `CT`, `MRI`, `X-RAY`, `ULTRASOUND`, `MAMMO`, `RADIOLOGY`, `ECHO`, `ANGIOGRAPHY` → imaging; `LAB` → lab_report; `DISCHARGE` → discharge_summary; `CONSULT` → consult_note; `PROGRESS`, `HISTORY AND PHYSICAL`, `H&P`, `ED`, `EMERGENCY`, `FOLLOW-UP`, `VISIT` → progress_note; default `scanned_document` (info). Only the default is audited; a keyword match is a classification, not a change |
 | lab value | `lab.value_parse` | handle `<0.01`, `>200`, `5.9 H`, OCR `l`→`1` inside numbers; keep `value_raw` |
-| lab flag | `lab.flag_recomputed` | compute from range: `< low → L`, `> high → H`, critical table → `LL`/`HH`; audit when it overrides the source flag |
+| lab flag | `lab.flag_recomputed` (warning) | compute from range: `< low → L`, `> high → H`, else `N`. Audit only when the direction disagrees with the source flag (H on a normal value, N on an abnormal one, a blank flag on an abnormal value). A blank flag on a normal value is `N` without audit |
+| lab flag | `lab.flag_critical` (info) | upgrade to `LL`/`HH` from the critical table below when the direction already agrees |
 | phone | `contact.phone` | 10 US digits → E.164 (P1) |
 
-Every rule returns `(new_value, list[AuditEntry])`. No entry when the value is unchanged.
+Critical table (LOINC, inclusive bounds): potassium 2823-3 ≤ 2.5 / ≥ 6.0; sodium 2951-2 ≤ 120 / ≥ 160; glucose 2345-7 ≤ 40 / ≥ 500; lactate 2524-7 ≥ 4.0; hemoglobin 718-7 ≤ 7.0; platelets 777-3 ≤ 20; WBC 6690-2 ≤ 1.0 / ≥ 30.0.
+
+Missing expected fields (DOB, gender, encounter id) get an info `field.missing` entry; missing dates get `date.missing`.
+
+Every rule returns `(new_value, list[AuditEntry])`. No entry when the value is unchanged. Impossible calendar dates get exactly one `date.parse.invalid` error, never an additional `date.parse.us_ambiguous` warning.
 
 ### 1.4 Identity resolution
 
@@ -83,6 +88,10 @@ flowchart TD
     K -- no --> OK["attach record to patient_key"]
 ```
 
+Same-MRN confirmation compares family name plus first given name (middle names and initials ignored, so "Jane A Doe" and "Jane Doe" agree). When an MRN splits, the sub-cluster with the most records keeps `patient:{mrn}`; ties go to the earliest source record. Both sides get `identity_conflict = true`. If two split-off people on one MRN share a DOB (twins) or both lack one, the key becomes `patient:{mrn}:{dob}:{normalized name}` so every person keeps a distinct key.
+
+Quarantine reasons: `identity_unresolvable` (no valid MRN and no name plus DOB, or a name plus DOB that matches no patient), `empty_document` (a note with no body), `read_error` (unreadable file or row), `path_outside_raw_dir` (a symlink or path escaping `DATA_RAW_DIR`).
+
 Implementation: union-find over candidate ids. Merge only on exact normalized equality; fuzzy similarity is used only to *confirm* same-MRN records, never to merge different MRNs.
 
 ### 1.5 Deduplication
@@ -90,10 +99,10 @@ Implementation: union-find over candidate ids. Merge only on exact normalized eq
 | Rule | Condition | Keep |
 |---|---|---|
 | `dedupe.exact` | same `patient_key` and `content_hash` | record with most non-null fields, then earliest source |
-| `dedupe.near` | same patient, same `doc_type`, dates within 1 day, `rapidfuzz.ratio(normalized_text) ≥ 97` | same as above |
+| `dedupe.near` | same patient, compatible `doc_type` (equal, or either side `scanned_document`, since a scan only carries a title), dates within 1 day, `rapidfuzz.ratio(normalized_text) ≥ 97` where normalized text is lower case with collapsed whitespace | same as above |
 | `dedupe.lab` | same patient, same LOINC or test name, same `collected_at`, same value | first seen |
 
-Never across patients. Comparison only within `(patient_key, doc_type)` buckets, so cost stays small.
+Never across patients. Comparison only within a patient's documents, so cost stays small.
 
 ## 2. FHIR
 
