@@ -5,6 +5,7 @@ from __future__ import annotations
 from collections.abc import Iterator
 
 import pytest
+import structlog
 
 from ehr_mip.config import Settings, get_settings
 
@@ -26,3 +27,11 @@ def _isolated_env(monkeypatch: pytest.MonkeyPatch) -> Iterator[None]:
 def settings() -> Settings:
     """Settings built from defaults only (no .env file)."""
     return Settings(_env_file=None)  # type: ignore[call-arg]
+
+
+@pytest.fixture(autouse=True)
+def _reset_structlog() -> Iterator[None]:
+    """Each test starts with default logging so streams from other tests never leak in."""
+    structlog.reset_defaults()
+    yield
+    structlog.reset_defaults()

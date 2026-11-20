@@ -88,7 +88,7 @@ classDiagram
         +str source_file
         +Literal source_format
         +str source_locator
-        +Literal kind
+        +Literal kind (patient, encounter, document, lab_result)
         +dict payload
     }
     class CleanPatient {
@@ -110,7 +110,7 @@ classDiagram
         +str|None source_encounter_id
         +EncounterClass encounter_class
         +datetime|None period_start
-        +datetime|None period_end
+        +datetime|date|None period_end
     }
     class CleanDocument {
         +str document_key
@@ -119,7 +119,7 @@ classDiagram
         +DocType doc_type
         +str title
         +str|None author
-        +datetime|None document_date
+        +datetime|date|None document_date
         +str text
         +str content_hash
         +str source_record_id
@@ -137,7 +137,8 @@ classDiagram
         +float|None ref_low
         +float|None ref_high
         +LabFlag|None flag
-        +datetime|None collected_at
+        +datetime|date|None collected_at
+        +str source_record_id
     }
     class AuditEntry {
         +str record_id
@@ -192,9 +193,11 @@ Severity = Literal["info", "warning", "error"]
 Mrn = Annotated[str, StringConstraints(pattern=r"^\d{8}$")]
 ```
 
-All models: `model_config = ConfigDict(extra="forbid", str_strip_whitespace=True, frozen=True)`.
+All models: `model_config = ConfigDict(extra="forbid", str_strip_whitespace=True, frozen=True)`, except `AuditEntry`, `RawRecord` and `QuarantinedRecord`, which keep whitespace so audit `before` values show exactly what was found.
 
-### 3.2 Key derivation (UUIDv5, namespace `ehr_mip.fhir.ids.NAMESPACE`)
+`CleanEncounter.period_end` and date-only `CleanDocument.document_date` values keep their date precision (`date`); values with a time are timezone-aware `datetime` in `America/New_York`.
+
+### 3.2 Key derivation (UUIDv5, namespace `ehr_mip.ids.NAMESPACE`)
 
 | Key | Name string |
 |---|---|
@@ -204,7 +207,7 @@ All models: `model_config = ConfigDict(extra="forbid", str_strip_whitespace=True
 | `report_key` (lab) | `report:{patient_key}:{source_report_id or collected_at}` |
 | `result_key` | `result:{report_key}:{loinc or test_name}` |
 
-FHIR `id` = the corresponding key, so resources, cache entries and vector ids stay stable across runs.
+FHIR `id` = the corresponding key, so resources, cache entries and vector ids stay stable across runs. The namespace and key helpers live in the shared `ehr_mip.ids` module (ingestion sits below fhir and cannot import it); `ehr_mip.fhir.ids` re-exports them.
 
 ## 4. SQLite schema
 
@@ -582,7 +585,7 @@ classDiagram
     }
     class MediaRecord {
         +EvidenceRef resource
-        +Literal kind
+        +Literal kind (patient, encounter, document, lab_result)
         +date|None date
         +str finding
     }
