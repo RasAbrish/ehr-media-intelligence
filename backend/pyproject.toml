@@ -1,0 +1,90 @@
+[project]
+name = "ehr-mip"
+version = "0.1.0"
+description = "EHR Media Intelligence Platform: ingest, normalize to FHIR, summarize and search synthetic EHR data"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = [
+  "fastapi>=0.115", "uvicorn[standard]>=0.30",
+  "pydantic>=2.9", "pydantic-settings>=2.7",
+  "fhir.resources>=8.3",
+  "sentence-transformers>=3.0", "chromadb>=1.0",
+  "anthropic>=0.70", "tenacity>=9.0",
+  "python-dateutil>=2.9", "rapidfuzz>=3.9", "rank-bm25>=0.2.2",
+  "typer>=0.12", "structlog>=24.1", "orjson>=3.10",
+  "cachetools>=5.3", "slowapi>=0.1.9", "prometheus-fastapi-instrumentator>=7.0",
+  "torch>=2.4",
+]
+
+[project.optional-dependencies]
+redis = ["redis>=5.0"]
+dev = [
+  "pytest>=8", "pytest-cov", "pytest-asyncio", "hypothesis", "httpx", "ruff", "mypy",
+  "types-python-dateutil", "types-cachetools", "import-linter>=2.1", "faker", "pre-commit",
+  "fakeredis>=2.23", "pip-audit",
+]
+
+[project.scripts]
+ehr-mip = "ehr_mip.cli:app"
+
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ehr_mip"]
+
+# CPU-only torch keeps the install small and portable (no CUDA wheels).
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+
+# Ruff config lives in the repo root ruff.toml (one config for backend and scripts).
+
+# ---------- mypy ----------
+[tool.mypy]
+strict = true
+python_version = "3.12"
+plugins = ["pydantic.mypy"]
+mypy_path = "src"
+files = ["src"]
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+
+# ---------- pytest ----------
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["perf: latency tests", "integration: slower tests"]
+addopts = "--import-mode=importlib --cov=ehr_mip --cov-report=term-missing --cov-fail-under=85"
+asyncio_mode = "auto"
+
+[tool.coverage.run]
+branch = true
+source = ["ehr_mip"]
+
+# ---------- import-linter ----------
+[tool.importlinter]
+root_package = "ehr_mip"
+
+[[tool.importlinter.contracts]]
+name = "Layering: cli > api > search > summarization > fhir > ingestion > db > shared"
+type = "layers"
+layers = [
+  "ehr_mip.cli",
+  "ehr_mip.api",
+  "ehr_mip.search",
+  "ehr_mip.summarization",
+  "ehr_mip.fhir",
+  "ehr_mip.ingestion",
+  "ehr_mip.db",
+  "ehr_mip.cache | ehr_mip.observability",
+  "ehr_mip.config | ehr_mip.errors | ehr_mip.logging",
+]
