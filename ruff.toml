@@ -1,0 +1,18 @@
+# One Ruff config for the whole repo (backend and scripts), found from any working directory.
+line-length = 100
+target-version = "py311"
+src = ["backend/src", "backend/tests", "scripts"]
+extend-exclude = ["frontend", "data"]
+
+[lint]
+select = ["E", "F", "I", "B", "UP", "N", "S", "SIM", "RUF", "PT", "C4", "DTZ", "PL"]
+
+[lint.per-file-ignores]
+"backend/tests/**" = ["S101", "PLR2004", "S311"]
+# The synthetic generator uses a seeded, non-cryptographic RNG on purpose, its thresholds are
+# data-shaping constants, and clinical timestamps are local wall-clock times (naive by design,
+# like the source EHR export).
+"scripts/**" = ["S311", "PLR0913", "PLR2004", "DTZ001", "T201"]
+
+[lint.isort]
+known-first-party = ["ehr_mip"]
