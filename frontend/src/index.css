@@ -1,0 +1,186 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/geist-mono";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Design tokens: docs/06-UI-DESIGN.md sections 3 to 5. Components use these, never raw colors. */
+
+:root {
+  color-scheme: light;
+  --radius: 0.5rem;
+  --background: oklch(0.985 0.002 247);
+  --foreground: oklch(0.205 0.015 257);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.205 0.015 257);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.205 0.015 257);
+  --primary: oklch(0.5 0.09 196);
+  --primary-foreground: oklch(0.985 0.005 196);
+  --secondary: oklch(0.955 0.006 247);
+  --secondary-foreground: oklch(0.25 0.015 257);
+  --muted: oklch(0.962 0.004 247);
+  --muted-foreground: oklch(0.5 0.016 257);
+  --accent: oklch(0.95 0.02 196);
+  --accent-foreground: oklch(0.3 0.06 196);
+  --destructive: oklch(0.55 0.2 27);
+  --border: oklch(0.915 0.005 247);
+  --input: oklch(0.89 0.006 247);
+  --ring: oklch(0.58 0.1 196);
+  --warning: oklch(0.72 0.15 70);
+  --warning-foreground: oklch(0.36 0.08 60);
+  --success: oklch(0.58 0.13 155);
+  --info: oklch(0.55 0.12 245);
+  --ai: oklch(0.52 0.16 290);
+  --ai-muted: oklch(0.965 0.018 290);
+  --rt-document: oklch(0.45 0.12 250);
+  --rt-document-bg: oklch(0.96 0.02 250);
+  --rt-report: oklch(0.45 0.09 170);
+  --rt-report-bg: oklch(0.96 0.025 170);
+  --rt-observation: oklch(0.47 0.1 70);
+  --rt-observation-bg: oklch(0.965 0.03 80);
+  --overlay-shadow:
+    0 8px 24px -8px oklch(0.2 0.02 257 / 0.18), 0 2px 6px -2px oklch(0.2 0.02 257 / 0.1);
+}
+
+.dark {
+  color-scheme: dark;
+  --background: oklch(0.16 0.008 257);
+  --foreground: oklch(0.96 0.004 247);
+  --card: oklch(0.195 0.009 257);
+  --card-foreground: oklch(0.96 0.004 247);
+  --popover: oklch(0.21 0.01 257);
+  --popover-foreground: oklch(0.96 0.004 247);
+  --primary: oklch(0.72 0.1 192);
+  --primary-foreground: oklch(0.18 0.03 196);
+  --secondary: oklch(0.24 0.01 257);
+  --secondary-foreground: oklch(0.94 0.004 247);
+  --muted: oklch(0.24 0.01 257);
+  --muted-foreground: oklch(0.7 0.012 257);
+  --accent: oklch(0.27 0.03 196);
+  --accent-foreground: oklch(0.92 0.03 196);
+  --destructive: oklch(0.68 0.19 25);
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.72 0.1 192);
+  --warning: oklch(0.78 0.14 75);
+  --warning-foreground: oklch(0.22 0.05 70);
+  --success: oklch(0.72 0.14 155);
+  --info: oklch(0.72 0.11 245);
+  --ai: oklch(0.74 0.13 290);
+  --ai-muted: oklch(0.24 0.04 290);
+  --rt-document: oklch(0.78 0.1 250);
+  --rt-document-bg: oklch(0.55 0.12 250 / 14%);
+  --rt-report: oklch(0.78 0.09 170);
+  --rt-report-bg: oklch(0.55 0.09 170 / 14%);
+  --rt-observation: oklch(0.8 0.1 75);
+  --rt-observation-bg: oklch(0.6 0.1 75 / 14%);
+  /* Dark overlays rely on a lighter surface plus border rather than shadow. */
+  --overlay-shadow: 0 8px 24px -8px oklch(0 0 0 / 0.5);
+}
+
+@theme inline {
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-sans);
+  --font-mono: "Geist Mono Variable", ui-monospace, SFMono-Regular, monospace;
+
+  /* Radius by role (section 5): badges 6, inputs and buttons 8, cards and panels 10. */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 2px);
+  --radius-2xl: calc(var(--radius) + 6px);
+
+  --shadow-overlay: var(--overlay-shadow);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-success: var(--success);
+  --color-info: var(--info);
+  --color-ai: var(--ai);
+  --color-ai-muted: var(--ai-muted);
+  --color-rt-document: var(--rt-document);
+  --color-rt-document-bg: var(--rt-document-bg);
+  --color-rt-report: var(--rt-report);
+  --color-rt-report-bg: var(--rt-report-bg);
+  --color-rt-observation: var(--rt-observation);
+  --color-rt-observation-bg: var(--rt-observation-bg);
+
+  /* Type scale (section 4). rem values assume the browser's 16px root. */
+  --text-display: 1.75rem;
+  --text-display--line-height: 2.125rem;
+  --text-display--font-weight: 600;
+  --text-display--letter-spacing: -0.02em;
+  --text-title: 1.25rem;
+  --text-title--line-height: 1.75rem;
+  --text-title--font-weight: 600;
+  --text-title--letter-spacing: -0.015em;
+  --text-heading: 0.9375rem;
+  --text-heading--line-height: 1.375rem;
+  --text-heading--font-weight: 600;
+  --text-heading--letter-spacing: -0.01em;
+  --text-body: 0.875rem;
+  --text-body--line-height: 1.375rem;
+  --text-small: 0.8125rem;
+  --text-small--line-height: 1.25rem;
+  --text-meta: 0.75rem;
+  --text-meta--line-height: 1rem;
+  --text-meta--font-weight: 500;
+  --text-meta--letter-spacing: 0.01em;
+  --text-mono: 0.78125rem;
+  --text-mono--line-height: 1.125rem;
+  --text-mono--font-weight: 450;
+  --text-overline: 0.6875rem;
+  --text-overline--line-height: 1rem;
+  --text-overline--font-weight: 600;
+  --text-overline--letter-spacing: 0.06em;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+  }
+  /* Dense app: 14px body text while the root stays at the user's font size (16px default). */
+  body {
+    @apply bg-background text-body text-foreground antialiased;
+  }
+  code,
+  kbd,
+  .font-mono {
+    font-feature-settings: "zero" 1;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
