@@ -1,0 +1,6 @@
+PATIENT: Tiffany Lopez           MRN: 7906868         DOB: Dec 15 1957
+DATE OF SERVICE: 01/08/2025    DOCUMENT: CT ANGIOGRAPHY CHEST
+ENCOUNTER: ENC-67008
+---
+FINDINGS: Filling defects in the right main and right lower lobe pulmonary arteries. RV to LV ratio 1.1.
+IMPRESSION: Acute pulmonary embolism with mild right heart strain.

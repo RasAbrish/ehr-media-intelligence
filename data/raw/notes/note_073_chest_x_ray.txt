@@ -1,0 +1,6 @@
+PATIENT: WILSON, TRACEY W        MRN: 05762576        DOB: 07-Apr-1956
+DATE OF SERVICE: 02/08/2025    DOCUMENT: CHEST X-RAY
+ENCOUNTER: ENC-67366
+---
+FINDINGS: Hyperinflated lungs with flattened diaphragms. No focal consolidation.
+IMPRESSION: Emphysematous changes without acute infiltrate.

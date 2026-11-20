@@ -1,0 +1,11 @@
+PATIENT: DANIEL, MARK R          MRN: mrn 5780619     DOB: 19920229
+DATE OF SERVICE: 02/15/2024    DOCUMENT: PRIMARY CARE VISIT
+ENCOUNTER: ENC-29973
+---
+SUBJECTIVE: Mr.  Daniel, a 31-year-old man, reports fatigue, cold intolerance and weight gain over 6 months.
+
+OBJECTIVE: TSH 13.12 mIU/L, free T4 0.61 ng/dL.
+
+ASSESSMENT: Primary hypothyroidism.
+
+PLAN: Start levothyroxine 50 mcg daily.  Recheck TSH in 6 weeks.

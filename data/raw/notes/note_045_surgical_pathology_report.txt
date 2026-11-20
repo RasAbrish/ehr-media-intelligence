@@ -1,0 +1,6 @@
+PATIENT: Dr. Michael Hernandez   MRN: mrn 1945113     DOB: 06/08/1961
+DATE OF SERVICE: Aug 23 2024   DOCUMENT: SURGICAL PATHOLOGY REPORT
+ENCOUNTER: ENC-74752
+---
+SPECIMEN: Left breast, core needle biopsy at 10 o'clock.
+DIAGNOSIS: Invasive ductal carcinoma, Nottingham grade 2. ER positive, PR positive, HER2 negative.

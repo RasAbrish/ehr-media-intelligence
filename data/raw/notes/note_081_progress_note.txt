@@ -1,0 +1,5 @@
+PATIENT:                         MRN:                 DOB: 
+DATE OF SERVICE: 2025-04-11      DOCUMENT: PROGRESS NOTE
+ENCOUNTER: 
+---
+SUBJECTIVE: Follow-up visit. No new complaints.

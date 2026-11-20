@@ -1,0 +1,6 @@
+PATIENT: Amy B. Trujillo         MRN: MRN-01332047    DOB: July 12, 1987
+DATE OF SERVICE: 07/05/2024    DOCUMENT: CHEST X-RAY
+ENCOUNTER: ENC-85849
+---
+FINDINGS: Hyperinflated lungs with flattened diaphragms. No focal consolidation.
+IMPRESSION: Emphysematous changes without acute infiltrate.

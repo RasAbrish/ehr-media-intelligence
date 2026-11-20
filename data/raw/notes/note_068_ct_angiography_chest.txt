@@ -1,0 +1,6 @@
+PATIENT: diana  lewis            MRN: 6710828         DOB: 06/23/70
+DATE OF SERVICE: 01-Sep-2024   DOCUMENT: CT ANGIOGRAPHY CHEST
+ENCOUNTER: ENC-17816
+---
+FINDINGS: Filling defects in the right main and right lower lobe pulmonary arteries. RV to LV ratio 1.1.
+IMPRESSION: Acute pulmonary embolism with mild right heart strain.

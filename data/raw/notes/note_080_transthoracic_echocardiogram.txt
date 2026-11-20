@@ -1,0 +1,6 @@
+PATIENT: CASTANEDA, EDWIN M      MRN: MRN-05314573    DOB: 07/05/1944
+DATE OF SERVICE: 06-Oct-2024   DOCUMENT: TRANSTHORACIC ECHOCARDIOGRAM
+ENCOUNTER: ENC-33218
+---
+FINDINGS: Dilated left ventricle with global hypokinesis. Left ventricular ejection fraction estimated at 35%. Moderate mitral regurgitation.
+IMPRESSION: Reduced ejection fraction of 35% consistent with systolic heart failure.

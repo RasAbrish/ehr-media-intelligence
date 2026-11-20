@@ -1,0 +1,6 @@
+PATIENT: Marc H. Martinez        MRN: 01946571        DOB: Aug 9 1947
+DATE OF SERVICE: 10-Jul-2024   DOCUMENT: THYROID ULTRASOUND
+ENCOUNTER: ENC-38074
+---
+FINDINGS: Diffusely heterogeneous thyroid gland without discrete nodules.
+IMPRESSION: Findings suggestive of chronic thyroiditis.

@@ -1,0 +1,6 @@
+PATIENT: Russell C. House        MRN: mrn 9018867     DOB: 09-Dec-1961
+DATE OF SERVICE: 2024/06/19    DOCUMENT: SURGICAL PATHOLOGY REPORT
+ENCOUNTER: ENC-45003
+---
+SPECIMEN: Left breast, core needle biopsy at 10 o'clock.
+DIAGNOSIS: Invasive ductal carcinoma, Nottingham grade 2. ER positive, PR positive, HER2 negative.

@@ -1,0 +1,7 @@
+PATIENT: Edwin M. Castaneda      MRN: 05314573        DOB: 1944/07/05
+DATE OF SERVICE: 06-Oct-2024   DOCUMENT: DISCHARGE SUMMARY
+ENCOUNTER: ENC-33218
+---
+HOSPITAL COURSE: A 80-year-old man was admitted with dyspnea, orthopnea and leg edema. BNP was 1416 pg/mL. Diuresed with IV furosemide with 4 kg net weight loss. Sodium 129 mmol/L on admission.
+ASSESSMENT: Acute on chronic systolic heart failure.
+PLAN: Furosemide 40 mg daily, carvedilol 6.25 mg twice daily. Daily weights, 2 g sodium diet. Cardiology follow-up in 1 week.

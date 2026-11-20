@@ -1,0 +1,6 @@
+PATIENT: Robert K. Ramirez       MRN: MRN-00785337    DOB: March 11, 1999
+DATE OF SERVICE: May 1, 2025   DOCUMENT: CHEST X-RAY PA AND LATERAL
+ENCOUNTER: ENC-27486
+---
+FINDINGS: Cardiomegaly. Bilateral interstitial opacities and small pleural effusions.
+IMPRESSION: Findings consistent with pulmonary edema.

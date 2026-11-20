@@ -1,0 +1,6 @@
+PATIENT: DELEON, MICHAEL L       MRN: mrn 5553670     DOB: 05/10/1944
+DATE OF SERVICE: 29/01/2024    DOCUMENT: SURGICAL PATHOLOGY REPORT
+ENCOUNTER: ENC-58311
+---
+SPECIMEN: Left breast, core needle biopsy at ll o'clock.
+DIAGNOSIS: Invasive ductal carcinoma, Nottingham grade 2. ER positive, PR positive, HER2 negative.

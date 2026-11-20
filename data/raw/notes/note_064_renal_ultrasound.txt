@@ -1,0 +1,6 @@
+PATIENT: TORRES, RICHARD A       MRN: MRN-01574689    DOB: 17/03/1959
+DATE OF SERVICE: October 31, 2024  DOCUMENT: RENAL ULTRASOUND
+ENCOUNTER: ENC-97177
+---
+FINDINGS: Both kidneys are small with increased cortical echogenicity. No hydronephrosis.
+IMPRESSION: Findings consistent with chronic medical renal disease.

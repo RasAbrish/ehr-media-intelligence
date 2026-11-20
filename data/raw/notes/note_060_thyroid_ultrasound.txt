@@ -1,0 +1,6 @@
+PATIENT: Dr. Cory Ward           MRN: mrn 3250180     DOB: 30-Sep-1973
+DATE OF SERVICE: 09/12/2024    DOCUMENT: THYROID ULTRASOUND
+ENCOUNTER: ENC-14244
+---
+FINDINGS: Diffusely heterogeneous thyroid gland without discrete nodules.
+IMPRESSION: Findings suggestive of chronic thyroiditis.

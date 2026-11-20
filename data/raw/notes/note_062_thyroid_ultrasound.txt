@@ -1,0 +1,6 @@
+PATIENT: mark  daniel            MRN: 5780619         DOB: Feb 29 1992
+DATE OF SERVICE: 15/02/2024    DOCUMENT: THYROID ULTRASOUND
+ENCOUNTER: ENC-29973
+---
+FINDINGS: Diffusely heterogeneous thyroid gland without discrete nodules.
+IMPRESSION: Findings suggestive of chronic thyroiditis.

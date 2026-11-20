@@ -1,0 +1,6 @@
+PATIENT: Andrea Perez            MRN: mrn 2618513     DOB: 26-Apr-1957
+DATE OF SERVICE: 2024/07/19    DOCUMENT: CT ANGIOGRAPHY CHEST
+ENCOUNTER: ENC-37742
+---
+FINDINGS: Filling defects in the right main and right lower lobe pulmonary arteries. RV to LV ratio 1.1.
+IMPRESSION: Acute pulmonary embolism with mild right heart strain.

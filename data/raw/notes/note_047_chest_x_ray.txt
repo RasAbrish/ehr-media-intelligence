@@ -1,0 +1,6 @@
+PATIENT: theresa  baker          MRN: MRN9525702      DOB: 29/05/2002
+DATE OF SERVICE: 20241125      DOCUMENT: CHEST X-RAY
+ENCOUNTER: ENC-89471
+---
+FINDINGS: Focal consolidation in the right lower lobe with air bronchograms. No pneumothorax.
+IMPRESSION: Right lower lobe pneumonia.

@@ -1,0 +1,7 @@
+PATIENT: Sandy Smith             MRN: 00141249        DOB: 12/01/1997
+DATE OF SERVICE: June 10, 2024  DOCUMENT: DISCHARGE SUMMARY
+ENCOUNTER: ENC-29709
+---
+HOSPITAL COURSE: Admitted for acute pulmonary embolism.  Transitioned from heparin to apixaban.  Oxygen weaned to room air.
+
+PLAN: Apixaban 10 mg twice daily for 7 days then 5 mg twice daily.  Hematology follow-up.

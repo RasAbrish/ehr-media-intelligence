@@ -1,0 +1,6 @@
+PATIENT: rebecca  carlson        MRN: 1704522         DOB: 07-Feb-1972
+DATE OF SERVICE: 20250208      DOCUMENT: MRI BRAIN WITHOUT CONTRAST
+ENCOUNTER: ENC-73904
+---
+FINDINGS: Restricted diffusion in the left middle cerebral artery territory involving the insula and frontal operculum. No hemorrhage.
+IMPRESSION: Acute left MCA territory infarct.

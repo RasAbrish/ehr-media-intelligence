@@ -1,0 +1,6 @@
+PATIENT: Christine Harris        MRN: mrn 6703979     DOB: 19980405
+DATE OF SERVICE: 09/27/2024    DOCUMENT: CT ANGIOGRAPHY CHEST
+ENCOUNTER: ENC-73335
+---
+FINDINGS: Filling defects in the right main and right lower lobe pulmonary arteries. RV to LV ratio 1.1.
+IMPRESSION: Acute pulmonary embolism with mild right heart strain.

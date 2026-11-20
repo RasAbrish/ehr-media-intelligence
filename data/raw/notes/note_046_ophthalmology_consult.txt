@@ -1,0 +1,7 @@
+PATIENT: FIGUEROA, MARGARET      MRN: 0429610         DOB: Sep 4 1962
+DATE OF SERVICE: August 11, 2025  DOCUMENT: OPHTHALMOLOGY CONSULT
+ENCOUNTER: ENC-95990
+---
+REASON: Diabetic eye screening.
+FINDINGS: Mild nonproliferative diabetic retinopathy in both eyes. No macular edema.
+PLAN: Repeat dilated exam in 12 months.

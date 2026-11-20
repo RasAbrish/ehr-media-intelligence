@@ -1,0 +1,6 @@
+PATIENT: Natasha Cole            MRN: 2602974         DOB: May 21 1991
+DATE OF SERVICE: 2025-05-28    DOCUMENT: MRI BRAIN WITHOUT CONTRAST
+ENCOUNTER: ENC-61807
+---
+FINDINGS: Restricted diffusion in the left middle cerebral artery territory involving the insula and frontal operculum. No hemorrhage.
+IMPRESSION: Acute left MCA territory infarct.

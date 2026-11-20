@@ -1,0 +1,8 @@
+PATIENT: Richard Torres          MRN: 1574689         DOB: March 17, 1959
+DATE OF SERVICE: 04-Sep-2024   DOCUMENT: NEPHROLOGY CONSULT
+ENCOUNTER: ENC-64524
+---
+reason: rising creatinine and high potassium.
+findings: a 65-year-old patient has creatinine 2.09 mg/dl, potassium 5.9 mmol/l and estimated gfr 31 ml/min/1.73m2.
+assessment: chronic kidney disease stage 3b with hyperkalemia.
+plan: stop lisinopril. start sodium zirconium cyclosilicate. low potassium diet. repeat bmp in 1 week.

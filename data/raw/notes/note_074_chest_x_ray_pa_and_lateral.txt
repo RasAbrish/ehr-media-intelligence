@@ -1,0 +1,6 @@
+PATIENT: CASTANEDA, EDWIN M      MRN: MRN-05314573    DOB: 07/05/1944
+DATE OF SERVICE: 10/05/2024    DOCUMENT: CHEST X-RAY PA AND LATERAL
+ENCOUNTER: ENC-33218
+---
+FINDINGS: Cardiomegaly. Bilateral interstitial opacities and small pleural effusions.
+IMPRESSION: Findings consistent with pulmonary edema.

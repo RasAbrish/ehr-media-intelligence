@@ -1,0 +1,8 @@
+PATIENT: Gregg Pierce            MRN: mrn 6917400     DOB: 1998/02/06
+DATE OF SERVICE: 20240521      DOCUMENT: NEPHROLOGY CONSULT
+ENCOUNTER: ENC-60678
+---
+reason: rising creatinine and high potassium.
+findings: a 26-year-old man has creatinine 2.61 mg/dl, potassium 5.8 mmol/l and estimated gfr 37 ml/min/1.73m2.
+assessment: chronic kidney disease stage 3b with hyperkalemia.
+plan: stop lisinopril. start sodium zirconium cyclosilicate. low potassium diet. repeat bmp in 1 week.

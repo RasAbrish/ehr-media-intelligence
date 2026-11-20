@@ -1,0 +1,7 @@
+PATIENT: Debra Haynes            MRN: MRN9056844      DOB: 1949/11/14
+DATE OF SERVICE: 03-Mar-2024   DOCUMENT: MRI BRAIN WITHOUT CONTRAST
+ENCOUNTER: ENC-40775
+---
+FINDINGS: Restricted diffusion in the left middle cerebral artery territory involving the insula and frontal operculum. No hemorrhage.
+IMPRESSION: Acute left MCA territory infarct.
+Recheck in l week.

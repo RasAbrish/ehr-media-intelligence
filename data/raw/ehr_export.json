@@ -1,0 +1,2408 @@
+{
+  "export_id": "EPIC-EXP-2025-11",
+  "generated_at": "2025-11-02T10:22:00Z",
+  "mrn_system": "urn:oid:2.999.1.1",
+  "patients": [
+    {
+      "mrn": "MRN429610",
+      "name": "FIGUEROA, MARGARET A",
+      "dob": "Sep 4 1962",
+      "sex": "2",
+      "phone": "(212) 555-0131",
+      "address": {
+        "line": "21819 Johnson Course",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10029"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-60328",
+          "type": "outpatient",
+          "start": "2025-04-25T17:45",
+          "end": "2025-04-25",
+          "documents": [
+            {
+              "doc_id": "DOC-1002",
+              "doc_type": "Progress Note",
+              "date": "2025/04/25",
+              "author": "Dr. O. Jones",
+              "title": "Primary Care Visit",
+              "text": "SUBJECTIVE: A 62-year-old woman is seen for routine care. No chest pain.\nOBJECTIVE: LDL 133 mg/dL on the latest lipid panel.\nASSESSMENT: Hyperlipidemia above goal in a patient with diabetes.\nPLAN: Start atorvastatin 40 mg nightly. Recheck lipids in 12 weeks."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-95990",
+          "type": "outpatient",
+          "start": "2025-08-11T13:10:00",
+          "end": "20250811",
+          "documents": [
+            {
+              "doc_id": "DOC-1001",
+              "doc_type": "Progress Note",
+              "date": "11-Aug-2025",
+              "author": "Dr. J. Warner",
+              "title": "Endocrinology Follow-up",
+              "text": "SUBJECTIVE: A 62-year-old woman presents for diabetes follow-up. Reports polyuria and fatigue. Adherent to metformin 1000 mg twice daily.\nOBJECTIVE: HbA1c 8.3% today, up from 7.4% at the prior visit. Fasting glucose 231 mg/dL.\nASSESSMENT: Type 2 diabetes mellitus with worsening glycemic control.\nPLAN: Add empagliflozin 10 mg daily. Diabetes education referral. Repeat HbA1c in 3 months."
+            },
+            {
+              "doc_id": "DOC-1003",
+              "doc_type": "Consultation Note",
+              "date": "08/11/2025",
+              "author": "Dr. H. Bradshaw",
+              "title": "Ophthalmology Consult",
+              "text": "REASON: Diabetic eye screening.\nFINDINGS: Mild nonproliferative diabetic retinopathy in both eyes. No macular edema.\nPLAN: Repeat dilated exam in 12 months."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": " mrn 7088673 ",
+      "name": "Daniel Guzman",
+      "dob": "1940/11/07",
+      "sex": "",
+      "phone": "(917) 555-0103",
+      "address": {
+        "line": "863 Lawrence Valleys",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10012"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-42406",
+          "type": "inpatient",
+          "start": "2025-04-15T18:30:00",
+          "end": "Apr 20 2025",
+          "documents": [
+            {
+              "doc_id": "DOC-1004",
+              "doc_type": "Discharge Summary",
+              "date": "18-Apr-2025",
+              "author": "Dr. Z. Moody",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: Mr. Guzman, a 84-year-old man, was admitted with dyspnea, orthopnea and leg edema. BNP was 1003 pg/mL. Diuresed with IV furosemide with 4 kg net weight loss. Sodium 133 mmol/L on admission.\nASSESSMENT: Acute on chronic systolic heart failure.\nPLAN: Furosemide 40 mg daily, carvedilol 6.25 mg twice daily. Daily weights, 2 g sodium diet. Cardiology follow-up in 1 week."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-45992",
+          "type": "inpatient",
+          "start": "2025-07-04 19:45",
+          "end": "09-Jul-2025",
+          "documents": []
+        }
+      ]
+    },
+    {
+      "mrn": "0455199",
+      "name": "Dr. Sheila Shaffer",
+      "dob": "19880508",
+      "sex": "F",
+      "phone": "(917) 555-0125",
+      "address": {
+        "line": "4235 Christopher Court Suite 594",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10092"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-18161",
+          "type": "inpatient",
+          "start": "2025-03-14 12:45",
+          "end": "Mar 19 2025",
+          "documents": [
+            {
+              "doc_id": "DOC-1008",
+              "doc_type": "History and Physical",
+              "date": "17/03/2025",
+              "author": "Dr. E. Kerr",
+              "title": "Admission History and Physical",
+              "text": "HPI: A 36-year-old woman reports 4 days of productive cough, fever to 38.9 C and pleuritic chest pain.\nLABS: WBC 17.1 x10^3/uL.\nASSESSMENT: Community-acquired pneumonia, CURB-65 score 2.\nPLAN: Ceftriaxone and azithromycin. Blood cultures pending."
+            },
+            {
+              "doc_id": "DOC-1009",
+              "doc_type": "Discharge Summary",
+              "date": "03/18/2025",
+              "author": "Dr. E. Jones",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: Treated for right lower lobe pneumonia with IV antibiotics. Afebrile for 48 hours before discharge.\nPLAN: Complete 5 days of oral amoxicillin-clavulanate. Repeat chest X-ray in 6 weeks."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "7546477",
+      "name": "STEVENS, ROBERT X",
+      "dob": "1990-11-13",
+      "sex": "Male",
+      "phone": "(347) 555-0135",
+      "address": {
+        "line": "1849 Ray Squares",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10001"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-80545",
+          "type": "outpatient",
+          "start": "2025-01-09T19:30:00",
+          "end": "20250109",
+          "documents": [
+            {
+              "doc_id": "DOC-1010",
+              "doc_type": "Consultation Note",
+              "author": "Dr. F. Sparks",
+              "title": "Nephrology Consult",
+              "text": "REASON: Rising creatinine and high potassium.\nFINDINGS: A 34-year-old man has creatinine 2.04 mg/dL, potassium 6.1 mmol/L and estimated GFR 36 mL/min/1.73m2.\nASSESSMENT: Chronic kidney disease stage 3b with hyperkalemia.\nPLAN: Stop lisinopril. Start sodium zirconium cyclosilicate. Low potassium diet. Repeat BMP in 1 week."
+            },
+            {
+              "doc_id": "DOC-1012",
+              "doc_type": "Progress Note",
+              "date": "January 9, 2025",
+              "author": "Dr. S. Morse",
+              "title": "Primary Care Visit",
+              "text": "SUBJECTIVE: A 34-year-old man reports fatigue and decreased appetite.\nASSESSMENT: Chronic kidney disease, hypertension.\nPLAN: Nephrology referral placed. Avoid NSAIDs."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "MRN2618513",
+      "name": "Andrea Perez",
+      "sex": "Female",
+      "phone": "(646) 555-0197",
+      "address": {
+        "line": "31647 Martin Knoll Apt. 419",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10044"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-37742",
+          "type": "emergency",
+          "start": "2024-07-19T11:30:00",
+          "end": "19/07/2024",
+          "documents": [
+            {
+              "doc_id": "DOC-1014",
+              "doc_type": "Emergency Department Note",
+              "date": "19-Jul-2024",
+              "author": "Dr. W. Torres",
+              "title": "ED Provider Note",
+              "text": "HPI: A 67-year-old woman presents with sudden shortness of breath and pleuritic chest pain after a long flight.\nEXAM: Heart rate 120 bpm, SpO2 88% on room air.\nLABS: Troponin I 0.075 ng/mL.\nASSESSMENT: Suspected pulmonary embolism. CT angiography ordered.\nPLAN: Start heparin infusion. Admit to telemetry."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-46471",
+          "type": "emergency",
+          "start": "2024-10-30T12:15",
+          "end": "Oct 30 2024",
+          "documents": [
+            {
+              "doc_id": "DOC-1015",
+              "doc_type": "Discharge Summary",
+              "date": "10/30/2024",
+              "author": "Dr. M. Bender",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: Admitted for acute pulmonary embolism. Transitioned from heparin to apixaban. Oxygen weaned to room air.\nPLAN: Apixaban 10 mg twice daily for 7 days then 5 mg twice daily. Hematology follow-up."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "MRN-05780619",
+      "name": "DANIEL, MARK R",
+      "dob": "29/02/1992",
+      "sex": "1",
+      "phone": "(646) 555-0133",
+      "address": {
+        "line": "6483 Cameron Trail",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10006"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-29973",
+          "type": "outpatient",
+          "start": "2024-02-15 10:00",
+          "end": "February 15, 2024",
+          "documents": [
+            {
+              "doc_id": "DOC-1016",
+              "doc_type": "Progress Note",
+              "date": "2024/02/15",
+              "author": "Dr. Q. Fernandez",
+              "title": "Primary Care Visit",
+              "text": "SUBJECTIVE: Mr. Daniel, a 31-year-old man, reports fatigue, cold intolerance and weight gain over 6 months.\nOBJECTIVE: TSH 13.12 mIU/L, free T4 0.61 ng/dL.\nASSESSMENT: Primary hypothyroidism.\nPLAN: Start levothyroxine 50 mcg daily. Recheck TSH in 6 weeks."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "MRN1332047",
+      "name": "Amy B. Trujillo",
+      "dob": "Jul 12 1987",
+      "sex": "f",
+      "phone": "(718) 555-0137",
+      "address": {
+        "line": "1395 Diana Locks Suite 242",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10081"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-85849",
+          "type": "inpatient",
+          "start": "2024-07-04 19:10",
+          "end": "Jul 8 2024",
+          "documents": [
+            {
+              "doc_id": "DOC-1018",
+              "doc_type": "History and Physical",
+              "date": "Jul 4 2024",
+              "author": "Dr. B. Preston",
+              "title": "Admission History and Physical",
+              "text": "HPI: A 36-year-old woman with known COPD presents with increased dyspnea and sputum for 3 days.\nEXAM: SpO2 88% on room air, diffuse expiratory wheezes.\nASSESSMENT: Acute exacerbation of COPD.\nPLAN: Nebulized albuterol and ipratropium, prednisone 40 mg daily, doxycycline."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-35995",
+          "type": "inpatient",
+          "start": "08/21/2024 11:45",
+          "end": "20240826",
+          "documents": [
+            {
+              "doc_id": "DOC-1020",
+              "doc_type": "Discharge Summary",
+              "date": "08/23/2024",
+              "author": "Dr. I. Johnson",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: Improved with bronchodilators and steroids. FEV1 47% predicted on prior testing.\nPLAN: Complete prednisone taper. Pulmonary rehabilitation referral."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "01176941",
+      "name": "RYAN, DAVID R",
+      "dob": "Feb 10 1942",
+      "sex": "m",
+      "phone": "(347) 555-0184",
+      "address": {
+        "line": "653 William Course Apt. 122",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10030"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-67080",
+          "type": "outpatient",
+          "start": "2025-04-02T17:30",
+          "end": "20250402",
+          "documents": [
+            {
+              "doc_id": "DOC-1023",
+              "doc_type": "Consultation Note",
+              "date": "Apr 2 2025",
+              "author": "Dr. A. Key",
+              "title": "Surgical Oncology Consult",
+              "text": "REASON: New diagnosis of left breast invasive ductal carcinoma.\nASSESSMENT: A 83-year-old man with a 2.3 cm hormone receptor positive tumor.\nPLAN: Discuss lumpectomy with sentinel node biopsy. Refer to medical oncology."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "01704522",
+      "name": "CARLSON, REBECCA N",
+      "dob": "February 7, 1972",
+      "sex": "female",
+      "phone": "(347) 555-0135",
+      "address": {
+        "line": "9784 Erin Crescent Suite 514",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10059"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-73904",
+          "type": "inpatient",
+          "start": "2025-02-06 07:30",
+          "end": "10-Feb-2025",
+          "documents": [
+            {
+              "doc_id": "DOC-1025",
+              "doc_type": "Consultation Note",
+              "date": "Feb 10 2025",
+              "author": "Dr. S. Williams",
+              "title": "Neurology Consult",
+              "text": "HPI: A 53-year-old woman developed acute right arm weakness and expressive aphasia.\nEXAM: NIHSS 5.\nLABS: LDL 171 mg/dL.\nASSESSMENT: Acute ischemic stroke, left MCA territory.\nPLAN: Aspirin and high-intensity atorvastatin. Telemetry to evaluate for atrial fibrillation."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-88139",
+          "type": "inpatient",
+          "start": "2025-04-19T12:15:00",
+          "end": "20250423",
+          "documents": [
+            {
+              "doc_id": "DOC-1026",
+              "doc_type": "Discharge Summary",
+              "date": "2025/04/19",
+              "author": "Dr. Y. Thompson",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: Admitted for left MCA stroke. Deficits improved with therapy.\nPLAN: Aspirin 81 mg daily, atorvastatin 80 mg nightly. Outpatient speech therapy."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "03524944",
+      "name": "SMITH, JEFFREY O",
+      "dob": "Feb 15 1998",
+      "sex": "M",
+      "phone": "(646) 555-0134",
+      "address": {
+        "line": "281 Skinner Parkways Apt. 252",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10090"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-41890",
+          "type": "emergency",
+          "start": "2024-02-01T11:10:00",
+          "end": "February 1, 2024",
+          "documents": [
+            {
+              "doc_id": "DOC-1027",
+              "doc_type": "Emergency Department Note",
+              "date": "20240201",
+              "author": "Dr. Q. Pearson",
+              "title": "ED Provider Note",
+              "text": "HPI: A 25-year-old man presents with fever, confusion and dysuria.\nEXAM: Temperature 39.6 C, mean arterial pressure 59 mmHg.\nLABS: Lactate 5.1 mmol/L, WBC 21.6 x10^3/uL.\nASSESSMENT: Sepsis from a urinary source.\nPLAN: 30 mL/kg crystalloid bolus, blood and urine cultures, piperacillin-tazobactam. Admit to step-down unit."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-72031",
+          "type": "emergency",
+          "start": "2024-04-25 17:45",
+          "end": "2024/04/25",
+          "documents": [
+            {
+              "doc_id": "DOC-1028",
+              "doc_type": "Discharge Summary",
+              "author": "Dr. I. White",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: Treated for urosepsis. Urine culture grew E. coli sensitive to ceftriaxone. Lactate normalized after fluids.\nPLAN: Oral cefpodoxime to complete 10 days. Primary care follow-up."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "04117245",
+      "name": "Kimberly Nielsen",
+      "dob": "1952/08/29",
+      "sex": "2",
+      "phone": "(917) 555-0159",
+      "address": {
+        "line": "570 Sarah Wells",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10049"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-38361",
+          "type": "outpatient",
+          "start": "2024-05-16T19:10:00",
+          "end": "20240516",
+          "documents": []
+        },
+        {
+          "encounter_id": "ENC-88222",
+          "type": "outpatient",
+          "start": "2024-08-30 11:45",
+          "end": "2024-08-30",
+          "documents": [
+            {
+              "doc_id": "DOC-1029",
+              "doc_type": "Progress Note",
+              "date": "August 30, 2024",
+              "author": "Dr. S. Graham",
+              "title": "Endocrinology Follow-up",
+              "text": "SUBJECTIVE: A 72-year-old woman presents for diabetes follow-up. Reports polyuria and fatigue. Adherent to metformin 1000 mg twice daily.\nOBJECTIVE: HbA1c 8.9% today, up from 7.5% at the prior visit. Fasting glucose 233 mg/dL.\nASSESSMENT: Type 2 diabetes mellitus with worsening glycemic control.\nPLAN: Add empagliflozin 10 mg daily. Diabetes education referral. Repeat HbA1c in 3 months."
+            },
+            {
+              "doc_id": "DOC-1030",
+              "doc_type": "Progress Note",
+              "date": "30/08/2024",
+              "author": "Dr. P. Costa",
+              "title": "Primary Care Visit",
+              "text": "SUBJECTIVE: A 72-year-old woman is seen for routine care. No chest pain.   \nOBJECTIVE: LDL 142 mg/dL on the latest lipid panel.   \nASSESSMENT: Hyperlipidemia above goal in a patient with diabetes.   \nPLAN: Start atorvastatin 40 mg nightly. Recheck lipids in 12 weeks.   "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "948483",
+      "name": "william  parker",
+      "dob": "1958/07/20",
+      "sex": "male",
+      "phone": "(646) 555-0104",
+      "address": {
+        "line": "91171 David Mountains",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10041"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-16734",
+          "type": "inpatient",
+          "start": "2024-11-01T14:30",
+          "end": "Nov 5 2024",
+          "documents": [
+            {
+              "doc_id": "DOC-1031",
+              "doc_type": "Discharge Summary",
+              "date": "03-Nov-2024",
+              "author": "Dr. P. Bailey",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: A 66-year-old man was admitted with dyspnea, orthopnea and leg edema. BNP was 1190 pg/mL. Diuresed with IV furosemide with 4 kg net weight loss. Sodium 129 mmol/L on admission.\nASSESSMENT: Acute on chronic systolic heart failure.\nPLAN: Furosemide 40 mg daily, carvedilol 6.25 mg twice daily. Daily weights, 2 g sodium diet. Cardiology follow-up in 1 week."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "MRN-09525702",
+      "name": "Dr. Theresa Baker",
+      "dob": "29/05/2002",
+      "sex": "F",
+      "phone": "(347) 555-0140",
+      "address": {
+        "line": "83465 Lam Mission Apt. 331",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10028"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-89471",
+          "type": "inpatient",
+          "start": "2024-11-21T10:00:00",
+          "end": "2024-11-27",
+          "documents": [
+            {
+              "doc_id": "DOC-1035",
+              "doc_type": "History and Physical",
+              "date": "Nov 22 2024",
+              "author": "Dr. P. Roberts",
+              "title": "Admission History and Physical",
+              "text": "HPI: A 22-year-old woman reports 4 days of productive cough, fever to 38.8 C and pleuritic chest pain.\nLABS: WBC 17.1 x10^3/uL.\nASSESSMENT: Community-acquired pneumonia, CURB-65 score 2.\nPLAN: Ceftriaxone and azithromycin. Blood cultures pending."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "02406987",
+      "name": "George Spencer",
+      "dob": "06-Oct-1961",
+      "sex": "Male",
+      "phone": "(718) 555-0117",
+      "address": {
+        "line": "10310 Jones Freeway",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10032"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-96563",
+          "type": "outpatient",
+          "start": "04/25/2024 17:10",
+          "end": "25-Apr-2024",
+          "documents": [
+            {
+              "doc_id": "DOC-1036",
+              "doc_type": "Consultation Note",
+              "date": "April 25, 2024",
+              "author": "Dr. M. Cervantes",
+              "title": "Nephrology Consult",
+              "text": "REASON: Rising creatinine and high potassium.\nFINDINGS: Mr. Spencer, a 62-year-old man, has creatinine 2.39 mg/dL, potassium 6.1 mmol/L and estimated GFR 37 mL/min/1.73m2.\nASSESSMENT: Chronic kidney disease stage 3b with hyperkalemia.\nPLAN: Stop lisinopril. Start sodium zirconium cyclosilicate. Low potassium diet. Repeat BMP in 1 week."
+            },
+            {
+              "doc_id": "DOC-1038",
+              "doc_type": "Progress Note",
+              "date": "20240425",
+              "author": "Dr. C. Edwards",
+              "title": "Primary Care Visit",
+              "text": "SUBJECTIVE: Mr. Spencer, a 62-year-old man, reports fatigue and decreased appetite.\nASSESSMENT: Chronic kidney disease, hypertension.\nPLAN: Nephrology referral placed. Avoid NSAIDs.\nPatient states “I can’t shake this feeling.”"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "06710828",
+      "name": "Diana P. Lewis",
+      "dob": "Jun 23 1970",
+      "sex": "Female",
+      "phone": "(917) 555-0128",
+      "address": {
+        "line": "997 Kristen Valley",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10018"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-17816",
+          "type": "emergency",
+          "start": "2024-09-01T11:10:00",
+          "end": "20240901",
+          "documents": [
+            {
+              "doc_id": "DOC-1040",
+              "doc_type": "Emergency Department Note",
+              "date": "September 1, 2024",
+              "author": "Dr. Y. Powell",
+              "title": "ED Provider Note",
+              "text": "HPI: A 54-year-old woman presents with sudden shortness of breath and pleuritic chest pain after a long flight.\nEXAM: Heart rate 110 bpm, SpO2 88% on room air.\nLABS: Troponin I 0.136 ng/mL.\nASSESSMENT: Suspected pulmonary embolism. CT angiography ordered.\nPLAN: Start heparin infusion. Admit to telemetry."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "9007381",
+      "name": "Jason Davis",
+      "dob": "1994-04-17",
+      "sex": "1",
+      "phone": "(212) 555-0120",
+      "address": {
+        "line": "6670 Bruce Stream Suite 133",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10088"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-42816",
+          "type": "outpatient",
+          "start": "2024-02-24T18:15:00",
+          "end": "2024-02-24",
+          "documents": [
+            {
+              "doc_id": "DOC-1041",
+              "doc_type": "Progress Note",
+              "date": "2024/02/24",
+              "author": "Dr. Q. Bryan",
+              "title": "Primary Care Visit",
+              "text": "SUBJECTIVE: Mr. Davis, a 29-year-old man, reports fatigue, cold intolerance and weight gain over 6 months.\nOBJECTIVE: TSH 11.22 mIU/L, free T4 0.5 ng/dL.\nASSESSMENT: Primary hypothyroidism.\nPLAN: Start levothyroxine 50 mcg daily. Recheck TSH in 6 weeks."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "07862574",
+      "name": "James O. Taylor",
+      "dob": "19850621",
+      "sex": "U",
+      "phone": "(718) 555-0132",
+      "address": {
+        "line": "7317 Brent Plains",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10071"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-52081",
+          "type": "inpatient",
+          "start": "2025-06-01 14:15",
+          "end": "Jun 6 2025",
+          "documents": [
+            {
+              "doc_id": "DOC-1043",
+              "doc_type": "History and Physical",
+              "date": "20250606",
+              "author": "Dr. R. Murray",
+              "title": "Admission History and Physical",
+              "text": "HPI: A 39-year-old patient with known COPD presents with increased dyspnea and sputum for 3 days.\nEXAM: SpO2 86% on room air, diffuse expiratory wheezes.\nASSESSMENT: Acute exacerbation of COPD.\nPLAN: Nebulized albuterol and ipratropium, prednisone 40 mg daily, doxycycline."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-47777",
+          "type": "inpatient",
+          "start": "2025-07-29 09:15",
+          "end": "2025/08/03",
+          "documents": [
+            {
+              "doc_id": "DOC-1045",
+              "doc_type": "Discharge Summary",
+              "date": "Jul 29 2025",
+              "author": "Dr. L. Dean",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: Improved with bronchodilators and steroids. FEV1 48% predicted on prior testing.\nPLAN: Complete prednisone taper. Pulmonary rehabilitation referral."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "MRN-09018867",
+      "name": "Russell C. House",
+      "sex": "m",
+      "phone": "(212) 555-0198",
+      "address": {
+        "line": "67736 Franklin Alley",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10083"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-75338",
+          "type": "outpatient",
+          "start": "2024-03-10T15:15",
+          "end": "March 10, 2024",
+          "documents": []
+        },
+        {
+          "encounter_id": "ENC-45003",
+          "type": "outpatient",
+          "start": "06/19/2024 19:00",
+          "end": "20240619",
+          "documents": []
+        }
+      ]
+    },
+    {
+      "mrn": " mrn 2663446 ",
+      "name": "HOUSE, VICTORIA I",
+      "dob": "1978-09-15",
+      "sex": "f",
+      "phone": "(718) 555-0100",
+      "address": {
+        "line": "6872 Kenneth Centers Apt. 500",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10093"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-94896",
+          "type": "inpatient",
+          "start": "2025-03-07T10:00:00",
+          "end": "2025/03/12",
+          "documents": [
+            {
+              "doc_id": "DOC-1049",
+              "doc_type": "Consultation Note",
+              "date": "2025-03-12",
+              "author": "Dr. J. Kim",
+              "title": "Neurology Consult",
+              "text": "HPI: A 46-year-old woman developed acute right arm weakness and expressive aphasia.\nEXAM: NIHSS 8.\nLABS: LDL 164 mg/dL.\nASSESSMENT: Acute ischemic stroke, left MCA territory.\nPLAN: Aspirin and high-intensity atorvastatin. Telemetry to evaluate for atrial fibrillation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "MRN8527485",
+      "name": "CALHOUN, KEVIN Q",
+      "dob": "19-Jul-1947",
+      "sex": "M",
+      "phone": "(347) 555-0180",
+      "address": {
+        "line": "81219 Emma Freeway",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10039"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-76550",
+          "type": "emergency",
+          "start": "2024-03-26T19:30",
+          "end": "26-Mar-2024",
+          "documents": [
+            {
+              "doc_id": "DOC-1050",
+              "doc_type": "Emergency Department Note",
+              "date": "March 26, 2024",
+              "author": "Dr. W. Washington",
+              "title": "ED Provider Note",
+              "text": "HPI: A 76-year-old man presents with fever, confusion and dysuria.\nEXAM: Temperature 39.1 C, mean arterial pressure 60 mmHg.\nLABS: Lactate 4.9 mmol/L, WBC 20.7 x10^3/uL.\nASSESSMENT: Sepsis from a urinary source.\nPLAN: 30 mL/kg crystalloid bolus, blood and urine cultures, piperacillin-tazobactam. Admit to step-down unit."
+            },
+            {
+              "doc_id": "DOC-1051",
+              "doc_type": "Discharge Summary",
+              "date": "03/26/2024",
+              "author": "Dr. A. Dudley",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: Treated for urosepsis. Urine culture grew E. coli sensitive to ceftriaxone. Lactate normalized after fluids.\nPLAN: Oral cefpodoxime to complete 10 days. Primary care follow-up."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": " mrn 9059278 ",
+      "name": "Jennifer Sanchez",
+      "dob": "07/31/1985",
+      "sex": "female",
+      "phone": "(347) 555-0100",
+      "address": {
+        "line": "169 Donovan Ford",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10077"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-82340",
+          "type": "outpatient",
+          "start": "2025-04-16 14:15",
+          "end": "Apr 16 2025",
+          "documents": [
+            {
+              "doc_id": "DOC-1053",
+              "doc_type": "Progress Note",
+              "date": "April 16, 2025",
+              "author": "Dr. W. Moore",
+              "title": "Primary Care Visit",
+              "text": "SUBJECTIVE: A 39-year-old woman is seen for routine care. No chest pain.\nOBJECTIVE: LDL 147 mg/dL on the latest lipid panel.\nASSESSMENT: Hyperlipidemia above goal in a patient with diabetes.\nPLAN: Start atorvastatin 40 mg nightly. Recheck lipids in 12 weeks."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-34727",
+          "type": "outpatient",
+          "start": "2025-08-08T13:30",
+          "end": "2025-08-08",
+          "documents": [
+            {
+              "doc_id": "DOC-1052",
+              "doc_type": "Progress Note",
+              "date": "20250808",
+              "author": "Dr. T. Lloyd",
+              "title": "Endocrinology Follow-up",
+              "text": "SUBJECTIVE: A 40-year-old woman presents for diabetes follow-up. Reports polyuria and fatigue. Adherent to metformin 1000 mg twice daily.\nOBJECTIVE: HbA1c 8.3% today, up from 7.5% at the prior visit. Fasting glucose 208 mg/dL.\nASSESSMENT: Type 2 diabetes mellitus with worsening glycemic control.\nPLAN: Add empagliflozin 10 mg daily. Diabetes education referral. Repeat HbA1c in 3 months."
+            },
+            {
+              "doc_id": "DOC-1054",
+              "doc_type": "Consultation Note",
+              "date": "August 8, 2025",
+              "author": "Dr. R. Smith",
+              "title": "Ophthalmology Consult",
+              "text": "REASON: Diabetic eye screening.\nFINDINGS: Mild nonproliferative diabetic retinopathy in both eyes. No macular edema.\nPLAN: Repeat dilated exam in 12 months."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "981823",
+      "name": "Dr. Michael Allen",
+      "dob": "1959-08-11",
+      "sex": "male",
+      "phone": "(347) 555-0172",
+      "address": {
+        "line": "47510 Howell Port Apt. 183",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10011"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-95823",
+          "type": "inpatient",
+          "start": "04/26/2024 14:00",
+          "end": "2024-04-29",
+          "documents": [
+            {
+              "doc_id": "DOC-1055",
+              "doc_type": "Discharge Summary",
+              "author": "Dr. N. Davis",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: A 64-year-old man was admitted with dyspnea, orthopnea and leg edema. BNP was 867 pg/mL. Diuresed with IV furosemide with 4 kg net weight loss. Sodium 132 mmol/L on admission.\nASSESSMENT: Acute on chronic systolic heart failure.\nPLAN: Furosemide 40 mg daily, carvedilol 6.25 mg twice daily. Daily weights, 2 g sodium diet. Cardiology follow-up in 1 week."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-91691",
+          "type": "inpatient",
+          "start": "2024-06-29T08:30",
+          "end": "07/03/2024",
+          "documents": []
+        }
+      ]
+    },
+    {
+      "mrn": "MRN8947326",
+      "name": "MAHONEY, KATIE E",
+      "dob": "1949-04-13",
+      "sex": "2",
+      "phone": "(212) 555-0116",
+      "address": {
+        "line": "54278 Carr Valley",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10085"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-66881",
+          "type": "inpatient",
+          "start": "2024-03-25T17:15:00",
+          "end": "Mar 28 2024",
+          "documents": [
+            {
+              "doc_id": "DOC-1059",
+              "doc_type": "History and Physical",
+              "date": "20240325",
+              "author": "Dr. W. Carter",
+              "title": "Admission History and Physical",
+              "text": "HPI: A 74-year-old woman reports 4 days of productive cough, fever to 38.9 C and pleuritic chest pain.\nLABS: WBC 16.3 x10^3/uL.\nASSESSMENT: Community-acquired pneumonia, CURB-65 score 2.\nPLAN: Ceftriaxone and azithromycin. Blood cultures pending."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "8862897",
+      "name": "Dr. Matthew Contreras",
+      "dob": "19920602",
+      "sex": "Male",
+      "phone": "(646) 555-0154",
+      "address": {
+        "line": "124 Pamela Summit Apt. 449",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10028"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-86435",
+          "type": "outpatient",
+          "start": "2024-04-04T16:10",
+          "end": "2024/04/04",
+          "documents": [
+            {
+              "doc_id": "DOC-1061",
+              "doc_type": "Consultation Note",
+              "date": "20240404",
+              "author": "Dr. P. Baird",
+              "title": "Nephrology Consult",
+              "text": "REASON: Rising creatinine and high potassium.\nFINDINGS: Mr. Contreras, a 31-year-old man, has creatinine 2.58 mg/dL, potassium 6.3 mmol/L and estimated GFR 42 mL/min/1.73m2.\nASSESSMENT: Chronic kidney disease stage 3b with hyperkalemia.\nPLAN: Stop lisinopril. Start sodium zirconium cyclosilicate. Low potassium diet. Repeat BMP in 1 week."
+            },
+            {
+              "doc_id": "DOC-1063",
+              "doc_type": "Progress Note",
+              "author": "Dr. E. Reyes",
+              "title": "Primary Care Visit",
+              "text": "SUBJECTIVE: A 31-year-old man reports fatigue and decreased appetite.\nASSESSMENT: Chronic kidney disease, hypertension.\nPLAN: Nephrology referral placed. Avoid NSAIDs."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "06703979",
+      "name": "HARRIS, CHRISTINE",
+      "dob": "Apr 5 1998",
+      "sex": "F",
+      "phone": "(646) 555-0183",
+      "address": {
+        "line": "740 Cynthia Village Suite 005",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10048"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-73335",
+          "type": "emergency",
+          "start": "2024-09-27 11:10",
+          "end": "September 27, 2024",
+          "documents": [
+            {
+              "doc_id": "DOC-1065",
+              "doc_type": "Emergency Department Note",
+              "date": "2024/09/27",
+              "author": "Dr. E. Shields",
+              "title": "ED Provider Note",
+              "text": "HPI: Ms. Harris, a 26-year-old woman, presents with sudden shortness of breath and pleuritic chest pain after a long flight.\nEXAM: Heart rate 124 bpm, SpO2 91% on room air.\nLABS: Troponin I 0.126 ng/mL.\nASSESSMENT: Suspected pulmonary embolism. CT angiography ordered.\nPLAN: Start heparin infusion. Admit to telemetry."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-57049",
+          "type": "emergency",
+          "start": "2024-11-24 10:30",
+          "end": "2024-11-24",
+          "documents": [
+            {
+              "doc_id": "DOC-1066",
+              "doc_type": "Discharge Summary",
+              "date": "November 24, 2024",
+              "author": "Dr. I. Barton",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: Admitted for acute pulmonary embolism. Transitioned from heparin to apixaban. Oxygen weaned to room air.\nPLAN: Apixaban 10 mg twice daily for 7 days then 5 mg twice daily. Hematology follow-up."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "4169166",
+      "name": "WHITNEY, RAY U",
+      "dob": "27/02/1958",
+      "sex": "1",
+      "phone": "(212) 555-0108",
+      "address": {
+        "line": "786 Daniel Spurs",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10044"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-92345",
+          "type": "outpatient",
+          "start": "2024-08-26T16:15",
+          "end": "20240826",
+          "documents": [
+            {
+              "doc_id": "DOC-1067",
+              "doc_type": "Progress Note",
+              "date": "2024-08-26",
+              "author": "Dr. N. Morgan",
+              "title": "Primary Care Visit",
+              "text": "SUBJECTIVE: A 66-year-old man reports fatigue, cold intolerance and weight gain over 6 months.\nOBJECTIVE: TSH 8.73 mIU/L, free T4 0.61 ng/dL.\nASSESSMENT: Primary hypothyroidism.\nPLAN: Start levothyroxine 50 mcg daily. Recheck TSH in 6 weeks."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-67779",
+          "type": "outpatient",
+          "start": "2024-10-22 17:00",
+          "end": "20241022",
+          "documents": []
+        }
+      ]
+    },
+    {
+      "mrn": "3704634",
+      "name": "JOHNSON, STEPHANIE",
+      "dob": "19380824",
+      "sex": "Female",
+      "phone": "(917) 555-0109",
+      "address": {
+        "line": "826 Bobby Lakes Apt. 533",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10091"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-75771",
+          "type": "inpatient",
+          "start": "2024-08-07T19:45:00",
+          "end": "20240812",
+          "documents": [
+            {
+              "doc_id": "DOC-1069",
+              "doc_type": "History and Physical",
+              "date": "09-Aug-2024",
+              "author": "Dr. A. Campbell",
+              "title": "Admission History and Physical",
+              "text": "HPI: A 85-year-old woman with known COPD presents with increased dyspnea and sputum for 3 days.\nEXAM: SpO2 87% on room air, diffuse expiratory wheezes.\nASSESSMENT: Acute exacerbation of COPD.\nPLAN: Nebulized albuterol and ipratropium, prednisone 40 mg daily, doxycycline."
+            },
+            {
+              "doc_id": "DOC-1071",
+              "doc_type": "Discharge Summary",
+              "date": "August 10, 2024",
+              "author": "Dr. S. Duarte",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: Improved with bronchodilators and steroids. FEV1 39% predicted on prior testing.\nPLAN: Complete prednisone taper. Pulmonary rehabilitation referral."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "5553670",
+      "name": "Michael Deleon",
+      "dob": "1944-05-10",
+      "sex": "m",
+      "phone": "(212) 555-0165",
+      "address": {
+        "line": "232 Nicole Burg Apt. 563",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10031"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-58311",
+          "type": "outpatient",
+          "start": "01/29/2024 15:00",
+          "end": "Jan 29 2024",
+          "documents": []
+        },
+        {
+          "encounter_id": "ENC-24201",
+          "type": "outpatient",
+          "start": "2024-04-16T16:30:00",
+          "end": "2024-04-16",
+          "documents": [
+            {
+              "doc_id": "DOC-1074",
+              "doc_type": "Consultation Note",
+              "date": "2024/04/16",
+              "author": "Dr. L. Cook",
+              "title": "Surgical Oncology Consult",
+              "text": "REASON: New diagnosis of left breast invasive ductal carcinoma.\nASSESSMENT: A 79-year-old man with a 1.7 cm hormone receptor positive tumor.\nPLAN: Discuss lumpectomy with sentinel node biopsy. Refer to medical oncology."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "MRN9056844",
+      "name": "Debra Haynes",
+      "dob": "November 14, 1949",
+      "sex": "f",
+      "phone": "(347) 555-0192",
+      "address": {
+        "line": "73375 Hoover Well Apt. 303",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10074"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-40775",
+          "type": "inpatient",
+          "start": "2024-03-01T11:30",
+          "end": "03-Mar-2024",
+          "documents": [
+            {
+              "doc_id": "DOC-1076",
+              "doc_type": "Consultation Note",
+              "date": "20240302",
+              "author": "Dr. O. Cantu",
+              "title": "Neurology Consult",
+              "text": "HPI: A 74-year-old woman developed acute right arm weakness and expressive aphasia.\nEXAM: NIHSS 7.\nLABS: LDL 184 mg/dL.\nASSESSMENT: Acute ischemic stroke, left MCA territory.\nPLAN: Aspirin and high-intensity atorvastatin. Telemetry to evaluate for atrial fibrillation."
+            },
+            {
+              "doc_id": "DOC-1077",
+              "doc_type": "Discharge Summary",
+              "date": "03-Mar-2024",
+              "author": "Dr. G. Pollard",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: Admitted for left MCA stroke. Deficits improved with therapy.\nPLAN: Aspirin 81 mg daily, atorvastatin 80 mg nightly. Outpatient speech therapy."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "6839332",
+      "name": "LIN, JAMES I",
+      "dob": "31/01/1955",
+      "sex": "M",
+      "phone": "(718) 555-0112",
+      "address": {
+        "line": "8685 Darrell Green Apt. 940",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10013"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-68115",
+          "type": "emergency",
+          "start": "2024-10-27T18:15",
+          "end": "27-Oct-2024",
+          "documents": []
+        },
+        {
+          "encounter_id": "ENC-99873",
+          "type": "emergency",
+          "start": "2025-02-05T10:15:00",
+          "end": "02/05/2025",
+          "documents": [
+            {
+              "doc_id": "DOC-1079",
+              "doc_type": "Discharge Summary",
+              "date": "05-Feb-2025",
+              "author": "Dr. H. Chase",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: Treated for urosepsis. Urine culture grew E. coli sensitive to ceftriaxone. Lactate normalized after fluids.\nPLAN: Oral cefpodoxime to complete 10 days. Primary care follow-up."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "1661177",
+      "name": "REED, ASHLEY N",
+      "dob": "1943/06/10",
+      "sex": "female",
+      "phone": "(212) 555-0151",
+      "address": {
+        "line": "9816 Jonathan Station Suite 088",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10094"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-26505",
+          "type": "outpatient",
+          "start": "08/19/2024 07:15",
+          "end": "31/31/2023",
+          "documents": [
+            {
+              "doc_id": "DOC-1081",
+              "doc_type": "Progress Note",
+              "author": "Dr. X. Kennedy",
+              "title": "Primary Care Visit",
+              "text": "SUBJECTIVE: A 81-year-old woman is seen for routine care. No chest pain.\nOBJECTIVE: LDL 140 mg/dL on the latest lipid panel.\nASSESSMENT: Hyperlipidemia above goal in a patient with diabetes.\nPLAN: Start atorvastatin 40 mg nightly. Recheck lipids in 12 weeks."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-37152",
+          "type": "outpatient",
+          "start": "2024-12-14T10:00:00",
+          "end": "00/12/2024",
+          "documents": [
+            {
+              "doc_id": "DOC-1080",
+              "doc_type": "Progress Note",
+              "date": "14-Dec-2024",
+              "author": "Dr. N. Williams",
+              "title": "Endocrinology Follow-up",
+              "text": "SUBJECTIVE: A 81-year-old woman presents for diabetes follow-up. Reports polyuria and fatigue. Adherent to metformin 1000 mg twice daily.\nOBJECTIVE: HbA1c 8.8% today, up from 7.5% at the prior visit. Fasting glucose 193 mg/dL.\nASSESSMENT: Type 2 diabetes mellitus with worsening glycemic control.\nPLAN: Add empagliflozin 10 mg daily. Diabetes education referral. Repeat HbA1c in 3 months."
+            },
+            {
+              "doc_id": "DOC-1082",
+              "doc_type": "Consultation Note",
+              "date": "2024/12/14",
+              "author": "Dr. Z. James",
+              "title": "Ophthalmology Consult",
+              "text": "REASON: Diabetic eye screening.\nFINDINGS: Mild nonproliferative diabetic retinopathy in both eyes. No macular edema.\nPLAN: Repeat dilated exam in 12 months."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "9007381",
+      "name": "michael  mclaughlin",
+      "dob": "1978-04-01",
+      "sex": "male",
+      "phone": "(347) 555-0117",
+      "address": {
+        "line": "6159 Alvarado Crossing",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10055"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-16868",
+          "type": "inpatient",
+          "start": "09/14/2024 12:00",
+          "end": "20240917",
+          "documents": [
+            {
+              "doc_id": "DOC-1083",
+              "doc_type": "Discharge Summary",
+              "date": "17-Sep-2024",
+              "author": "Dr. V. Sparks",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: A 46-year-old man was admitted with dyspnea, orthopnea and leg edema. BNP was 967 pg/mL. Diuresed with IV furosemide with 4 kg net weight loss. Sodium 132 mmol/L on admission.\nASSESSMENT: Acute on chronic systolic heart failure.\nPLAN: Furosemide 40 mg daily, carvedilol 6.25 mg twice daily. Daily weights, 2 g sodium diet. Cardiology follow-up in 1 week."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-18330",
+          "type": "inpatient",
+          "start": "2024-11-14T18:30",
+          "end": "11/20/2024",
+          "documents": []
+        }
+      ]
+    },
+    {
+      "mrn": " mrn 1274748 ",
+      "name": "HUNTER, MICHELLE J",
+      "dob": "10/03/1977",
+      "sex": "2",
+      "phone": "(347) 555-0170",
+      "address": {
+        "line": "6482 Robert Light Apt. 994",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10013"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-74260",
+          "type": "inpatient",
+          "start": "02/15/2024 14:30",
+          "end": "Feb 20 2024",
+          "documents": []
+        },
+        {
+          "encounter_id": "ENC-29442",
+          "type": "inpatient",
+          "start": "2024-05-26T08:00",
+          "end": "2024-05-30",
+          "documents": [
+            {
+              "doc_id": "DOC-1087",
+              "doc_type": "History and Physical",
+              "date": "30/05/2024",
+              "author": "Dr. S. Rivera",
+              "title": "Admission History and Physical",
+              "text": "HPI: A 46-year-old woman reports 4 days of productive cough, fever to 39.4 C and pleuritic chest pain.\nLABS: WBC 14.4 x10^3/uL.\nASSESSMENT: Community-acquired pneumonia, CURB-65 score 2.\nPLAN: Ceftriaxone and azithromycin. Blood cultures pending."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "MRN-01574689",
+      "name": "Richard Torres",
+      "dob": "1959-03-17",
+      "sex": "unknown",
+      "phone": "(212) 555-0121",
+      "address": {
+        "line": "9957 Ramos Forest",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10053"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-64524",
+          "type": "outpatient",
+          "start": "2024-09-04 12:30",
+          "end": "13/13/2020",
+          "documents": [
+            {
+              "doc_id": "DOC-1088",
+              "doc_type": "Consultation Note",
+              "date": "2024-09-04",
+              "author": "Dr. D. Sawyer",
+              "title": "Nephrology Consult",
+              "text": "REASON: Rising creatinine and high potassium.\nFINDINGS: A 65-year-old patient has creatinine 2.09 mg/dL, potassium 5.9 mmol/L and estimated GFR 31 mL/min/1.73m2.\nASSESSMENT: Chronic kidney disease stage 3b with hyperkalemia.\nPLAN: Stop lisinopril. Start sodium zirconium cyclosilicate. Low potassium diet. Repeat BMP in 1 week."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-97177",
+          "type": "outpatient",
+          "start": "2024-10-31 12:30",
+          "end": "10/31/2024",
+          "documents": []
+        }
+      ]
+    },
+    {
+      "mrn": "MRN6368113",
+      "name": "SANTANA, KAYLA",
+      "dob": "12-Mar-1938",
+      "sex": "F",
+      "phone": "(347) 555-0149",
+      "address": {
+        "line": "148 Davis Terrace",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10034"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-88696",
+          "type": "emergency",
+          "start": "2025-01-11T18:00:00",
+          "end": "January 11, 2025",
+          "documents": [
+            {
+              "doc_id": "DOC-1091",
+              "doc_type": "Emergency Department Note",
+              "date": "2025/01/11",
+              "author": "Dr. E. Ortiz",
+              "title": "ED Provider Note",
+              "text": "HPI: Ms. Santana, a 86-year-old woman, presents with sudden shortness of breath and pleuritic chest pain after a long flight.\nEXAM: Heart rate 122 bpm, SpO2 90% on room air.\nLABS: Troponin I 0.199 ng/mL.\nASSESSMENT: Suspected pulmonary embolism. CT angiography ordered.\nPLAN: Start heparin infusion. Admit to telemetry."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-76507",
+          "type": "emergency",
+          "start": "2025-04-05 12:00",
+          "end": "Apr 5 2025",
+          "documents": [
+            {
+              "doc_id": "DOC-1092",
+              "doc_type": "Discharge Summary",
+              "date": "20250405",
+              "author": "Dr. U. Booker",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: Admitted for acute pulmonary embolism. Transitioned from heparin to apixaban. Oxygen weaned to room air.\nPLAN: Apixaban 10 mg twice daily for 7 days then 5 mg twice daily. Hematology follow-up."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "00419790",
+      "name": "Jacqueline Holland",
+      "dob": "09/26/1949",
+      "sex": "Female",
+      "phone": "(212) 555-0181",
+      "address": {
+        "line": "7165 Zimmerman Mews",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10034"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-13694",
+          "type": "inpatient",
+          "start": "2025-03-22T13:00:00",
+          "end": "26-Mar-2025",
+          "documents": [
+            {
+              "doc_id": "DOC-1124",
+              "doc_type": "Consultation Note",
+              "date": "March 24, 2025",
+              "author": "Dr. C. Alexander",
+              "title": "Neurology Consult",
+              "text": "HPI: A 75-year-old woman developed acute right arm weakness and expressive aphasia.\nEXAM: NIHSS 9.\nLABS: LDL 158 mg/dL.\nASSESSMENT: Acute ischemic stroke, left MCA territory.\nPLAN: Aspirin and high-intensity atorvastatin. Telemetry to evaluate for atrial fibrillation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "9334245",
+      "name": "WALKER, DAVID",
+      "dob": "1997/05/19",
+      "sex": "Male",
+      "phone": "(718) 555-0191",
+      "address": {
+        "line": "00379 Stanley Roads",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10063"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-98470",
+          "type": "outpatient",
+          "start": "2024-09-02 15:45",
+          "end": "09/02/2024",
+          "documents": [
+            {
+              "doc_id": "DOC-1093",
+              "doc_type": "Progress Note",
+              "date": "09/02/2024",
+              "author": "Dr. C. Harrison",
+              "title": "Primary Care Visit",
+              "text": "SUBJECTIVE: A 27-year-old man reports fatigue, cold intolerance and weight gain over 6 months.\nOBJECTIVE: TSH 9.56 mIU/L, free T4 0.55 ng/dL.\nASSESSMENT: Primary hypothyroidism.\nPLAN: Start levothyroxine 50 mcg daily. Recheck TSH in 6 weeks."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-13794",
+          "type": "outpatient",
+          "start": "2024-12-27T07:45",
+          "end": "Dec 27 2024",
+          "documents": []
+        }
+      ]
+    },
+    {
+      "mrn": "MRN-09727032",
+      "name": "HORTON, LAURA W",
+      "dob": "23-Aug-1986",
+      "sex": "f",
+      "phone": "(212) 555-0107",
+      "address": {
+        "line": "3201 Robinson Unions Suite 083",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10096"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-38197",
+          "type": "inpatient",
+          "start": "2025-02-28 09:00",
+          "end": "20250302",
+          "documents": [
+            {
+              "doc_id": "DOC-1095",
+              "doc_type": "History and Physical",
+              "date": "01-Mar-2025",
+              "author": "Dr. W. Sanders",
+              "title": "Admission History and Physical",
+              "text": "HPI: A 38-year-old woman with known COPD presents with increased dyspnea and sputum for 3 days.\nEXAM: SpO2 86% on room air, diffuse expiratory wheezes.\nASSESSMENT: Acute exacerbation of COPD.\nPLAN: Nebulized albuterol and ipratropium, prednisone 40 mg daily, doxycycline."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": " mrn 8446429 ",
+      "name": "BRYANT, THOMAS D",
+      "dob": "Aug 25 1985",
+      "sex": "1",
+      "phone": "(718) 555-0120",
+      "address": {
+        "line": "889 Dodson Mills Suite 872",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10008"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-68079",
+          "type": "outpatient",
+          "start": "2024-06-24 17:00",
+          "end": "24/06/2024",
+          "documents": []
+        }
+      ]
+    },
+    {
+      "mrn": "2602974",
+      "name": "Natasha Cole",
+      "dob": "May 21, 1991",
+      "sex": "female",
+      "phone": "(347) 555-0108",
+      "address": {
+        "line": "487 Joshua Club",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10087"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-61807",
+          "type": "inpatient",
+          "start": "05/27/2025 17:15",
+          "end": "05/29/2025",
+          "documents": [
+            {
+              "doc_id": "DOC-1100",
+              "doc_type": "Consultation Note",
+              "date": "May 27, 2025",
+              "author": "Dr. Y. Freeman",
+              "title": "Neurology Consult",
+              "text": "HPI: Ms. Cole, a 34-year-old woman, developed acute right arm weakness and expressive aphasia.\nEXAM: NIHSS 7.\nLABS: LDL 163 mg/dL.\nASSESSMENT: Acute ischemic stroke, left MCA territory.\nPLAN: Aspirin and high-intensity atorvastatin. Telemetry to evaluate for atrial fibrillation."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-27987",
+          "type": "inpatient",
+          "start": "2025-07-18 07:10",
+          "end": "July 22, 2025",
+          "documents": [
+            {
+              "doc_id": "DOC-1101",
+              "doc_type": "Discharge Summary",
+              "date": "21/07/2025",
+              "author": "Dr. R. Johnson",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: Admitted for left MCA stroke. Deficits improved with therapy.\nPLAN: Aspirin 81 mg daily, atorvastatin 80 mg nightly. Outpatient speech therapy."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "4140808",
+      "name": "NELSON, MICHEAL",
+      "dob": "19891209",
+      "sex": "m",
+      "phone": "(917) 555-0176",
+      "address": {
+        "line": "122 Patrick Drives Apt. 166",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10006"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-51033",
+          "type": "emergency",
+          "start": "2024-02-27 07:30",
+          "end": "February 27, 2024",
+          "documents": [
+            {
+              "doc_id": "DOC-1102",
+              "doc_type": "Emergency Department Note",
+              "date": "27/02/2024",
+              "author": "Dr. C. Young",
+              "title": "ED Provider Note",
+              "text": "HPI: A 34-year-old man presents with fever, confusion and dysuria.\nEXAM: Temperature 39.6 C, mean arterial pressure 62 mmHg.\nLABS: Lactate 4.6 mmol/L, WBC 20.1 x10^3/uL.\nASSESSMENT: Sepsis from a urinary source.\nPLAN: 30 mL/kg crystalloid bolus, blood and urine cultures, piperacillin-tazobactam. Admit to step-down unit."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-93904",
+          "type": "emergency",
+          "start": "2024-06-24 13:45",
+          "end": "2024/06/24",
+          "documents": [
+            {
+              "doc_id": "DOC-1103",
+              "doc_type": "Discharge Summary",
+              "author": "Dr. V. Mccall",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: Treated for urosepsis. Urine culture grew E. coli sensitive to ceftriaxone. Lactate normalized after fluids.\nPLAN: Oral cefpodoxime to complete 10 days. Primary care follow-up."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "785337",
+      "name": "Robert Ramirez",
+      "dob": "11-Mar-1999",
+      "sex": "M",
+      "phone": "(646) 555-0131",
+      "address": {
+        "line": "083 John Lodge Suite 837",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10086"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-27486",
+          "type": "inpatient",
+          "start": "2025-04-30 18:00",
+          "end": "2025-05-06",
+          "documents": []
+        }
+      ]
+    },
+    {
+      "mrn": "MRN4384922",
+      "name": "Erin Perry",
+      "dob": "04/29/1956",
+      "sex": "2",
+      "phone": "(646) 555-0185",
+      "address": {
+        "line": "6909 Woods Knoll",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10092"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-67104",
+          "type": "outpatient",
+          "start": "2025-01-19T13:00:00",
+          "end": "19-Jan-2025",
+          "documents": []
+        },
+        {
+          "encounter_id": "ENC-61873",
+          "type": "outpatient",
+          "start": "2025-05-19 13:45",
+          "end": "May 19 2025",
+          "documents": [
+            {
+              "doc_id": "DOC-1104",
+              "doc_type": "Progress Note",
+              "date": "05/19/2025",
+              "author": "Dr. H. Francis",
+              "title": "Endocrinology Follow-up",
+              "text": "SUBJECTIVE: A 69-year-old woman presents for diabetes follow-up. Reports polyuria and fatigue. Adherent to metformin 1000 mg twice daily.\nOBJECTIVE: HbA1c 8.5% today, up from 7.5% at the prior visit. Fasting glucose 178 mg/dL.\nASSESSMENT: Type 2 diabetes mellitus with worsening glycemic control.\nPLAN: Add empagliflozin 10 mg daily. Diabetes education referral. Repeat HbA1c in 3 months."
+            },
+            {
+              "doc_id": "DOC-1105",
+              "doc_type": "Progress Note",
+              "date": "19-May-2025",
+              "author": "Dr. N. Good",
+              "title": "Primary Care Visit",
+              "text": "SUBJECTIVE: A 69-year-old woman is seen for routine care. No chest pain.\nOBJECTIVE: LDL 147 mg/dL on the latest lipid panel.\nASSESSMENT: Hyperlipidemia above goal in a patient with diabetes.\nPLAN: Start atorvastatin 40 mg nightly. Recheck lipids in 12 weeks."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "5314573",
+      "name": "Edwin Castaneda",
+      "dob": "1944/07/05",
+      "sex": "",
+      "phone": "(718) 555-0101",
+      "address": {
+        "line": "893 Robinson Mews Suite 065",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10059"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-33218",
+          "type": "inpatient",
+          "start": "2024-10-03T09:45",
+          "end": "Oct 6 2024",
+          "documents": [
+            {
+              "doc_id": "DOC-1106",
+              "doc_type": "Discharge Summary",
+              "date": "10/06/2024",
+              "author": "Dr. Y. Schultz",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: A 80-year-old man was admitted with dyspnea, orthopnea and leg edema. BNP was 1416 pg/mL. Diuresed with IV furosemide with 4 kg net weight loss. Sodium 129 mmol/L on admission.\nASSESSMENT: Acute on chronic systolic heart failure.\nPLAN: Furosemide 40 mg daily, carvedilol 6.25 mg twice daily. Daily weights, 2 g sodium diet. Cardiology follow-up in 1 week."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": " mrn 9030008 ",
+      "name": "Dr. Maureen Powell",
+      "dob": "February 14, 1957",
+      "sex": "F",
+      "phone": "(212) 555-0164",
+      "address": {
+        "line": "2980 Vargas Shore",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10034"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-17362",
+          "type": "inpatient",
+          "start": "2025-05-09 17:15",
+          "end": "20250513",
+          "documents": [
+            {
+              "doc_id": "DOC-1110",
+              "doc_type": "History and Physical",
+              "date": "20250511",
+              "author": "Dr. Z. Brown",
+              "title": "Admission History and Physical",
+              "text": "HPI: A 68-year-old woman reports 4 days of productive cough, fever to 38.7 C and pleuritic chest pain.\nLABS: WBC 14.8 x10^3/uL.\nASSESSMENT: Community-acquired pneumonia, CURB-65 score 2.\nPLAN: Ceftriaxone and azithromycin. Blood cultures pending."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "4108412",
+      "name": "PATTERSON, ALEXANDER U",
+      "dob": "1971-02-25",
+      "sex": "Male",
+      "phone": "(212) 555-0136",
+      "address": {
+        "line": "04653 Murphy Trace Suite 464",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10021"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-69050",
+          "type": "outpatient",
+          "start": "2024-12-09T15:10:00",
+          "end": "Dec 9 2024",
+          "documents": [
+            {
+              "doc_id": "DOC-1111",
+              "doc_type": "Consultation Note",
+              "date": "20241209",
+              "author": "Dr. L. Brooks",
+              "title": "Nephrology Consult",
+              "text": "REASON: Rising creatinine and high potassium.\nFINDINGS: A 53-year-old man has creatinine 2.39 mg/dL, potassium 5.9 mmol/L and estimated GFR 40 mL/min/1.73m2.\nASSESSMENT: Chronic kidney disease stage 3b with hyperkalemia.\nPLAN: Stop lisinopril. Start sodium zirconium cyclosilicate. Low potassium diet. Repeat BMP in 1 week."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": " mrn 141249 ",
+      "name": "Sandy Smith",
+      "dob": "Dec 1 1997",
+      "sex": "Female",
+      "phone": "(917) 555-0170",
+      "address": {
+        "line": "3100 James Brooks",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10039"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-83133",
+          "type": "emergency",
+          "start": "2024-03-08T08:15",
+          "end": "20240308",
+          "documents": [
+            {
+              "doc_id": "DOC-1114",
+              "doc_type": "Emergency Department Note",
+              "date": "Mar 8 2024",
+              "author": "Dr. Z. White",
+              "title": "ED Provider Note",
+              "text": "HPI: A 26-year-old woman presents with sudden shortness of breath and pleuritic chest pain after a long flight.\nEXAM: Heart rate 111 bpm, SpO2 89% on room air.\nLABS: Troponin I 0.2 ng/mL.\nASSESSMENT: Suspected pulmonary embolism. CT angiography ordered.\nPLAN: Start heparin infusion. Admit to telemetry."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-29709",
+          "type": "emergency",
+          "start": "2024-06-10T11:15",
+          "end": "2024/06/10",
+          "documents": [
+            {
+              "doc_id": "DOC-1115",
+              "doc_type": "Discharge Summary",
+              "date": "20240610",
+              "author": "Dr. F. Miller",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: Admitted for acute pulmonary embolism. Transitioned from heparin to apixaban. Oxygen weaned to room air.\nPLAN: Apixaban 10 mg twice daily for 7 days then 5 mg twice daily. Hematology follow-up."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "01946571",
+      "name": "MARTINEZ, MARC",
+      "dob": "19470809",
+      "sex": "1",
+      "phone": "(646) 555-0195",
+      "address": {
+        "line": "374 Jackson Rest",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10071"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-57425",
+          "type": "outpatient",
+          "start": "2024-05-24T08:30:00",
+          "end": "24/05/2024",
+          "documents": [
+            {
+              "doc_id": "DOC-1116",
+              "doc_type": "Progress Note",
+              "date": "2024/05/24",
+              "author": "Dr. M. Harvey",
+              "title": "Primary Care Visit",
+              "text": "SUBJECTIVE: A 76-year-old man reports fatigue, cold intolerance and weight gain over 6 months.\nOBJECTIVE: TSH 9.56 mIU/L, free T4 0.55 ng/dL.\nASSESSMENT: Primary hypothyroidism.\nPLAN: Start levothyroxine 50 mcg daily. Recheck TSH in 6 weeks."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-38074",
+          "type": "outpatient",
+          "start": "2024-07-10T12:15:00",
+          "end": "2024-07-10",
+          "documents": []
+        }
+      ]
+    },
+    {
+      "mrn": "MRN-05762576",
+      "name": "WILSON, TRACEY W",
+      "dob": "1956/04/07",
+      "sex": "f",
+      "phone": "(347) 555-0187",
+      "address": {
+        "line": "1904 Sanders Stravenue",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10082"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-67366",
+          "type": "inpatient",
+          "start": "2025-02-03T09:10:00",
+          "end": "09-Feb-2025",
+          "documents": [
+            {
+              "doc_id": "DOC-1118",
+              "doc_type": "History and Physical",
+              "date": "03-Feb-2025",
+              "author": "Dr. S. Thomas",
+              "title": "Admission History and Physical",
+              "text": "HPI: A 68-year-old woman with known COPD presents with increased dyspnea and sputum for 3 days.\nEXAM: SpO2 90% on room air, diffuse expiratory wheezes.\nASSESSMENT: Acute exacerbation of COPD.\nPLAN: Nebulized albuterol and ipratropium, prednisone 40 mg daily, doxycycline."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": " mrn 4117776 ",
+      "name": "MAHONEY, KATIE E",
+      "dob": "April 13, 1949",
+      "sex": "female",
+      "phone": "(212) 555-0116",
+      "address": {
+        "line": "54278 Carr Valley",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10085"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-49251",
+          "type": "inpatient",
+          "start": "05/21/2024 19:00",
+          "end": "May 26 2024",
+          "documents": [
+            {
+              "doc_id": "DOC-1060",
+              "doc_type": "Discharge Summary",
+              "date": "05/23/2024",
+              "author": "Dr. W. Hill",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: Treated for right lower lobe pneumonia with IV antibiotics. Afebrile for 48 hours before discharge.\nPLAN: Complete 5 days of oral amoxicillin-clavulanate. Repeat chest X-ray in 6 weeks."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "MRN862264",
+      "name": "Craig Vaughn",
+      "dob": "13/04/1946",
+      "sex": "m",
+      "phone": "(646) 555-0181",
+      "address": {
+        "line": "49190 Patel Shore",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10055"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-36174",
+          "type": "outpatient",
+          "start": "2025-02-09 15:30",
+          "end": "02/09/2025",
+          "documents": []
+        },
+        {
+          "encounter_id": "ENC-58655",
+          "type": "outpatient",
+          "start": "2025-04-12T11:00",
+          "end": "2025/04/12",
+          "documents": [
+            {
+              "doc_id": "DOC-1122",
+              "doc_type": "Consultation Note",
+              "date": "20250412",
+              "author": "Dr. O. Santana",
+              "title": "Surgical Oncology Consult",
+              "text": "REASON: New diagnosis of left breast invasive ductal carcinoma.\nASSESSMENT: A 78-year-old man with a 2.4 cm hormone receptor positive tumor.\nPLAN: Discuss lumpectomy with sentinel node biopsy. Refer to medical oncology."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "MRN-05606150",
+      "name": "Jacqueline Holland",
+      "dob": "1949/09/26",
+      "sex": "2",
+      "phone": "(212) 555-0181",
+      "address": {
+        "line": "7165 Zimmerman Mews",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10034"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-59015",
+          "type": "inpatient",
+          "start": "2025-01-06 13:00",
+          "end": "Jan 11 2025",
+          "documents": []
+        }
+      ]
+    },
+    {
+      "mrn": "7185395",
+      "name": "Dr. Christopher Sheppard",
+      "dob": "19880427",
+      "sex": "M",
+      "phone": "(917) 555-0101",
+      "address": {
+        "line": "877 Petersen Ramp Suite 531",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10015"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-65476",
+          "type": "emergency",
+          "start": "2024-08-22T15:45",
+          "end": "Aug 22 2024",
+          "documents": [
+            {
+              "doc_id": "DOC-1125",
+              "doc_type": "Emergency Department Note",
+              "date": "22-Aug-2024",
+              "author": "Dr. L. Huerta",
+              "title": "ED Provider Note",
+              "text": "HPI: Mr. Sheppard, a 36-year-old man, presents with fever, confusion and dysuria.\nEXAM: Temperature 40 C, mean arterial pressure 62 mmHg.\nLABS: Lactate 3.7 mmol/L, WBC 23.1 x10^3/uL.\nASSESSMENT: Sepsis from a urinary source.\nPLAN: 30 mL/kg crystalloid bolus, blood and urine cultures, piperacillin-tazobactam. Admit to step-down unit."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-49472",
+          "type": "emergency",
+          "start": "2024-10-20 19:15",
+          "end": "Oct 20 2024",
+          "documents": [
+            {
+              "doc_id": "DOC-1126",
+              "doc_type": "Discharge Summary",
+              "date": "October 20, 2024",
+              "author": "Dr. J. Fowler",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: Treated for urosepsis. Urine culture grew E. coli sensitive to ceftriaxone. Lactate normalized after fluids.\nPLAN: Oral cefpodoxime to complete 10 days. Primary care follow-up."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "6204416",
+      "name": "joshua  sanchez",
+      "dob": "1990/04/05",
+      "sex": "",
+      "phone": "(212) 555-0170",
+      "address": {
+        "line": "965 Troy Islands Apt. 735",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10019"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-92831",
+          "type": "outpatient",
+          "start": "2024-05-07T16:45:00",
+          "end": "May 7, 2024",
+          "documents": [
+            {
+              "doc_id": "DOC-1128",
+              "doc_type": "Progress Note",
+              "date": "May 7 2024",
+              "author": "Dr. O. Bruce",
+              "title": "Primary Care Visit",
+              "text": "SUBJECTIVE: Mx. Sanchez, a 34-year-old patient, is seen for routine care. No chest pain.\nOBJECTIVE: LDL 130 mg/dL on the latest lipid panel.\nASSESSMENT: Hyperlipidemia above goal in a patient with diabetes.\nPLAN: Start atorvastatin 40 mg nightly. Recheck lipids in 12 weeks."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-48177",
+          "type": "outpatient",
+          "start": "2024-08-25 16:10",
+          "end": "08/25/2024",
+          "documents": [
+            {
+              "doc_id": "DOC-1127",
+              "doc_type": "Progress Note",
+              "date": "August 25, 2024",
+              "author": "Dr. N. Vaughn",
+              "title": "Endocrinology Follow-up",
+              "text": "SUBJECTIVE: Mx. Sanchez, a 34-year-old patient, presents for diabetes follow-up. Reports polyuria and fatigue. Adherent to metformin 1000 mg twice daily.\nOBJECTIVE: HbA1c 8.4% today, up from 7.6% at the prior visit. Fasting glucose 208 mg/dL.\nASSESSMENT: Type 2 diabetes mellitus with worsening glycemic control.\nPLAN: Add empagliflozin 10 mg daily. Diabetes education referral. Repeat HbA1c in 3 months."
+            },
+            {
+              "doc_id": "DOC-1129",
+              "doc_type": "Consultation Note",
+              "date": "Aug 25 2024",
+              "author": "Dr. G. Kidd",
+              "title": "Ophthalmology Consult",
+              "text": "REASON: Diabetic eye screening.\nFINDINGS: Mild nonproliferative diabetic retinopathy in both eyes. No macular edema.\nPLAN: Repeat dilated exam in 12 months."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "03534499",
+      "name": "RAMIREZ, ROBERT",
+      "dob": "11-Mar-1999",
+      "sex": "male",
+      "phone": "(646) 555-0131",
+      "address": {
+        "line": "083 John Lodge Suite 837",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10086"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-55193",
+          "type": "inpatient",
+          "start": "2025-02-14T11:00:00",
+          "end": "02/18/2025",
+          "documents": [
+            {
+              "doc_id": "DOC-1130",
+              "doc_type": "Discharge Summary",
+              "date": "14-Feb-2025",
+              "author": "Dr. P. Rodriguez",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: A 25-year-old man was admitted with dyspnea, orthopnea and leg edema. BNP was 885 pg/mL. Diuresed with IV furosemide with 4 kg net weight loss. Sodium 133 mmol/L on admission.\nASSESSMENT: Acute on chronic systolic heart failure.\nPLAN: Furosemide 40 mg daily, carvedilol 6.25 mg twice daily. Daily weights, 2 g sodium diet. Cardiology follow-up in 1 week."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "02602974",
+      "name": "WEST, MARIA P",
+      "dob": "Mar 29 1959",
+      "sex": "F",
+      "phone": "(718) 555-0120",
+      "address": {
+        "line": "43634 Kennedy Pines",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10023"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-36144",
+          "type": "inpatient",
+          "start": "03/19/2024 07:15",
+          "end": "2024-03-22",
+          "documents": [
+            {
+              "doc_id": "DOC-1134",
+              "doc_type": "History and Physical",
+              "date": "21/03/2024",
+              "author": "Dr. V. Foster",
+              "title": "Admission History and Physical",
+              "text": "HPI: A 64-year-old woman reports 4 days of productive cough, fever to 38.4 C and pleuritic chest pain.\nLABS: WBC 18.1 x10^3/uL.\nASSESSMENT: Community-acquired pneumonia, CURB-65 score 2.\nPLAN: Ceftriaxone and azithromycin. Blood cultures pending."
+            },
+            {
+              "doc_id": "DOC-1135",
+              "doc_type": "Discharge Summary",
+              "date": "03/22/2024",
+              "author": "Dr. A. Knight",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: Treated for right lower lobe pneumonia with IV antibiotics. Afebrile for 48 hours before discharge.\nPLAN: Complete 5 days of oral amoxicillin-clavulanate. Repeat chest X-ray in 6 weeks."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": " mrn 6917400 ",
+      "name": "Gregg X. Pierce",
+      "dob": "February 6, 1998",
+      "sex": "Male",
+      "phone": "(646) 555-0194",
+      "address": {
+        "line": "744 Hall Stravenue Apt. 518",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10032"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-60678",
+          "type": "outpatient",
+          "start": "2024-05-21T13:30:00",
+          "end": "May 21, 2024",
+          "documents": [
+            {
+              "doc_id": "DOC-1136",
+              "doc_type": "Consultation Note",
+              "date": "2024-05-21",
+              "author": "Dr. V. Osborne",
+              "title": "Nephrology Consult",
+              "text": "REASON: Rising creatinine and high potassium.\nFINDINGS: A 26-year-old man has creatinine 2.61 mg/dL, potassium 5.8 mmol/L and estimated GFR 37 mL/min/1.73m2.\nASSESSMENT: Chronic kidney disease stage 3b with hyperkalemia.\nPLAN: Stop lisinopril. Start sodium zirconium cyclosilicate. Low potassium diet. Repeat BMP in 1 week."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-58148",
+          "type": "outpatient",
+          "start": "08/17/2024 09:30",
+          "end": "13/13/2020",
+          "documents": []
+        }
+      ]
+    },
+    {
+      "mrn": "MRN-07906868",
+      "name": "Dr. Tiffany Lopez",
+      "dob": "December 15, 1957",
+      "sex": "Female",
+      "phone": "(212) 555-0125",
+      "address": {
+        "line": "749 Hooper Village",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10059"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-67008",
+          "type": "emergency",
+          "start": "2025-01-08 07:15",
+          "end": "January 8, 2025",
+          "documents": [
+            {
+              "doc_id": "DOC-1139",
+              "doc_type": "Emergency Department Note",
+              "date": "Jan 8 2025",
+              "author": "Dr. J. Parsons",
+              "title": "ED Provider Note",
+              "text": "HPI: A 67-year-old woman presents with sudden shortness of breath and pleuritic chest pain after a long flight.\nEXAM: Heart rate 115 bpm, SpO2 89% on room air.\nLABS: Troponin I 0.112 ng/mL.\nASSESSMENT: Suspected pulmonary embolism. CT angiography ordered.\nPLAN: Start heparin infusion. Admit to telemetry."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-97973",
+          "type": "emergency",
+          "start": "03/29/2025 17:00",
+          "end": "20250329",
+          "documents": [
+            {
+              "doc_id": "DOC-1140",
+              "doc_type": "Discharge Summary",
+              "date": "20250329",
+              "author": "Dr. H. Lawson",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: Admitted for acute pulmonary embolism. Transitioned from heparin to apixaban. Oxygen weaned to room air.\nPLAN: Apixaban 10 mg twice daily for 7 days then 5 mg twice daily. Hematology follow-up."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "3250180",
+      "name": "Cory Ward",
+      "dob": "30/09/1973",
+      "sex": "1",
+      "phone": "(212) 555-0142",
+      "address": {
+        "line": "82400 Terry Crossroad Suite 109",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10036"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-14244",
+          "type": "outpatient",
+          "start": "2025-02-31 12:30",
+          "end": "20240912",
+          "documents": [
+            {
+              "doc_id": "DOC-1141",
+              "doc_type": "Progress Note",
+              "date": "09/12/2024",
+              "author": "Dr. L. Robinson",
+              "title": "Primary Care Visit",
+              "text": "SUBJECTIVE: A 50-year-old man reports fatigue, cold intolerance and weight gain over 6 months.\nOBJECTIVE: TSH 13.96 mIU/L, free T4 0.71 ng/dL.\nASSESSMENT: Primary hypothyroidism.\nPLAN: Start levothyroxine 50 mcg daily. Recheck TSH in 6 weeks."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "MRN-05901254",
+      "name": "ALEXANDER, DIANE",
+      "dob": "July 21, 1995",
+      "sex": "f",
+      "phone": "(646) 555-0165",
+      "address": {
+        "line": "47116 Jones Roads",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10052"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-75410",
+          "type": "inpatient",
+          "start": "2024-12-01T10:00",
+          "end": "2024-12-03",
+          "documents": [
+            {
+              "doc_id": "DOC-1143",
+              "doc_type": "History and Physical",
+              "author": "Dr. V. Campos",
+              "title": "Admission History and Physical",
+              "text": "HPI: A 29-year-old woman with known COPD presents with increased dyspnea and sputum for 3 days.\nEXAM: SpO2 90% on room air, diffuse expiratory wheezes.\nASSESSMENT: Acute exacerbation of COPD.\nPLAN: Nebulized albuterol and ipratropium, prednisone 40 mg daily, doxycycline."
+            }
+          ]
+        },
+        {
+          "encounter_id": "ENC-44116",
+          "type": "inpatient",
+          "start": "2025-03-22 13:45",
+          "end": "March 24, 2025",
+          "documents": []
+        }
+      ]
+    },
+    {
+      "mrn": "MRN1945113",
+      "name": "Michael Hernandez",
+      "dob": "1961-06-08",
+      "sex": "m",
+      "phone": "(212) 555-0122",
+      "address": {
+        "line": "31869 Kimberly Light Suite 749",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10075"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-39391",
+          "type": "outpatient",
+          "start": "2024-06-24 19:15",
+          "end": "06/25/2024",
+          "documents": []
+        },
+        {
+          "encounter_id": "ENC-74752",
+          "type": "outpatient",
+          "start": "08/23/2024 10:10",
+          "end": "August 23, 2024",
+          "documents": []
+        }
+      ]
+    },
+    {
+      "mrn": "01828692",
+      "name": "CARROLL, WANDA J",
+      "dob": "1991/07/10",
+      "sex": "female",
+      "phone": "(212) 555-0155",
+      "address": {
+        "line": "133 Guerrero Estate",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10045"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-26426",
+          "type": "inpatient",
+          "start": "2025-05-19T13:30:00",
+          "end": "2025-05-25",
+          "documents": []
+        },
+        {
+          "encounter_id": "ENC-99143",
+          "type": "inpatient",
+          "start": "2025-08-12T17:00:00",
+          "end": "20250817",
+          "documents": [
+            {
+              "doc_id": "DOC-1148",
+              "doc_type": "Consultation Note",
+              "date": "2025/08/16",
+              "author": "Dr. B. Riley",
+              "title": "Neurology Consult",
+              "text": "HPI: A 34-year-old woman developed acute right arm weakness and expressive aphasia.\nEXAM: NIHSS 7.\nLABS: LDL 168 mg/dL.\nASSESSMENT: Acute ischemic stroke, left MCA territory.\nPLAN: Aspirin and high-intensity atorvastatin. Telemetry to evaluate for atrial fibrillation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mrn": "1950214",
+      "name": "David Jones",
+      "dob": "23/07/1972",
+      "sex": "M",
+      "phone": "(917) 555-0173",
+      "address": {
+        "line": "7974 Jesse Squares",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10025"
+      },
+      "encounters": [
+        {
+          "encounter_id": "ENC-78012",
+          "type": "emergency",
+          "start": "2024-06-28T18:10",
+          "end": "2024-06-28",
+          "documents": [
+            {
+              "doc_id": "DOC-1149",
+              "doc_type": "Emergency Department Note",
+              "date": "06/28/2024",
+              "author": "Dr. X. Anderson",
+              "title": "ED Provider Note",
+              "text": "HPI: A 51-year-old man presents with fever, confusion and dysuria.\nEXAM: Temperature 38.9 C, mean arterial pressure 64 mmHg.\nLABS: Lactate 4 mmol/L, WBC 22 x10^3/uL.\nASSESSMENT: Sepsis from a urinary source.\nPLAN: 30 mL/kg crystalloid bolus, blood and urine cultures, piperacillin-tazobactam. Admit to step-down unit."
+            },
+            {
+              "doc_id": "DOC-1150",
+              "doc_type": "Discharge Summary",
+              "date": "28-Jun-2024",
+              "author": "Dr. J. Murphy",
+              "title": "Discharge Summary",
+              "text": "HOSPITAL COURSE: Treated for urosepsis. Urine culture grew E. coli sensitive to ceftriaxone. Lactate normalized after fluids.\nPLAN: Oral cefpodoxime to complete 10 days. Primary care follow-up."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

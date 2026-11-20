@@ -1,0 +1,6 @@
+PATIENT: PATTERSON, ALEXANDER U  MRN: MRN4108412      DOB: 1971-02-25
+DATE OF SERVICE: 20241209      DOCUMENT: RENAL ULTRASOUND
+ENCOUNTER: ENC-69050
+---
+FINDINGS: Both kidneys are small with increased cortical echogenicity. No hydronephrosis.
+IMPRESSION: Findings consistent with chronic medical renal disease.

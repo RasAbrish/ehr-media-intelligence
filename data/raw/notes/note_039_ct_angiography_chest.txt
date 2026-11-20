@@ -1,0 +1,6 @@
+PATIENT: sandy  smith            MRN: MRN-00141249    DOB: December 1, 1997
+DATE OF SERVICE: 08-Mar-2024   DOCUMENT: CT ANGIOGRAPHY CHEST
+ENCOUNTER: ENC-83133
+---
+FINDINGS: Filling defects in the right main and right lower lobe pulmonary arteries. RV to LV ratio 1.1.
+IMPRESSION: Acute pulmonary embolism with mild right heart strain.

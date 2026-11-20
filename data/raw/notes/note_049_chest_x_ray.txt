@@ -1,0 +1,6 @@
+PATIENT: ALEXANDER, DIANE P      MRN: 5901254         DOB: 
+DATE OF SERVICE: Mar 24 2025   DOCUMENT: CHEST X-RAY
+ENCOUNTER: ENC-44116
+---
+FINDINGS: Hyperinflated lungs with flattened diaphragms. No focal consolidation.
+IMPRESSION: Emphysematous changes without acute infiltrate.

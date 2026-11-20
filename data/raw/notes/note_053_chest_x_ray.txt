@@ -1,0 +1,6 @@
+PATIENT: HUNTER, MICHELLE J      MRN: MRN-01274748    DOB: October 3, 1977
+DATE OF SERVICE: 15-Feb-2024   DOCUMENT: CHEST X-RAY
+ENCOUNTER: ENC-74260
+---
+FINDINGS: Focal consolidation in the right lower lobe with air bronchograms. No pneumothorax.
+IMPRESSION: Right lower lobe pneumonia.

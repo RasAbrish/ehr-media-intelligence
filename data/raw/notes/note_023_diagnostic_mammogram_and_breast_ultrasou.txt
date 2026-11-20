@@ -1,0 +1,6 @@
+PATIENT: Thomas Bryant           MRN: mrn 8446429     DOB: 08/25/1985
+DATE OF SERVICE: 20240624      DOCUMENT: DIAGNOSTIC MAMMOGRAM AND BREAST ULTRASOUND
+ENCOUNTER: ENC-68079
+---
+FINDINGS: Irregular spiculated mass in the left breast at 2 o'clock measuring 2.6 cm. No axillary adenopathy.
+IMPRESSION: BI-RADS 5, highly suggestive of malignancy. Ultrasound guided biopsy recommended.

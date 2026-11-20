@@ -1,0 +1,6 @@
+PATIENT: Daniel Guzman           MRN: MRN7088673      DOB: November 7, 1940
+DATE OF SERVICE: 2025-04-17    DOCUMENT: TRANSTHORACIC ECHOCARDIOGRAM
+ENCOUNTER: ENC-42406
+---
+FINDINGS: Dilated left ventricle with global hypokinesis. Left ventricular ejection fraction estimated at 25%. Moderate mitral regurgitation.
+IMPRESSION: Reduced ejection fraction of 25% consistent with systolic heart failure.

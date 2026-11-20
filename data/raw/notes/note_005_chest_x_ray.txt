@@ -1,0 +1,6 @@
+PATIENT: maureen  powell         MRN: 09030008        DOB: 14/02/1957
+DATE OF SERVICE: 11-May-2025   DOCUMENT: CHEST X-RAY
+ENCOUNTER: ENC-17362
+---
+FINDINGS: Focal consolidation in the right lower lobe with air bronchograms. No pneumothorax.
+IMPRESSION: Right lower lobe pneumonia.

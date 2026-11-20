@@ -1,0 +1,6 @@
+PATIENT: WHITNEY, RAY U          MRN: MRN-04169166    DOB: 27-Feb-1958
+DATE OF SERVICE: October 22, 2024  DOCUMENT: THYROID ULTRASOUND
+ENCOUNTER: ENC-67779
+---
+FINDINGS: Diffusely heterogeneous thyroid gland without discrete nodules.
+IMPRESSION: Findings suggestive of chronic thyroiditis.

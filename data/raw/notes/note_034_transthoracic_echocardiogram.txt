@@ -1,0 +1,6 @@
+PATIENT: Michael Allen           MRN: 0981823         DOB: 19590811
+DATE OF SERVICE: Apr 28 2024   DOCUMENT: TRANSTHORACIC ECHOCARDIOGRAM
+ENCOUNTER: ENC-95823
+---
+FINDINGS: Dilated left ventricle with global hypokinesis. Left ventricular ejection fraction estimated at 35%. Moderate mitral regurgitation.
+IMPRESSION: Reduced ejection fraction of 35% consistent with systolic heart failure.
