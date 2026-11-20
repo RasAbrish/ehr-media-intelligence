@@ -12,6 +12,16 @@ import sys
 import structlog
 
 
+class _CurrentStderr:
+    """Writes to whatever ``sys.stderr`` is at call time (test runners swap it)."""
+
+    def write(self, text: str) -> int:
+        return sys.stderr.write(text)
+
+    def flush(self) -> None:
+        sys.stderr.flush()
+
+
 def configure_logging(level: str = "INFO", *, json: bool = True) -> None:
     """Configure structlog and the stdlib root logger once per process."""
     renderer: structlog.typing.Processor = (
@@ -26,7 +36,7 @@ def configure_logging(level: str = "INFO", *, json: bool = True) -> None:
             renderer,
         ],
         wrapper_class=structlog.make_filtering_bound_logger(logging.getLevelName(level)),
-        logger_factory=structlog.PrintLoggerFactory(file=sys.stderr),
+        logger_factory=structlog.PrintLoggerFactory(file=_CurrentStderr()),  # type: ignore[arg-type]
         cache_logger_on_first_use=True,
     )
     logging.basicConfig(level=level, stream=sys.stderr, format="%(message)s")
