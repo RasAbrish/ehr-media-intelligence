@@ -1128,7 +1128,7 @@ class Generator:
              "3.5", "5.1", "", "LAB-9001", ""]
         )  # fmt: skip
         self.gt["quarantine"].append(
-            {"locator": f"lab_results.csv:row {row}", "reason": "missing_mrn_and_name"}
+            {"locator": f"lab_results.csv:row {row}", "reason": "identity_unresolvable"}
         )
         return buf.getvalue()
 
@@ -1203,7 +1203,7 @@ class Generator:
             b"DATE OF SERVICE: 2025-04-11      DOCUMENT: PROGRESS NOTE\n"
             b"ENCOUNTER: \n---\nSUBJECTIVE: Follow-up visit. No new complaints.\n"
         )
-        self.gt["quarantine"].append({"locator": anon, "reason": "missing_mrn_and_name"})
+        self.gt["quarantine"].append({"locator": anon, "reason": "identity_unresolvable"})
         empty = f"notes/note_{n + 2:03d}_scan.txt"
         notes[empty] = b"\n\n"
         self.gt["quarantine"].append({"locator": empty, "reason": "empty_document"})
