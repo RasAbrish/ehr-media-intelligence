@@ -408,7 +408,7 @@ flowchart LR
 |---|---|---|---|---|
 | TanStack Query | query key factory (`04-API-CONTRACT.md` §11.1) | staleTime per query | mutation `setQueryData` / `invalidateQueries` | browser memory |
 | HTTP ETag | `"{bundle_hash}:{prompt_version}"` | until data changes | new hash | browser |
-| Search responses | `search:{index_version}:{sha256(normalized query, filters, top_k, mode)}` | 60 s | `index_version` bumps on every `ehr-mip index` run, so old keys die naturally | in-process `cachetools.TTLCache` or Redis |
+| Search responses | `search:{index_version}:{sha256(normalized query, filters, top_k, mode)}` | 60 s | `index_version` bumps on every `ehr-mip index` run, so old keys die naturally. It is the count of finished `index` runs in `pipeline_runs`, so the API process sees a reindex done by the CLI; the API reloads Chroma and BM25 when it changes | in-process `cachetools.TTLCache` or Redis |
 | Patient detail / resources | `patient:{bundle_hash}:{key}` | 5 min | new bundle hash | same as above |
 | Summaries | `sha256(patient_key, bundle_hash, prompt_version, model)` | permanent | content-addressed: new data or prompt gives a new key | SQLite |
 | Embedder, Chroma, BM25 | process lifetime | until restart or reindex signal | `POST /pipeline/runs` (admin) reloads BM25 and bumps `index_version` | memory |

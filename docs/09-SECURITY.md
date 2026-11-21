@@ -93,7 +93,7 @@ flowchart LR
 
 `style-src 'unsafe-inline'` is needed for positioning styles set by popover primitives; scripts stay strict.
 
-### 5.2 Rate limits (slowapi, storage memory or Redis)
+### 5.2 Rate limits (`limits` library, storage memory or Redis)
 
 | Route | Limit | Key |
 |---|---|---|
@@ -103,7 +103,7 @@ flowchart LR
 | `POST /patients/{key}/summary/feedback` | 20 per minute | IP |
 | everything else | 300 per minute | IP |
 
-Responses carry `RateLimit-Limit`, `RateLimit-Remaining`, `RateLimit-Reset`; on limit: `429` problem+json `code=rate_limited` with `Retry-After`.
+The `limits` library (the engine slowapi wraps) is used directly from an ASGI middleware, because slowapi only emits `X-RateLimit-*` headers. The client IP comes from `X-Forwarded-For` only when the direct peer is listed in `FORWARDED_ALLOW_IPS` (the nginx container in docker); otherwise it is the socket address, so callers cannot spoof their bucket. Responses carry `RateLimit-Limit`, `RateLimit-Remaining`, `RateLimit-Reset`; on limit: `429` problem+json `code=rate_limited` with `Retry-After`.
 
 ### 5.3 Input limits
 Body ≤ 16 KB (search, feedback), query 2 to 500 chars, `page_size ≤ 100`, `top_k ≤ 20`, path ids must be UUIDs, enums strict, dates strict ISO. Uvicorn `--limit-concurrency 64 --timeout-keep-alive 5`; request timeout 15 s (45 s for regenerate).

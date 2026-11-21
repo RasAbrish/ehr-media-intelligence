@@ -6,7 +6,7 @@ import pytest
 import structlog
 from typer.testing import CliRunner
 
-from ehr_mip.cli import EXIT_NOT_IMPLEMENTED, app
+from ehr_mip.cli import app
 from ehr_mip.logging import configure_logging
 
 runner = CliRunner()
@@ -17,16 +17,6 @@ def test_help_lists_every_stage() -> None:
     assert result.exit_code == 0
     for stage in ("ingest", "normalize", "summarize", "index", "run-all", "serve", "eval"):
         assert stage in result.output
-
-
-@pytest.mark.parametrize(
-    ("stage", "phase"),
-    [("index", 4), ("run-all", 4)],
-)
-def test_pending_stage_names_its_phase(stage: str, phase: int) -> None:
-    result = runner.invoke(app, [stage])
-    assert result.exit_code == EXIT_NOT_IMPLEMENTED
-    assert f"Phase {phase}" in result.output
 
 
 def test_info_shows_config_without_secrets(monkeypatch: pytest.MonkeyPatch) -> None:

@@ -5,6 +5,14 @@ All notable changes to this project are documented here. The format follows [Kee
 ## [Unreleased]
 
 ### Added
+- Phase 4, search and API (Task 4): chunker with identifier scrubbing, all-MiniLM-L6-v2 embeddings in an in-process Chroma collection, semantic and hybrid (BM25 with reciprocal rank fusion) ranking, MRN lookup, snippets and highlights; `ehr-mip index`, `run-all` and `serve`; the FastAPI app with `/health`, `/ready`, `POST /search`, patient detail, resources and summary (ETag), resource detail and `/metrics`; RFC 9457 problems, security headers, rate limits with `RateLimit-*` headers, body limit, PHI log redaction; a memory cache with index versioning; contract snapshot, security and latency tests.
+
+### Changed
+- `docs/02`: `index_version` is the count of finished index runs in SQLite. `docs/03`: summary chunks are dated by the newest record they cover. `docs/04`: `method_not_allowed` error code. `docs/09`: rate limiting uses the `limits` library directly and trusts `X-Forwarded-For` only from `FORWARDED_ALLOW_IPS`.
+
+## Phase 3
+
+### Added
 - Phase 3, clinical summaries (Task 3): Fake, extractive and Anthropic providers behind one interface; de-identified, injection-scrubbed context; versioned prompts with a snapshot test; guardrails for grounding, diagnosis support, high anomaly restoration, field limits and the 200-word limit; computed confidence; a content-addressed summary cache; `llm_calls` telemetry with cost estimates and a daily token budget guard; golden and adversarial fixture sets; `ehr-mip summarize` and `ehr-mip eval` with JSON and Markdown reports and a manual review sheet. All offline eval gates pass.
 
 ### Changed
