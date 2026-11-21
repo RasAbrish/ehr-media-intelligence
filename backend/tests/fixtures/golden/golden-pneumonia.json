@@ -1,0 +1,66 @@
+{
+  "id": "golden-pneumonia",
+  "patient": {
+    "mrn": "00070003",
+    "given": [
+      "Cleo"
+    ],
+    "family": "Testcase",
+    "birth_date": "1948-01-22",
+    "gender": "female"
+  },
+  "encounters": [
+    {
+      "id": "E1",
+      "class": "inpatient",
+      "start": "2025-01-05T08:00:00-05:00",
+      "end": "2025-01-09"
+    }
+  ],
+  "documents": [
+    {
+      "type": "discharge_summary",
+      "title": "Discharge Summary",
+      "date": "2025-01-09",
+      "encounter": "E1",
+      "text": "HOSPITAL COURSE: Treated for right lower lobe pneumonia with IV antibiotics. Afebrile for 48 hours.\nASSESSMENT: Community-acquired pneumonia, improved.\nPLAN: Complete oral amoxicillin-clavulanate."
+    },
+    {
+      "type": "imaging_report",
+      "title": "Chest X-ray",
+      "date": "2025-01-05",
+      "encounter": "E1",
+      "text": "FINDINGS: Focal consolidation in the right lower lobe.\nIMPRESSION: Right lower lobe pneumonia."
+    }
+  ],
+  "labs": [
+    {
+      "report": "L1",
+      "test": "WBC",
+      "loinc": "6690-2",
+      "value": 16.2,
+      "unit": "10*3/uL",
+      "low": 4.5,
+      "high": 11.0,
+      "flag": "H",
+      "collected_at": "2025-01-05T09:00:00-05:00",
+      "encounter": "E1"
+    }
+  ],
+  "expected": {
+    "chief_concern_keywords": [
+      "pneumonia"
+    ],
+    "required_diagnoses": [
+      "community-acquired pneumonia"
+    ],
+    "required_anomalies": [
+      "WBC"
+    ],
+    "forbidden_claims": [
+      "healthy",
+      "sepsis",
+      "cancer"
+    ]
+  }
+}
