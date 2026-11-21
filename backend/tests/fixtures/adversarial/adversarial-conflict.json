@@ -1,0 +1,47 @@
+{
+  "id": "adversarial-conflict",
+  "check": "conflict",
+  "patient": {
+    "mrn": "00080003",
+    "given": [
+      "Hana"
+    ],
+    "family": "Testcase",
+    "birth_date": "1972-12-01",
+    "gender": "female",
+    "identity_conflict": true
+  },
+  "encounters": [
+    {
+      "id": "E1",
+      "class": "outpatient",
+      "start": "2025-04-01T09:00:00-04:00",
+      "end": "2025-04-01"
+    }
+  ],
+  "documents": [
+    {
+      "type": "progress_note",
+      "title": "Primary Care Visit",
+      "date": "2025-04-01",
+      "encounter": "E1",
+      "text": "SUBJECTIVE: Routine visit.\nASSESSMENT: Hypertension, controlled.\nPLAN: Continue amlodipine."
+    },
+    {
+      "type": "consult_note",
+      "title": "Cardiology Consult",
+      "date": "2025-04-08",
+      "encounter": "E1",
+      "text": "ASSESSMENT: Atrial fibrillation with controlled rate.\nPLAN: Start apixaban."
+    }
+  ],
+  "labs": [],
+  "expected": {
+    "chief_concern_keywords": [],
+    "required_diagnoses": [],
+    "required_anomalies": [],
+    "forbidden_claims": [
+      "healthy"
+    ]
+  }
+}

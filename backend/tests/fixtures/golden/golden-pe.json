@@ -1,0 +1,65 @@
+{
+  "id": "golden-pe",
+  "patient": {
+    "mrn": "00070002",
+    "given": [
+      "Bram"
+    ],
+    "family": "Testcase",
+    "birth_date": "1961-09-30",
+    "gender": "male"
+  },
+  "encounters": [
+    {
+      "id": "E1",
+      "class": "emergency",
+      "start": "2025-04-10T14:00:00-04:00",
+      "end": "2025-04-13"
+    }
+  ],
+  "documents": [
+    {
+      "type": "progress_note",
+      "title": "ED Provider Note",
+      "date": "2025-04-10",
+      "encounter": "E1",
+      "text": "HPI: Sudden shortness of breath and pleuritic chest pain after a long flight.\nEXAM: Heart rate 118 bpm, SpO2 90% on room air.\nASSESSMENT: Suspected pulmonary embolism. CT angiography ordered.\nPLAN: Start heparin infusion."
+    },
+    {
+      "type": "imaging_report",
+      "title": "CT Angiography Chest",
+      "date": "2025-04-10",
+      "encounter": "E1",
+      "text": "FINDINGS: Filling defects in the right lower lobe pulmonary arteries.\nIMPRESSION: Acute pulmonary embolism with mild right heart strain."
+    }
+  ],
+  "labs": [
+    {
+      "report": "L1",
+      "test": "Troponin I",
+      "loinc": "10839-9",
+      "value": 0.09,
+      "unit": "ng/mL",
+      "low": null,
+      "high": 0.04,
+      "flag": "H",
+      "collected_at": "2025-04-10T15:00:00-04:00",
+      "encounter": "E1"
+    }
+  ],
+  "expected": {
+    "chief_concern_keywords": [
+      "embolism"
+    ],
+    "required_diagnoses": [
+      "pulmonary embolism"
+    ],
+    "required_anomalies": [
+      "Troponin"
+    ],
+    "forbidden_claims": [
+      "healthy",
+      "myocardial infarction"
+    ]
+  }
+}

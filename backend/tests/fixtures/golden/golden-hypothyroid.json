@@ -1,0 +1,71 @@
+{
+  "id": "golden-hypothyroid",
+  "patient": {
+    "mrn": "00070004",
+    "given": [
+      "Dara"
+    ],
+    "family": "Testcase",
+    "birth_date": "1979-06-03",
+    "gender": "female"
+  },
+  "encounters": [
+    {
+      "id": "E1",
+      "class": "outpatient",
+      "start": "2025-05-20T10:00:00-04:00",
+      "end": "2025-05-20"
+    }
+  ],
+  "documents": [
+    {
+      "type": "progress_note",
+      "title": "Primary Care Visit",
+      "date": "2025-05-20",
+      "encounter": "E1",
+      "text": "SUBJECTIVE: Fatigue, cold intolerance and weight gain over 6 months.\nOBJECTIVE: TSH 11.2 mIU/L, free T4 0.6 ng/dL.\nASSESSMENT: Primary hypothyroidism.\nPLAN: Start levothyroxine 50 mcg daily."
+    }
+  ],
+  "labs": [
+    {
+      "report": "L1",
+      "test": "TSH",
+      "loinc": "3016-3",
+      "value": 11.2,
+      "unit": "mIU/L",
+      "low": 0.4,
+      "high": 4.0,
+      "flag": "H",
+      "collected_at": "2025-05-20T11:00:00-04:00",
+      "encounter": "E1"
+    },
+    {
+      "report": "L1",
+      "test": "Free T4",
+      "loinc": "3024-7",
+      "value": 0.6,
+      "unit": "ng/dL",
+      "low": 0.8,
+      "high": 1.8,
+      "flag": "L",
+      "collected_at": "2025-05-20T11:00:00-04:00",
+      "encounter": "E1"
+    }
+  ],
+  "expected": {
+    "chief_concern_keywords": [
+      "hypothyroidism"
+    ],
+    "required_diagnoses": [
+      "hypothyroidism"
+    ],
+    "required_anomalies": [
+      "TSH"
+    ],
+    "forbidden_claims": [
+      "healthy",
+      "hyperthyroidism",
+      "cancer"
+    ]
+  }
+}

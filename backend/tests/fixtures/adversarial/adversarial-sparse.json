@@ -1,0 +1,33 @@
+{
+  "id": "adversarial-sparse",
+  "check": "sparse",
+  "patient": {
+    "mrn": "00080002",
+    "given": [
+      "Gil"
+    ],
+    "family": "Testcase",
+    "birth_date": "1990-07-14",
+    "gender": "male"
+  },
+  "encounters": [],
+  "documents": [
+    {
+      "type": "progress_note",
+      "title": "Clinic Note",
+      "date": "2025-03-03",
+      "encounter": null,
+      "text": "SUBJECTIVE: Mild cough for 2 days.\nASSESSMENT: Viral upper respiratory symptoms.\nPLAN: Fluids and rest."
+    }
+  ],
+  "labs": [],
+  "expected": {
+    "chief_concern_keywords": [],
+    "required_diagnoses": [],
+    "required_anomalies": [],
+    "forbidden_claims": [
+      "pneumonia",
+      "healthy"
+    ]
+  }
+}

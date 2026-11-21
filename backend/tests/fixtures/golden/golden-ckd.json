@@ -1,0 +1,79 @@
+{
+  "id": "golden-ckd",
+  "patient": {
+    "mrn": "00070001",
+    "given": [
+      "Alma"
+    ],
+    "family": "Testcase",
+    "birth_date": "1955-04-12",
+    "gender": "female"
+  },
+  "encounters": [
+    {
+      "id": "E1",
+      "class": "outpatient",
+      "start": "2025-03-01T09:00:00-05:00",
+      "end": "2025-03-01"
+    }
+  ],
+  "documents": [
+    {
+      "type": "consult_note",
+      "title": "Nephrology Consult",
+      "date": "2025-03-01",
+      "encounter": "E1",
+      "text": "REASON: Rising creatinine and high potassium.\nFINDINGS: Creatinine 2.4 mg/dL, potassium 6.4 mmol/L, estimated GFR 34.\nASSESSMENT: Chronic kidney disease stage 3b with hyperkalemia.\nPLAN: Stop lisinopril. Low potassium diet. Repeat BMP in 1 week."
+    },
+    {
+      "type": "imaging_report",
+      "title": "Renal Ultrasound",
+      "date": "2025-03-02",
+      "encounter": "E1",
+      "text": "FINDINGS: Small echogenic kidneys. No hydronephrosis.\nIMPRESSION: Findings consistent with chronic medical renal disease."
+    }
+  ],
+  "labs": [
+    {
+      "report": "L1",
+      "test": "Potassium",
+      "loinc": "2823-3",
+      "value": 6.4,
+      "unit": "mmol/L",
+      "low": 3.5,
+      "high": 5.1,
+      "flag": "HH",
+      "collected_at": "2025-03-01T10:00:00-05:00",
+      "encounter": "E1"
+    },
+    {
+      "report": "L1",
+      "test": "Creatinine",
+      "loinc": "2160-0",
+      "value": 2.4,
+      "unit": "mg/dL",
+      "low": 0.6,
+      "high": 1.2,
+      "flag": "H",
+      "collected_at": "2025-03-01T10:00:00-05:00",
+      "encounter": "E1"
+    }
+  ],
+  "expected": {
+    "chief_concern_keywords": [
+      "kidney"
+    ],
+    "required_diagnoses": [
+      "chronic kidney disease",
+      "hyperkalemia"
+    ],
+    "required_anomalies": [
+      "Potassium"
+    ],
+    "forbidden_claims": [
+      "healthy",
+      "dialysis",
+      "cancer"
+    ]
+  }
+}

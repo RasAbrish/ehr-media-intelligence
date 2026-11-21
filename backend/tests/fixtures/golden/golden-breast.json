@@ -1,0 +1,54 @@
+{
+  "id": "golden-breast",
+  "patient": {
+    "mrn": "00070005",
+    "given": [
+      "Ema"
+    ],
+    "family": "Testcase",
+    "birth_date": "1966-11-17",
+    "gender": "female"
+  },
+  "encounters": [
+    {
+      "id": "E1",
+      "class": "outpatient",
+      "start": "2025-06-02T09:00:00-04:00",
+      "end": "2025-06-02"
+    }
+  ],
+  "documents": [
+    {
+      "type": "imaging_report",
+      "title": "Diagnostic Mammogram",
+      "date": "2025-06-02",
+      "encounter": "E1",
+      "text": "FINDINGS: Irregular spiculated mass in the left breast at 2 o'clock measuring 1.9 cm.\nIMPRESSION: BI-RADS 5, highly suggestive of malignancy. Biopsy recommended."
+    },
+    {
+      "type": "pathology_report",
+      "title": "Surgical Pathology Report",
+      "date": "2025-06-06",
+      "encounter": "E1",
+      "text": "SPECIMEN: Left breast core biopsy.\nDIAGNOSIS: Invasive ductal carcinoma, grade 2. ER positive, HER2 negative."
+    }
+  ],
+  "labs": [],
+  "expected": {
+    "chief_concern_keywords": [
+      "carcinoma",
+      "breast",
+      "malignancy"
+    ],
+    "required_diagnoses": [
+      "invasive ductal carcinoma",
+      "breast mass"
+    ],
+    "required_anomalies": [],
+    "forbidden_claims": [
+      "healthy",
+      "metastatic",
+      "benign"
+    ]
+  }
+}
