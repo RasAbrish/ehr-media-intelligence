@@ -246,6 +246,12 @@ def _build_patient(cluster: Cluster, members: list[_Prepared]) -> CleanPatient:
     given: tuple[str, ...] = ()
     if counts:
         family, given = sorted(counts, key=lambda k: (-len(k[1]), -counts[k], first_seen[k]))[0]
+    suffixes = Counter(
+        m.name.suffix
+        for m in named
+        if m.name is not None and m.name.suffix and (m.name.family, m.name.given[:1]) ==
+        (family, given[:1])
+    )  # fmt: skip
     dobs = Counter(m.dob for m in members if m.dob is not None)
     genders = Counter(
         m.values["gender"]
@@ -259,6 +265,7 @@ def _build_patient(cluster: Cluster, members: list[_Prepared]) -> CleanPatient:
         secondary_mrns=cluster.secondary_mrns,
         family_name=family,
         given_names=list(given),
+        name_suffix=suffixes.most_common(1)[0][0] if suffixes else None,
         birth_date=dobs.most_common(1)[0][0] if dobs else None,
         gender=genders.most_common(1)[0][0] if genders else AdministrativeGender.UNKNOWN,
         phone=contact.get("phone"),

@@ -73,6 +73,7 @@ class CleanPatient(_Model):
     secondary_mrns: list[Mrn] = Field(default_factory=list)
     family_name: str | None
     given_names: list[str] = Field(default_factory=list)
+    name_suffix: str | None = None
     birth_date: date | None
     gender: AdministrativeGender
     phone: str | None = None
