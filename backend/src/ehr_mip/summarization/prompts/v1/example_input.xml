@@ -1,0 +1,13 @@
+<patient ref="P1" age="71" sex="male" />
+<anomaly_hints>
+- [high] Potassium 6.2 mmol/L (HH, ref 3.5 to 5.1) 2024-06-03  evidence=Observation/ex-obs-1
+- [moderate] Creatinine 2.4 mg/dL (H, ref 0.6 to 1.2) 2024-06-03  evidence=Observation/ex-obs-2
+</anomaly_hints>
+<records>
+<record id="DocumentReference/ex-doc-1" type="discharge_summary" date="2024-06-06" title="Discharge Summary">ASSESSMENT: Acute kidney injury on chronic kidney disease stage 3a, hyperkalemia.
+PLAN: Hold lisinopril. Repeat BMP in 1 week.
+HOSPITAL COURSE: Admitted with weakness. Potassium treated with insulin and dextrose.</record>
+<record id="DiagnosticReport/ex-rad-1" type="imaging" date="2024-06-04" title="Renal Ultrasound">IMPRESSION: Bilateral echogenic kidneys without hydronephrosis.
+FINDINGS: Small kidneys.</record>
+<labs report="DiagnosticReport/ex-lab-1" date="2024-06-03">Potassium 6.2 HH; Creatinine 2.4 H; Sodium 139 N</labs>
+</records>

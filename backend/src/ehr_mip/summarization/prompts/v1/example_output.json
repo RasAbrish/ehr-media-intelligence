@@ -1,0 +1,45 @@
+{
+  "chief_concern": "Admitted with weakness from hyperkalemia and acute kidney injury.",
+  "key_diagnoses": [
+    {
+      "name": "Acute kidney injury on chronic kidney disease stage 3a",
+      "status": "active",
+      "evidence": [{"resource_type": "DocumentReference", "resource_id": "ex-doc-1"}]
+    },
+    {
+      "name": "Hyperkalemia",
+      "status": "active",
+      "evidence": [{"resource_type": "DocumentReference", "resource_id": "ex-doc-1"}]
+    }
+  ],
+  "recent_media": [
+    {
+      "resource": {"resource_type": "DiagnosticReport", "resource_id": "ex-rad-1"},
+      "kind": "imaging",
+      "date": "2024-06-04",
+      "finding": "Renal US: echogenic kidneys, no hydronephrosis"
+    },
+    {
+      "resource": {"resource_type": "DiagnosticReport", "resource_id": "ex-lab-1"},
+      "kind": "lab",
+      "date": "2024-06-03",
+      "finding": "K 6.2 HH, creatinine 2.4 H"
+    }
+  ],
+  "flagged_anomalies": [
+    {
+      "description": "Potassium 6.2 mmol/L, critical high",
+      "severity": "high",
+      "source": "rule",
+      "evidence": [{"resource_type": "Observation", "resource_id": "ex-obs-1"}]
+    },
+    {
+      "description": "Creatinine 2.4 mg/dL above reference range",
+      "severity": "moderate",
+      "source": "rule",
+      "evidence": [{"resource_type": "Observation", "resource_id": "ex-obs-2"}]
+    }
+  ],
+  "overview": "71-year-old male with CKD 3a admitted for AKI and hyperkalemia; lisinopril held at discharge.",
+  "self_reported_confidence": "high"
+}
