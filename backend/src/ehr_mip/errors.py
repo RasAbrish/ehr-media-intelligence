@@ -36,3 +36,27 @@ class PatientNotFoundError(EhrMipError):
     """No patient (or no FHIR bundle) exists for the requested key."""
 
     code = "patient_not_found"
+
+
+class ResourceNotFoundError(EhrMipError):
+    """No resource of that type and id exists."""
+
+    code = "resource_not_found"
+
+
+class SummaryNotFoundError(EhrMipError):
+    """The patient has no summary for the current bundle yet."""
+
+    code = "summary_not_found"
+
+
+class SearchIndexEmptyError(EhrMipError):
+    """The vector index has no chunks."""
+
+    code = "search_index_empty"
+
+
+class NotReadyError(EhrMipError):
+    """A component the request needs (embedder, vector store) is not loaded."""
+
+    code = "not_ready"

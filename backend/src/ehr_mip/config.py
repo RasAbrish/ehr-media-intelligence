@@ -79,6 +79,7 @@ class Settings(BaseSettings):
     admin_token: SecretStr | None = None
     auto_bootstrap: bool = False
     rate_limit_enabled: bool = True
+    forwarded_allow_ips: str = "127.0.0.1"
     feedback_enabled: bool = True
     log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR"] = "INFO"
     env: Literal["dev", "prod"] = "dev"
