@@ -1,13 +1,15 @@
 """Structured JSON logging.
 
-Logs carry ids only, never names, MRNs, dates of birth or note text. The PHI
-redaction processor is added in Phase 4 (``observability/log_redaction.py``).
+Logs carry ids only, never names, MRNs, dates of birth or note text. Callers pass
+the PHI redaction processor (``observability/log_redaction.py``) as an extra
+processor, because this module sits below ``observability`` in the layer contract.
 """
 
 from __future__ import annotations
 
 import logging
 import sys
+from collections.abc import Sequence
 
 import structlog
 
@@ -22,7 +24,12 @@ class _CurrentStderr:
         sys.stderr.flush()
 
 
-def configure_logging(level: str = "INFO", *, json: bool = True) -> None:
+def configure_logging(
+    level: str = "INFO",
+    *,
+    json: bool = True,
+    extra_processors: Sequence[structlog.typing.Processor] = (),
+) -> None:
     """Configure structlog and the stdlib root logger once per process."""
     renderer: structlog.typing.Processor = (
         structlog.processors.JSONRenderer() if json else structlog.dev.ConsoleRenderer()
@@ -33,6 +40,7 @@ def configure_logging(level: str = "INFO", *, json: bool = True) -> None:
             structlog.processors.add_log_level,
             structlog.processors.TimeStamper(fmt="iso", utc=True, key="ts"),
             structlog.processors.EventRenamer("event"),
+            *extra_processors,
             renderer,
         ],
         wrapper_class=structlog.make_filtering_bound_logger(logging.getLevelName(level)),

@@ -20,3 +20,7 @@ max-args = 8
 
 [lint.isort]
 known-first-party = ["ehr_mip"]
+
+[lint.flake8-bugbear]
+# FastAPI dependency markers are meant to be default arguments.
+extend-immutable-calls = ["fastapi.Depends", "fastapi.Query", "fastapi.Header", "fastapi.params.Depends"]
