@@ -6,6 +6,7 @@ import {
 } from "@tanstack/react-router";
 
 import { AppShell } from "@/app/AppShell";
+import { parseSearchParams, type SearchPageParams } from "@/features/search/search-params";
 import { NotFoundPage } from "@/routes/NotFoundPage";
 import { PatientsPage } from "@/routes/PatientsPage";
 import { QualityPage } from "@/routes/QualityPage";
@@ -19,6 +20,7 @@ const rootRoute = createRootRoute({
 const searchRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/",
+  validateSearch: (search: Record<string, unknown>): SearchPageParams => parseSearchParams(search),
   component: SearchPage,
 });
 

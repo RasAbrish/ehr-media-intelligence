@@ -30,8 +30,17 @@ describe("AppShell", () => {
     );
   });
 
+  it("shows the search hero with example searches on /", async () => {
+    await renderApp("/");
+    expect(
+      await screen.findByRole("heading", { level: 1, name: copy.search.idleTitle }),
+    ).toBeInTheDocument();
+    expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
+    const examples = screen.getByRole("list", { name: copy.search.examplesLabel });
+    expect(within(examples).getAllByRole("button")).toHaveLength(copy.search.examples.length);
+  });
+
   it.each([
-    ["/", copy.search.idleTitle],
     ["/patients", copy.patients.title],
     ["/quality", copy.quality.title],
   ])("shows the index-empty state on %s", async (path, heading) => {

@@ -5,6 +5,14 @@ All notable changes to this project are documented here. The format follows [Kee
 ## [Unreleased]
 
 ### Added
+- Phase 5, clinician UI (Task 5): live search with debounce and stale-while-refetching results, result cards with highlights and "why this result", type and date range filters in the URL, the patient drawer with the AI summary panel (disclaimer, provenance, suspected and data quality markers, confidence) and the linked records table (TanStack Table v9) with a record dialog; loading, idle, no results, error and index-empty states; the keyboard model, responsive layouts and light and dark themes. Zod schemas for the whole contract with a fixture test over every docs/04 example, MSW component tests, Storybook stories, and Playwright end-to-end tests with axe.
+
+### Changed
+- `docs/04`: no changes. Frontend tooling: Storybook 10, MSW 3 and Playwright added; the shadcn `calendar` and `scroll-area` files were removed instead of edited because they do not compile under the strict TypeScript settings; a themed `RangeCalendar` on react-day-picker replaces the calendar.
+
+## Phase 4
+
+### Added
 - Phase 4, search and API (Task 4): chunker with identifier scrubbing, all-MiniLM-L6-v2 embeddings in an in-process Chroma collection, semantic and hybrid (BM25 with reciprocal rank fusion) ranking, MRN lookup, snippets and highlights; `ehr-mip index`, `run-all` and `serve`; the FastAPI app with `/health`, `/ready`, `POST /search`, patient detail, resources and summary (ETag), resource detail and `/metrics`; RFC 9457 problems, security headers, rate limits with `RateLimit-*` headers, body limit, PHI log redaction; a memory cache with index versioning; contract snapshot, security and latency tests.
 
 ### Changed
