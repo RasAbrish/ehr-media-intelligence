@@ -7,7 +7,17 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
-  { ignores: ["dist", "coverage", "storybook-static", "public", "src/components/ui/**"] },
+  {
+    ignores: [
+      "dist",
+      "coverage",
+      "storybook-static",
+      "public",
+      "test-results",
+      "playwright-report",
+      "src/components/ui/**",
+    ],
+  },
   {
     files: ["**/*.{ts,tsx}"],
     extends: [

@@ -3,3 +3,5 @@ coverage
 storybook-static
 pnpm-lock.yaml
 src/components/ui
+test-results
+playwright-report
