@@ -121,6 +121,17 @@ class BundleStore:
         bundle: dict[str, Any] = orjson.loads(row[0])
         return bundle
 
+    def load_with_meta(self, patient_key: str) -> tuple[dict[str, Any], str, bool] | None:
+        """Bundle, its hash and whether it is valid, in one read."""
+        row = self._conn.execute(
+            "SELECT bundle_json, bundle_hash, is_valid FROM fhir_bundles WHERE patient_key = ?",
+            (patient_key,),
+        ).fetchone()
+        if row is None:
+            return None
+        bundle: dict[str, Any] = orjson.loads(row[0])
+        return bundle, str(row[1]), bool(row[2])
+
     def bundle_hash(self, patient_key: str) -> str | None:
         row = self._conn.execute(
             "SELECT bundle_hash FROM fhir_bundles WHERE patient_key = ?", (patient_key,)
