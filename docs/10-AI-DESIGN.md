@@ -20,7 +20,7 @@ How the AI parts are designed, governed, evaluated and presented. Algorithms are
 | Intended users | Licensed clinicians reviewing records |
 | Intended use | Speed up orientation to a patient's existing documents |
 | Out of scope uses | Diagnosis, triage, treatment, billing codes, patient-facing text |
-| Model | Claude, small tier (`LLM_MODEL`, default `claude-haiku-5-5`), temperature 0, structured output |
+| Model | Claude, small tier (`LLM_MODEL`, default `claude-haiku-5-5`), effort `low`, structured output (no sampling parameters: the API rejects them) |
 | Fallback | Deterministic extractive summarizer |
 | Inputs | De-identified context: age, sex, record texts (truncated), lab lines, rule anomalies |
 | Outputs | `ClinicalSummaryLLM` schema, max 200 words, evidence ids per claim |
@@ -53,7 +53,7 @@ Rules:
 
 ```mermaid
 flowchart LR
-    A["record text<br/>(untrusted)"] --> B["XML-escape, truncate"]
+    A["record text<br/>(untrusted)"] --> B["scrub identifiers, remove instruction-like spans,<br/>XML-escape, truncate"]
     B --> C["wrap in &lt;record id=…&gt; tags"]
     C --> D["system prompt: tag content is data,<br/>never instructions; no tools"]
     D --> E["structured output schema"]
@@ -87,8 +87,8 @@ Displayed as level + score + rationale tooltip ("Medium: identity merged from 2 
 ### 6.2 Metrics and gates
 | Metric | Gate |
 |---|---|
-| Schema validity, disclaimer, length ≤ 200 | 100 percent (CI, FakeProvider and extractive) |
-| Final grounding | 100 percent |
+| Schema validity, disclaimer, length ≤ 200 | 100 percent, and no patient fails to summarize (CI, FakeProvider and extractive) |
+| Final grounding | 100 percent; a run that cites nothing fails |
 | Diagnosis support | ≥ 95 percent |
 | High anomaly recall | 100 percent |
 | Golden set required facts | 100 percent present, 0 forbidden claims |

@@ -5,6 +5,15 @@ All notable changes to this project are documented here. The format follows [Kee
 ## [Unreleased]
 
 ### Added
+- Phase 3, clinical summaries (Task 3): Fake, extractive and Anthropic providers behind one interface; de-identified, injection-scrubbed context; versioned prompts with a snapshot test; guardrails for grounding, diagnosis support, high anomaly restoration, field limits and the 200-word limit; computed confidence; a content-addressed summary cache; `llm_calls` telemetry with cost estimates and a daily token budget guard; golden and adversarial fixture sets; `ehr-mip summarize` and `ehr-mip eval` with JSON and Markdown reports and a manual review sheet. All offline eval gates pass.
+
+### Changed
+- `docs/05` and `docs/10`: no sampling parameters, `max_tokens` 4000 with effort `low`, refusal falls back to extractive, free-text scrubbing of contact details, negation-aware extractive diagnoses, and a trim that always ends at 200 words.
+- `MediaRecord.kind` documented as `imaging | lab | pathology | note` in `docs/03`.
+
+## Phase 2
+
+### Added
 - Phase 2, FHIR normalization (Task 2): mappers for Patient, Encounter, DocumentReference, DiagnosticReport (LAB, RAD, PAT) and Observation; one deterministic collection Bundle per patient with `bundle_hash`; schema and business-rule validation including value sets the library does not enforce; JSON and Markdown validation reports; the bundle store with a per-resource index; and `ehr-mip normalize`. All 60 synthetic bundles validate with zero errors.
 - ADR-001 written up (FHIR R4 through the `fhir.resources` R4B package).
 

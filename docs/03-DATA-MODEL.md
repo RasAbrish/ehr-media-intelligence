@@ -590,7 +590,7 @@ classDiagram
     }
     class MediaRecord {
         +EvidenceRef resource
-        +Literal kind (patient, encounter, document, lab_result)
+        +Literal kind (imaging, lab, pathology, note)
         +date|None date
         +str finding
     }
