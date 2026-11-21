@@ -14,6 +14,12 @@ import structlog
 
 from ehr_mip.errors import PatientNotFoundError
 from ehr_mip.fhir.store import BundleStore
+from ehr_mip.observability.metrics import (
+    GUARDRAIL_INTERVENTIONS,
+    LLM_CALLS,
+    LLM_LATENCY,
+    LLM_TOKENS,
+)
 from ehr_mip.summarization.anomalies import detect_anomalies
 from ehr_mip.summarization.cache import SummaryCache, cache_key
 from ehr_mip.summarization.context import build_context
@@ -309,4 +315,14 @@ class SummaryService:
             ),
             at=self._clock(),
         )
+        _observe(self._provider.name if fell_back else gen.used.name, status, gen)
         return SummaryOutcome(summary=summary, trace=trace, provider_calls=gen.calls)
+
+
+def _observe(provider: str, status: str, gen: _Generation) -> None:
+    LLM_CALLS.labels(provider=provider, status=status).inc()
+    LLM_TOKENS.labels(direction="input").inc(gen.input_tokens)
+    LLM_TOKENS.labels(direction="output").inc(gen.output_tokens)
+    LLM_LATENCY.labels(provider=provider).observe(gen.latency_ms / 1000)
+    for note in gen.notes:
+        GUARDRAIL_INTERVENTIONS.labels(type=note.split(" ", 1)[0]).inc()

@@ -124,6 +124,16 @@ def _sections(text: str) -> list[tuple[str, str]]:
     return pieces
 
 
+def split_sections(text: str) -> list[tuple[str, str]]:
+    """``(heading, body)`` for each ``HEADING:`` section; text before any header has ``""``."""
+    result = []
+    for name, piece in _sections(text):
+        body = piece[len(name) + 1 :] if name else piece
+        if body.strip():
+            result.append((name, " ".join(body.split())))
+    return result
+
+
 def _reorder(text: str, first: tuple[str, ...]) -> str:
     pieces = _sections(text)
     lead = [body for name, body in pieces if name in first]
