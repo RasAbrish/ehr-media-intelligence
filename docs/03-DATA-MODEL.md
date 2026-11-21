@@ -638,7 +638,7 @@ Cache key: `sha256(f"{patient_key}:{bundle_hash}:{prompt_version}:{model or 'ext
 | `metadata.resource_type` | `DocumentReference` / `DiagnosticReport` / `Observation` / `ClinicalSummary` |
 | `metadata.subtype` | doc_type or category |
 | `metadata.title` | str |
-| `metadata.date` | `YYYY-MM-DD` or `""` |
+| `metadata.date` | `YYYY-MM-DD` or `""`; for a summary, the date of the newest record it covers |
 | `metadata.date_ord` | `date.toordinal()` or `0` (Chroma range operators need numbers) |
 | `metadata.chunk_index` | int |
 

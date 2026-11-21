@@ -2,7 +2,7 @@
 
 An AI pipeline that ingests raw EHR exports, cleans and normalizes them to HL7 FHIR R4, writes grounded clinical summaries with Claude and gives clinicians a fast semantic search interface. Built for the Onye AI full-stack assessment. All data is synthetic.
 
-> Status: Phase 2 (FHIR normalization). Summaries, search and the UI arrive in later phases; see [docs/08-DELIVERY.md](docs/08-DELIVERY.md).
+> Status: Phase 4 (search and API). The clinician UI arrives in Phase 5; see [docs/08-DELIVERY.md](docs/08-DELIVERY.md).
 
 ## Quick start
 
@@ -14,6 +14,10 @@ make data      # regenerate the seeded synthetic data in data/raw/
 make check     # lint, type check and tests for backend and frontend
 make ingest    # read, clean, resolve identities and dedupe into SQLite
 make normalize # one validated FHIR R4 bundle per patient, plus the validation report
+make summarize # one grounded summary per patient (extractive without an API key)
+make index     # chunk, embed and index records and summaries
+make pipeline  # all four stages in order (idempotent)
+make api       # API on http://localhost:8000 (docs at /docs)
 make web       # web app on http://localhost:5173
 ```
 
@@ -103,6 +107,27 @@ The 4 warnings are the flagged identity conflicts (two people on each of two MRN
 | Ground truth diagnosis recall | 87.5% | ≥ 85% |
 
 The recall misses are hyponatremia and hyperlipidemia that appear only as lab values, never written in a note; the summarizer does not infer diagnoses. The manual review sheet (`docs/eval/manual_review_<model>.md`) is created for a person to score and is never overwritten.
+
+## Search and API (Task 4)
+
+`make index` (`ehr-mip index`) chunks every note and diagnostic report plus each patient's summary into windows of about 180 words, embeds them with `all-MiniLM-L6-v2` and stores them in an in-process Chroma collection (cosine). Names, MRNs and contact details are scrubbed before embedding. The first run downloads the model (about 90 MB) into `data/generated/hf-cache`; later runs load it from there without a network call. On the synthetic data: 305 chunks from 245 records and 60 summaries.
+
+`make api` serves the endpoints in [docs/04-API-CONTRACT.md](docs/04-API-CONTRACT.md): `/health`, `/ready`, `POST /search`, `/patients/{key}`, `/patients/{key}/resources`, `/patients/{key}/summary` and `/resources/{type}/{id}`, plus `/metrics`.
+
+```bash
+curl -s -X POST 'http://localhost:8000/search?resource_type=DiagnosticReport&date_from=2024-06-01' \
+  -H 'Content-Type: application/json' \
+  -d '{"query": "worsening kidney function with high potassium"}'
+```
+
+- **Ranking** ([docs/05](docs/05-ALGORITHMS.md) section 4). Semantic by default; `mode=hybrid` fuses BM25 and vector ranks with reciprocal rank fusion. A query shaped like an MRN returns that patient's newest records. Results are one per resource, sorted by score, with a snippet, highlight ranges and the patient's chief concern.
+- **Filters.** Repeatable `resource_type`, inclusive `date_from` and `date_to` (undated records are excluded once a date is set), `top_k` up to 20, `patient_key`.
+- **Caching.** Search results are cached for 60 s under the index version, so a reindex invalidates them; responses carry `X-Cache`. The cache holds ids, scores and scrubbed snippets only; patient details are joined afterwards. Patient responses are cached in process for 5 minutes and never in a shared backend.
+- **Reindexing while serving** builds the new collection next to the live one and swaps it in, so searches keep working during `make index`.
+- **Security** ([docs/09](docs/09-SECURITY.md) section 5). Security headers and `no-store` on every response, per-IP rate limits with `RateLimit-*` headers and 429 problems, a 16 KB body limit, strict validation (422 with field errors), RFC 9457 problem responses without stack traces, and a log processor that removes PHI.
+- **Latency** (NFR-01) with the real model, 20 uncached queries: p50 18 ms, p95 35 ms; limit 2 s, target 300 ms (`tests/perf/test_search_latency.py`).
+
+`make openapi` exports `docs/openapi.json`; a snapshot test fails on any undocumented API change.
 
 ## Project structure
 

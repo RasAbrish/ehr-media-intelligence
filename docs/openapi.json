@@ -1,0 +1,2299 @@
+{
+  "components": {
+    "schemas": {
+      "AddressOut": {
+        "additionalProperties": false,
+        "properties": {
+          "city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City"
+          },
+          "line": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Line"
+          },
+          "postal_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Postal Code"
+          },
+          "state": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "State"
+          }
+        },
+        "required": [
+          "line",
+          "city",
+          "state",
+          "postal_code"
+        ],
+        "title": "AddressOut",
+        "type": "object"
+      },
+      "AnomalyOut": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRef"
+            },
+            "title": "Evidence",
+            "type": "array"
+          },
+          "severity": {
+            "enum": [
+              "low",
+              "moderate",
+              "high"
+            ],
+            "title": "Severity",
+            "type": "string"
+          },
+          "source": {
+            "enum": [
+              "rule",
+              "model"
+            ],
+            "title": "Source",
+            "type": "string"
+          }
+        },
+        "required": [
+          "description",
+          "severity",
+          "source",
+          "evidence"
+        ],
+        "title": "AnomalyOut",
+        "type": "object"
+      },
+      "AppliedFilters": {
+        "additionalProperties": false,
+        "properties": {
+          "date_from": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date From"
+          },
+          "date_to": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date To"
+          },
+          "patient_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Patient Key"
+          },
+          "resource_type": {
+            "items": {
+              "enum": [
+                "DocumentReference",
+                "DiagnosticReport",
+                "Observation",
+                "ClinicalSummary"
+              ],
+              "type": "string"
+            },
+            "title": "Resource Type",
+            "type": "array"
+          }
+        },
+        "required": [
+          "resource_type",
+          "date_from",
+          "date_to",
+          "patient_key"
+        ],
+        "title": "AppliedFilters",
+        "type": "object"
+      },
+      "BundleStatus": {
+        "additionalProperties": false,
+        "properties": {
+          "bundle_hash": {
+            "title": "Bundle Hash",
+            "type": "string"
+          },
+          "error_count": {
+            "title": "Error Count",
+            "type": "integer"
+          },
+          "is_valid": {
+            "title": "Is Valid",
+            "type": "boolean"
+          },
+          "warning_count": {
+            "title": "Warning Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "is_valid",
+          "error_count",
+          "warning_count",
+          "bundle_hash"
+        ],
+        "title": "BundleStatus",
+        "type": "object"
+      },
+      "CacheStatus": {
+        "additionalProperties": false,
+        "properties": {
+          "backend": {
+            "enum": [
+              "memory",
+              "redis"
+            ],
+            "title": "Backend",
+            "type": "string"
+          },
+          "index_version": {
+            "title": "Index Version",
+            "type": "integer"
+          },
+          "ok": {
+            "title": "Ok",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "backend",
+          "ok",
+          "index_version"
+        ],
+        "title": "CacheStatus",
+        "type": "object"
+      },
+      "Check": {
+        "additionalProperties": false,
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "string"
+          },
+          "ok": {
+            "title": "Ok",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "ok",
+          "detail"
+        ],
+        "title": "Check",
+        "type": "object"
+      },
+      "ClinicalSummaryResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "bundle_hash": {
+            "title": "Bundle Hash",
+            "type": "string"
+          },
+          "cache_key": {
+            "title": "Cache Key",
+            "type": "string"
+          },
+          "cached": {
+            "title": "Cached",
+            "type": "boolean"
+          },
+          "chief_concern": {
+            "title": "Chief Concern",
+            "type": "string"
+          },
+          "confidence": {
+            "$ref": "#/components/schemas/ConfidenceOut"
+          },
+          "disclaimer": {
+            "title": "Disclaimer",
+            "type": "string"
+          },
+          "flagged_anomalies": {
+            "items": {
+              "$ref": "#/components/schemas/AnomalyOut"
+            },
+            "title": "Flagged Anomalies",
+            "type": "array"
+          },
+          "generated_at": {
+            "title": "Generated At",
+            "type": "string"
+          },
+          "guardrail_notes": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Guardrail Notes",
+            "type": "array"
+          },
+          "key_diagnoses": {
+            "items": {
+              "$ref": "#/components/schemas/DiagnosisOut"
+            },
+            "title": "Key Diagnoses",
+            "type": "array"
+          },
+          "model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model"
+          },
+          "overview": {
+            "title": "Overview",
+            "type": "string"
+          },
+          "patient_key": {
+            "title": "Patient Key",
+            "type": "string"
+          },
+          "prompt_version": {
+            "title": "Prompt Version",
+            "type": "string"
+          },
+          "provider": {
+            "enum": [
+              "anthropic",
+              "extractive"
+            ],
+            "title": "Provider",
+            "type": "string"
+          },
+          "recent_media": {
+            "items": {
+              "$ref": "#/components/schemas/MediaOut"
+            },
+            "title": "Recent Media",
+            "type": "array"
+          },
+          "word_count": {
+            "title": "Word Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "patient_key",
+          "chief_concern",
+          "key_diagnoses",
+          "recent_media",
+          "flagged_anomalies",
+          "overview",
+          "word_count",
+          "confidence",
+          "disclaimer",
+          "provider",
+          "model",
+          "prompt_version",
+          "bundle_hash",
+          "generated_at",
+          "cached",
+          "cache_key",
+          "guardrail_notes"
+        ],
+        "title": "ClinicalSummaryResponse",
+        "type": "object"
+      },
+      "ConfidenceOut": {
+        "additionalProperties": false,
+        "properties": {
+          "level": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "title": "Level",
+            "type": "string"
+          },
+          "rationale": {
+            "title": "Rationale",
+            "type": "string"
+          },
+          "score": {
+            "title": "Score",
+            "type": "number"
+          }
+        },
+        "required": [
+          "level",
+          "score",
+          "rationale"
+        ],
+        "title": "ConfidenceOut",
+        "type": "object"
+      },
+      "DataQuality": {
+        "additionalProperties": false,
+        "properties": {
+          "audit_entries": {
+            "title": "Audit Entries",
+            "type": "integer"
+          },
+          "errors": {
+            "title": "Errors",
+            "type": "integer"
+          },
+          "warnings": {
+            "title": "Warnings",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "audit_entries",
+          "warnings",
+          "errors"
+        ],
+        "title": "DataQuality",
+        "type": "object"
+      },
+      "DetailIssue": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "path": {
+            "title": "Path",
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "info",
+              "warning",
+              "error"
+            ],
+            "title": "Severity",
+            "type": "string"
+          }
+        },
+        "required": [
+          "severity",
+          "code",
+          "message",
+          "path"
+        ],
+        "title": "DetailIssue",
+        "type": "object"
+      },
+      "DiagnosisOut": {
+        "additionalProperties": false,
+        "properties": {
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRef"
+            },
+            "title": "Evidence",
+            "type": "array"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "active",
+              "historical",
+              "suspected"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "status",
+          "evidence"
+        ],
+        "title": "DiagnosisOut",
+        "type": "object"
+      },
+      "EmbedderCheck": {
+        "additionalProperties": false,
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "string"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "ok": {
+            "title": "Ok",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "ok",
+          "detail",
+          "model"
+        ],
+        "title": "EmbedderCheck",
+        "type": "object"
+      },
+      "EvidenceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "resource_id": {
+            "title": "Resource Id",
+            "type": "string"
+          },
+          "resource_type": {
+            "enum": [
+              "DocumentReference",
+              "DiagnosticReport",
+              "Observation",
+              "Encounter"
+            ],
+            "title": "Resource Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_type",
+          "resource_id"
+        ],
+        "title": "EvidenceRef",
+        "type": "object"
+      },
+      "FieldError": {
+        "additionalProperties": false,
+        "properties": {
+          "loc": {
+            "title": "Loc",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "message",
+          "type"
+        ],
+        "title": "FieldError",
+        "type": "object"
+      },
+      "HealthResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "const": "ok",
+            "title": "Status",
+            "type": "string"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "version"
+        ],
+        "title": "HealthResponse",
+        "type": "object"
+      },
+      "Identifier": {
+        "additionalProperties": false,
+        "properties": {
+          "system": {
+            "title": "System",
+            "type": "string"
+          },
+          "use": {
+            "enum": [
+              "usual",
+              "old"
+            ],
+            "title": "Use",
+            "type": "string"
+          },
+          "value": {
+            "title": "Value",
+            "type": "string"
+          }
+        },
+        "required": [
+          "system",
+          "value",
+          "use"
+        ],
+        "title": "Identifier",
+        "type": "object"
+      },
+      "LastRun": {
+        "additionalProperties": false,
+        "properties": {
+          "finished_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finished At"
+          },
+          "run_id": {
+            "title": "Run Id",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "queued",
+              "running",
+              "succeeded",
+              "failed"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "run_id",
+          "finished_at",
+          "status"
+        ],
+        "title": "LastRun",
+        "type": "object"
+      },
+      "LlmCheck": {
+        "additionalProperties": false,
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "string"
+          },
+          "model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model"
+          },
+          "ok": {
+            "title": "Ok",
+            "type": "boolean"
+          },
+          "provider": {
+            "enum": [
+              "anthropic",
+              "extractive"
+            ],
+            "title": "Provider",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ok",
+          "detail",
+          "provider",
+          "model"
+        ],
+        "title": "LlmCheck",
+        "type": "object"
+      },
+      "MediaOut": {
+        "additionalProperties": false,
+        "properties": {
+          "date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date"
+          },
+          "finding": {
+            "title": "Finding",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "imaging",
+              "lab",
+              "pathology",
+              "note"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          }
+        },
+        "required": [
+          "resource",
+          "kind",
+          "date",
+          "finding"
+        ],
+        "title": "MediaOut",
+        "type": "object"
+      },
+      "ObservationRow": {
+        "additionalProperties": false,
+        "properties": {
+          "interpretation": {
+            "anyOf": [
+              {
+                "enum": [
+                  "LL",
+                  "L",
+                  "N",
+                  "H",
+                  "HH"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Interpretation"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "reference_range": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reference Range"
+          },
+          "resource_id": {
+            "title": "Resource Id",
+            "type": "string"
+          },
+          "unit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit"
+          },
+          "value": {
+            "title": "Value",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_id",
+          "name",
+          "value",
+          "unit",
+          "interpretation",
+          "reference_range"
+        ],
+        "title": "ObservationRow",
+        "type": "object"
+      },
+      "PatientDetail": {
+        "additionalProperties": false,
+        "properties": {
+          "address": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AddressOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "age": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Age"
+          },
+          "birth_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Birth Date"
+          },
+          "bundle": {
+            "$ref": "#/components/schemas/BundleStatus"
+          },
+          "counts": {
+            "$ref": "#/components/schemas/ResourceCounts"
+          },
+          "data_quality": {
+            "$ref": "#/components/schemas/DataQuality"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "family_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Family Name"
+          },
+          "first_activity": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "First Activity"
+          },
+          "gender": {
+            "enum": [
+              "male",
+              "female",
+              "other",
+              "unknown"
+            ],
+            "title": "Gender",
+            "type": "string"
+          },
+          "given_names": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Given Names",
+            "type": "array"
+          },
+          "identifiers": {
+            "items": {
+              "$ref": "#/components/schemas/Identifier"
+            },
+            "title": "Identifiers",
+            "type": "array"
+          },
+          "identity_conflict": {
+            "title": "Identity Conflict",
+            "type": "boolean"
+          },
+          "last_activity": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Activity"
+          },
+          "mrn": {
+            "title": "Mrn",
+            "type": "string"
+          },
+          "patient_key": {
+            "title": "Patient Key",
+            "type": "string"
+          },
+          "phone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phone"
+          }
+        },
+        "required": [
+          "patient_key",
+          "display_name",
+          "mrn",
+          "birth_date",
+          "age",
+          "gender",
+          "identity_conflict",
+          "family_name",
+          "given_names",
+          "identifiers",
+          "phone",
+          "address",
+          "bundle",
+          "counts",
+          "first_activity",
+          "last_activity",
+          "data_quality"
+        ],
+        "title": "PatientDetail",
+        "type": "object"
+      },
+      "PatientRef": {
+        "additionalProperties": false,
+        "properties": {
+          "age": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Age"
+          },
+          "birth_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Birth Date"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "gender": {
+            "enum": [
+              "male",
+              "female",
+              "other",
+              "unknown"
+            ],
+            "title": "Gender",
+            "type": "string"
+          },
+          "identity_conflict": {
+            "title": "Identity Conflict",
+            "type": "boolean"
+          },
+          "mrn": {
+            "title": "Mrn",
+            "type": "string"
+          },
+          "patient_key": {
+            "title": "Patient Key",
+            "type": "string"
+          }
+        },
+        "required": [
+          "patient_key",
+          "display_name",
+          "mrn",
+          "birth_date",
+          "age",
+          "gender",
+          "identity_conflict"
+        ],
+        "title": "PatientRef",
+        "type": "object"
+      },
+      "PatientResourceItem": {
+        "additionalProperties": false,
+        "properties": {
+          "date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date"
+          },
+          "encounter_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Encounter Id"
+          },
+          "interpretation": {
+            "anyOf": [
+              {
+                "enum": [
+                  "LL",
+                  "L",
+                  "N",
+                  "H",
+                  "HH"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Interpretation"
+          },
+          "is_valid": {
+            "title": "Is Valid",
+            "type": "boolean"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceIssue"
+            },
+            "title": "Issues",
+            "type": "array"
+          },
+          "resource_id": {
+            "title": "Resource Id",
+            "type": "string"
+          },
+          "resource_type": {
+            "enum": [
+              "DocumentReference",
+              "DiagnosticReport",
+              "Observation",
+              "ClinicalSummary",
+              "Encounter"
+            ],
+            "title": "Resource Type",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "subtype": {
+            "anyOf": [
+              {
+                "enum": [
+                  "discharge_summary",
+                  "progress_note",
+                  "consult_note",
+                  "imaging_report",
+                  "lab_report",
+                  "pathology_report",
+                  "scanned_document"
+                ],
+                "type": "string"
+              },
+              {
+                "enum": [
+                  "LAB",
+                  "RAD",
+                  "PAT"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subtype"
+          },
+          "summary_line": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Summary Line"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_type",
+          "resource_id",
+          "date",
+          "title",
+          "subtype",
+          "is_valid",
+          "status",
+          "encounter_id",
+          "summary_line",
+          "interpretation",
+          "issues"
+        ],
+        "title": "PatientResourceItem",
+        "type": "object"
+      },
+      "PatientResourcesResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/PatientResourceItem"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "patient_key": {
+            "title": "Patient Key",
+            "type": "string"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "patient_key",
+          "total",
+          "items"
+        ],
+        "title": "PatientResourcesResponse",
+        "type": "object"
+      },
+      "Problem": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "detail": {
+            "title": "Detail",
+            "type": "string"
+          },
+          "errors": {
+            "items": {
+              "$ref": "#/components/schemas/FieldError"
+            },
+            "title": "Errors",
+            "type": "array"
+          },
+          "instance": {
+            "title": "Instance",
+            "type": "string"
+          },
+          "request_id": {
+            "title": "Request Id",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "integer"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "type": {
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "title",
+          "status",
+          "detail",
+          "instance",
+          "code",
+          "request_id",
+          "errors"
+        ],
+        "title": "Problem",
+        "type": "object"
+      },
+      "ReadyChecks": {
+        "additionalProperties": false,
+        "properties": {
+          "embedder": {
+            "$ref": "#/components/schemas/EmbedderCheck"
+          },
+          "llm": {
+            "$ref": "#/components/schemas/LlmCheck"
+          },
+          "sqlite": {
+            "$ref": "#/components/schemas/Check"
+          },
+          "vector_store": {
+            "$ref": "#/components/schemas/VectorStoreCheck"
+          }
+        },
+        "required": [
+          "sqlite",
+          "vector_store",
+          "embedder",
+          "llm"
+        ],
+        "title": "ReadyChecks",
+        "type": "object"
+      },
+      "ReadyCounts": {
+        "additionalProperties": false,
+        "properties": {
+          "chunks": {
+            "title": "Chunks",
+            "type": "integer"
+          },
+          "patients": {
+            "title": "Patients",
+            "type": "integer"
+          },
+          "resources": {
+            "title": "Resources",
+            "type": "integer"
+          },
+          "summaries": {
+            "title": "Summaries",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "patients",
+          "resources",
+          "summaries",
+          "chunks"
+        ],
+        "title": "ReadyCounts",
+        "type": "object"
+      },
+      "ReadyFlags": {
+        "additionalProperties": false,
+        "properties": {
+          "admin_enabled": {
+            "title": "Admin Enabled",
+            "type": "boolean"
+          },
+          "cache_backend": {
+            "enum": [
+              "memory",
+              "redis"
+            ],
+            "title": "Cache Backend",
+            "type": "string"
+          },
+          "feedback_enabled": {
+            "title": "Feedback Enabled",
+            "type": "boolean"
+          },
+          "index_observations": {
+            "title": "Index Observations",
+            "type": "boolean"
+          },
+          "search_mode": {
+            "enum": [
+              "semantic",
+              "hybrid"
+            ],
+            "title": "Search Mode",
+            "type": "string"
+          }
+        },
+        "required": [
+          "search_mode",
+          "index_observations",
+          "admin_enabled",
+          "cache_backend",
+          "feedback_enabled"
+        ],
+        "title": "ReadyFlags",
+        "type": "object"
+      },
+      "ReadyResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "cache": {
+            "$ref": "#/components/schemas/CacheStatus"
+          },
+          "checks": {
+            "$ref": "#/components/schemas/ReadyChecks"
+          },
+          "counts": {
+            "$ref": "#/components/schemas/ReadyCounts"
+          },
+          "flags": {
+            "$ref": "#/components/schemas/ReadyFlags"
+          },
+          "last_run": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LastRun"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "status": {
+            "enum": [
+              "ready",
+              "degraded",
+              "not_ready"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "checks",
+          "counts",
+          "last_run",
+          "flags",
+          "cache"
+        ],
+        "title": "ReadyResponse",
+        "type": "object"
+      },
+      "ResourceCounts": {
+        "additionalProperties": false,
+        "properties": {
+          "DiagnosticReport": {
+            "title": "Diagnosticreport",
+            "type": "integer"
+          },
+          "DocumentReference": {
+            "title": "Documentreference",
+            "type": "integer"
+          },
+          "Encounter": {
+            "title": "Encounter",
+            "type": "integer"
+          },
+          "Observation": {
+            "title": "Observation",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "Encounter",
+          "DocumentReference",
+          "DiagnosticReport",
+          "Observation"
+        ],
+        "title": "ResourceCounts",
+        "type": "object"
+      },
+      "ResourceDetail": {
+        "additionalProperties": false,
+        "properties": {
+          "fhir": {
+            "additionalProperties": true,
+            "title": "Fhir",
+            "type": "object"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/DetailIssue"
+            },
+            "title": "Issues",
+            "type": "array"
+          },
+          "observations": {
+            "items": {
+              "$ref": "#/components/schemas/ObservationRow"
+            },
+            "title": "Observations",
+            "type": "array"
+          },
+          "patient": {
+            "$ref": "#/components/schemas/PatientRef"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "sections": {
+            "items": {
+              "$ref": "#/components/schemas/Section"
+            },
+            "title": "Sections",
+            "type": "array"
+          },
+          "text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Text"
+          }
+        },
+        "required": [
+          "resource",
+          "patient",
+          "text",
+          "sections",
+          "observations",
+          "issues",
+          "fhir"
+        ],
+        "title": "ResourceDetail",
+        "type": "object"
+      },
+      "ResourceIssue": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "info",
+              "warning",
+              "error"
+            ],
+            "title": "Severity",
+            "type": "string"
+          }
+        },
+        "required": [
+          "severity",
+          "code",
+          "message"
+        ],
+        "title": "ResourceIssue",
+        "type": "object"
+      },
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date"
+          },
+          "is_valid": {
+            "title": "Is Valid",
+            "type": "boolean"
+          },
+          "resource_id": {
+            "title": "Resource Id",
+            "type": "string"
+          },
+          "resource_type": {
+            "enum": [
+              "DocumentReference",
+              "DiagnosticReport",
+              "Observation",
+              "ClinicalSummary",
+              "Encounter"
+            ],
+            "title": "Resource Type",
+            "type": "string"
+          },
+          "subtype": {
+            "anyOf": [
+              {
+                "enum": [
+                  "discharge_summary",
+                  "progress_note",
+                  "consult_note",
+                  "imaging_report",
+                  "lab_report",
+                  "pathology_report",
+                  "scanned_document"
+                ],
+                "type": "string"
+              },
+              {
+                "enum": [
+                  "LAB",
+                  "RAD",
+                  "PAT"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subtype"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_type",
+          "resource_id",
+          "date",
+          "title",
+          "subtype",
+          "is_valid"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      },
+      "SearchRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "query": {
+            "description": "Free text, trimmed; 2 to 500 characters after trimming.",
+            "title": "Query",
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "title": "SearchRequest",
+        "type": "object"
+      },
+      "SearchResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "filters": {
+            "$ref": "#/components/schemas/AppliedFilters"
+          },
+          "mode": {
+            "enum": [
+              "semantic",
+              "hybrid"
+            ],
+            "title": "Mode",
+            "type": "string"
+          },
+          "query": {
+            "title": "Query",
+            "type": "string"
+          },
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/SearchResult"
+            },
+            "title": "Results",
+            "type": "array"
+          },
+          "took_ms": {
+            "title": "Took Ms",
+            "type": "integer"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "query",
+          "took_ms",
+          "total",
+          "mode",
+          "filters",
+          "results"
+        ],
+        "title": "SearchResponse",
+        "type": "object"
+      },
+      "SearchResult": {
+        "additionalProperties": false,
+        "properties": {
+          "highlights": {
+            "items": {
+              "maxItems": 2,
+              "minItems": 2,
+              "prefixItems": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                }
+              ],
+              "type": "array"
+            },
+            "title": "Highlights",
+            "type": "array"
+          },
+          "match_type": {
+            "enum": [
+              "semantic",
+              "lexical",
+              "hybrid",
+              "mrn"
+            ],
+            "title": "Match Type",
+            "type": "string"
+          },
+          "patient": {
+            "$ref": "#/components/schemas/PatientRef"
+          },
+          "rank": {
+            "title": "Rank",
+            "type": "integer"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "score": {
+            "title": "Score",
+            "type": "number"
+          },
+          "semantic_score": {
+            "title": "Semantic Score",
+            "type": "number"
+          },
+          "snippet": {
+            "title": "Snippet",
+            "type": "string"
+          },
+          "summary_snippet": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Summary Snippet"
+          }
+        },
+        "required": [
+          "rank",
+          "score",
+          "semantic_score",
+          "match_type",
+          "patient",
+          "resource",
+          "snippet",
+          "highlights",
+          "summary_snippet"
+        ],
+        "title": "SearchResult",
+        "type": "object"
+      },
+      "Section": {
+        "additionalProperties": false,
+        "properties": {
+          "body": {
+            "title": "Body",
+            "type": "string"
+          },
+          "heading": {
+            "title": "Heading",
+            "type": "string"
+          }
+        },
+        "required": [
+          "heading",
+          "body"
+        ],
+        "title": "Section",
+        "type": "object"
+      },
+      "VectorStoreCheck": {
+        "additionalProperties": false,
+        "properties": {
+          "chunks": {
+            "title": "Chunks",
+            "type": "integer"
+          },
+          "detail": {
+            "title": "Detail",
+            "type": "string"
+          },
+          "ok": {
+            "title": "Ok",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "ok",
+          "detail",
+          "chunks"
+        ],
+        "title": "VectorStoreCheck",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "title": "EHR Media Intelligence API",
+    "version": "0.1.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/health": {
+      "get": {
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Liveness",
+        "tags": [
+          "system"
+        ]
+      }
+    },
+    "/patients/{patient_key}": {
+      "get": {
+        "operationId": "patient_detail_patients__patient_key__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "patient_key",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Patient Key",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatientDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          }
+        },
+        "summary": "Patient detail for the drawer header",
+        "tags": [
+          "patients"
+        ]
+      }
+    },
+    "/patients/{patient_key}/resources": {
+      "get": {
+        "operationId": "patient_resources_patients__patient_key__resources_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "patient_key",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Patient Key",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "resource_type",
+            "required": false,
+            "schema": {
+              "default": [],
+              "items": {
+                "enum": [
+                  "Patient",
+                  "Encounter",
+                  "DocumentReference",
+                  "DiagnosticReport",
+                  "Observation"
+                ],
+                "type": "string"
+              },
+              "title": "Resource Type",
+              "type": "array"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "default": "date",
+              "enum": [
+                "date",
+                "type",
+                "title"
+              ],
+              "title": "Sort",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "schema": {
+              "default": "desc",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "title": "Order",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatientResourcesResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          }
+        },
+        "summary": "Linked FHIR resources for the drawer table",
+        "tags": [
+          "patients"
+        ]
+      }
+    },
+    "/patients/{patient_key}/summary": {
+      "get": {
+        "operationId": "patient_summary_patients__patient_key__summary_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "patient_key",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Patient Key",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "if-none-match",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "If-None-Match"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClinicalSummaryResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "304": {
+            "description": "ETag matches; not modified"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          }
+        },
+        "summary": "Latest AI summary for the current bundle",
+        "tags": [
+          "patients"
+        ]
+      }
+    },
+    "/ready": {
+      "get": {
+        "operationId": "ready_ready_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadyResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadyResponse"
+                }
+              }
+            },
+            "description": "A required component failed"
+          }
+        },
+        "summary": "Readiness with component checks",
+        "tags": [
+          "system"
+        ]
+      }
+    },
+    "/resources/{resource_type}/{resource_id}": {
+      "get": {
+        "operationId": "resource_detail_resources__resource_type___resource_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "resource_type",
+            "required": true,
+            "schema": {
+              "enum": [
+                "Encounter",
+                "DocumentReference",
+                "DiagnosticReport",
+                "Observation"
+              ],
+              "title": "Resource Type",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "resource_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Resource Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          }
+        },
+        "summary": "One resource with decoded text and its FHIR JSON",
+        "tags": [
+          "resources"
+        ]
+      }
+    },
+    "/search": {
+      "post": {
+        "operationId": "search_search_post",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "resource_type",
+            "required": false,
+            "schema": {
+              "default": [],
+              "items": {
+                "enum": [
+                  "DocumentReference",
+                  "DiagnosticReport",
+                  "Observation",
+                  "ClinicalSummary"
+                ],
+                "type": "string"
+              },
+              "title": "Resource Type",
+              "type": "array"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date_from",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Date From"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date_to",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Date To"
+            }
+          },
+          {
+            "in": "query",
+            "name": "top_k",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maximum": 20,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Top K"
+            }
+          },
+          {
+            "in": "query",
+            "name": "mode",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "semantic",
+                    "hybrid"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mode"
+            }
+          },
+          {
+            "in": "query",
+            "name": "patient_key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Patient Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Semantic search across FHIR records and AI summaries",
+        "tags": [
+          "search"
+        ]
+      }
+    }
+  }
+}

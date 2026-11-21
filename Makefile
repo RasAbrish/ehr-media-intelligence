@@ -99,7 +99,7 @@ fmt: ## Format Python and TypeScript
 	cd $(FRONTEND) && $(PNPM) -s format
 
 typecheck: ## mypy --strict and tsc
-	$(RUN) mypy src ../scripts/generate_synthetic_data.py
+	$(RUN) mypy src ../scripts/generate_synthetic_data.py ../scripts/export_openapi.py
 	cd $(FRONTEND) && $(PNPM) -s typecheck
 
 test-backend: ## pytest with coverage gate (85 percent)
@@ -147,7 +147,8 @@ e2e: ## Playwright end-to-end tests (Phase 5)
 	$(call pending,5)
 
 openapi: ## Export docs/openapi.json and run the contract snapshot (Phase 4)
-	$(call pending,4)
+	$(RUN) python ../scripts/export_openapi.py
+	$(RUN) pytest tests/contract --no-cov -q
 
 storybook: ## Component workshop on :6006 (Phase 6)
 	$(call pending,6)

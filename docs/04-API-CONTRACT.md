@@ -117,6 +117,7 @@ Example 422:
 |---|---|---|---|
 | `validation_error` | 422 | Bad query, body or path params | Inline field message; do not retry |
 | `not_found` | 404 | Unknown route | Generic error state |
+| `method_not_allowed` | 405 | Known route, wrong HTTP method | Generic error state |
 | `patient_not_found` | 404 | Unknown `patient_key` | Drawer shows "Patient not found", clears `?patient` |
 | `resource_not_found` | 404 | Unknown resource | Dialog error |
 | `summary_not_found` | 404 | Summary not generated yet | Summary tab: "Summary not generated. Run the pipeline." |

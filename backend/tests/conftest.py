@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Iterator
+from pathlib import Path
 
 import pytest
 import structlog
@@ -35,3 +36,11 @@ def _reset_structlog() -> Iterator[None]:
     structlog.reset_defaults()
     yield
     structlog.reset_defaults()
+
+
+@pytest.fixture(scope="session")
+def api_store(tmp_path_factory: pytest.TempPathFactory) -> Path:
+    """The synthetic store, built and indexed once per session. Treat it as read-only."""
+    from tests.support.api import build_store  # noqa: PLC0415 (only API tests pay for it)
+
+    return build_store(tmp_path_factory.mktemp("api") / "store")
