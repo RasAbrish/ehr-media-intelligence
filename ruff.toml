@@ -8,11 +8,15 @@ extend-exclude = ["frontend", "data"]
 select = ["E", "F", "I", "B", "UP", "N", "S", "SIM", "RUF", "PT", "C4", "DTZ", "PL"]
 
 [lint.per-file-ignores]
-"backend/tests/**" = ["S101", "PLR2004", "S311", "PLR0913"]
+"backend/tests/**" = ["S101", "PLR2004", "S311", "PLR0913", "PLR0917"]
 # The synthetic generator uses a seeded, non-cryptographic RNG on purpose, its thresholds are
 # data-shaping constants, and clinical timestamps are local wall-clock times (naive by design,
 # like the source EHR export).
 "scripts/**" = ["S311", "PLR0913", "PLR2004", "DTZ001", "T201"]
+
+[lint.pylint]
+# Keyword-only configuration objects (services, evaluators) legitimately take several options.
+max-args = 8
 
 [lint.isort]
 known-first-party = ["ehr_mip"]

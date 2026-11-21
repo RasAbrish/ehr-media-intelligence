@@ -30,3 +30,9 @@ class EmptyIngestionError(EhrMipError):
     """An ingestion produced no patients; saving it would wipe the existing store."""
 
     code = "empty_ingestion"
+
+
+class PatientNotFoundError(EhrMipError):
+    """No patient (or no FHIR bundle) exists for the requested key."""
+
+    code = "patient_not_found"
