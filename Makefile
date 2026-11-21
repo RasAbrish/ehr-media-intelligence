@@ -143,15 +143,15 @@ trivy: ## Trivy scan of built images (Phase 6; skipped until images exist)
 
 # ---------------------------------------------------------------- later phases
 
-e2e: ## Playwright end-to-end tests (Phase 5)
-	$(call pending,5)
+e2e: ## Playwright end-to-end tests (needs `make pipeline`; reuses `make dev` servers)
+	cd $(FRONTEND) && $(PNPM) e2e
 
 openapi: ## Export docs/openapi.json and run the contract snapshot (Phase 4)
 	$(RUN) python ../scripts/export_openapi.py
 	$(RUN) pytest tests/contract --no-cov -q
 
-storybook: ## Component workshop on :6006 (Phase 6)
-	$(call pending,6)
+storybook: ## Component workshop with the a11y addon on :6006
+	cd $(FRONTEND) && $(PNPM) storybook
 
 lighthouse: ## Lighthouse CI against the built app (Phase 6)
 	$(call pending,6)

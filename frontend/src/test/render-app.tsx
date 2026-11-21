@@ -9,6 +9,6 @@ import { createAppRouter } from "@/router";
 export async function renderApp(path = "/") {
   const router = createAppRouter(createMemoryHistory({ initialEntries: [path] }));
   const view = render(<AppProviders router={router} queryClient={createQueryClient()} />);
-  await screen.findByRole("banner");
+  await screen.findByRole("banner", { hidden: true }); // hidden while a modal drawer is open
   return { ...view, router };
 }

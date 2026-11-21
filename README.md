@@ -2,7 +2,7 @@
 
 An AI pipeline that ingests raw EHR exports, cleans and normalizes them to HL7 FHIR R4, writes grounded clinical summaries with Claude and gives clinicians a fast semantic search interface. Built for the Onye AI full-stack assessment. All data is synthetic.
 
-> Status: Phase 4 (search and API). The clinician UI arrives in Phase 5; see [docs/08-DELIVERY.md](docs/08-DELIVERY.md).
+> Status: Phase 5 (clinician UI). Plus features and Docker arrive in Phase 6; see [docs/08-DELIVERY.md](docs/08-DELIVERY.md).
 
 ## Quick start
 
@@ -18,7 +18,7 @@ make summarize # one grounded summary per patient (extractive without an API key
 make index     # chunk, embed and index records and summaries
 make pipeline  # all four stages in order (idempotent)
 make api       # API on http://localhost:8000 (docs at /docs)
-make web       # web app on http://localhost:5173
+make dev       # API and web app together; open http://localhost:5173
 ```
 
 `make` on its own lists every target. Targets for later phases exist already and print which phase delivers them.
@@ -129,6 +129,19 @@ curl -s -X POST 'http://localhost:8000/search?resource_type=DiagnosticReport&dat
 
 `make openapi` exports `docs/openapi.json`; a snapshot test fails on any undocumented API change.
 
+## Clinician UI (Task 5)
+
+`make dev` runs the API and the web app; open http://localhost:5173. The design system is in [docs/06-UI-DESIGN.md](docs/06-UI-DESIGN.md).
+
+- **Search** as you type (300 ms debounce, two characters minimum). Previous results stay on screen while the next search runs. Each card shows the patient name and MRN, age and sex, record type, date and title, the matched passage with highlighted terms, the AI chief concern and the relevance score, with a "Why this result" explanation.
+- **Filters** for record type and date range (presets or a range calendar that cannot produce an end before its start). Query, filters and the open patient live in the URL, so links and the back button work.
+- **Patient drawer** with the AI summary and the linked FHIR records. The summary always starts with the disclaimer, labels every AI element, shows provenance (model or "Offline summary", prompt version, cache), marks suspected diagnoses and data quality anomalies, and shows confidence with its rationale. Evidence links jump to the cited record; each record opens with readable sections and its FHIR JSON.
+- **States**: loading skeletons, idle with example searches, no results, errors with the request id, and a "run `make pipeline`" notice when nothing is indexed.
+- **Keyboard**: `/` or Ctrl/Cmd+K to search, ↓ into results, ↑ ↓ Home End between results, Enter to open, `[` `]` to switch tabs, Esc to close. Focus returns to the result you opened.
+- **Responsive and themed**: 390, 1024 and 1440 px layouts, filters in a bottom sheet and a full-screen drawer on phones, light and dark themes.
+
+Every JSON example in [docs/04-API-CONTRACT.md](docs/04-API-CONTRACT.md) is extracted into fixtures (`pnpm contract:fixtures`) and must parse with the Zod schemas; component tests and Storybook use the same fixtures. `make e2e` runs Playwright against the real API (keyboard-only and mobile paths, axe with color contrast in both themes); `make storybook` opens the component workshop.
+
 ## Project structure
 
 ```
@@ -145,7 +158,8 @@ Backend layers only import downward (`api > search > summarization > fhir > inge
 
 | Command | What it runs |
 |---|---|
-| `make check` | ruff, import-linter, mypy `--strict`, pytest with an 85 percent coverage gate, ESLint (type-checked, jsx-a11y), Prettier, tsc, Vitest with axe |
+| `make check` | ruff, import-linter, mypy `--strict`, pytest with an 85 percent coverage gate, ESLint (type-checked, jsx-a11y), Prettier, tsc, Vitest with axe and the contract fixture test |
+| `make e2e` | Playwright end-to-end tests against the real API, with axe including color contrast |
 | `make security` | pip-audit, pnpm audit, gitleaks, and Trivy once images exist |
 
 Pre-commit runs the same linters plus gitleaks and private key detection; commit messages follow Conventional Commits. Accepted dependency findings and their reasons are listed in [docs/09-SECURITY.md](docs/09-SECURITY.md) section 8.1.
