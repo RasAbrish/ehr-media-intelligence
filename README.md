@@ -80,6 +80,30 @@ The 4 warnings are the flagged identity conflicts (two people on each of two MRN
 - **Stability.** Resource ids are deterministic UUIDv5 keys and `bundle_hash` ignores timestamps, so an unchanged patient keeps the same hash on every run. Later phases use that hash as the summary cache key.
 - **No invented data.** A document with only a date never gets a made-up time, and a lab report is given a panel code only when it holds exactly that panel's tests.
 
+## Clinical summaries (Task 3)
+
+`make summarize` (`ehr-mip summarize`) writes one structured summary per patient: chief concern, up to 5 key diagnoses, the 5 most recent media records, flagged anomalies and a short overview, at most 200 words, each item linked to the records it came from, always with the "AI-generated, not a substitute for clinical judgment" disclaimer.
+
+- **Providers.** With `ANTHROPIC_API_KEY` set, Claude (`claude-haiku-5-5`, structured output, effort `low`) writes the summary. Without a key, or when Claude fails, refuses or the daily token budget is spent, an offline extractive provider builds it from the record text only ([ADR-006](docs/decisions/ADR-006-extractive-fallback.md)). The system runs fully without a key.
+- **Privacy.** The model sees age, sex and de-identified clinical text. Names, MRNs, dates of birth, phone numbers, addresses and emails are removed from free text, and instruction-like text is removed before the prompt is built.
+- **Guardrails** ([docs/05](docs/05-ALGORITHMS.md) section 3.5). Items citing records that are not in the patient's bundle are dropped, a diagnosis must be written in the records it cites or it becomes `suspected`, every high-severity rule anomaly is restored if missing, and a long answer gets one shorten retry and then a deterministic trim. Confidence is computed, not taken from the model.
+- **Prompts** are versioned files under `backend/src/ehr_mip/summarization/prompts/`, with a snapshot test of the rendered prompt. A released version is never edited.
+- **Caching and cost.** Summaries are cached by patient, `bundle_hash`, prompt version and model, so a second run makes zero model calls. Every call is logged to `llm_calls` with tokens, latency and an estimated cost, and `LLM_DAILY_TOKEN_BUDGET` caps daily spend.
+
+`make eval` (`ehr-mip eval`) scores the 60 synthetic patients plus 5 golden and 5 adversarial cases and writes `reports/eval_report.{json,md}`. Offline results (extractive, seed 42):
+
+| Gate | Result | Target |
+|---|---|---|
+| Schema, disclaimer, length ≤ 200 words | 100% | 100% |
+| Final grounding | 100% | 100% |
+| Diagnosis support | 100% | ≥ 95% |
+| High anomaly recall | 100% | 100% |
+| Golden cases (required facts, no forbidden claims) | 5 / 5 | all |
+| Adversarial cases (injection, sparse, conflict, long note, labs only) | 5 / 5 | all |
+| Ground truth diagnosis recall | 87.5% | ≥ 85% |
+
+The recall misses are hyponatremia and hyperlipidemia that appear only as lab values, never written in a note; the summarizer does not infer diagnoses. The manual review sheet (`docs/eval/manual_review_<model>.md`) is created for a person to score and is never overwritten.
+
 ## Project structure
 
 ```
