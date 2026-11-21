@@ -21,7 +21,7 @@ def test_help_lists_every_stage() -> None:
 
 @pytest.mark.parametrize(
     ("stage", "phase"),
-    [("normalize", 2), ("summarize", 3), ("index", 4), ("run-all", 4)],
+    [("summarize", 3), ("index", 4), ("run-all", 4)],
 )
 def test_pending_stage_names_its_phase(stage: str, phase: int) -> None:
     result = runner.invoke(app, [stage])

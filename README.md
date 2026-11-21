@@ -2,7 +2,7 @@
 
 An AI pipeline that ingests raw EHR exports, cleans and normalizes them to HL7 FHIR R4, writes grounded clinical summaries with Claude and gives clinicians a fast semantic search interface. Built for the Onye AI full-stack assessment. All data is synthetic.
 
-> Status: Phase 1 (ingestion and cleaning). FHIR, summaries, search and the UI arrive in later phases; see [docs/08-DELIVERY.md](docs/08-DELIVERY.md).
+> Status: Phase 2 (FHIR normalization). Summaries, search and the UI arrive in later phases; see [docs/08-DELIVERY.md](docs/08-DELIVERY.md).
 
 ## Quick start
 
@@ -13,6 +13,7 @@ make setup     # backend (uv) and frontend (pnpm) dependencies, git hooks
 make data      # regenerate the seeded synthetic data in data/raw/
 make check     # lint, type check and tests for backend and frontend
 make ingest    # read, clean, resolve identities and dedupe into SQLite
+make normalize # one validated FHIR R4 bundle per patient, plus the validation report
 make web       # web app on http://localhost:5173
 ```
 
@@ -58,6 +59,26 @@ How it works, in short (rules in [docs/05-ALGORITHMS.md](docs/05-ALGORITHMS.md) 
 - **Safety.** Readers never leave `DATA_RAW_DIR`, including through symlinks. Logs carry counts and ids only, and an ingest that finds no patients leaves the database untouched.
 
 A test checks every number above, and every injected issue location, against `data/raw/_ground_truth.json`.
+
+## FHIR normalization (Task 2)
+
+`make normalize` (`ehr-mip normalize`) turns each patient's clean records into one FHIR R4 `collection` Bundle, validates it and stores it in SQLite with an index row per resource. It also writes `reports/validation_report.json` and `reports/validation_report.md`.
+
+| Measure | Seed 42 |
+|---|---|
+| Bundles (valid) | 60 (60) |
+| Errors / warnings / info | 0 / 4 / 2 |
+| Patient, Encounter | 60, 97 |
+| DocumentReference (notes) | 90 |
+| DiagnosticReport (imaging and pathology, labs) | 60, 95 |
+| Observation | 291 |
+
+The 4 warnings are the flagged identity conflicts (two people on each of two MRNs); the 2 infos are scanned reports without an encounter.
+
+- **Mapping** ([docs/03-DATA-MODEL.md](docs/03-DATA-MODEL.md) section 5). Notes become DocumentReferences with the text attached. Imaging and pathology reports become DiagnosticReports with the impression as `conclusion`. Each lab report becomes a DiagnosticReport whose results are Observations with UCUM units, reference ranges and interpretation codes. Merged MRNs appear as `use=old` identifiers, and identity conflicts carry a tag.
+- **Validation.** Every bundle is checked with `fhir.resources` (R4B package, see [ADR-001](docs/decisions/ADR-001-fhir-resources-r4b.md)) plus business rules: references resolve inside the bundle, every clinical resource points to the patient, required codes are valid, and dates are plausible. The library checks code format but not value sets, so the validator adds the value-set check itself.
+- **Stability.** Resource ids are deterministic UUIDv5 keys and `bundle_hash` ignores timestamps, so an unchanged patient keeps the same hash on every run. Later phases use that hash as the summary cache key.
+- **No invented data.** A document with only a date never gets a made-up time, and a lab report is given a panel code only when it holds exactly that panel's tests.
 
 ## Project structure
 

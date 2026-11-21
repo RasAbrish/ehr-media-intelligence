@@ -6,7 +6,9 @@ Until then the command exits with ``EXIT_NOT_IMPLEMENTED`` and says which phase 
 
 from __future__ import annotations
 
+from collections import Counter
 from contextlib import closing
+from datetime import UTC, datetime
 
 import typer
 from rich.console import Console
@@ -17,6 +19,11 @@ from ehr_mip.config import get_settings
 from ehr_mip.db.connection import connect
 from ehr_mip.db.repositories import PipelineRunRepository
 from ehr_mip.errors import NotImplementedYetError
+from ehr_mip.fhir.models import NormalizedBundle
+from ehr_mip.fhir.pipeline import run_normalization
+from ehr_mip.fhir.report import build_report, write_reports
+from ehr_mip.fhir.store import BundleStore
+from ehr_mip.ingestion.cleaners.dates import today_local
 from ehr_mip.ingestion.models import IngestionStats
 from ehr_mip.ingestion.pipeline import run_ingestion
 from ehr_mip.ingestion.repository import IngestionRepository
@@ -33,7 +40,6 @@ app = typer.Typer(
 )
 
 _STAGES: dict[str, tuple[int, str]] = {
-    "normalize": (2, "Map clean records to FHIR R4B bundles and validate them."),
     "summarize": (3, "Generate grounded clinical summaries per patient."),
     "eval": (3, "Score summaries against the golden and adversarial sets."),
     "index": (4, "Chunk, embed and index records and summaries."),
@@ -108,6 +114,51 @@ def ingest() -> None:
     console = Console()
     console.print(_stats_table(result.stats))
     console.print(f"Run {run_id} saved to {settings.sqlite_path}")
+
+
+def _normalize_table(results: list[NormalizedBundle]) -> Table:
+    table = Table(title="FHIR normalization", show_header=True, header_style="bold")
+    table.add_column("Measure")
+    table.add_column("Count", justify="right")
+    resources = Counter(row.resource_type for r in results for row in r.built.rows)
+    rows: list[tuple[str, int]] = [
+        ("Bundles", len(results)),
+        ("Valid bundles", sum(r.validation.is_valid for r in results)),
+        ("Errors", sum(r.validation.error_count for r in results)),
+        ("Warnings", sum(r.validation.warning_count for r in results)),
+        ("Info", sum(r.validation.info_count for r in results)),
+        *((f"{kind} resources", count) for kind, count in sorted(resources.items())),
+    ]
+    for label, count in rows:
+        table.add_row(label, str(count))
+    return table
+
+
+@app.command()
+def normalize() -> None:
+    """Map clean records to FHIR R4B bundles, validate them and write the report. (Phase 2)"""
+    settings = get_settings()
+    configure_logging(settings.log_level)
+    now = datetime.now(UTC)
+    with closing(connect(settings.sqlite_path)) as conn:
+        results = run_normalization(conn, today=today_local(), timestamp=now)
+        if not results:
+            typer.secho(
+                "No ingested patients found. Run `make ingest` first. Nothing was changed.",
+                fg=typer.colors.RED,
+                err=True,
+            )
+            raise typer.Exit(code=1)
+        runs = PipelineRunRepository(conn)
+        run_id = runs.start("normalize")
+        BundleStore(conn).save(results, created_at=now, full_refresh=True)
+        report = build_report(results, generated_at=now)
+        json_path, md_path = write_reports(report, settings.reports_dir)
+        runs.finish(run_id, {k: report[k] for k in ("bundles", "valid_bundles",
+                                                     "issues_by_severity")})  # fmt: skip
+    console = Console()
+    console.print(_normalize_table(results))
+    console.print(f"Reports: {json_path} and {md_path}")
 
 
 @app.command()

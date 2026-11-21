@@ -5,6 +5,16 @@ All notable changes to this project are documented here. The format follows [Kee
 ## [Unreleased]
 
 ### Added
+- Phase 2, FHIR normalization (Task 2): mappers for Patient, Encounter, DocumentReference, DiagnosticReport (LAB, RAD, PAT) and Observation; one deterministic collection Bundle per patient with `bundle_hash`; schema and business-rule validation including value sets the library does not enforce; JSON and Markdown validation reports; the bundle store with a per-resource index; and `ehr-mip normalize`. All 60 synthetic bundles validate with zero errors.
+- ADR-001 written up (FHIR R4 through the `fhir.resources` R4B package).
+
+### Changed
+- MRN identifier system is now `urn:oid:2.999.1.1` (the ITU-T example arc) in the data model and API contract, matching the generator.
+- Clean patients keep a generational name suffix (`name_suffix`), mapped to `Patient.name.suffix`.
+
+## Phase 1
+
+### Added
 - Phase 1, ingestion and cleaning (Task 1): JSON, CSV and TXT readers confined to the raw folder; cleaners for dates, gender, MRN, names, text, document type and lab values with recomputed flags; conservative identity resolution with MRN merges and flagged conflicts; exact, near and lab deduplication; a per-field audit log and quarantine; the SQLite schema and repository; and `ehr-mip ingest` with a stats table. Results match the synthetic ground truth exactly.
 
 ### Changed
