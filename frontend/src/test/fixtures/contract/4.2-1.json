@@ -1,0 +1,48 @@
+{
+  "status": "ready",
+  "checks": {
+    "sqlite": {
+      "ok": true,
+      "detail": "wal"
+    },
+    "vector_store": {
+      "ok": true,
+      "detail": "collection ehr_records",
+      "chunks": 1184
+    },
+    "embedder": {
+      "ok": true,
+      "detail": "warm",
+      "model": "sentence-transformers/all-MiniLM-L6-v2"
+    },
+    "llm": {
+      "ok": true,
+      "detail": "api key present",
+      "provider": "anthropic",
+      "model": "claude-haiku-5-5"
+    }
+  },
+  "counts": {
+    "patients": 60,
+    "resources": 612,
+    "summaries": 60,
+    "chunks": 1184
+  },
+  "last_run": {
+    "run_id": "run_2025-11-20T13-02-11Z",
+    "finished_at": "2025-11-20T13:04:40Z",
+    "status": "succeeded"
+  },
+  "flags": {
+    "search_mode": "hybrid",
+    "index_observations": false,
+    "admin_enabled": false,
+    "cache_backend": "memory",
+    "feedback_enabled": true
+  },
+  "cache": {
+    "backend": "memory",
+    "ok": true,
+    "index_version": 3
+  }
+}

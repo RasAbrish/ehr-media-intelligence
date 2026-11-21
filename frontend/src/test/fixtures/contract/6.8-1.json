@@ -1,0 +1,12 @@
+{
+  "id": 118,
+  "run_id": "run_2025-11-20T13-02-11Z",
+  "record_id": "ehr_export.json:patients[3]",
+  "stage": "clean",
+  "field": "gender",
+  "rule": "gender.map",
+  "before": "F",
+  "after": "female",
+  "severity": "info",
+  "message": "Mapped source code F to FHIR female"
+}
