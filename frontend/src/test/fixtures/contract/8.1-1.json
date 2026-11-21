@@ -1,0 +1,89 @@
+{
+  "ingestion": {
+    "records_read": 412,
+    "by_format": {
+      "json": 231,
+      "csv": 129,
+      "txt": 52
+    },
+    "patients": 60,
+    "documents": 171,
+    "lab_results": 214,
+    "exact_duplicates_removed": 12,
+    "near_duplicates_removed": 6,
+    "identities_merged": 3,
+    "identity_conflicts": 2,
+    "quarantined": 4,
+    "audit_by_severity": {
+      "info": 640,
+      "warning": 37,
+      "error": 9
+    },
+    "top_rules": [
+      {
+        "rule": "date.parse.format",
+        "count": 301
+      },
+      {
+        "rule": "mrn.normalize",
+        "count": 188
+      }
+    ]
+  },
+  "validation": {
+    "bundles": 60,
+    "valid_bundles": 60,
+    "issues_by_severity": {
+      "info": 7,
+      "warning": 2,
+      "error": 0
+    },
+    "top_codes": [
+      {
+        "code": "patient.birthdate_missing",
+        "count": 5
+      }
+    ]
+  },
+  "summaries": {
+    "total": 60,
+    "by_provider": {
+      "anthropic": 60,
+      "extractive": 0
+    },
+    "avg_word_count": 128,
+    "max_word_count": 187,
+    "confidence": {
+      "low": 6,
+      "medium": 31,
+      "high": 23
+    },
+    "guardrail_interventions": 4,
+    "llm": {
+      "calls": 61,
+      "fallback_calls": 0,
+      "failed_calls": 0,
+      "input_tokens": 98210,
+      "output_tokens": 14630,
+      "cost_usd_estimate": 0.17,
+      "p95_latency_ms": 3120
+    },
+    "feedback": {
+      "helpful": 9,
+      "not_helpful": 1,
+      "helpful_rate": 0.9,
+      "by_prompt_version": [
+        {
+          "prompt_version": "v1",
+          "helpful_rate": 0.9,
+          "votes": 10
+        }
+      ]
+    }
+  },
+  "last_run": {
+    "run_id": "run_2025-11-20T13-02-11Z",
+    "finished_at": "2025-11-20T13:04:40Z",
+    "status": "succeeded"
+  }
+}

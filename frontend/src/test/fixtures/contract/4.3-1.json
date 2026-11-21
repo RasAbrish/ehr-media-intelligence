@@ -1,0 +1,12 @@
+{
+  "patients": 60,
+  "resources_by_type": {
+    "Encounter": 88,
+    "DocumentReference": 171,
+    "DiagnosticReport": 79,
+    "Observation": 214
+  },
+  "searchable_records": 310,
+  "summaries": 60,
+  "last_pipeline_run_at": "2025-11-20T13:04:40Z"
+}

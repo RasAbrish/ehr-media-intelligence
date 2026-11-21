@@ -1,0 +1,37 @@
+{
+  "resource": {
+    "resource_type": "DocumentReference",
+    "resource_id": "44f0…",
+    "date": "2025-02-02",
+    "title": "CT chest with contrast",
+    "subtype": "imaging_report",
+    "is_valid": true
+  },
+  "patient": {
+    "patient_key": "3b7f…",
+    "display_name": "Jane A. Doe",
+    "mrn": "00012345",
+    "birth_date": "1968-03-14",
+    "age": 57,
+    "gender": "female",
+    "identity_conflict": false
+  },
+  "text": "FINDINGS: Lungs are clear...\nIMPRESSION: No acute cardiopulmonary process.",
+  "sections": [
+    {
+      "heading": "FINDINGS",
+      "body": "Lungs are clear..."
+    },
+    {
+      "heading": "IMPRESSION",
+      "body": "No acute cardiopulmonary process."
+    }
+  ],
+  "observations": [],
+  "issues": [],
+  "fhir": {
+    "resourceType": "DocumentReference",
+    "id": "44f0…",
+    "status": "current"
+  }
+}

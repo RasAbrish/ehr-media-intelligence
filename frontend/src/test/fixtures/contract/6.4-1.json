@@ -1,0 +1,81 @@
+{
+  "patient_key": "3b7f9c2e-5a41-5d0e-9b8a-1f2c3d4e5f60",
+  "chief_concern": "Admitted for acute kidney injury on CKD stage 3 with hyperkalemia.",
+  "key_diagnoses": [
+    {
+      "name": "Chronic kidney disease stage 3",
+      "status": "active",
+      "evidence": [
+        {
+          "resource_type": "DocumentReference",
+          "resource_id": "0b8d…"
+        }
+      ]
+    },
+    {
+      "name": "Hyperkalemia",
+      "status": "active",
+      "evidence": [
+        {
+          "resource_type": "Observation",
+          "resource_id": "5c3a…"
+        }
+      ]
+    }
+  ],
+  "recent_media": [
+    {
+      "resource": {
+        "resource_type": "DiagnosticReport",
+        "resource_id": "9a1e…"
+      },
+      "kind": "lab",
+      "date": "2025-02-02",
+      "finding": "K 5.9 H, creatinine 2.1 H"
+    },
+    {
+      "resource": {
+        "resource_type": "DiagnosticReport",
+        "resource_id": "44f0…"
+      },
+      "kind": "imaging",
+      "date": "2025-02-02",
+      "finding": "CT chest: no acute process"
+    }
+  ],
+  "flagged_anomalies": [
+    {
+      "description": "Potassium 5.9 mmol/L above reference range",
+      "severity": "high",
+      "source": "rule",
+      "evidence": [
+        {
+          "resource_type": "Observation",
+          "resource_id": "5c3a…"
+        }
+      ]
+    },
+    {
+      "description": "Record merged from two MRNs",
+      "severity": "low",
+      "source": "rule",
+      "evidence": []
+    }
+  ],
+  "overview": "57-year-old female with CKD 3 admitted with AKI and hyperkalemia; creatinine up from 1.4 to 2.1. Discharged after 3 days.",
+  "word_count": 96,
+  "confidence": {
+    "level": "medium",
+    "score": 0.65,
+    "rationale": "Records consistent; identity merge lowers certainty."
+  },
+  "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "prompt_version": "v1",
+  "bundle_hash": "b1946ac92492d2347c6235b4d2611184",
+  "generated_at": "2025-11-20T13:03:52Z",
+  "cached": true,
+  "cache_key": "4f1d2a9b0c7e",
+  "guardrail_notes": []
+}

@@ -1,0 +1,32 @@
+{
+  "patient_key": "3b7f9c2e-5a41-5d0e-9b8a-1f2c3d4e5f60",
+  "total": 2,
+  "items": [
+    {
+      "resource_type": "DocumentReference",
+      "resource_id": "0b8d…",
+      "date": "2025-02-04",
+      "title": "Discharge Summary",
+      "subtype": "discharge_summary",
+      "is_valid": true,
+      "status": "current",
+      "encounter_id": "7e21…",
+      "summary_line": "Discharge Summary",
+      "interpretation": null,
+      "issues": []
+    },
+    {
+      "resource_type": "Observation",
+      "resource_id": "5c3a…",
+      "date": "2025-02-02",
+      "title": "Potassium",
+      "subtype": null,
+      "is_valid": true,
+      "status": "final",
+      "encounter_id": "7e21…",
+      "summary_line": "Potassium 5.9 mmol/L (H, ref 3.5 to 5.1)",
+      "interpretation": "H",
+      "issues": []
+    }
+  ]
+}

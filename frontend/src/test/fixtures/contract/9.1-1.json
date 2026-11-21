@@ -1,0 +1,5 @@
+{
+  "run_id": "run_2025-11-20T14-10-03Z",
+  "status": "queued",
+  "stages": ["normalize", "summarize", "index"]
+}
