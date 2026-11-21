@@ -387,8 +387,8 @@ Example:
   "birth_date": "1968-03-14", "age": 57, "gender": "female", "identity_conflict": false,
   "family_name": "Doe", "given_names": ["Jane", "A"],
   "identifiers": [
-    {"system": "urn:oid:2.16.840.1.113883.3.9999.1", "value": "00012345", "use": "usual"},
-    {"system": "urn:oid:2.16.840.1.113883.3.9999.1", "value": "00098765", "use": "old"}
+    {"system": "urn:oid:2.999.1.1", "value": "00012345", "use": "usual"},
+    {"system": "urn:oid:2.999.1.1", "value": "00098765", "use": "old"}
   ],
   "phone": "+12125550142",
   "address": {"line": "12 W 4th St", "city": "New York", "state": "NY", "postal_code": "10012"},
@@ -519,7 +519,7 @@ Response `200`, `Content-Type: application/fhir+json`, `Content-Disposition: att
   "entry": [
     {"fullUrl": "urn:uuid:3b7f9c2e-5a41-5d0e-9b8a-1f2c3d4e5f60",
      "resource": {"resourceType": "Patient", "id": "3b7f9c2e-5a41-5d0e-9b8a-1f2c3d4e5f60", "gender": "female", "birthDate": "1968-03-14",
-                  "identifier": [{"use": "usual", "system": "urn:oid:2.16.840.1.113883.3.9999.1", "value": "00012345",
+                  "identifier": [{"use": "usual", "system": "urn:oid:2.999.1.1", "value": "00012345",
                                   "type": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/v2-0203", "code": "MR"}]}}],
                   "name": [{"use": "official", "family": "Doe", "given": ["Jane", "A"]}]}},
     {"fullUrl": "urn:uuid:9a1e0c44-2d3b-5f6a-8c7d-0e1f2a3b4c5d",

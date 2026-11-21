@@ -110,7 +110,11 @@ Never across patients. Comparison only within a patient's documents, so cost sta
 ```python
 def bundle_hash(bundle: dict) -> str:
     b = copy.deepcopy(bundle); b.pop("timestamp", None)
-    for e in b["entry"]: e["resource"].get("meta", {}).pop("lastUpdated", None)
+    for e in b["entry"]:
+        meta = e["resource"].get("meta")
+        if meta is not None:
+            meta.pop("lastUpdated", None)
+            if not meta: del e["resource"]["meta"]   # an emptied meta must not change the hash
     return hashlib.sha256(orjson.dumps(b, option=orjson.OPT_SORT_KEYS)).hexdigest()
 ```
 
@@ -119,6 +123,7 @@ def bundle_hash(bundle: dict) -> str:
 | Code | Severity | Check |
 |---|---|---|
 | `schema.invalid` | error | `fhir.resources.R4B` `model_validate` failure; path from pydantic `loc` converted to `Resource.field[0].sub` |
+| `code.invalid` | error | a code outside its required value set (Patient.gender, resource `status`, `docStatus`, Bundle.type). `fhir.resources` 8 checks only the code format, not the value set, so this rule covers the gap |
 | `ref.unresolved` | error | reference not equal to any entry `fullUrl` in the bundle |
 | `ref.subject_missing` | error | clinical resource lacks `subject` to the bundle Patient |
 | `ref.result_not_observation` | error | DiagnosticReport `result` points to non-Observation |
@@ -128,7 +133,9 @@ def bundle_hash(bundle: dict) -> str:
 | `patient.identity_conflict` | warning | conflict tag present |
 | `date.before_birth` | warning | resource date before birthDate |
 | `date.future` | warning | resource date more than 1 day ahead |
-| `encounter.missing` | info | document without encounter context |
+| `encounter.missing` | info | document (DocumentReference, or imaging or pathology DiagnosticReport) without encounter context |
+| `patient.multiple` | error | more than one Patient in a bundle |
+| `patient.missing` | error | no Patient in a bundle |
 
 `is_valid = (error_count == 0)`.
 

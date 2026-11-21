@@ -97,6 +97,7 @@ classDiagram
         +list~Mrn~ secondary_mrns
         +str|None family_name
         +list~str~ given_names
+        +str|None name_suffix
         +date|None birth_date
         +AdministrativeGender gender
         +str|None phone
@@ -499,7 +500,7 @@ All references are `urn:uuid:{id}` and every `fullUrl` is `urn:uuid:{id}`.
 | Purpose | System | Codes |
 |---|---|---|
 | MRN identifier type | `http://terminology.hl7.org/CodeSystem/v2-0203` | `MR` |
-| MRN system (fictional) | `urn:oid:2.16.840.1.113883.3.9999.1` | n/a |
+| MRN system (fictional) | `urn:oid:2.999.1.1` (ITU-T example arc, can never collide with a real system) | n/a |
 | Document type | `http://loinc.org` | 18842-5 discharge summary, 11506-3 progress note, 11488-4 consult note, 18748-4 imaging study, 11502-2 lab report, 11526-1 pathology study, 34109-9 note |
 | DocumentReference category | `http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category` | `clinical-note` |
 | DiagnosticReport category | `http://terminology.hl7.org/CodeSystem/v2-0074` | `LAB`, `RAD`, `PAT` |
@@ -516,14 +517,18 @@ All references are `urn:uuid:{id}` and every `fullUrl` is `urn:uuid:{id}`.
 | `id` | `patient_key` | |
 | `identifier[0]` | `mrn` | `use=usual`, type MR, MRN system |
 | `identifier[1..]` | `secondary_mrns` | `use=old` |
-| `name[0]` | family, given | `use=official` |
+| `name[0]` | family, given, name_suffix | `use=official`; `suffix` holds a generational suffix such as `Jr.` |
 | `gender` | gender | AdministrativeGender |
 | `birthDate` | birth_date | omit when None |
-| `telecom[0]` | phone | `system=phone, use=home` (P1) |
-| `address[0]` | address | P1 |
+| `telecom[0]` | phone | `system=phone, use=home` (P1, built in Phase 6) |
+| `address[0]` | address | P1, built in Phase 6 |
 | `meta.tag[0]` | identity_conflict | `{system: urn:ehr-mip:tags, code: identity-conflict}` |
 
-**Encounter**: `status=finished`, `class` ActCode, `subject`, `period{start,end}`. Created only when a source encounter id exists.
+**Encounter**: `status=finished`, `class` ActCode (`v3-NullFlavor` `UNK` when the source type is unknown), `subject`, `period{start,end}`. Created only when a source encounter id exists.
+
+**Which resource a document becomes.** Imaging and pathology documents become a DiagnosticReport (RAD or PAT) only, never also a DocumentReference, so search and summaries count each record once. Discharge summaries, progress notes, consult notes and scanned documents become DocumentReferences. Lab rows become one DiagnosticReport (LAB) per report with one Observation per result.
+
+**Dates without a time.** FHIR `instant` fields (`DocumentReference.date`, `DiagnosticReport.issued`) need a time, so they are set only when the source has one; a date-only document date goes to `attachment.creation` (a `dateTime`) instead. No time is invented.
 
 **DocumentReference**
 | FHIR path | Value |
@@ -532,10 +537,10 @@ All references are `urn:uuid:{id}` and every `fullUrl` is `urn:uuid:{id}`.
 | `type.coding[0]` | LOINC by doc_type |
 | `category[0]` | `clinical-note` |
 | `subject` | Patient |
-| `date` | document_date (instant with offset) |
+| `date` | document_date as an instant with offset, only when the source has a time |
 | `author[0].display` | author |
 | `description` | title |
-| `content[0].attachment` | `contentType="text/plain; charset=utf-8"`, `data`=base64 text, `title`, `creation`, `size`, `hash`=base64 SHA-1 |
+| `content[0].attachment` | `contentType="text/plain; charset=utf-8"`, `data`=base64 text, `title`, `creation` (document date, date or dateTime), `size`, `hash`=base64 SHA-1 |
 | `context.encounter[0]` | Encounter (when known) |
 | `context.period` | encounter period |
 
@@ -544,14 +549,14 @@ All references are `urn:uuid:{id}` and every `fullUrl` is `urn:uuid:{id}`.
 |---|---|
 | `status` | `final` |
 | `category[0]` | v2-0074 LAB, RAD or PAT |
-| `code` | panel LOINC (labs) or report LOINC (imaging, pathology) + text |
+| `code` | labs: panel LOINC when the report holds exactly that panel's defined tests (51990-0 BMP including calcium, 58410-2 CBC, 24331-1 lipid panel with calculated LDL; the test's own LOINC for a single-test report; otherwise 11502-2) + text. The synthetic seven-test chemistry set has no calcium, so it keeps 11502-2 with the title "Basic metabolic panel (without calcium)". Imaging 18748-4, pathology 11526-1, + the document title |
 | `subject` / `encounter` | refs |
-| `effectiveDateTime` / `issued` | collected or study date / report date |
+| `effectiveDateTime` / `issued` | collected or study date / report time (only when the source has a time) |
 | `result[]` | Observations (labs) |
 | `conclusion` | IMPRESSION text (imaging, pathology) or generated lab line ("2 abnormal: Potassium H, Creatinine H") |
 | `presentedForm[0]` | text attachment (imaging, pathology) |
 
-**Observation**: `status=final`, `category=laboratory`, `code` LOINC + text, `subject`, `encounter`, `effectiveDateTime`, `valueQuantity{value, unit, system=UCUM, code}` or `valueString` when not numeric, `referenceRange[0]{low, high}`, `interpretation[0]`.
+**Observation**: `status=final`, `category=laboratory`, `code` LOINC + text, `subject`, `encounter`, `effectiveDateTime`, `valueQuantity{value, unit, system=UCUM, code}` (with `comparator` for values such as `<0.01`) or `valueString` when not numeric, `referenceRange[0]{low, high}`, `interpretation[0]`.
 
 ## 6. Summary schema
 
