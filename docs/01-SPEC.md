@@ -196,4 +196,4 @@ Clinical staff using Epic EHR lose time manually reviewing unstructured patient 
 | FR-7.x / NFR-12 | Prompt snapshot, golden and adversarial gates, telemetry rows written, feedback stored | `10-AI-DESIGN.md` §6 gates, API tests |
 | FR-8.x / NFR-11 | Microcopy review, Storybook builds, Lighthouse CI ≥ 90 | Lighthouse CI, Storybook build in CI |
 | FR-9.x | Cache hit tests (TTL and Redis), `/metrics` exposes counters, shutdown closes resources | `test_search_cache_*`, `test_metrics_endpoint` |
-| Deliverables | One commit per major task, README, pyproject + requirements.txt, pytest runnable, no real data, write-up PDF | `08-DELIVERY.md` checklist |
+| Deliverables | Commits per coherent change with one marked per major task, README, pyproject + requirements.txt, pytest runnable, no real data, write-up PDF | `08-DELIVERY.md` checklist |

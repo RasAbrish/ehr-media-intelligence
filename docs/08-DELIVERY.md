@@ -16,7 +16,7 @@ flowchart LR
 
 Phase 4 indexes summaries, so it starts after Phase 3. The frontend shell (tokens, AppShell, router) may start during Phase 3 using MSW fixtures from `04-API-CONTRACT.md`.
 
-Per phase loop: plan mode → tests → implementation → `make check` → code review → README update → squash to `main`.
+Per phase loop: plan mode → tests → implementation → `make check` → code review → README update → commits on `main` as in section 3.
 
 ## 2. Phases
 
@@ -59,18 +59,19 @@ Per phase loop: plan mode → tests → implementation → `make check` → code
 **Build:** README, ADRs filled, `docs/AI_SYSTEM_CARD.md`, eval report + manual review, heuristic review (`docs/ux/heuristic-review.md`), `WRITEUP.md` → PDF, screenshots, CHANGELOG, final clean-clone run.
 **Commit:** `docs: README, architecture decisions, evaluation results and write-up`
 
-## 3. Expected `git log --oneline` on main
+## 3. Commit history on main
+
+`main` has one conventional commit per coherent change. The commit that completes each major task ends with its number:
 
 ```
-docs: README, architecture decisions, evaluation results and write-up
-feat: hybrid search, AI feedback, data quality dashboard, caching, security hardening and DX improvements
-feat(frontend): clinician search and patient summary UI with filters and keyboard navigation (Task 5)
-feat(search): semantic search over FHIR records with ChromaDB and POST /search (Task 4)
-feat(summarization): structured Claude clinical summaries with guardrails and caching (Task 3)
-feat(fhir): FHIR R4 mapping, bundle validation report and SQLite store (Task 2)
-feat(ingestion): multi-format EHR ingestion with cleaning, identity resolution and audit log (Task 1)
-chore: scaffold monorepo, tooling, CI and synthetic EHR data generator
+feat(ingestion): add the ingest pipeline and command with tests (Task 1)
+feat(fhir): add the normalize command with tests and report (Task 2)
+feat(summarization): add summarize and eval commands with tests (Task 3)
+feat(api): serve search, patients and resources with tests (Task 4)
+feat(frontend): add the search page, stories and tests (Task 5)
 ```
+
+The work was first delivered as eight phase commits. On 2026-11-22 they were split by change without altering their content, so commits from one phase share that phase's author date.
 
 ## 4. Makefile targets
 
