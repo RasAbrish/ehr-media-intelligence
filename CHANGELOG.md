@@ -4,6 +4,25 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+## Phase 7
+
+### Added
+- Architecture decision records 002 to 012, the AI system card, the heuristic review, the restructured README with screenshots and Lighthouse scores, and the one-page write-up with `make writeup-pdf`.
+- `sort=newest` on `POST /search` and a Sort by control: the most recent records with every search word, from the whole index, without AI summaries.
+- Tests that keep the deliverable documents complete, and browser regressions for the review findings.
+
+### Fixed
+- Heuristic review, six findings of severity 3: the drawer lost the patient header, the FHIR JSON pane could not be scrolled by keyboard, records were truncated on phones, audit values wrapped one letter per line, Retry covered error text, and control borders were below 3:1 contrast.
+
+### Changed
+- `docs/01`, `docs/04`, `docs/05`, `docs/06`: the newest order. `SearchResponse` gains the required field `sort`.
+- `docs/02`: ADR-010 and ADR-012 now describe what was built (`limits` instead of slowapi). `docs/06`: the `--input-border` token and the evidence chip's accessible name. `docs/08`: the PDF renderer. `docs/09`: the limits of de-identification.
+
+### Removed
+- The "not built yet" exit path of the CLI and its skip in the eval workflow, which would have passed a run that exited with code 3.
+
+## Phase 6
+
 ### Added
 - Phase 6, P1 features: hybrid search by default, hover prefetch, summary feedback with a confidence popover, the data quality page and drawer tab, the patient directory, `/stats`, the shortcuts dialog and first-run tip, Storybook coverage with an axe sweep, route-level code splitting with a 250 KB budget and Lighthouse CI.
 - Redis cache and rate limit storage behind `CACHE_BACKEND` (`memory`, `redis`, `auto`) with fallback to memory, `AUTO_BOOTSTRAP`, hardened API and web images, Docker Compose with a redis profile, Trivy scans, CycloneDX SBOMs and the CI jobs for them.
