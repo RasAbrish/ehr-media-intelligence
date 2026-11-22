@@ -1,7 +1,7 @@
 name: Summary eval
 
 # Manual or nightly run of `make eval` with the real model. Needs the ANTHROPIC_API_KEY secret.
-# The eval harness ships in Phase 3; until then this workflow only checks that it is wired.
+# Without the secret it evaluates the extractive provider.
 on:
   workflow_dispatch:
   schedule:
@@ -24,14 +24,7 @@ jobs:
       - name: Run eval
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        # Call the CLI directly: make turns every failure into exit code 2, which would hide
-        # real eval failures. The CLI exits 3 only while the stage is not built yet.
-        run: |
-          set +e
-          cd backend && uv run ehr-mip eval
-          code=$?
-          if [ "$code" -eq 3 ]; then echo "eval harness not built yet (Phase 3)"; exit 0; fi
-          exit $code
+        run: cd backend && uv run ehr-mip eval
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()
         with:
