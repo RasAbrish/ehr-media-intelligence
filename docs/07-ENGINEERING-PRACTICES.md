@@ -260,7 +260,7 @@ def build_cache(settings) -> CacheBackend:   # redis if configured and ping ok, 
 | `.editorconfig` | UTF-8, LF, 2 spaces (TS, JSON, YAML), 4 spaces (Python), final newline |
 | Commit messages | Conventional commits enforced by commitlint (`@commitlint/config-conventional`) in a `commit-msg` hook |
 | PR template | Summary, linked requirement ids (FR/NFR), screenshots for UI, test evidence, security and AI checklist items |
-| CODEOWNERS | `/backend/ @you`, `/frontend/ @you`, `/docs/ @you` (single author, still shows intent) |
+| CODEOWNERS | `/backend/ @RasAbrish`, `/frontend/ @RasAbrish`, `/docs/ @RasAbrish` (single author, still shows intent) |
 | Issue templates | Bug report and feature request with requirement id field |
 | Dependabot | Weekly for pip (uv), npm, Docker, GitHub Actions; grouped minor updates |
 | CHANGELOG.md | Keep a Changelog format; one entry per phase |
@@ -274,7 +274,7 @@ def build_cache(settings) -> CacheBackend:   # redis if configured and ping ok, 
 
 - Branch per phase: `phase/1-ingestion`, `phase/2-fhir`, …
 - Conventional commits on branches, any size.
-- Squash-merge to `main` with the exact message from `08-DELIVERY.md`, so `main` shows one commit per major task.
+- `main` has one conventional commit per coherent change, as described in `08-DELIVERY.md` section 3. The commit that completes a major task names it, for example `(Task 2)`.
 - Never commit `data/generated/`, `.env`, `*.db`, Chroma dirs, model caches, `node_modules`, `dist`.
 
 ## 10. Security and privacy checklist

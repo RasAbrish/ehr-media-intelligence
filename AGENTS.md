@@ -63,7 +63,7 @@ Backend CLI: `uv run ehr-mip {ingest|normalize|summarize|index|run-all|serve|eva
 4. `make security` clean (no high or critical findings).
 5. New UI has Storybook stories for shared components and passes axe.
 6. README section updated.
-7. Squash commit on `main` with the planned message from `08-DELIVERY.md`.
+7. Commits on `main` follow `08-DELIVERY.md` section 3.
 
 ## Writing style for README and write-up
 
