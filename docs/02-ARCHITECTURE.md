@@ -507,3 +507,4 @@ Write each as `docs/decisions/ADR-00N-*.md` (context, decision, consequences).
 | 010 | TanStack Router with validated search params | React Router | Typed, validated URL state for shareable searches |
 | 011 | Redis optional, memory TTL cache default | Redis required | Single process and small data; Redis adds value only when scaling to several API replicas. Interface `CacheBackend` keeps the switch to one setting |
 | 012 | `limits` library from an ASGI middleware | slowapi; hand-written counters | Mature engine with memory and Redis storage, and the `RateLimit-*` headers the contract names |
+| 013 | Server-side sessions in SQLite behind an `HttpOnly` cookie, scrypt password hashes | JWT in local storage; an OIDC provider | A session can be ended at once, no token is readable by scripts, no new dependency or service. OIDC stays the production path |

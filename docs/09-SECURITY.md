@@ -50,6 +50,8 @@ flowchart LR
 
 | Threat | Example | Mitigation | Verified by |
 |---|---|---|---|
+| **S**poofing | Someone without an account reads patient data, or guesses a password | Session required on every data route; scrypt hashes; identical errors and timing for unknown users; sign-in limited to 10 per minute per IP; session ends after 8 h or 60 min idle | `test_api_auth.py` |
+| **S**poofing | Cross-site request made with the user's cookie | `SameSite=Strict` cookie, and every POST needs the `X-Requested-With: ehr-mip` header, which other sites cannot send without a refused CORS preflight | `test_post_without_csrf_header_is_refused` |
 | **S**poofing | Forged requests to admin endpoints | Admin endpoints disabled by default; when enabled, require `X-Admin-Token` (constant-time compare) | `test_admin_requires_token` |
 | **T**ampering | Malicious input altering queries | Parameterized SQL only; Chroma `where` built from enums and ints, never strings from the user; Pydantic `extra="forbid"` | `test_sql_params_only` (lint rule S608), filter tests |
 | **T**ampering | Prompt injection inside a clinical note ("ignore previous instructions") | Records wrapped in tags and treated as data; structured output; grounding check; no tools given to the model; output rendered as text | `test_prompt_injection_note_is_ignored` (generator plants one adversarial note) |
@@ -64,8 +66,8 @@ flowchart LR
 
 | Risk | Status in this project |
 |---|---|
-| API1 Broken object level authorization | No auth (out of scope, single local user). Documented. Design keeps all patient access through `deps.get_patient_or_404`, the single place where an authorization check would be added |
-| API2 Broken authentication | Out of scope; admin token for admin routes |
+| API1 Broken object level authorization | Every signed-in user sees every patient (no care team roles). Patient access goes through `deps.get_patient_or_404`, the single place where a per-patient check would be added |
+| API2 Broken authentication | Server-side sessions, scrypt hashes, rate-limited sign-in, no token readable by scripts (ADR-013); admin token for admin routes |
 | API3 Broken object property level authorization | Response models are explicit allowlists (separate API schemas); audit values masked |
 | API4 Unrestricted resource consumption | Rate limits, body limit, pagination caps, `top_k` cap, LLM concurrency and timeouts |
 | API5 Broken function level authorization | Admin routes behind flag + token |
@@ -101,6 +103,7 @@ flowchart LR
 | `GET /patients*`, `/resources*` | 120 per minute | client IP |
 | `POST /patients/{key}/summary/regenerate` | 5 per minute per IP, 1 concurrent per patient | IP, patient |
 | `POST /patients/{key}/summary/feedback` | 20 per minute | IP |
+| `POST /auth/login` | 10 per minute | IP |
 | everything else | 300 per minute | IP |
 
 The `limits` library (the engine slowapi wraps) is used directly from an ASGI middleware, because slowapi only emits `X-RateLimit-*` headers. The client IP comes from `X-Forwarded-For` only when the direct peer is listed in `FORWARDED_ALLOW_IPS` (the nginx container in docker); otherwise it is the socket address, so callers cannot spoof their bucket. Responses carry `RateLimit-Limit`, `RateLimit-Remaining`, `RateLimit-Reset`; on limit: `429` problem+json `code=rate_limited` with `Retry-After`.
@@ -114,12 +117,13 @@ Body ≤ 16 KB (search, feedback), query 2 to 500 chars, `page_size ≤ 100`, `t
 |---|---|
 | SQL injection | Only `?` parameters; ruff `S608` enabled; repository layer is the only SQL location |
 | Output encoding | React text nodes; ESLint `react/no-danger` as error |
-| CORS | Explicit origins list; `allow_credentials=False`; methods `GET, POST` |
+| CORS | Explicit origins list; `allow_credentials=False` (the app is same-origin behind the proxy); methods `GET, POST` |
 | Secrets | `.env` only, loaded via pydantic-settings `SecretStr`; never logged (`repr` masked); `gitleaks` in pre-commit and CI |
 | Error handling | Global handler returns problem+json; stack traces logged server-side only with request id |
-| Logging redaction | structlog processor drops keys `name, family_name, given_names, mrn, birth_date, phone, address, text` and regex-masks 8 digit MRN patterns |
+| Logging redaction | structlog processor drops keys `name, family_name, given_names, mrn, birth_date, phone, address, text, email, password` and regex-masks 8 digit MRN patterns |
 | Audit masking | API masks PHI in audit `before`/`after` (`J*** D**`, `19**-**-14`) |
 | Admin | `ENABLE_ADMIN_ENDPOINTS=false` default; token required when on |
+| Sign-in | Accounts by `ehr-mip users add` (password asked twice, never an argument, at least 12 characters); sessions stored as SHA-256 of the token; `email` and `password` keys dropped from logs |
 | API docs | `/docs`, `/redoc`, `/openapi.json` disabled when `ENV=prod` |
 | File access | Readers only open files under `DATA_RAW_DIR` (resolved path check) |
 
@@ -216,8 +220,8 @@ Multi-stage builds; final images contain no compilers, no tests, no `.env`. Redi
 
 ## 10. Production readiness notes (documented, not built)
 
-Authentication with SMART on FHIR / OIDC, role-based access per care team, access audit log ("who viewed which patient"), encryption at rest (SQLCipher or managed DB), TLS everywhere, BAA with the LLM vendor or a self-hosted model, data retention policy, break-glass access. These go in the write-up under "with more time".
+Single sign-on with SMART on FHIR / OIDC, multi-factor sign-in, password reset, role-based access per care team, access audit log ("who viewed which patient"), encryption at rest (SQLCipher or managed DB), TLS everywhere, BAA with the LLM vendor or a self-hosted model, data retention policy, break-glass access. These go in the write-up under "with more time".
 
 ## 11. Security test list
 
-`test_admin_requires_token`, `test_admin_disabled_returns_403`, `test_security_headers_present`, `test_cors_rejects_unknown_origin`, `test_rate_limit_search_429_with_retry_after`, `test_body_too_large_413`, `test_500_has_no_stacktrace`, `test_logs_contain_no_phi`, `test_context_has_no_phi`, `test_prompt_injection_note_is_ignored`, `test_highlight_escapes_html` (frontend), `test_reader_rejects_path_outside_raw_dir`, `test_llm_budget_exceeded_429`.
+`test_admin_requires_token`, `test_admin_disabled_returns_403`, `test_security_headers_present`, `test_cors_rejects_unknown_origin`, `test_rate_limit_search_429_with_retry_after`, `test_body_too_large_413`, `test_500_has_no_stacktrace`, `test_logs_contain_no_phi`, `test_context_has_no_phi`, `test_prompt_injection_note_is_ignored`, `test_highlight_escapes_html` (frontend), `test_reader_rejects_path_outside_raw_dir`, `test_llm_budget_exceeded_429`, `test_every_data_route_needs_a_session`, `test_login_failures_are_identical`, `test_post_without_csrf_header_is_refused`.

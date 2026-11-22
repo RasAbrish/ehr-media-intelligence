@@ -14,3 +14,4 @@ One file per decision: context, decision, alternatives rejected, consequences an
 - [ADR-010](ADR-010-tanstack-router.md): Use TanStack Router with validated search params
 - [ADR-011](ADR-011-optional-redis.md): Redis optional, in-memory TTL cache by default
 - [ADR-012](ADR-012-slowapi.md): Use the limits library for rate limiting
+- [ADR-013](ADR-013-sessions.md): Server-side sessions with scrypt password hashes

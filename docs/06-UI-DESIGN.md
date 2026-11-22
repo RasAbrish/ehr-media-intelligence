@@ -74,6 +74,7 @@ Tailwind v4 + shadcn CSS variables, OKLCH. Light is the default (clinical enviro
 | `--success` | `oklch(0.58 0.13 155)` | `oklch(0.72 0.14 155)` | Valid bundle, cache hit, normal |
 | `--info` | `oklch(0.55 0.12 245)` | `oklch(0.72 0.11 245)` | Neutral notices |
 | `--ai` | `oklch(0.52 0.16 290)` | `oklch(0.74 0.13 290)` | AI marker, AI badge text, AI card left rule |
+| `--scrim`, `--on-scrim` | `oklch(0.16 0.02 230 / 0.78)`, `oklch(0.985 0.004 247)` | same | Caption over the sign-in photo |
 | `--ai-muted` | `oklch(0.965 0.018 290)` | `oklch(0.24 0.04 290)` | AI badge and AI panel background |
 
 ### 3.3 Resource type colors (badges only, as text + tinted bg + border)
@@ -140,8 +141,17 @@ Active item: `bg-accent`, `text-accent-foreground`, a primary icon and the 3 px 
 - Placeholder: "Search records, e.g. 'rising creatinine' or 'CT chest pulmonary embolism'".
 - Visible label above in `text-meta` ("Search patient records"); may be visually hidden on desktop only if the placeholder is not the only label (keep `aria-label`).
 
+### 6.1a Sign-in page
+- From 1024 px two equal columns. Left: one licensed photo (`docs/ASSETS.md`), full height, `object-cover`, a dark gradient at the bottom with the product mark and one line, "Search every patient record in seconds". Right: the form, centered, 24rem wide.
+- Below 1024 px the photo is a 10rem band above the form.
+- Form: heading "Sign in", Email and Password with visible labels, a show-password button, "Sign in" (primary, full width, pending text "Signing in"). A wrong login shows one alert: "Email or password is incorrect."
+- Demo builds add a muted box with the demo email and password in mono and a "Use demo login" button that fills both fields.
+- The photo is a `<picture>` (AVIF, WebP, JPEG at 960, 1440 and 2400 px) with empty alt text, as it is decoration.
+- Signed out, every page goes to `/signin?next=<path>`; `next` must start with a single `/`.
+- The sidebar shows the user's name above Theme, and "Sign out" with an icon below Shortcuts. The phone menu has Sign out too.
+
 ### 6.2a Demo banner
-Only in builds with `VITE_DEMO_MODE=true`: a `bg-warning/15` strip at the top of the content column (above the top bar on phones), so the sidebar keeps its full height, "Public demo with synthetic patients. Do not enter real patient information.", and while the free host wakes a status line "The free server is waking up. This can take up to 4 minutes."
+Only in builds with `VITE_DEMO_MODE=true`: a `bg-warning/15` strip at the top of the content column (above the top bar on phones), so the sidebar keeps its full height, "Public demo with synthetic patients. Do not type real patient information into search or feedback.", and while the free host wakes a status line "The free server is waking up. This can take up to 4 minutes."
 
 ### 6.3 Filter bar
 Row under input, gap 8: `ResourceTypeFilter` (outline button "Type: All" → popover with checkbox list and colored dots), `DateRangeFilter` (outline button with calendar icon "Any date" → popover with presets column: Last 30 days, Last 6 months, Last year, This year, Custom; and a two-month range calendar), active filter chips (secondary pill with x), "Clear filters" ghost button. On mobile the row collapses into a single "Filters (2)" button opening a bottom sheet.
@@ -255,6 +265,7 @@ The sidebar becomes a top bar with a menu button. Directory and quality rows are
 
 | Screen | Route | Tier | Key components | Endpoints |
 |---|---|---|---|---|
+| Sign in | `/signin` | P1 | SignInPage (photo half, form half) | `POST /auth/login`, `GET /auth/me` |
 | Search | `/` | R | Sidebar, SearchInput, FilterBar, ResultsMeta, ResultList, ResultCard, states | `POST /search`, `GET /stats` |
 | Patient drawer | `/?patient={key}` (also on `/patients`) | R | DrawerHeader, Tabs, SummaryPanel, ResourceTable, ResourceDialog | `GET /patients/{key}`, `/summary`, `/resources`, `GET /resources/{type}/{id}` |
 | Patients directory | `/patients` | P1 | DirectoryToolbar, DirectoryTable, Pagination | `GET /patients` |

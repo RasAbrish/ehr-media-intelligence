@@ -107,6 +107,7 @@ Clinical staff using Epic EHR lose time manually reviewing unstructured patient 
 | FR-6.6 | Supply chain scanning (pip-audit, pnpm audit, gitleaks, Trivy, CodeQL, Dependabot) | P1 |
 | FR-6.7 | Hardened containers (non-root, read-only, dropped capabilities) | P1 |
 | FR-6.8 | Admin endpoints off by default, token protected when on | P2 |
+| FR-6.9 | Sign-in with email and password, server-side sessions, every data route behind a session; accounts created by command; a published demo login for the synthetic demo | P1 |
 
 ### Cross-cutting: AI governance (detail in `10-AI-DESIGN.md`)
 | ID | Requirement | Tier |
@@ -163,9 +164,9 @@ Clinical staff using Epic EHR lose time manually reviewing unstructured patient 
 | P1 (High-value extras) | Build only after all R items pass |
 | P2 (Nice to have) | Only if time remains after P1 core |
 
-**Out of scope:** real EHR integration, authentication, real OCR of image PDFs, Practitioner/Organization resources, clinical decision support, multi-tenant deployment.
+**Out of scope:** real EHR integration, single sign-on, roles, password reset by email, real OCR of image PDFs, Practitioner/Organization resources, clinical decision support, multi-tenant deployment.
 
-**Assumptions:** US-origin data (MM/DD default for ambiguous dates), English text, a single local user, CPU-only machine.
+**Assumptions:** US-origin data (MM/DD default for ambiguous dates), English text, a few named users with equal access, CPU-only machine.
 
 ## 7. Acceptance criteria and traceability
 

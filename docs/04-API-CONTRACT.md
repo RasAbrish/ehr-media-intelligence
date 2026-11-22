@@ -13,7 +13,7 @@ The contract is the single source of truth between backend and frontend. Change 
 | Naming | JSON fields `snake_case`. Enum values as listed below. Dates `YYYY-MM-DD`, datetimes ISO 8601 with offset |
 | Ids | `patient_key`, `resource_id` are UUID strings (UUIDv5, stable) |
 | Nulls | Optional fields are present with `null`, never omitted (predictable for Zod) |
-| Auth | None (out of scope). Admin endpoints gated by `ENABLE_ADMIN_ENDPOINTS` |
+| Auth | Session cookie from `POST /auth/login` (section 3a). Every path needs it except `/health`, `/ready`, `/metrics` and `/auth/login`; without it the API returns 401 `not_authenticated`. `AUTH_ENABLED=false` turns this off for local tools only. Admin endpoints are also gated by `ENABLE_ADMIN_ENDPOINTS` |
 | Limits | `/search` body ≤ 16 KB; `page_size ≤ 100`; `top_k ≤ 20` |
 | CORS | Origins from `CORS_ORIGINS` |
 
@@ -28,6 +28,7 @@ The contract is the single source of truth between backend and frontend. Change 
 | `RateLimit-Limit`, `RateLimit-Remaining`, `RateLimit-Reset` | response | Current window state (limits in `09-SECURITY.md` §5.2) |
 | `Retry-After` | response on 429 | Seconds until retry is allowed |
 | `X-Cache` | response on `/search`, patient detail, resources | `HIT` or `MISS` from the server cache (`02-ARCHITECTURE.md` §8) |
+| `X-Requested-With` | request (every POST) | Must be `ehr-mip`; CSRF check (section 3a) |
 | `X-Client-Id` | request (optional) | Anonymous random UUID from the browser, used only for one-vote-per-client feedback; stored hashed |
 | Security headers | response | CSP, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, COOP, CORP (`09-SECURITY.md` §5.1) |
 
@@ -130,6 +131,9 @@ Example 422:
 | `payload_too_large` | 413 | Body over limit | Inline message |
 | `rate_limited` | 429 | Rate limit exceeded | Wait `Retry-After`, show "Too many requests, retrying in Ns"; TanStack retry honors it |
 | `llm_budget_exceeded` | 429 | Daily token budget used | Regenerate disabled with tooltip; cached summaries still shown |
+| `not_authenticated` | 401 | No session cookie, or the session ended | Go to the sign-in page and return afterwards |
+| `invalid_credentials` | 401 | Wrong email or password, or a disabled account (one message for all) | Inline error on the sign-in form |
+| `csrf_check_failed` | 403 | A POST without `X-Requested-With: ehr-mip` | Generic error state (the app always sends it) |
 | `admin_unauthorized` | 401 | Missing or wrong `X-Admin-Token` | Hide admin UI |
 | `feedback_duplicate` | 409 | Same client already rated this summary version | Show existing vote |
 | `internal_error` | 500 | Unhandled | Error state with request id |
@@ -159,8 +163,39 @@ Example 422:
 | 19 | GET | `/pipeline/runs/{run_id}` | Run status (admin) | P2 |
 | 20 | POST | `/patients/{patient_key}/summary/feedback` | Rate a summary | P1 |
 | 21 | GET | `/metrics` | Prometheus metrics (text format) | P1 |
+| 22 | POST | `/auth/login` | Sign in, sets the session cookie | P1 |
+| 23 | POST | `/auth/logout` | Sign out, ends the session | P1 |
+| 24 | GET | `/auth/me` | The signed-in user | P1 |
 
 ---
+
+## 3a. Authentication
+
+Sessions are server side (ADR-013). The cookie is `ehr_session`: `HttpOnly`, `SameSite=Strict`, `Path=/`, `Secure` when `ENV=prod`, no `Max-Age` (it ends with the browser or the session). Every POST must carry `X-Requested-With: ehr-mip`, or it returns 403 `csrf_check_failed`. A form on another site cannot set that header, and a script on another origin would need a CORS preflight that `CORS_ORIGINS` refuses.
+
+### 3a.1 `POST /auth/login`
+
+```ts
+interface LoginRequest { email: string; password: string }   // email ≤ 254, password 1 to 256 chars
+interface CurrentUser { email: string; display_name: string }
+```
+Example request:
+```json
+{ "email": "demo@example.org", "password": "synthetic-demo-2026" }
+```
+Response `200` with `Set-Cookie: ehr_session=...`:
+```json
+{ "email": "demo@example.org", "display_name": "Demo clinician" }
+```
+Errors: 401 `invalid_credentials` (same body and timing for an unknown email, a wrong password and a disabled account); 422; 429 `rate_limited` (10 per minute per IP).
+
+### 3a.2 `POST /auth/logout`
+
+Ends the session and clears the cookie. Response `204`, also when no session exists.
+
+### 3a.3 `GET /auth/me`
+
+Response `200` `CurrentUser`, or 401 `not_authenticated`. `Cache-Control: no-store`.
 
 ## 4. System
 
@@ -894,6 +929,7 @@ export const keys = {
     audit: (key: string, p: PageParams) => ["patients", key, "audit", p] as const,
   },
   resource: (type: string, id: string) => ["resource", type, id] as const,
+  me: ["auth", "me"] as const,
   quality: {
     overview: ["quality", "overview"] as const,
     validation: (p: ValidationParams) => ["quality", "validation", p] as const,
@@ -924,6 +960,7 @@ export const keys = {
 | `ResourceDetail` | `api/schemas/resources.py` | `features/patients/schemas.ts` |
 | `QualityOverview`, `ValidationIssueItem`, `AuditEntryItem`, `QuarantineItem` | `api/schemas/quality.py` | `features/quality/schemas.ts` |
 | `ReadyResponse`, `StatsResponse` | `api/schemas/system.py` | `lib/system-schemas.ts` |
+| `LoginRequest`, `CurrentUser` | `api/schemas/auth.py` | `features/auth/schemas.ts` |
 | `SummaryFeedbackRequest`, `SummaryFeedbackResponse` | `api/schemas/feedback.py` | `features/patients/schemas.ts` |
 | `Problem` | `api/errors.py` | `lib/api-client.ts` |
 
@@ -936,6 +973,7 @@ export const keys = {
 | `tests/integration/test_api_patients.py` | Each patients endpoint, 404s, pagination math, sorting |
 | `tests/integration/test_api_quality.py` | Overview counts equal repository counts |
 | `tests/integration/test_api_feedback.py` | 201, 409 duplicate, 422 reason rule, totals |
+| `tests/integration/test_api_auth.py` | Sign-in, cookie flags, identical failures, expiry, sign-out, 401 on every protected route, POST without the CSRF header |
 | `tests/security/test_headers_and_limits.py` | Security headers on every route, 429 with `Retry-After`, 413 |
 | `tests/integration/test_search_cache.py` | Second identical search returns `X-Cache: HIT`; reindex bumps `index_version` and misses; Redis backend via `fakeredis` |
 | `frontend/src/test/contract.test.ts` | Every JSON example in this doc (copied to `src/test/fixtures/contract/*.json`) parses with its Zod schema |
