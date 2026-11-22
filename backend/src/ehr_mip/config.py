@@ -67,7 +67,7 @@ class Settings(BaseSettings):
     # Search
     embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
     search_default_top_k: int = Field(default=5, ge=1, le=20)
-    search_mode: Literal["semantic", "hybrid"] = "semantic"
+    search_mode: Literal["semantic", "hybrid"] = "hybrid"
     index_observations: bool = False
     search_cache_ttl_s: int = Field(default=60, ge=0)
 
@@ -85,7 +85,7 @@ class Settings(BaseSettings):
     env: Literal["dev", "prod"] = "dev"
 
     # Cache
-    cache_backend: Literal["memory", "redis"] = "memory"
+    cache_backend: Literal["memory", "redis", "auto"] = "memory"
     redis_url: str = "redis://redis:6379/0"
 
     # Synthetic data
@@ -95,7 +95,8 @@ class Settings(BaseSettings):
     @field_validator("anthropic_api_key", "admin_token", mode="before")
     @classmethod
     def _blank_secret_is_none(cls, value: object) -> object:
-        if isinstance(value, str) and not value.strip():
+        # "#…" is an inline comment that Docker Compose passed through as the value.
+        if isinstance(value, str) and (not value.strip() or value.strip().startswith("#")):
             return None
         return value
 
