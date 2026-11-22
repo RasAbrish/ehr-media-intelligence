@@ -22,6 +22,8 @@
     "playwright.config.ts",
     "scripts/**/*.ts",
     "e2e/**/*.ts",
+    "playwright.storybook.config.ts",
+    "e2e-storybook/**/*.ts",
     "src/test/contract/extract.ts"
   ]
 }

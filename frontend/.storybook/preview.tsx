@@ -1,9 +1,12 @@
 import type { Decorator, Preview } from "@storybook/react-vite";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useEffect, useState, type ReactNode } from "react";
+import { createMemoryHistory, RouterContextProvider } from "@tanstack/react-router";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 
 import "@/index.css";
+import { ThemeContext } from "@/app/theme-context";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { createAppRouter } from "@/router";
 import { seedQueryClient } from "@/test/seed-query-client";
 
 /** Stories never reach the network: data-fetching components read a seeded cache. */
@@ -18,10 +21,24 @@ function Providers({ dark, children }: { dark: boolean; children: ReactNode }) {
     seedQueryClient(seeded);
     return seeded;
   });
+  // Links and the navigation need a router; the toolbar owns the theme.
+  const [router] = useState(() => createAppRouter(createMemoryHistory()));
+  const theme = useMemo(
+    () => ({
+      preference: dark ? ("dark" as const) : ("light" as const),
+      resolved: dark ? ("dark" as const) : ("light" as const),
+      setPreference: () => undefined,
+    }),
+    [dark],
+  );
   return (
     <QueryClientProvider client={client}>
       <TooltipProvider>
-        <div className="min-h-dvh bg-background p-4 text-foreground">{children}</div>
+        <ThemeContext value={theme}>
+          <RouterContextProvider router={router}>
+            <div className="min-h-dvh bg-background p-4 text-foreground">{children}</div>
+          </RouterContextProvider>
+        </ThemeContext>
       </TooltipProvider>
     </QueryClientProvider>
   );
