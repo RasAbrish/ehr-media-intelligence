@@ -1,35 +1,47 @@
 import { defineConfig, devices } from "@playwright/test";
 
+const API_PORT = "8010";
+const WEB_PORT = "5183";
+/** Set to test a stack that is already running (docker compose in CI). */
+const external = process.env.E2E_BASE_URL;
+
 /**
- * End-to-end tests against the real API and the Vite dev server (`make e2e`).
- * Both servers are reused when already running (`make dev`); the API needs an indexed
- * database (`make pipeline`).
+ * End-to-end tests against the real API (`make e2e`). The tests start their own servers on
+ * their own ports over a throwaway copy of the data, so they never write to what `make dev`
+ * serves. Needs an indexed database (`make pipeline`).
  */
 export default defineConfig({
   testDir: "./e2e",
   timeout: 30_000,
   expect: { timeout: 10_000 },
   fullyParallel: false,
+  workers: 2,
   reporter: [["list"]],
-  use: { baseURL: "http://localhost:5173", trace: "retain-on-failure" },
+  use: { baseURL: external ?? `http://localhost:${WEB_PORT}`, trace: "retain-on-failure" },
   projects: [
     {
       name: "chromium",
       use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 900 } },
     },
   ],
-  webServer: [
-    {
-      command: "uv run --project ../backend ehr-mip serve --port 8000",
-      url: "http://localhost:8000/health",
-      reuseExistingServer: true,
-      timeout: 120_000,
-    },
-    {
-      command: "pnpm dev",
-      url: "http://localhost:5173",
-      reuseExistingServer: true,
-      timeout: 60_000,
-    },
-  ],
+  ...(external
+    ? {}
+    : {
+        webServer: [
+          {
+            command: `uv run --project ../backend python ../scripts/e2e_api.py --port ${API_PORT}`,
+            url: `http://127.0.0.1:${API_PORT}/health`,
+            reuseExistingServer: false,
+            gracefulShutdown: { signal: "SIGTERM" as const, timeout: 5000 },
+            timeout: 120_000,
+          },
+          {
+            command: `pnpm exec vite --port ${WEB_PORT} --strictPort`,
+            env: { API_PROXY_TARGET: `http://127.0.0.1:${API_PORT}` },
+            url: `http://localhost:${WEB_PORT}`,
+            reuseExistingServer: false,
+            timeout: 60_000,
+          },
+        ],
+      }),
 });
