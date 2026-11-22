@@ -1,9 +1,10 @@
+import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 
 import { expect, type Page } from "@playwright/test";
 
 const require = createRequire(import.meta.url);
-const AXE_PATH = require.resolve("axe-core/axe.min.js");
+const AXE_SOURCE = readFileSync(require.resolve("axe-core/axe.min.js"), "utf8");
 
 export async function search(page: Page, query: string): Promise<void> {
   await page.getByRole("searchbox", { name: "Search patient records" }).fill(query);
@@ -22,7 +23,8 @@ export function resultArticles(page: Page) {
 
 /** Serious or critical axe violations, including color contrast (real browser rendering). */
 export async function seriousViolations(page: Page): Promise<string[]> {
-  await page.addScriptTag({ path: AXE_PATH });
+  // Evaluated over CDP: a script tag would be refused by the production CSP, as intended.
+  await page.evaluate(AXE_SOURCE);
   const ids = await page.evaluate(async () => {
     const result = await (
       window as unknown as {

@@ -12,12 +12,15 @@ test("search, filter, open a patient, follow evidence to the source record", asy
   await page.keyboard.press("Escape");
   await expect(page).toHaveURL(/type=.*DiagnosticReport/);
   await expect(resultCards(page).first()).toBeVisible();
-  for (const badge of await page
-    .getByRole("list", { name: "Search results" })
-    .getByText("Diagnostic report", { exact: true })
-    .all()) {
-    await expect(badge).toBeVisible();
-  }
+  // Every card is a diagnostic report, and there is at least one.
+  await expect(async () => {
+    const cards = await resultArticles(page).count();
+    expect(cards).toBeGreaterThan(0);
+    const reports = resultArticles(page).filter({
+      has: page.getByText("Diagnostic report", { exact: true }),
+    });
+    expect(await reports.count()).toBe(cards);
+  }).toPass();
 
   const first = resultCards(page).first();
   await resultArticles(page).first().click();
