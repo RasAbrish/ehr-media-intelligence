@@ -167,6 +167,22 @@ def summary_text(summary: ClinicalSummary) -> str:
     return "\n".join(parts)
 
 
+def review_text(summary: ClinicalSummary) -> str:
+    """The summary as the review sheet shows it: labeled, with each diagnosis status."""
+    sections = {
+        "Chief concern": [summary.chief_concern],
+        "Key diagnoses": [f"- {d.name} ({d.status})" for d in summary.key_diagnoses],
+        "Recent media": [f"- {m.finding}" for m in summary.recent_media],
+        "Flagged anomalies": [
+            f"- {a.description} ({a.severity})" for a in summary.flagged_anomalies
+        ],
+        "Overview": [summary.overview],
+    }
+    return "\n".join(
+        line for title, body in sections.items() for line in (f"{title}:", *(body or ["- none"]))
+    )
+
+
 def _cited(summary: ClinicalSummary) -> list[str]:
     keys = [e.key for d in summary.key_diagnoses for e in d.evidence]
     keys += [m.resource.key for m in summary.recent_media]
@@ -571,7 +587,7 @@ def write_manual_review_template(
             f"## {i}. `{summary.patient_key[:8]}`",
             "",
             "```",
-            summary_text(summary),
+            review_text(summary),
             "```",
             "",
         ]

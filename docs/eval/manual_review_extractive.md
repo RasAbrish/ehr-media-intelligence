@@ -20,127 +20,178 @@ Provider extractive, model extractive, prompt `v1`.
 ## 1. `b09c3338`
 
 ```
+Chief concern:
 Acute ischemic stroke, left MCA territory.
-Acute ischemic stroke
-Atrial fibrillation
-Troponin I: All results within the reference range.
-MRI BRAIN WITHOUT CONTRAST: Acute left MCA territory infarct.
-Lipid panel: 1 abnormal: LDL cholesterol H.
-LDL cholesterol 168 mg/dL (H, ref up to 100)
-34-year-old female with acute ischemic stroke, atrial fibrillation; latest encounter 2025-08-12 (inpatient).
+Key diagnoses:
+- Acute ischemic stroke (active)
+- Atrial fibrillation (suspected)
+Recent media:
+- Troponin I: All results within the reference range.
+- MRI BRAIN WITHOUT CONTRAST: Acute left MCA territory infarct.
+- Lipid panel: 1 abnormal: LDL cholesterol H.
+Flagged anomalies:
+- LDL cholesterol 168 mg/dL (H, ref up to 100) (moderate)
+Overview:
+34-year-old female with acute ischemic stroke, suspected atrial fibrillation; latest encounter 2025-08-12 (inpatient).
 ```
 
 ## 2. `2d4abc2d`
 
 ```
+Chief concern:
 Community-acquired pneumonia, CURB-65 score 2.
-Community-acquired pneumonia
-Complete blood count: 1 abnormal: WBC H.
-CHEST X-RAY: Right lower lobe pneumonia.
-WBC 16.3 10*3/uL (H, ref 4.5 to 11)
-Record merged from 2 MRNs
+Key diagnoses:
+- Community-acquired pneumonia (active)
+Recent media:
+- Complete blood count: 1 abnormal: WBC H.
+- CHEST X-RAY: Right lower lobe pneumonia.
+Flagged anomalies:
+- WBC 16.3 10*3/uL (H, ref 4.5 to 11) (moderate)
+- Record merged from 2 MRNs (low)
+Overview:
 75-year-old female with community-acquired pneumonia; latest encounter 2024-05-21 (inpatient).
 ```
 
 ## 3. `0f6e25ff`
 
 ```
+Chief concern:
 Acute exacerbation of COPD.
-Emphysema
-COPD
-CHEST X-RAY: Emphysematous changes without acute infiltrate.
-Complete blood count: 1 abnormal: WBC H.
-Basic metabolic panel (without calcium): All results within the reference range.
-WBC 12.9 10*3/uL (H, ref 4.5 to 11)
+Key diagnoses:
+- Emphysema (historical)
+- COPD (active)
+Recent media:
+- CHEST X-RAY: Emphysematous changes without acute infiltrate.
+- Complete blood count: 1 abnormal: WBC H.
+- Basic metabolic panel (without calcium): All results within the reference range.
+Flagged anomalies:
+- WBC 12.9 10*3/uL (H, ref 4.5 to 11) (moderate)
+Overview:
 68-year-old female with emphysema, cOPD; latest encounter 2025-02-03 (inpatient).
 ```
 
 ## 4. `dae3655d`
 
 ```
+Chief concern:
 Community-acquired pneumonia, CURB-65 score 2.
-Community-acquired pneumonia
-CHEST X-RAY: Right lower lobe pneumonia.
-Complete blood count: 1 abnormal: WBC H.
-WBC 17.1 10*3/uL (H, ref 4.5 to 11)
+Key diagnoses:
+- Community-acquired pneumonia (active)
+Recent media:
+- CHEST X-RAY: Right lower lobe pneumonia.
+- Complete blood count: 1 abnormal: WBC H.
+Flagged anomalies:
+- WBC 17.1 10*3/uL (H, ref 4.5 to 11) (moderate)
+Overview:
 22-year-old female with community-acquired pneumonia; latest encounter 2024-11-21 (inpatient).
 ```
 
 ## 5. `4f262ef9`
 
 ```
+Chief concern:
 Chronic kidney disease stage 3b with hyperkalemia.
-Chronic kidney disease
-Hyperkalemia
-RENAL ULTRASOUND: Findings consistent with chronic medical renal disease.
-Complete blood count: All results within the reference range.
-Basic metabolic panel (without calcium): 3 abnormal: Potassium H, Creatinine H, Urea nitrogen H.
-Potassium 5.8 mmol/L (H, ref 3.5 to 5.1)
-Creatinine 2.61 mg/dL (H, ref 0.6 to 1.2)
-Urea nitrogen 37 mg/dL (H, ref 7 to 20)
+Key diagnoses:
+- Chronic kidney disease (active)
+- Hyperkalemia (active)
+Recent media:
+- RENAL ULTRASOUND: Findings consistent with chronic medical renal disease.
+- Complete blood count: All results within the reference range.
+- Basic metabolic panel (without calcium): 3 abnormal: Potassium H, Creatinine H, Urea nitrogen H.
+Flagged anomalies:
+- Potassium 5.8 mmol/L (H, ref 3.5 to 5.1) (moderate)
+- Creatinine 2.61 mg/dL (H, ref 0.6 to 1.2) (moderate)
+- Urea nitrogen 37 mg/dL (H, ref 7 to 20) (moderate)
+Overview:
 26-year-old male with chronic kidney disease, hyperkalemia; latest encounter 2024-08-17 (outpatient).
 ```
 
 ## 6. `4a95631a`
 
 ```
+Chief concern:
 A 78-year-old man with a 2.4 cm hormone receptor positive tumor.
-Invasive ductal carcinoma
-Irregular spiculated mass in the left breast
-Complete blood count: All results within the reference range.
-SURGICAL PATHOLOGY REPORT: Invasive ductal carcinoma, Nottingham grade 2. ER positive, PR positive, HER2 negative.
-DIAGNOSTIC MAMMOGRAM AND BREAST ULTRASOUND: BI-RADS 5, highly suggestive of malignancy. Ultrasound guided biopsy recomme
+Key diagnoses:
+- Invasive ductal carcinoma (active)
+- Irregular spiculated mass in the left breast (historical)
+Recent media:
+- Complete blood count: All results within the reference range.
+- SURGICAL PATHOLOGY REPORT: Invasive ductal carcinoma, Nottingham grade 2. ER positive, PR positive, HER2 negative.
+- DIAGNOSTIC MAMMOGRAM AND BREAST ULTRASOUND: BI-RADS 5, highly suggestive of malignancy. Ultrasound guided biopsy recomme
+Flagged anomalies:
+- none
+Overview:
 78-year-old male with invasive ductal carcinoma, irregular spiculated mass in the left breast; latest encounter 2025-04-12 (outpatient).
 ```
 
 ## 7. `4603a76a`
 
 ```
+Chief concern:
 Sepsis from a urinary source.
-Urosepsis
-Sepsis
-Lactate: 1 abnormal: Lactate H.
-Lactate 3.7 mmol/L (H, ref 0.5 to 2.2)
+Key diagnoses:
+- Urosepsis (active)
+- Sepsis (historical)
+Recent media:
+- Lactate: 1 abnormal: Lactate H.
+Flagged anomalies:
+- Lactate 3.7 mmol/L (H, ref 0.5 to 2.2) (moderate)
+Overview:
 36-year-old male with urosepsis, sepsis; latest encounter 2024-10-20 (emergency).
 ```
 
 ## 8. `320afa77`
 
 ```
+Chief concern:
 Primary hypothyroidism.
-Hypothyroidism
-Chronic thyroiditis
-Lipid panel: All results within the reference range.
-TSH and Free T4: 2 abnormal: TSH H, Free T4 L.
-THYROID ULTRASOUND: Findings suggestive of chronic thyroiditis.
-TSH 11.22 mIU/L (H, ref 0.4 to 4)
-Free T4 0.5 ng/dL (L, ref 0.8 to 1.8)
-MRN shared with another person; identity flagged for review
+Key diagnoses:
+- Hypothyroidism (active)
+- Chronic thyroiditis (historical)
+Recent media:
+- Lipid panel: All results within the reference range.
+- TSH and Free T4: 2 abnormal: TSH H, Free T4 L.
+- THYROID ULTRASOUND: Findings suggestive of chronic thyroiditis.
+Flagged anomalies:
+- TSH 11.22 mIU/L (H, ref 0.4 to 4) (moderate)
+- Free T4 0.5 ng/dL (L, ref 0.8 to 1.8) (moderate)
+- MRN shared with another person; identity flagged for review (low)
+Overview:
 29-year-old male with hypothyroidism, chronic thyroiditis; latest encounter 2024-02-24 (outpatient).
 ```
 
 ## 9. `f4b38133`
 
 ```
+Chief concern:
 Primary hypothyroidism.
-Hypothyroidism
-Chronic thyroiditis
-Free T4 and TSH: 2 abnormal: Free T4 L, TSH H.
-THYROID ULTRASOUND: Findings suggestive of chronic thyroiditis.
-Free T4 0.61 ng/dL (L, ref 0.8 to 1.8)
-TSH 13.12 mIU/L (H, ref 0.4 to 4)
+Key diagnoses:
+- Hypothyroidism (active)
+- Chronic thyroiditis (historical)
+Recent media:
+- Free T4 and TSH: 2 abnormal: Free T4 L, TSH H.
+- THYROID ULTRASOUND: Findings suggestive of chronic thyroiditis.
+Flagged anomalies:
+- Free T4 0.61 ng/dL (L, ref 0.8 to 1.8) (moderate)
+- TSH 13.12 mIU/L (H, ref 0.4 to 4) (moderate)
+Overview:
 31-year-old male with hypothyroidism, chronic thyroiditis; latest encounter 2024-02-15 (outpatient).
 ```
 
 ## 10. `218cd559`
 
 ```
+Chief concern:
 Sepsis from a urinary source.
-Urosepsis
-Sepsis
-Complete blood count: 1 abnormal: WBC H.
-Lactate: 1 abnormal: Lactate HH.
-Lactate 4.7 mmol/L (HH, ref 0.5 to 2.2)
-WBC 19.7 10*3/uL (H, ref 4.5 to 11)
+Key diagnoses:
+- Urosepsis (active)
+- Sepsis (historical)
+Recent media:
+- Complete blood count: 1 abnormal: WBC H.
+- Lactate: 1 abnormal: Lactate HH.
+Flagged anomalies:
+- Lactate 4.7 mmol/L (HH, ref 0.5 to 2.2) (high)
+- WBC 19.7 10*3/uL (H, ref 4.5 to 11) (moderate)
+Overview:
 70-year-old male with urosepsis, sepsis; latest encounter 2025-02-05 (emergency).
 ```

@@ -137,19 +137,17 @@ class ExtractiveProvider:
             key_diagnoses=diagnoses,
             recent_media=media,
             flagged_anomalies=list(request.anomalies[:MAX_ITEMS]),
-            overview=self._overview(request, [d.name for d in diagnoses]),
+            overview=self._overview(request, diagnoses),
             self_reported_confidence="low",
         )
 
     @staticmethod
-    def _overview(request: SummaryRequest, diagnoses: list[str]) -> str:
+    def _overview(request: SummaryRequest, diagnoses: list[Diagnosis]) -> str:
         context = request.context
         sex = {"female": "female", "male": "male"}.get(context.sex, "patient")
         who = f"{context.age}-year-old {sex}" if context.age is not None else sex.capitalize()
         top = diagnoses[:TOP_DIAGNOSES_IN_OVERVIEW]
-        conditions = (
-            ", ".join(d[:1].lower() + d[1:] for d in top) if top else "no documented diagnoses"
-        )
+        conditions = ", ".join(_condition(d) for d in top) if top else "no documented diagnoses"
         encounters = [e for e in request.view.encounters if e.start]
         if encounters:
             latest = max(encounters, key=lambda e: e.start or date.min)
@@ -160,6 +158,12 @@ class ExtractiveProvider:
         else:
             visit = "no encounter on record"
         return f"{who} with {conditions}; {visit}."
+
+
+def _condition(diagnosis: Diagnosis) -> str:
+    """A diagnosis as the overview words it: a suspected one is never stated as fact."""
+    name = diagnosis.name[:1].lower() + diagnosis.name[1:]
+    return f"suspected {name}" if diagnosis.status == "suspected" else name
 
 
 def _ref(record: SourceRecord) -> EvidenceRef:

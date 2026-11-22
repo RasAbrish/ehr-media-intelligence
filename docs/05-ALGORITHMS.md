@@ -202,7 +202,7 @@ Field limits (lengths and item counts in section 6 of `03-DATA-MODEL.md`) are no
 - key_diagnoses: match a curated dictionary (about 40 conditions with synonyms) against note text; evidence = matching records. A small NegEx-style check reads the clause around each mention: negated mentions ("no evidence of pneumonia", "PE was ruled out") are skipped, uncertain ones ("suspected PE", "rule out sepsis") give status `suspected`. Otherwise status is `active` if affirmed in the newest note, else `historical`.
 - recent_media: newest 5 DiagnosticReports and imaging DocumentReferences; finding = conclusion first 120 chars.
 - flagged_anomalies: rule anomalies.
-- overview: template "{age}-year-old {sex} with {top diagnoses}; latest encounter {date} ({class})."
+- overview: template "{age}-year-old {sex} with {top diagnoses}; latest encounter {date} ({class})." A suspected diagnosis reads "suspected {name}", never as fact.
 - self_reported_confidence: `low`.
 
 ### 3.5 Guardrails

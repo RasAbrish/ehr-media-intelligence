@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import dataclasses
+import hashlib
 import sqlite3
 from collections.abc import Iterator
 from contextlib import closing
@@ -113,6 +114,9 @@ async def test_cache_miss_after_bundle_change(conn: sqlite3.Connection) -> None:
 async def test_prompt_version_invalidates_cache(conn: sqlite3.Connection) -> None:
     assert cache_key("p", "h", "v1", "m") != cache_key("p", "h", "v2", "m")
     assert cache_key("p", "h", "v1", "m") != cache_key("p", "h", "v1", None)
+    # A change to the extractive rules must not serve summaries made by the old rules.
+    unversioned = hashlib.sha256(b"p:h:v1:extractive").hexdigest()
+    assert cache_key("p", "h", "v1", None) != unversioned
     provider = fake()
     svc = service(conn, provider)
     await svc.summarize_all()

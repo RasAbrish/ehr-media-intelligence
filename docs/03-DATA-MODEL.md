@@ -623,7 +623,7 @@ Field limits: `chief_concern ≤ 160 chars`, `key_diagnoses ≤ 5` (name ≤ 80,
 
 `DISCLAIMER = "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting."`
 
-Cache key: `sha256(f"{patient_key}:{bundle_hash}:{prompt_version}:{model or 'extractive'}")`.
+Cache key: `sha256(f"{patient_key}:{bundle_hash}:{prompt_version}:{model or 'extractive-2'}")`. The number is `EXTRACTIVE_RULES_VERSION`, raised when the extractive rules change their output.
 `bundle_hash`: sha256 of canonical JSON (sorted keys, `timestamp` and `meta.lastUpdated` removed).
 
 ## 7. Vector index (Chroma collection `ehr_records`)

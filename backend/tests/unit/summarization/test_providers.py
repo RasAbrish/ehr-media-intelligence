@@ -36,6 +36,17 @@ async def test_extractive_output_valid() -> None:
     assert result.input_tokens == result.output_tokens == 0
 
 
+async def test_overview_never_states_a_suspected_diagnosis_as_fact() -> None:
+    note = make_document(
+        text="ASSESSMENT: Acute ischemic stroke.\n"
+        "PLAN: Telemetry to evaluate for atrial fibrillation."
+    )
+    out = (await ExtractiveProvider().summarize(make_request(documents=[note]))).output
+    assert ("Atrial fibrillation", "suspected") in {(d.name, d.status) for d in out.key_diagnoses}
+    assert "suspected atrial fibrillation" in out.overview
+    assert "suspected acute ischemic stroke" not in out.overview
+
+
 async def test_extractive_without_documents() -> None:
     result = await ExtractiveProvider().summarize(make_request(documents=[]))
     assert result.output.chief_concern == NOT_DOCUMENTED

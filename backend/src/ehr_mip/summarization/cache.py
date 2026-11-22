@@ -12,9 +12,13 @@ import sqlite3
 
 from ehr_mip.summarization.schemas import ClinicalSummary, SummaryTrace
 
+# Raise when the extractive rules change their output: the rules have no prompt version.
+EXTRACTIVE_RULES_VERSION = 2
+
 
 def cache_key(patient_key: str, bundle_hash: str, prompt_version: str, model: str | None) -> str:
-    raw = f"{patient_key}:{bundle_hash}:{prompt_version}:{model or 'extractive'}"
+    source = model or f"extractive-{EXTRACTIVE_RULES_VERSION}"
+    raw = f"{patient_key}:{bundle_hash}:{prompt_version}:{source}"
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()
 
 

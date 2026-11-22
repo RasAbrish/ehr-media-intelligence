@@ -98,6 +98,16 @@ def test_manual_review_sheet_never_overwrites(tmp_path: Path) -> None:
     assert sheet.read_text(encoding="utf-8") == "scored by a person"
 
 
+def test_manual_review_sheet_shows_each_diagnosis_status(tmp_path: Path) -> None:
+    sheet = tmp_path / "review.md"
+    summary = _summary()
+    assert write_manual_review_template(None, sheet, [summary])  # type: ignore[arg-type]
+    content = sheet.read_text(encoding="utf-8")
+    assert summary.key_diagnoses
+    for diagnosis in summary.key_diagnoses:
+        assert f"- {diagnosis.name} ({diagnosis.status})" in content
+
+
 def test_report_markdown_lists_gates_and_misses() -> None:
     report = {
         "generated_at": "2026-11-21T12:00:00+00:00",
