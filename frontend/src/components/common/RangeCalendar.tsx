@@ -1,7 +1,9 @@
 import { DayPicker, type DateRange, type Matcher } from "react-day-picker";
-import "react-day-picker/style.css";
 
+import { copy } from "@/lib/copy";
 import { cn } from "@/lib/utils";
+
+const DAY = new Intl.DateTimeFormat("en-US", { dateStyle: "full" });
 
 interface RangeCalendarProps {
   selected: DateRange | undefined;
@@ -31,6 +33,11 @@ export function RangeCalendar({
       selected={selected}
       onSelect={onSelect}
       showOutsideDays
+      labels={{
+        // The default "26th" does not contain the visible "26" (WCAG 2.5.3, label in name).
+        labelDayButton: (date, modifiers) =>
+          copy.filters.day(DAY.format(date), modifiers.today, modifiers.selected),
+      }}
       {...(defaultMonth ? { defaultMonth } : {})}
       {...(disabled ? { disabled } : {})}
       className={cn(
@@ -38,6 +45,9 @@ export function RangeCalendar({
         "[--rdp-day-height:2.25rem] [--rdp-day-width:2.25rem] [--rdp-day_button-height:2rem] [--rdp-day_button-width:2rem]",
         "[--rdp-day_button-border-radius:var(--radius-md)] [--rdp-months-gap:1.5rem] [--rdp-nav-height:2.25rem]",
         "[--rdp-range_end-color:var(--primary-foreground)] [--rdp-range_start-color:var(--primary-foreground)]",
+        // 44 px days and arrows on touch layouts (docs/06 section 9).
+        "max-md:[--rdp-day-height:2.75rem] max-md:[--rdp-day-width:2.75rem] max-md:[--rdp-day_button-height:2.75rem] max-md:[--rdp-day_button-width:2.75rem]",
+        "max-md:[--rdp-nav-height:2.75rem] max-md:[--rdp-nav_button-height:2.75rem] max-md:[--rdp-nav_button-width:2.75rem]",
         "[--rdp-today-color:var(--primary)] [&_.rdp-caption_label]:text-heading",
         className,
       )}

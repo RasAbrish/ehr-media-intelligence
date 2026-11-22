@@ -767,7 +767,7 @@ interface SummaryFeedbackResponse { id: number; cache_key: string; rating: "help
 ```json
 { "id": 31, "cache_key": "4f1d2a9b0c7e", "rating": "not_helpful", "totals": {"helpful": 2, "not_helpful": 1} }
 ```
-Errors: 404 `patient_not_found`; 422 (`reason` missing for `not_helpful`, unknown `cache_key` for this patient, comment too long); 409 `feedback_duplicate`; 429 `rate_limited`.
+Errors: 404 `patient_not_found`; 404 `not_found` when `FEEDBACK_ENABLED=false` (the UI hides the controls through `/ready` `flags.feedback_enabled`); 422 (`reason` missing for `not_helpful`, unknown `cache_key` for this patient, comment too long); 409 `feedback_duplicate`; 429 `rate_limited`.
 
 `ClinicalSummaryResponse` gains `cache_key: string` so the client can send it.
 
@@ -781,6 +781,7 @@ Prometheus text exposition. Not under `/api` in nginx (internal scrape only). Ke
 | `http_request_duration_seconds` | histogram | `method`, `handler` |
 | `search_latency_seconds` | histogram | `mode`, `cache` |
 | `cache_requests_total` | counter | `cache` (`search`, `patient`, `summary`), `result` (`hit`, `miss`) |
+| `cache_errors_total` | counter | `store` (`cache`, `rate_limit`) |
 | `llm_calls_total` | counter | `provider`, `status` |
 | `llm_tokens_total` | counter | `direction` (`input`, `output`) |
 | `llm_latency_seconds` | histogram | `provider` |

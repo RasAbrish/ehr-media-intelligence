@@ -1,5 +1,5 @@
 /** System endpoints (docs/04 section 4). */
-import { z } from "zod";
+import { z } from "@/lib/zod";
 
 import { RunStatusSchema, SearchModeSchema, SummaryProviderSchema } from "@/lib/contract-enums";
 

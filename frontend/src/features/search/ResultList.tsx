@@ -14,11 +14,18 @@ interface ResultListProps {
   onOpen: (result: SearchResult, element: HTMLElement) => void;
   /** The record whose card opened the drawer (one card, not every card of that patient). */
   selectedId?: string | null;
+  onPrefetch?: (patientKey: string) => void;
   handleRef?: Ref<ResultListHandle>;
 }
 
 /** Results as a list of card buttons with one tab stop and arrow-key navigation. */
-export function ResultList({ results, onOpen, selectedId, handleRef }: ResultListProps) {
+export function ResultList({
+  results,
+  onOpen,
+  selectedId,
+  handleRef,
+  onPrefetch,
+}: ResultListProps) {
   const roving = useRovingFocus(results.length);
   useImperativeHandle(
     handleRef,
@@ -38,6 +45,7 @@ export function ResultList({ results, onOpen, selectedId, handleRef }: ResultLis
             <ResultCard
               result={result}
               onOpen={onOpen}
+              {...(onPrefetch ? { onPrefetch } : {})}
               selected={selectedId === result.resource.resource_id}
               buttonRef={item.ref}
               tabIndex={item.tabIndex}

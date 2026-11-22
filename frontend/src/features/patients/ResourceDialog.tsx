@@ -1,10 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
+import { XIcon } from "lucide-react";
 
 import { CopyButton } from "@/components/common/CopyButton";
 import { ErrorState } from "@/components/common/ErrorState";
 import { ResourceTypeBadge } from "@/components/common/ResourceTypeBadge";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -124,8 +127,11 @@ export function ResourceDialog({ target, onClose }: ResourceDialogProps) {
         if (!open) onClose();
       }}
     >
-      <DialogContent className="flex max-h-[85dvh] w-full max-w-[calc(100%-2rem)] flex-col gap-4 sm:max-w-2xl">
-        <DialogHeader>
+      <DialogContent
+        showCloseButton={false}
+        className="flex max-h-[85dvh] w-full max-w-[calc(100%-2rem)] flex-col gap-4 sm:max-w-2xl"
+      >
+        <DialogHeader className="pr-10">
           <DialogTitle className="text-title">
             {detail?.resource.title ?? copy.drawer.loading}
           </DialogTitle>
@@ -159,9 +165,13 @@ export function ResourceDialog({ target, onClose }: ResourceDialogProps) {
         ) : null}
         {detail ? (
           <Tabs defaultValue="readable" className="min-h-0 flex-1">
-            <TabsList variant="line">
-              <TabsTrigger value="readable">{copy.dialog.readable}</TabsTrigger>
-              <TabsTrigger value="fhir">{copy.dialog.fhir}</TabsTrigger>
+            <TabsList variant="line" className="group-data-horizontal/tabs:h-auto">
+              <TabsTrigger value="readable" className="h-8 max-md:h-11">
+                {copy.dialog.readable}
+              </TabsTrigger>
+              <TabsTrigger value="fhir" className="h-8 max-md:h-11">
+                {copy.dialog.fhir}
+              </TabsTrigger>
             </TabsList>
             <TabsContent value="readable" className="min-h-0 overflow-y-auto pt-2">
               <Readable detail={detail} />
@@ -179,6 +189,18 @@ export function ResourceDialog({ target, onClose }: ResourceDialogProps) {
             </TabsContent>
           </Tabs>
         ) : null}
+        <DialogClose
+          render={
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute top-2 right-2 max-md:size-11"
+              aria-label={copy.dialog.close}
+            />
+          }
+        >
+          <XIcon aria-hidden />
+        </DialogClose>
       </DialogContent>
     </Dialog>
   );

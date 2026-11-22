@@ -258,6 +258,61 @@ describe("Search page", () => {
     expect(all.map((a) => a.hasAttribute("data-selected"))).toEqual([false, true]);
   });
 
+  it.each(["hover", "focus"] as const)(
+    "prefetches patient detail and summary once on card %s",
+    async (how) => {
+      const user = userEvent.setup();
+      const seen: string[] = [];
+      server.use(
+        http.get("*/api/patients/:key", () => {
+          seen.push("detail");
+          return HttpResponse.json(fixtures.patient);
+        }),
+        http.get("*/api/patients/:key/summary", () => {
+          seen.push("summary");
+          return HttpResponse.json(fixtures.summary);
+        }),
+      );
+      await renderApp("/?q=potassium");
+      const list = await resultsList();
+      if (how === "hover") {
+        await user.hover(
+          within(must(within(list).getAllByRole("article")[0])).getByRole("heading"),
+        );
+      } else {
+        const button = must(within(list).getAllByRole("button", { name: /^Open / })[0]);
+        act(() => {
+          button.focus();
+        });
+      }
+      await waitFor(() => {
+        expect([...seen].sort()).toEqual(["detail", "summary"]);
+      });
+      await user.click(within(must(within(list).getAllByRole("article")[0])).getByRole("heading"));
+      await screen.findByRole("note");
+      expect(seen).toHaveLength(2); // the drawer opens from the cache
+    },
+  );
+
+  it("does not prefetch for a passing mouse", async () => {
+    const user = userEvent.setup();
+    let calls = 0;
+    server.use(
+      http.get("*/api/patients/:key", () => {
+        calls += 1;
+        return HttpResponse.json(fixtures.patient);
+      }),
+    );
+    await renderApp("/?q=potassium");
+    const heading = within(must(within(await resultsList()).getAllByRole("article")[0])).getByRole(
+      "heading",
+    );
+    await user.hover(heading);
+    await user.unhover(heading);
+    await new Promise((resolve) => setTimeout(resolve, 250));
+    expect(calls).toBe(0);
+  });
+
   it("has no serious axe violations with results", async () => {
     const { container } = await renderApp("/?q=potassium");
     await screen.findByText(firstName);

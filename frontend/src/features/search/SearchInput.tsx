@@ -1,5 +1,5 @@
 import { LoaderCircleIcon, SearchIcon, XIcon } from "lucide-react";
-import type { KeyboardEvent, Ref } from "react";
+import type { KeyboardEvent } from "react";
 
 import { Kbd } from "@/components/ui/kbd";
 import { copy } from "@/lib/copy";
@@ -8,18 +8,11 @@ interface SearchInputProps {
   value: string;
   onChange: (value: string) => void;
   isFetching: boolean;
-  inputRef?: Ref<HTMLInputElement>;
   onArrowDown?: () => void;
 }
 
 /** 48 px search field with label, spinner, clear button and "/" hint (docs/06 section 6.2). */
-export function SearchInput({
-  value,
-  onChange,
-  isFetching,
-  inputRef,
-  onArrowDown,
-}: SearchInputProps) {
+export function SearchInput({ value, onChange, isFetching, onArrowDown }: SearchInputProps) {
   const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Escape" && value) {
       event.preventDefault();
@@ -41,7 +34,7 @@ export function SearchInput({
         />
         <input
           id="search-input"
-          ref={inputRef}
+          data-page-search
           type="search"
           autoComplete="off"
           spellCheck={false}
@@ -69,7 +62,7 @@ export function SearchInput({
                 onChange("");
               }}
               aria-label={copy.search.clear}
-              className="inline-flex size-8 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring"
+              className="inline-flex size-8 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring max-md:size-11"
             >
               <XIcon aria-hidden className="size-4" />
             </button>

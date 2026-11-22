@@ -3,6 +3,8 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
 @import "@fontsource-variable/geist-mono";
+/* In a layer, so the token overrides in RangeCalendar (utilities) win over the library. */
+@import "react-day-picker/style.css" layer(components);
 
 @custom-variant dark (&:is(.dark *));
 
@@ -25,7 +27,7 @@
   --muted-foreground: oklch(0.5 0.016 257);
   --accent: oklch(0.95 0.02 196);
   --accent-foreground: oklch(0.3 0.06 196);
-  --destructive: oklch(0.55 0.2 27);
+  --destructive: oklch(0.53 0.2 27);
   --border: oklch(0.915 0.005 247);
   --input: oklch(0.89 0.006 247);
   --ring: oklch(0.58 0.1 196);

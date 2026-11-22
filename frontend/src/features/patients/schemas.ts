@@ -1,5 +1,5 @@
 /** Patient, summary, resource and feedback contracts (docs/04 sections 6, 7 and 9a). */
-import { z } from "zod";
+import { z } from "@/lib/zod";
 
 import {
   EvidenceRefSchema,
@@ -169,6 +169,8 @@ export const AuditEntryItemSchema = z.strictObject({
   severity: SeveritySchema,
   message: z.string(),
 });
+
+export const AuditPageSchema = pageSchema(AuditEntryItemSchema);
 
 export const SummaryFeedbackRequestSchema = z.strictObject({
   cache_key: z.string(),

@@ -1,11 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
+import { noop, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useSearch } from "@tanstack/react-router";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 import { EmptyState } from "@/components/common/EmptyState";
 import { ErrorState } from "@/components/common/ErrorState";
 import { IndexEmptyNotice } from "@/components/common/IndexEmptyNotice";
+import { OnboardingTip } from "@/components/common/OnboardingTip";
 import { Button } from "@/components/ui/button";
+import { patientQuery, summaryQuery } from "@/features/patients/api";
+import { loadDrawerBody } from "@/features/patients/drawer-chunk";
 import { PatientDrawer } from "@/features/patients/PatientDrawer";
 import { searchQuery } from "@/features/search/api";
 import { FilterBar } from "@/features/search/FilterBar";
@@ -14,80 +17,28 @@ import { ResultList, type ResultListHandle } from "@/features/search/ResultList"
 import { ResultSkeletons } from "@/features/search/ResultSkeletons";
 import { QUERY_MIN, type SearchResult } from "@/features/search/schemas";
 import { SearchInput } from "@/features/search/SearchInput";
+import { useUrlText } from "@/hooks/useUrlText";
 import { copy } from "@/lib/copy";
 import { ApiError } from "@/lib/problem";
-import { modalOpen } from "@/lib/modal";
 import { readyQuery } from "@/lib/system-api";
 
-const DEBOUNCE_MS = 300;
 const DEFAULT_RETRY_S = 60;
-
-function isTypingTarget(target: EventTarget | null): boolean {
-  if (!(target instanceof HTMLElement)) return false;
-  return target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName);
-}
 
 /** Search screen (docs/06 sections 7.1 and 8.3): URL state, debounced live results, drawer. */
 export function SearchPage() {
   const search = useSearch({ from: "/" });
   const navigate = useNavigate({ from: "/" });
-  const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<ResultListHandle>(null);
   const openerRef = useRef<HTMLElement | null>(null);
 
   const urlQuery = search.q ?? "";
-  const [draft, setDraft] = useState(urlQuery);
-  const [seenUrl, setSeenUrl] = useState(urlQuery);
-  const [lastPushed, setLastPushed] = useState(urlQuery);
-  const timer = useRef<number | undefined>(undefined);
-
-  // URL → draft when the URL changed from outside (back button, link). Adjusting state
-  // during render is React's pattern for this; our own debounced pushes are skipped.
-  if (urlQuery !== seenUrl) {
-    setSeenUrl(urlQuery);
-    if (urlQuery !== lastPushed) setDraft(urlQuery);
-  }
-
-  const pushQuery = useCallback(
+  const writeQuery = useCallback(
     (value: string, replace: boolean) => {
-      const next = value.trim();
-      setLastPushed(next);
-      void navigate({ search: (prev) => ({ ...prev, q: next || undefined }), replace });
+      void navigate({ search: (prev) => ({ ...prev, q: value || undefined }), replace });
     },
     [navigate],
   );
-
-  // Draft → URL after 300 ms without typing; replace, so typing does not fill the history.
-  const onDraftChange = (value: string) => {
-    setDraft(value);
-    window.clearTimeout(timer.current);
-    timer.current = window.setTimeout(() => {
-      pushQuery(value, true);
-    }, DEBOUNCE_MS);
-  };
-
-  useEffect(
-    () => () => {
-      window.clearTimeout(timer.current);
-    },
-    [],
-  );
-
-  // "/" and Ctrl/Cmd+K focus the search field from anywhere (docs/06 section 8.4).
-  useEffect(() => {
-    const onKey = (event: KeyboardEvent) => {
-      if (modalOpen()) return; // the drawer and dialogs keep focus while open
-      const commandK = (event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k";
-      if (commandK || (event.key === "/" && !isTypingTarget(event.target))) {
-        event.preventDefault();
-        inputRef.current?.focus();
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => {
-      window.removeEventListener("keydown", onKey);
-    };
-  }, []);
+  const { draft, change: onDraftChange, choose: runExample } = useUrlText(urlQuery, writeQuery);
 
   const filters: FilterValue = {
     types: search.type ?? [],
@@ -110,12 +61,6 @@ export function SearchPage() {
       replace: true,
     });
 
-  const runExample = (example: string) => {
-    window.clearTimeout(timer.current);
-    setDraft(example);
-    pushQuery(example, false);
-  };
-
   const [openedResource, setOpenedResource] = useState<string | null>(null);
   const openPatient = useCallback(
     (result: SearchResult, element: HTMLElement) => {
@@ -124,6 +69,16 @@ export function SearchPage() {
       void navigate({ search: (prev) => ({ ...prev, patient: result.patient.patient_key }) });
     },
     [navigate],
+  );
+
+  const queryClient = useQueryClient();
+  const prefetchPatient = useCallback(
+    (key: string) => {
+      loadDrawerBody().catch(noop); // opening the drawer reports a failed load
+      queryClient.query(patientQuery(key)).catch(noop); // the drawer shows any error itself
+      queryClient.query(summaryQuery(key)).catch(noop); // the drawer shows any error itself
+    },
+    [queryClient],
   );
 
   const closePatient = useCallback(() => {
@@ -157,9 +112,9 @@ export function SearchPage() {
         value={draft}
         onChange={onDraftChange}
         isFetching={active && results.isFetching}
-        inputRef={inputRef}
         onArrowDown={() => listRef.current?.focusFirst()}
       />
+      <OnboardingTip />
       <FilterBar value={filters} onChange={setFilters} />
       <p className="sr-only" aria-live="polite" aria-atomic="true">
         {liveText}
@@ -217,6 +172,7 @@ export function SearchPage() {
             <ResultList
               results={data.results}
               onOpen={openPatient}
+              onPrefetch={prefetchPatient}
               selectedId={search.patient ? openedResource : null}
               handleRef={listRef}
             />
