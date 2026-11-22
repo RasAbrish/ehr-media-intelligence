@@ -71,7 +71,7 @@ feat(api): serve search, patients and resources with tests (Task 4)
 feat(frontend): add the search page, stories and tests (Task 5)
 ```
 
-The work was first delivered as eight phase commits. On 2026-11-22 they were split by change without altering their content, so commits from one phase share that phase's author date.
+The work was first delivered as eight phase commits. On 2026-11-22 they were split by change without altering their content, keeping each phase's date. On 2026-11-23 their times were spaced a few minutes apart, in order, starting at that date, so every commit has its own time. These times show the order of the changes, not the minute each one was written.
 
 ## 4. Makefile targets
 
