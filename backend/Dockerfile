@@ -2,7 +2,7 @@
 # API image (docs/02 section 7, docs/09 section 9). Build from the repo root:
 #   docker build -f backend/Dockerfile .
 
-FROM python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b AS build
+FROM python:3.15-slim@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928 AS build
 ENV UV_LINK_MODE=copy \
     UV_COMPILE_BYTECODE=1 \
     UV_PYTHON_DOWNLOADS=never \
@@ -21,7 +21,7 @@ RUN uv sync --locked --no-dev --extra redis --no-editable
 FROM build AS model
 RUN ["/app/.venv/bin/python", "-c", "from pathlib import Path; from ehr_mip.config import Settings; from ehr_mip.search.embedder import SentenceTransformerEmbedder; e = SentenceTransformerEmbedder(Settings().embedding_model, Path('/opt/hf-cache')); print('baked', e.model_name)"]
 
-FROM python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b
+FROM python:3.15-slim@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928
 # Security fixes published since the pinned base was built.
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get upgrade --yes --no-install-recommends \
