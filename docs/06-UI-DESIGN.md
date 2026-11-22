@@ -124,8 +124,15 @@ Base font size 14 px (dense app), set on `body` via `text-body`; the root font s
 
 ## 6. Components
 
-### 6.1 Top bar
-Height 56, `bg-background/80` with backdrop blur, bottom border. Left: product mark (small teal square glyph + "Media Intelligence" in `text-heading`). Center/left nav: Search, Patients, Data quality (active item `text-foreground` with 2 px bottom indicator in primary). Right: stats pill ("60 patients · 248 records" in `text-meta`), theme toggle, shortcuts button (`?`).
+### 6.1 Sidebar
+One `header` landmark that changes shape with the viewport.
+
+- **Open (the default from 1024):** a full height sidebar, 14rem, `bg-card`, right border. Top: product mark and name. Then Search, Patients and Data quality, each with an icon and a label. Bottom: record counts in `text-meta`, theme and keyboard shortcuts, also with labels.
+- **Closed (the default from 768 to 1023):** a 5rem rail. Each item keeps its label under the icon. The product name stays as the link's accessible name and the counts are hidden.
+- **Open and close:** from 768 a button beside the product mark ("Close sidebar" or "Open sidebar", with `aria-expanded`) switches between the two. The choice is stored per browser as `mi-sidebar` and then wins at every width from 768. Focus stays on the button.
+- **Below 768:** a 56 px sticky top bar with the menu, product mark and theme. The menu lists the same items with the same icons.
+
+Active item: `bg-accent`, `text-accent-foreground`, a primary icon and the 3 px inset primary rule of a selected card, plus `aria-current="page"`.
 
 ### 6.2 Search input
 - Height 48, radius 10, `bg-card`, border `--input`, left search icon, right side: spinner while fetching, clear button, `Kbd` "/" hint when empty.
@@ -134,7 +141,7 @@ Height 56, `bg-background/80` with backdrop blur, bottom border. Left: product m
 - Visible label above in `text-meta` ("Search patient records"); may be visually hidden on desktop only if the placeholder is not the only label (keep `aria-label`).
 
 ### 6.2a Demo banner
-Only in builds with `VITE_DEMO_MODE=true`: a `bg-warning/15` strip above the top bar, "Public demo with synthetic patients. Do not enter real patient information.", and while the free host wakes a status line "The free server is waking up. This can take up to 4 minutes."
+Only in builds with `VITE_DEMO_MODE=true`: a `bg-warning/15` strip at the top of the content column (above the top bar on phones), so the sidebar keeps its full height, "Public demo with synthetic patients. Do not enter real patient information.", and while the free host wakes a status line "The free server is waking up. This can take up to 4 minutes."
 
 ### 6.3 Filter bar
 Row under input, gap 8: `ResourceTypeFilter` (outline button "Type: All" → popover with checkbox list and colored dots), `DateRangeFilter` (outline button with calendar icon "Any date" → popover with presets column: Last 30 days, Last 6 months, Last year, This year, Custom; and a two-month range calendar), active filter chips (secondary pill with x), "Clear filters" ghost button. On mobile the row collapses into a single "Filters (2)" button opening a bottom sheet.
@@ -178,7 +185,7 @@ Row under input, gap 8: `ResourceTypeFilter` (outline button "Type: All" → pop
 - Evidence chip click → switch to Records tab, scroll to and briefly highlight the row (`bg-accent`, 1.2 s fade).
 
 ### 6.8 Tables (directory, records, quality)
-Dense: header 36, rows 40, `text-small`, numeric columns right aligned with `tabular-nums`, ids in mono. Sort indicator icons in header buttons (with `aria-sort`). Pagination footer: "Rows 1 to 25 of 60" + previous/next + page size select.
+Dense: header 36, rows 40, `text-small`, numeric columns right aligned with `tabular-nums`, ids in mono. Sort indicator icons in header buttons (with `aria-sort`). Row height grows when text wraps. A table never needs sideways scrolling: when its own container is narrower than 60rem each row becomes a labeled card, the sortable headers become a row of sort buttons, and table roles are kept for assistive technology. Pagination footer: "Rows 1 to 25 of 60" + previous/next + page size select.
 
 ### 6.9 States
 - **Loading**: 5 skeleton cards mirroring card layout; in drawer, skeleton sections. Inline spinner in input while refetching (results stay visible).
@@ -200,24 +207,22 @@ sonner, bottom right, neutral style; used for "Copied MRN", "Summary regenerated
 ### 7.1 Search page (desktop 1440)
 
 ```
-┌──────────────────────────────────────────────────────────────────────────────────────────────┐
-│ ▪ Media Intelligence   Search  Patients  Data quality          60 patients · 248 records ◐ ? │
-├──────────────────────────────────────────────────────────────────────────────────────────────┤
-│                     (max width 1120, centered)                                               │
-│  Search patient records                                                                      │
-│  ┌──────────────────────────────────────────────────────────────────────────────────── / ┐   │
-│  │ 🔍  rising creatinine with high potassium                                          ✕  │   │
-│  └───────────────────────────────────────────────────────────────────────────────────────┘   │
-│  [Type: Diagnostic report ▾] [📅 Last 6 months ▾]  (Diagnostic report ✕) (Last 6 months ✕)   │
-│                                                                                              │
-│  5 results · 41 ms · Hybrid                                          Ranked by relevance     │
-│  ┌ result card ───────────────────────────────────────────────────────────────────────────┐  │
-│  └────────────────────────────────────────────────────────────────────────────────────────┘  │
-│  ┌ result card ───────────────────────────────────────────────────────────────────────────┐  │
-│  └────────────────────────────────────────────────────────────────────────────────────────┘  │
-│  ...                                                                                         │
-└──────────────────────────────────────────────────────────────────────────────────────────────┘
+┌───────────────────────┬──────────────────────────────────────────────────────────────────────┐
+│ ▪ Media Intelligence ◧│  (content fills the space beside the sidebar)                        │
+│                       │  Search patient records                                              │
+│▌⌕ Search              │  ┌──────────────────────────────────────────────────────────── / ┐   │
+│  👥 Patients           │  │ 🔍  rising creatinine with high potassium                  ✕  │   │
+│  ☑ Data quality       │  └───────────────────────────────────────────────────────────────┘   │
+│                       │  [Type: All ▾] [📅 Any date ▾]                                       │
+│                       │  5 results · 41 ms · Hybrid                    Ranked by relevance   │
+│                       │  ┌ result card ────────────────────────────────┬─────────────────┐   │
+│ 60 patients · 305 ... │  │ patient, record, date, finding              │ AI line         │   │
+│ ◐ Theme               │  └─────────────────────────────────────────────┴─────────────────┘   │
+│ ⌨ Shortcuts           │  ...                                                                 │
+└───────────────────────┴──────────────────────────────────────────────────────────────────────┘
 ```
+
+Results stay in one column because their order is the ranking. A card wider than 60rem puts the AI line in a second column, so lines stay readable on wide screens.
 
 ### 7.2 Search page with drawer open
 
@@ -240,7 +245,7 @@ sonner, bottom right, neutral style; used for "Copied MRN", "Summary regenerated
 ```
 
 ### 7.3 Mobile (390)
-Top bar collapses nav into a menu button. Search input full width, "Filters (n)" button opens bottom sheet. Cards: score moves to top right as number only, snippet 3 lines. Drawer is full screen with a back arrow.
+The sidebar becomes a top bar with a menu button. Directory and quality rows are labeled cards. Record titles and AI lines wrap instead of being cut. Search input full width, "Filters (n)" button opens bottom sheet. Cards: score moves to top right as number only, snippet 3 lines. Drawer is full screen with a back arrow.
 
 ---
 
@@ -250,7 +255,7 @@ Top bar collapses nav into a menu button. Search input full width, "Filters (n)"
 
 | Screen | Route | Tier | Key components | Endpoints |
 |---|---|---|---|---|
-| Search | `/` | R | TopBar, SearchInput, FilterBar, ResultsMeta, ResultList, ResultCard, states | `POST /search`, `GET /stats` |
+| Search | `/` | R | Sidebar, SearchInput, FilterBar, ResultsMeta, ResultList, ResultCard, states | `POST /search`, `GET /stats` |
 | Patient drawer | `/?patient={key}` (also on `/patients`) | R | DrawerHeader, Tabs, SummaryPanel, ResourceTable, ResourceDialog | `GET /patients/{key}`, `/summary`, `/resources`, `GET /resources/{type}/{id}` |
 | Patients directory | `/patients` | P1 | DirectoryToolbar, DirectoryTable, Pagination | `GET /patients` |
 | Data quality | `/quality` | P1 | KpiStrip, Tabs, IssuesTable, AuditTable, QuarantineTable | `GET /quality/*` |
@@ -350,8 +355,11 @@ Implemented with a `useRovingFocus` hook; cards are `<li><button>`; no positive 
 
 | Width | Behavior |
 |---|---|
-| ≥ 1280 | content max 1120, drawer 560 |
-| 768 to 1279 | filters wrap, drawer 480 |
+| ≥ 2560 | root font 125 percent, so type, spacing, sidebar and drawer scale together |
+| 1920 to 2559 | root font 112.5 percent |
+| ≥ 1536 | drawer 40rem |
+| 1024 to 1535 | sidebar open by default (14rem), fluid content, drawer 35rem |
+| 768 to 1023 | sidebar closed by default (5rem rail with labels), filters wrap, drawer 30rem |
 | < 768 | nav in menu, "Filters (n)" bottom sheet, score as number only, drawer full screen with back arrow |
 
 ## 9. Accessibility rules (non-negotiable)
@@ -375,6 +383,8 @@ Implemented with a `useRovingFocus` hook; cards are `<li><button>`; no positive 
 @import "@fontsource-variable/geist-mono";
 
 @custom-variant dark (&:is(.dark *));
+/* A data table whose container is too narrow for columns (section 6.8). */
+@custom-variant stacked { @container data-table (width < 60rem) { @slot; } }
 
 :root {
   --radius: 0.5rem;
@@ -495,8 +505,10 @@ Implemented with a `useRovingFocus` hook; cards are `<li><button>`; no positive 
 
 @layer base {
   * { @apply border-border outline-ring/50; }
-  /* Root stays at the browser default (16px) so rem tokens match the px table in section 4,
-     Tailwind spacing stays on the 4px grid and user font scaling is respected. */
+  /* Root is the browser default (16px) up to 1919 px, so rem tokens match the px table in
+     section 4. Larger screens scale it by percent, which still respects user font scaling. */
+  @media (min-width: 120rem) { html { font-size: 112.5%; } }
+  @media (min-width: 160rem) { html { font-size: 125%; } }
   body { @apply bg-background text-body text-foreground font-sans antialiased; }
   code, kbd, .font-mono { font-feature-settings: "zero" 1; }
   @media (prefers-reduced-motion: reduce) {
@@ -517,7 +529,7 @@ Note: if the shadcn CLI generates its own `index.css`, merge these values into t
 - [ ] Every AI element has the AI marker; disclaimer visible in Summary tab.
 - [ ] Keyboard path works end to end; focus is always visible.
 - [ ] Light and dark both pass contrast.
-- [ ] 390, 1024, 1440 px screenshots reviewed.
+- [ ] 390, 1024, 1440 px screenshots reviewed. Fit checked from 320 to 2560 px.
 - [ ] Loading, empty, no results, error, index-empty states each reviewed.
 - [ ] Copy follows section 14 (sentence case, units, dates, error formula).
 - [ ] AI elements follow section 12 (label, disclaimer, citations, confidence rationale, provenance, feedback).
