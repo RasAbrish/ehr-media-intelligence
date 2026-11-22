@@ -71,7 +71,7 @@ export function ResultCard({
       aria-labelledby={titleId}
       data-selected={selected ? "" : undefined}
       className={cn(
-        "group/card relative rounded-xl border bg-card transition-colors hover:bg-accent/40",
+        "group/card @container/card relative rounded-xl border bg-card transition-colors hover:bg-accent/40",
         "has-[[data-card-button]:focus-visible]:border-ring has-[[data-card-button]:focus-visible]:shadow-[inset_3px_0_0_var(--primary)]",
         selected && "border-ring shadow-[inset_3px_0_0_var(--primary)]",
       )}
@@ -149,7 +149,7 @@ export function ResultCard({
             <WhyThisResult result={result} byDate={byDate} />
           </div>
         </div>
-        <div id={`${id}-meta`} className="flex min-w-0 items-center gap-2">
+        <div id={`${id}-meta`} className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
           <ResourceTypeBadge type={resource.resource_type} />
           {date ? (
             <>
@@ -159,35 +159,43 @@ export function ResultCard({
               >
                 {date}
               </time>
-              <span aria-hidden className="text-muted-foreground">
+              <span aria-hidden className="text-muted-foreground max-md:hidden">
                 ·
               </span>
             </>
           ) : null}
           {/* Not a tab stop: the card button's name already carries the full title. */}
           <Tooltip>
-            <TooltipTrigger render={<span />} className="truncate text-small text-foreground">
+            <TooltipTrigger
+              render={<span />}
+              className="min-w-0 text-small wrap-anywhere text-foreground"
+            >
               {resource.title}
             </TooltipTrigger>
             <TooltipContent>{resource.title}</TooltipContent>
           </Tooltip>
         </div>
-        <p
-          id={`${id}-snippet`}
-          className="line-clamp-3 text-small text-muted-foreground md:line-clamp-2"
-        >
-          <Highlight text={result.snippet} ranges={result.highlights} />
-        </p>
-        <p id={`${id}-ai`} className="flex min-w-0 items-center gap-2 text-small">
-          {result.summary_snippet ? (
-            <>
-              <AiBadge />
-              <span className="truncate">{result.summary_snippet}</span>
-            </>
-          ) : (
-            <span className="truncate text-muted-foreground italic">{copy.card.noSummary}</span>
-          )}
-        </p>
+        <div className="flex flex-col gap-1.5 @min-[60rem]/card:grid @min-[60rem]/card:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] @min-[60rem]/card:items-start @min-[60rem]/card:gap-6">
+          <p
+            id={`${id}-snippet`}
+            className="line-clamp-3 text-small text-muted-foreground md:line-clamp-2"
+          >
+            <Highlight text={result.snippet} ranges={result.highlights} />
+          </p>
+          <p
+            id={`${id}-ai`}
+            className="flex min-w-0 items-start gap-2 text-small @min-[60rem]/card:border-l @min-[60rem]/card:pl-4"
+          >
+            {result.summary_snippet ? (
+              <>
+                <AiBadge />
+                <span className="min-w-0">{result.summary_snippet}</span>
+              </>
+            ) : (
+              <span className="text-muted-foreground italic">{copy.card.noSummary}</span>
+            )}
+          </p>
+        </div>
       </div>
     </article>
   );
