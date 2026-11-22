@@ -183,7 +183,13 @@ export function ResourceDialog({ target, onClose }: ResourceDialogProps) {
                 confirmation={copy.dialog.copied}
                 className="absolute top-3 right-2"
               />
-              <pre className="overflow-x-auto rounded-lg bg-muted p-3 font-mono text-mono">
+              <pre
+                role="region"
+                aria-label={copy.dialog.fhir}
+                // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- keyboard scrolling (axe scrollable-region-focusable)
+                tabIndex={0}
+                className="overflow-x-auto rounded-lg bg-muted p-3 font-mono text-mono focus-visible:outline-2 focus-visible:outline-ring"
+              >
                 {json}
               </pre>
             </TabsContent>

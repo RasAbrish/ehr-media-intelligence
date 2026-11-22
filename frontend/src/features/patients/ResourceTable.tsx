@@ -178,7 +178,10 @@ export function ResourceTable({ items, highlightedId, onOpen }: ResourceTablePro
                       aria-sort={
                         sorted === "asc" ? "ascending" : sorted === "desc" ? "descending" : "none"
                       }
-                      className={cn(header.id === "date" && "w-28", header.id === "type" && "w-40")}
+                      className={cn(
+                        header.id === "date" && "w-28",
+                        header.id === "type" && "w-40 max-md:hidden",
+                      )}
                     >
                       <button
                         type="button"
@@ -218,7 +221,7 @@ export function ResourceTable({ items, highlightedId, onOpen }: ResourceTablePro
                     }}
                     className="h-10 cursor-pointer transition-colors duration-1000 data-highlighted:bg-accent data-highlighted:duration-0"
                   >
-                    <TableCell>
+                    <TableCell className="max-md:hidden">
                       <ResourceTypeBadge type={item.resource_type} />
                     </TableCell>
                     <TableCell className="whitespace-nowrap tabular-nums">
@@ -228,7 +231,7 @@ export function ResourceTable({ items, highlightedId, onOpen }: ResourceTablePro
                         <span className="text-muted-foreground">{copy.ai.undated}</span>
                       )}
                     </TableCell>
-                    <TableCell className="w-full max-w-0">
+                    <TableCell className="w-full max-w-0 whitespace-normal">
                       <button
                         type="button"
                         aria-label={copy.records.open(item.title)}
@@ -236,15 +239,19 @@ export function ResourceTable({ items, highlightedId, onOpen }: ResourceTablePro
                           event.stopPropagation();
                           onOpen(item);
                         }}
-                        className="block min-h-8 w-full truncate rounded-sm text-left font-medium hover:underline focus-visible:outline-2 focus-visible:outline-ring max-md:min-h-11"
+                        className="block min-h-8 w-full rounded-sm text-left font-medium break-words hover:underline focus-visible:outline-2 focus-visible:outline-ring max-md:min-h-11 md:truncate"
                       >
                         {item.title}
                       </button>
                       {item.summary_line && item.summary_line !== item.title ? (
-                        <span className="block truncate text-meta text-muted-foreground">
+                        // Wraps: a value with its unit or flag is never truncated (docs/06 section 14).
+                        <span className="block text-meta break-words text-muted-foreground">
                           {item.summary_line}
                         </span>
                       ) : null}
+                      <span className="block pt-1 md:hidden">
+                        <ResourceTypeBadge type={item.resource_type} />
+                      </span>
                     </TableCell>
                     <TableCell className="whitespace-nowrap">
                       <span
