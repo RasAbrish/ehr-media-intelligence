@@ -18,7 +18,7 @@ A pipeline that turns messy EHR exports into validated FHIR R4, summaries that c
 - **De-identified context:** age, sex and scrubbed text. It is not Safe Harbor, because dates and other people's names can remain.
 - **Prompt injection:** records are escaped data, instruction-like text is removed, the model has no tools and an adversarial test covers it.
 - **API and runtime:** rate limits, security headers, input limits, logs without PHI and hardened containers.
-- **Eval gates and feedback:** versioned prompts, golden and adversarial sets in CI, and clinician votes stored per prompt version.
+- **Eval gates and feedback:** versioned prompts, golden and adversarial gates run by `make eval` (the GitHub workflows are switched off, as no hosted runner is available), and clinician votes stored per prompt version.
 
 ## With more time
 

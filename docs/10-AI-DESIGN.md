@@ -98,7 +98,7 @@ Displayed as level + score + rationale tooltip ("Medium: identity merged from 2 
 | Cost per full run | reported (tokens × price table in settings) |
 | p95 latency per summary | reported |
 
-CI runs the gates that need no API key. `make eval` (local or a manual GitHub workflow with the key as a secret) runs the real model and writes `reports/eval_report.{json,md}`.
+The CI workflow runs the gates that need no API key. It is switched off as of 2026-11-22 (no hosted runner available), so they run by hand with `make check` and `make eval`. `make eval` (local or a manual GitHub workflow with the key as a secret) runs the real model and writes `reports/eval_report.{json,md}`.
 
 ### 6.3 Optional LLM-as-judge (P2)
 A second Claude call scores each summary 1 to 5 on faithfulness and completeness against the context with a fixed rubric. Reported only, never a gate, and spot-checked against the manual review for agreement.

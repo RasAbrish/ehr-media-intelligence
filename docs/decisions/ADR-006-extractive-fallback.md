@@ -18,6 +18,6 @@ Provide a deterministic extractive provider. It uses section headings and a conc
 
 ## Consequences
 
-- Everything runs offline, and CI evaluates summaries without a key.
+- Everything runs offline, and the test suite and `make eval` evaluate summaries without a key.
 - Extractive summaries always report low confidence and read as extracted fragments.
 - The dictionary limits recall: on the synthetic set it finds 84 of 96 expected conditions and misses all 6 expected cases of hyponatremia and 6 of the 12 of hyperlipidemia.

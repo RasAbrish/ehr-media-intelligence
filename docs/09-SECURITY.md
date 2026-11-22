@@ -58,7 +58,7 @@ flowchart LR
 | **I**nformation disclosure | PHI sent to LLM vendor | De-identified context builder | `test_context_has_no_phi` |
 | **I**nformation disclosure | XSS through snippets or AI text | React text rendering only; highlights by index ranges; strict CSP; no `dangerouslySetInnerHTML` (ESLint rule) | `test_highlight_escapes_html`, ESLint |
 | **D**enial of service | Expensive search flood, large bodies, regenerate spam (LLM cost) | Rate limits per IP, 16 KB body limit, query length 500, `top_k ≤ 20`, regenerate 5 per minute, LLM concurrency cap, request timeout | rate limit tests |
-| **E**levation of privilege | Container escape, writable code dirs | Non-root user, read-only root fs, `no-new-privileges`, dropped capabilities, data on a named volume only | `docker inspect` check in CI |
+| **E**levation of privilege | Container escape, writable code dirs | Non-root user, read-only root fs, `no-new-privileges`, dropped capabilities, data on a named volume only | Set in `docker-compose.yml` and reviewed by hand. No automated check |
 
 ## 4. OWASP API Security Top 10 (2023) mapping
 
@@ -135,6 +135,8 @@ Body ≤ 16 KB (search, feedback), query 2 to 500 chars, `page_size ≤ 100`, `t
 | Model or API outage | Extractive fallback per patient |
 
 ## 8. Supply chain
+
+> **Status, 2026-11-22:** GitHub Actions is switched off for this repository because no hosted runner is available to it. Where this document names CI as a control, that control runs only by hand: `make security` covers pip-audit, pnpm audit, gitleaks and Trivy. CodeQL has no local equivalent and has not run.
 
 | Practice | Tool |
 |---|---|

@@ -202,6 +202,8 @@ SearchInput debounce (fake timers) and no request under 2 chars; filter changes 
 
 ## 5. CI
 
+> **Status, 2026-11-22:** GitHub Actions is switched off for this repository because no hosted runner is available to it. The jobs below describe the workflow files. They have not completed a run on GitHub. Run `make check`, `make security`, `make e2e`, `make lighthouse` and `make eval` before each push.
+
 ```mermaid
 flowchart LR
     push["push / PR"] --> be["backend job<br/>uv sync, make data,<br/>ruff, mypy, import-linter,<br/>pytest + coverage ≥ 85,<br/>perf tests, contract snapshot"]

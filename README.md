@@ -64,7 +64,7 @@ The browser targets use a project-local Chromium:
 cd frontend && PLAYWRIGHT_BROWSERS_PATH=0 pnpm exec playwright install chromium
 ```
 
-Tests never call the Claude API.
+Tests never call the Claude API. GitHub Actions is switched off for this repository, so these commands are the gates and are run by hand (see [Known limitations](#known-limitations)).
 
 Lighthouse on 2026-11-22, median of three runs, production build, development laptop on mains power:
 
@@ -139,7 +139,7 @@ The specification is in [docs/01-SPEC.md](docs/01-SPEC.md), the architecture in 
 
 ## Data and privacy
 
-- **Synthetic only.** A seeded generator builds 60 fictional patients and injects the problems the pipeline must handle, listed in `data/raw/_ground_truth.json`. Names come from Faker and phone numbers use the reserved 555-01xx range. CI fails if the data and the generator drift apart.
+- **Synthetic only.** A seeded generator builds 60 fictional patients and injects the problems the pipeline must handle, listed in `data/raw/_ground_truth.json`. Names come from Faker and phone numbers use the reserved 555-01xx range. After `make data`, `git diff data/raw` is empty unless the data and the generator have drifted apart.
 - **Model context.** Age, sex and clinical text, with the patient's own identifiers and common contact formats removed. This is not Safe Harbor de-identification ([ADR-005](docs/decisions/ADR-005-deidentified-llm-context.md)).
 - **Logs.** Ids and routes without query strings. No names, MRNs, birth dates or note text.
 - **Audit views.** Identity values are masked. Patient responses are never written to Redis.
@@ -160,6 +160,7 @@ Backend layers import downward only (`api > search > summarization > fhir > inge
 
 ## Known limitations
 
+- **No automatic CI.** The workflows in `.github/workflows` have never completed a run on GitHub: hosted runners are not available to this account, so the CI, Security and eval workflows are switched off. The checks were run locally with the commands under [Tests](#tests), and the workflow steps were rehearsed on a clean clone. CodeQL has not run at all. The failed runs on earlier commits never started a job.
 - **No authentication or access audit.** Do not expose the app or load real patient data.
 - **The Claude provider has never been run against the real API here.** Its quality, cost and latency are unknown. The manual review of summaries is still to be done by a person.
 - **Extractive recall is 87.5 percent.** It misses all 6 expected cases of hyponatremia and 6 of the 12 of hyperlipidemia.

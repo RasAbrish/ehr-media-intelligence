@@ -4,7 +4,11 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+### Changed
+- GitHub Actions is switched off because no hosted runner is available. The README, write-up and docs/07, 09 and 10 now say that the gates run by hand, and no longer claim an automated container hardening check.
+
 ### Fixed
+- The extractive overview stated suspected diagnoses as fact (6 of 60 patients). It now says suspected, the summary cache key carries the rules version, and the manual review sheet shows each diagnosis status. Run `make pipeline` on an existing database.
 - The scheduled eval workflow failed on every run: a fresh runner has no bundles, so it now runs ingest and normalize before eval.
 
 ## Phase 7
