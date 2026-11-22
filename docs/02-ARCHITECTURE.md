@@ -502,6 +502,6 @@ Write each as `docs/decisions/ADR-00N-*.md` (context, decision, consequences).
 | 007 | Conservative identity resolution | Aggressive fuzzy merge | Wrong merges are clinically dangerous |
 | 008 | Ambiguous dates parsed as US MM/DD with warning audit | Silent guess | Epic US source; every guess visible |
 | 009 | stdlib `sqlite3` + repositories | SQLAlchemy ORM | Small schema, transparent SQL, fewer deps |
-| 010 | TanStack Router with Zod search params | React Router | Typed, validated URL state for shareable searches |
+| 010 | TanStack Router with validated search params | React Router | Typed, validated URL state for shareable searches |
 | 011 | Redis optional, memory TTL cache default | Redis required | Single process and small data; Redis adds value only when scaling to several API replicas. Interface `CacheBackend` keeps the switch to one setting |
-| 012 | slowapi for rate limiting | Custom middleware | Mature, supports memory and Redis storage, standard headers |
+| 012 | `limits` library from an ASGI middleware | slowapi; hand-written counters | Mature engine with memory and Redis storage, and the `RateLimit-*` headers the contract names |
