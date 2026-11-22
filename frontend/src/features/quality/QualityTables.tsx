@@ -35,25 +35,24 @@ function PatientLink({ patient }: { patient: PatientRef | null }) {
     <Link
       to="/patients"
       search={{ patient: patient.patient_key }}
-      className="inline-flex min-h-8 items-center whitespace-nowrap text-foreground underline underline-offset-2 max-md:min-h-11"
+      className="inline-flex min-h-8 items-center whitespace-nowrap text-foreground underline underline-offset-2 max-md:min-h-11 stacked:whitespace-normal"
     >
       {patient.display_name}
     </Link>
   );
 }
 
-const mono = (value: string | null) => (
-  <span className="block min-w-28 font-mono text-mono break-all whitespace-normal">
-    {value ?? ""}
-  </span>
-);
+const mono = (value: string | null) =>
+  value ? (
+    <span className="block min-w-28 font-mono text-mono break-all stacked:min-w-0">{value}</span>
+  ) : null;
 const preview = (value: string) => (
-  <span className="block min-w-64 font-mono text-mono break-all whitespace-normal">{value}</span>
+  <span className="block min-w-64 font-mono text-mono break-all stacked:min-w-0">{value}</span>
 );
 const token = (value: string) => (
-  <span className="font-mono text-mono whitespace-nowrap">{value}</span>
+  <span className="font-mono text-mono whitespace-nowrap stacked:whitespace-normal">{value}</span>
 );
-const prose = (value: string) => <span className="block min-w-48 whitespace-normal">{value}</span>;
+const prose = (value: string) => <span className="block min-w-48 stacked:min-w-0">{value}</span>;
 const labels = copy.quality.columns;
 
 const issue = serverColumns<Issue>();
@@ -86,7 +85,7 @@ const AUDIT_COLUMNS = audit.columns([
     cell: ({ row }) => <IssueSeverity severity={row.original.severity} />,
   }),
   audit.accessor("rule", { header: labels.rule, cell: ({ row }) => token(row.original.rule) }),
-  audit.accessor("field", { header: labels.field, cell: ({ row }) => row.original.field ?? "" }),
+  audit.accessor("field", { header: labels.field, cell: ({ row }) => row.original.field }),
   audit.accessor("before", { header: labels.before, cell: ({ row }) => mono(row.original.before) }),
   audit.accessor("after", { header: labels.after, cell: ({ row }) => mono(row.original.after) }),
   audit.accessor((row) => row.patient?.display_name ?? "", {
@@ -173,6 +172,7 @@ export function IssuesPanel({ params, ...paging }: PanelProps) {
         <DataTable
           label={copy.quality.tabs.issues}
           columns={ISSUE_COLUMNS}
+          wide={["code", "message", "path"]}
           rows={items}
           rowId={(item) => String(item.id)}
         />
@@ -190,6 +190,7 @@ export function AuditPanel({ params, ...paging }: PanelProps) {
         <DataTable
           label={copy.quality.tabs.audit}
           columns={AUDIT_COLUMNS}
+          wide={["rule", "message"]}
           rows={items}
           rowId={(item) => String(item.id)}
         />
@@ -207,6 +208,7 @@ export function QuarantinePanel({ params, ...paging }: PanelProps) {
         <DataTable
           label={copy.quality.tabs.quarantine}
           columns={QUARANTINE_COLUMNS}
+          wide={["reason", "payload_preview"]}
           rows={items}
           rowId={(item) => String(item.id)}
         />

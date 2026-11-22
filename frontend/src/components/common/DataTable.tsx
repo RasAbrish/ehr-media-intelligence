@@ -25,6 +25,8 @@ interface DataTableProps<T extends object> {
   columns: TableOptions<typeof features, T>["columns"];
   rows: T[];
   rowId: (row: T) => string;
+  /** Column ids that take a whole line in the card layout. The first column always does. */
+  wide?: readonly string[];
   /** Column ids that are right aligned with tabular numbers. */
   numeric?: readonly string[];
   sorting?: SortingState;
@@ -32,13 +34,18 @@ interface DataTableProps<T extends object> {
   onRowClick?: (row: T, element: HTMLTableRowElement) => void;
 }
 
-/** Dense server-side table (docs/06 section 6.8): header 36, rows 40, sort buttons with aria-sort. */
+/**
+ * Dense server-side table (docs/06 section 6.8): header 36, rows 40, sort buttons with aria-sort.
+ * In a container under 60rem each row is a labeled card. The roles are explicit because
+ * changing `display` drops the implicit table semantics in some browsers.
+ */
 export function DataTable<T extends object>({
   label,
   columns,
   rows,
   rowId,
   numeric = [],
+  wide = [],
   sorting = NO_SORTING,
   onSortingChange,
   onRowClick,
@@ -57,19 +64,27 @@ export function DataTable<T extends object>({
       onSortingChange?.(typeof updater === "function" ? updater(sorting) : updater);
     },
   });
+  const anySortable = table.getAllLeafColumns().some((column) => column.getCanSort());
   return (
-    // A wide table scrolls inside its own region, which must be reachable by keyboard.
+    // Rows stack before they overflow. Anything wider still scrolls here, by keyboard too.
     <div
       role="region"
       aria-label={copy.table.region(label)}
       // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- keyboard scrolling (axe scrollable-region-focusable)
       tabIndex={0}
-      className="overflow-x-auto rounded-lg border bg-card focus-visible:outline-2 focus-visible:outline-ring"
+      className="@container/data-table relative overflow-x-auto rounded-lg border bg-card focus-visible:outline-2 focus-visible:outline-ring"
     >
-      <table aria-label={label} className="w-full text-small">
-        <TableHeader className="bg-muted">
+      <table role="table" aria-label={label} className="w-full text-small stacked:block">
+        <TableHeader
+          role="rowgroup"
+          className={cn("bg-muted stacked:block", !anySortable && "stacked:sr-only")}
+        >
           {table.getHeaderGroups().map((group) => (
-            <TableRow key={group.id} className="h-9 hover:bg-transparent">
+            <TableRow
+              key={group.id}
+              role="row"
+              className="h-9 hover:bg-transparent stacked:flex stacked:h-auto stacked:flex-wrap stacked:gap-x-2 stacked:px-2 stacked:py-1"
+            >
               {group.headers.map((header) => {
                 const sorted = header.column.getIsSorted();
                 const name = String(header.column.columnDef.header);
@@ -83,6 +98,7 @@ export function DataTable<T extends object>({
                 return (
                   <TableHead
                     key={header.id}
+                    role="columnheader"
                     {...(sortable
                       ? {
                           "aria-sort":
@@ -94,7 +110,8 @@ export function DataTable<T extends object>({
                         }
                       : {})}
                     className={cn(
-                      "text-meta text-muted-foreground",
+                      "h-9 text-meta whitespace-normal text-muted-foreground stacked:h-auto stacked:p-0 stacked:text-left",
+                      !sortable && "stacked:sr-only",
                       numeric.includes(header.id) && "text-right",
                     )}
                   >
@@ -103,7 +120,7 @@ export function DataTable<T extends object>({
                         type="button"
                         onClick={header.column.getToggleSortingHandler()}
                         aria-label={copy.records.sortBy(name)}
-                        className="-ml-1 inline-flex h-8 items-center gap-1 rounded-md px-1 hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring max-md:h-11"
+                        className="-ml-1 inline-flex min-h-8 items-center gap-1 rounded-md px-1 text-left hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring max-md:min-h-11 max-md:min-w-11 stacked:ml-0"
                       >
                         {name}
                         <Icon aria-hidden className="size-3.5" />
@@ -117,22 +134,33 @@ export function DataTable<T extends object>({
             </TableRow>
           ))}
         </TableHeader>
-        <TableBody>
+        <TableBody role="rowgroup" className="stacked:block">
           {table.getRowModel().rows.map((row) => (
             <TableRow
               key={row.id}
-              className={cn("h-10", onRowClick && "cursor-pointer")}
+              role="row"
+              className={cn(
+                "h-10 stacked:grid stacked:h-auto stacked:grid-cols-[repeat(auto-fill,minmax(7.5rem,1fr))] stacked:gap-x-3 stacked:gap-y-2 stacked:p-3",
+                onRowClick && "cursor-pointer",
+              )}
               onClick={(event) => {
                 // A drag that selects text to copy is not a click on the row.
                 if (window.getSelection()?.toString()) return;
                 onRowClick?.(row.original, event.currentTarget);
               }}
             >
-              {row.getAllCells().map((cell) => (
+              {row.getAllCells().map((cell, index) => (
                 <TableCell
                   key={cell.id}
+                  role="cell"
+                  data-label={String(cell.column.columnDef.header)}
                   className={cn(
-                    "py-1",
+                    "py-1 whitespace-normal stacked:block stacked:min-w-0 stacked:p-0 stacked:text-left stacked:wrap-anywhere stacked:empty:hidden",
+                    // The label is generated content, so the cell's text stays the value alone.
+                    index === 0
+                      ? "stacked:col-span-full"
+                      : "stacked:before:block stacked:before:text-meta stacked:before:text-muted-foreground stacked:before:content-[attr(data-label)]",
+                    wide.includes(cell.column.id) && "stacked:col-span-full",
                     numeric.includes(cell.column.id) && "text-right tabular-nums",
                   )}
                 >

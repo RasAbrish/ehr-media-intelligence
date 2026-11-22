@@ -44,7 +44,9 @@ const columns = helper.columns([
     id: "birth_date",
     header: labels.birth,
     cell: ({ row }) => (
-      <span className="tabular-nums">{formatDate(row.original.birth_date) ?? copy.ai.undated}</span>
+      <span className="whitespace-nowrap tabular-nums">
+        {formatDate(row.original.birth_date) ?? copy.ai.undated}
+      </span>
     ),
   }),
   helper.accessor("age", {
@@ -53,14 +55,18 @@ const columns = helper.columns([
     enableSorting: false,
     cell: ({ row }) => {
       const who = ageSex(row.original.age, row.original.gender);
-      return <span title={who.long}>{who.short}</span>;
+      return (
+        <span className="whitespace-nowrap" title={who.long}>
+          {who.short}
+        </span>
+      );
     },
   }),
   helper.accessor("last_activity", {
     id: "last_activity",
     header: labels.activity,
     cell: ({ row }) => (
-      <span className="tabular-nums">
+      <span className="whitespace-nowrap tabular-nums">
         {formatDate(row.original.last_activity) ?? copy.ai.undated}
       </span>
     ),
@@ -76,12 +82,9 @@ const columns = helper.columns([
     enableSorting: false,
     cell: ({ row }) =>
       row.original.chief_concern ? (
-        <span
-          className="flex max-w-72 min-w-48 items-center gap-2"
-          title={row.original.chief_concern}
-        >
+        <span className="flex min-w-40 items-start gap-2 stacked:min-w-0">
           <AiBadge />
-          <span className="truncate">{row.original.chief_concern}</span>
+          <span className="min-w-0">{row.original.chief_concern}</span>
         </span>
       ) : (
         <span className="text-muted-foreground italic">{copy.ai.missingTitle}</span>
@@ -93,8 +96,9 @@ const columns = helper.columns([
     enableSorting: false,
     cell: ({ row }) => {
       const { high, moderate } = row.original.anomaly_counts;
+      if (!high && !moderate) return null;
       return (
-        <span className="flex gap-1">
+        <span className="flex flex-wrap gap-1">
           {high ? <SeverityBadge severity="high" suffix={String(high)} /> : null}
           {moderate ? <SeverityBadge severity="moderate" suffix={String(moderate)} /> : null}
         </span>
@@ -120,6 +124,7 @@ export function DirectoryTable({ items, sort, order, onSort, onOpen }: Directory
       rows={items}
       rowId={(item) => item.patient_key}
       numeric={["resource_count"]}
+      wide={["chief_concern", "anomalies"]}
       sorting={[{ id: sort, desc: order === "desc" }]}
       onSortingChange={([next]) => {
         if (next) onSort(next.id as DirectorySort, next.desc ? "desc" : "asc");
