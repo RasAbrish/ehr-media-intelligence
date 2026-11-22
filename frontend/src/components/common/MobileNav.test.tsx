@@ -16,6 +16,7 @@ describe("MobileNav", () => {
       copy.nav.patients,
       copy.nav.quality,
     ]);
+    for (const item of items) expect(item.querySelector("svg")).toBeInTheDocument();
     expect(screen.getByRole("menuitemradio", { name: copy.nav.quality })).toHaveAttribute(
       "aria-checked",
       "true",

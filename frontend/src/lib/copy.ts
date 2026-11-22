@@ -14,6 +14,8 @@ export const copy = {
   nav: {
     label: "Primary",
     menu: "Open navigation menu",
+    open: "Open sidebar",
+    close: "Close sidebar",
     search: "Search",
     patients: "Patients",
     quality: "Data quality",
@@ -342,6 +344,7 @@ export const copy = {
   },
   shortcuts: {
     open: "Keyboard shortcuts",
+    label: "Shortcuts",
     title: "Keyboard shortcuts",
     body: "Single keys work when no field has focus.",
     close: "Close shortcuts",

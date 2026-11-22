@@ -27,7 +27,7 @@ export function MobileNav() {
         >
           <MenuIcon aria-hidden="true" strokeWidth={1.75} />
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="start" className="w-48">
+        <DropdownMenuContent align="start" className="w-52">
           <DropdownMenuRadioGroup
             value={pathname}
             onValueChange={(value: unknown) => {
@@ -35,9 +35,10 @@ export function MobileNav() {
               if (item) void navigate({ to: item.to });
             }}
           >
-            {NAV_ITEMS.map((item) => (
-              <DropdownMenuRadioItem key={item.to} value={item.to} className="min-h-11">
-                {item.label}
+            {NAV_ITEMS.map(({ to, label, Icon }) => (
+              <DropdownMenuRadioItem key={to} value={to} className="min-h-11 gap-3">
+                <Icon aria-hidden="true" strokeWidth={1.75} />
+                {label}
               </DropdownMenuRadioItem>
             ))}
           </DropdownMenuRadioGroup>
