@@ -8,6 +8,8 @@ All notable changes to this project are documented here. The format follows [Kee
 - A free public demo deployment: `render.yaml`, an index built into the API image, a demo banner that also covers cold starts, and `docs/DEPLOY.md`.
 
 ### Changed
+- The top navigation is a sidebar with icons and labels that opens, closes and remembers the choice. Phones keep a menu.
+- Content fills the screen from 320 to 2560 px. Tables become labeled cards in narrow containers, text in cards and the drawer wraps, and type scales on screens of 1920 px and wider.
 - GitHub Actions is switched off because no hosted runner is available. The README, write-up and docs/07, 09 and 10 now say that the gates run by hand, and no longer claim an automated container hardening check.
 
 ### Fixed

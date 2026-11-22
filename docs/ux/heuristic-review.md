@@ -12,7 +12,7 @@
 
 Seven findings of severity 3 and none of severity 4. All seven are fixed, each with a browser test that failed first (`frontend/e2e/review.spec.ts`, and `newest.spec.ts` for F19). The last run, 240 captures with the four states of the new sort order, found no serious axe violation, page overflow or uncaught error.
 
-F19 was missed by the screenshot review and found by the task walk below. Thirteen findings of severity 1 and 2 remain open.
+F19 was missed by the screenshot review and found by the task walk below. Two findings of severity 2 (F10 and F12) were fixed on 2026-11-23 with the sidebar layout. Eleven findings of severity 1 and 2 remain open.
 
 ## Fixed
 
@@ -26,6 +26,15 @@ F19 was missed by the screenshot review and found by the task walk below. Thirte
 | F6 | 3 | Search, Patient drawer, Directory, Data quality | 4 | Input and checkbox borders measured 1.33:1 in light and 1.64:1 in dark, against the 3:1 rule. | A separate `--input-border` token meets 3:1 in both themes. |
 | F19 | 3 | Search | 7 | A question for the most recent record cannot be answered from search. It shows five results by relevance with no date order, and the newest of six pulmonary embolism CT reports is absent from the five, also with the type filter. | Sort by Newest scans the whole index for records with every search word and orders them by date. AI summaries are left out. |
 
+## Fixed with the sidebar layout
+
+Tested from 320 to 2560 px by `frontend/e2e/fit.spec.ts`, which failed first. The 240 captures were repeated on the new layout with no serious axe violation, page overflow or uncaught error.
+
+| Id | Severity | Screen | Heuristic | Finding | Fix |
+|---|---|---|---|---|---|
+| F10 | 2 | Directory | 6 | Below 1280 px the Anomalies column starts off screen, so a High flag is found only by scrolling sideways. | A narrow table becomes labeled cards and a wide one wraps, so the flag is never off to the side. |
+| F12 | 2 | Data quality | 7 | On a phone every data quality table needs sideways scrolling. | Each row becomes a labeled card. |
+
 ## Open
 
 | Id | Severity | Screen | Heuristic | Finding |
@@ -33,9 +42,7 @@ F19 was missed by the screenshot review and found by the task walk below. Thirte
 | F7 | 2 | Patient drawer | 8 | On a phone the Offline summary tooltip opens with the drawer and covers the provenance line. |
 | F8 | 2 | Patient drawer | 2 | The summary gives the age at the latest record and the header gives today's age (26 and 28 for one patient), without saying so. |
 | F9 | 2 | Patient drawer | 4 | The overview prints ISO dates while the rest of the app prints `Aug 17, 2024`. |
-| F10 | 2 | Directory | 6 | Below 1280 px the Anomalies column starts off screen, so a High flag is found only by scrolling sideways. |
 | F11 | 2 | Data quality | 2 | Rule codes and the JSON preview in quarantine are written for engineers. |
-| F12 | 2 | Data quality | 7 | On a phone every data quality table needs sideways scrolling. |
 | F13 | 2 | Search | 1 | The rate limit message states the wait and does not count down. |
 | F14 | 1 | Search, Patient drawer | 2 | Offline and missing summary messages tell a clinician to check the API or run the pipeline. |
 | F15 | 1 | Search, Patient drawer, Directory, Data quality | 8 | Error states show the request id twice, short and full. |
@@ -70,8 +77,8 @@ The worst severity found for each screen and heuristic.
 | 3. User control and freedom | 0 | 0 | 0 | 1 | 0 | 0 |
 | 4. Consistency and standards | 0 | 2 | 0 | 0 | 0 | 0 |
 | 5. Error prevention | 0 | 0 | 0 | 0 | 0 | 0 |
-| 6. Recognition rather than recall | 0 | 0 | 0 | 2 | 0 | 0 |
-| 7. Flexibility and efficiency | 2 | 0 | 0 | 0 | 2 | 0 |
+| 6. Recognition rather than recall | 0 | 0 | 0 | 0 | 0 | 0 |
+| 7. Flexibility and efficiency | 2 | 0 | 0 | 0 | 0 | 0 |
 | 8. Aesthetic and minimalist design | 1 | 2 | 0 | 1 | 1 | 0 |
 | 9. Help with errors | 0 | 0 | 0 | 0 | 0 | 0 |
 | 10. Help and documentation | 0 | 0 | 0 | 0 | 0 | 0 |
