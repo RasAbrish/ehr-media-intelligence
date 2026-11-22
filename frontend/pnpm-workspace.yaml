@@ -1,0 +1,5 @@
+# Dependency install scripts stay off (docs/09 section 8). esbuild only arrives through
+# Storybook and Vite tooling and works from its prebuilt platform package without its
+# postinstall. Without this explicit "no", pnpm 12 fails `pnpm install --frozen-lockfile`.
+allowBuilds:
+  esbuild: false
