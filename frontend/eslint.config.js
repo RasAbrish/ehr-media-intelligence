@@ -12,6 +12,7 @@ export default tseslint.config(
       "dist",
       "coverage",
       "storybook-static",
+      ".lighthouseci",
       "public",
       "test-results",
       "playwright-report",

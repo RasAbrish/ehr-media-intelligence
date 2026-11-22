@@ -1,5 +1,5 @@
 /** Shared objects from docs/04 section 2.2. Optional fields are present as null, never omitted. */
-import { z } from "zod";
+import { z } from "@/lib/zod";
 
 import {
   DocTypeSchema,

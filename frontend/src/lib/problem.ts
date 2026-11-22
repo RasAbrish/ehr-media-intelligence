@@ -1,5 +1,5 @@
 /** RFC 9457 problem details (docs/04 sections 2.3 and 2.4) and the client's error types. */
-import { z } from "zod";
+import { z } from "@/lib/zod";
 
 export const FieldErrorSchema = z.strictObject({
   loc: z.string(),

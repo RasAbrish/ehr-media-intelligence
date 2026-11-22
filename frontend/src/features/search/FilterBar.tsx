@@ -75,7 +75,11 @@ export function FilterBar({ value, onChange, today = new Date() }: FilterBarProp
             </Button>
           }
         />
-        <SheetContent side="bottom" className="max-h-[90dvh] overflow-y-auto">
+        <SheetContent
+          side="bottom"
+          showCloseButton={false}
+          className="max-h-[90dvh] overflow-y-auto"
+        >
           <SheetHeader>
             <SheetTitle>{copy.filters.label}</SheetTitle>
           </SheetHeader>
@@ -104,6 +108,18 @@ export function FilterBar({ value, onChange, today = new Date() }: FilterBarProp
               </Button>
             ) : null}
           </SheetFooter>
+          <SheetClose
+            render={
+              <Button
+                variant="ghost"
+                size="icon"
+                className="absolute top-2 right-2 size-11"
+                aria-label={copy.filters.close}
+              />
+            }
+          >
+            <XIcon aria-hidden />
+          </SheetClose>
         </SheetContent>
       </Sheet>
       {chips.length ? (

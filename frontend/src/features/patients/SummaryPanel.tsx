@@ -7,6 +7,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { ConfidenceMeter } from "@/features/patients/ConfidenceMeter";
 import { EvidenceChip } from "@/features/patients/EvidenceChip";
 import type { ClinicalSummaryResponse, PatientResourceItem } from "@/features/patients/schemas";
+import { SummaryFeedback } from "@/features/patients/SummaryFeedback";
 import type { EvidenceRef } from "@/lib/common-schemas";
 import { copy } from "@/lib/copy";
 import { formatDate, formatDateTime } from "@/lib/format";
@@ -30,10 +31,22 @@ function NotDocumented() {
   return <p className="text-body text-muted-foreground italic">{copy.ai.notDocumented}</p>;
 }
 
+/** The reason inside a "fallback_extractive (reason)" note, in plain language. */
+function fallbackReason(notes: readonly string[]): string | null {
+  for (const note of notes) {
+    const code = /^fallback_extractive \((\w+)\)$/.exec(note)?.[1];
+    if (code && code in copy.ai.fallbackReasons) {
+      return copy.ai.fallbackReasons[code as keyof typeof copy.ai.fallbackReasons];
+    }
+  }
+  return null;
+}
+
 /** AI summary panel (docs/06 section 12.1). Generated content sits behind a violet rule. */
 export function SummaryPanel({ summary, resources, onEvidence }: SummaryPanelProps) {
   const extractive = summary.provider === "extractive";
   const fellBack = summary.guardrail_notes.some((note) => note.startsWith("fallback_extractive"));
+  const reason = fallbackReason(summary.guardrail_notes);
   const chief = summary.chief_concern.trim();
   return (
     <div className="flex flex-col gap-6 border-l-2 border-ai pl-4">
@@ -50,14 +63,17 @@ export function SummaryPanel({ summary, resources, onEvidence }: SummaryPanelPro
         <span>{copy.ai.generated(formatDateTime(summary.generated_at))}</span>
         {extractive ? (
           <Tooltip>
-            <TooltipTrigger className="rounded-sm border border-info/40 px-1.5 text-info focus-visible:outline-2 focus-visible:outline-ring">
-              {copy.ai.offline}
+            <TooltipTrigger className="inline-flex min-h-8 items-center focus-visible:outline-2 focus-visible:outline-ring max-md:min-h-11">
+              <span className="rounded-sm border border-info/40 px-1.5 text-info">
+                {copy.ai.offline}
+              </span>
             </TooltipTrigger>
             <TooltipContent>{copy.ai.offlineHint}</TooltipContent>
           </Tooltip>
         ) : (
           <span className="font-mono text-mono">{summary.model}</span>
         )}
+        {reason ? <span>{reason}</span> : null}
         <span>{copy.ai.promptVersion(summary.prompt_version)}</span>
         {summary.cached ? (
           <span className="inline-flex items-center gap-1 rounded-sm border px-1.5">
@@ -93,9 +109,11 @@ export function SummaryPanel({ summary, resources, onEvidence }: SummaryPanelPro
                 <span className="text-body font-medium">{diagnosis.name}</span>
                 {diagnosis.status === "suspected" ? (
                   <Tooltip>
-                    <TooltipTrigger className="inline-flex h-5.5 items-center gap-1 rounded-sm border border-warning/40 bg-warning/15 px-1.5 text-meta text-warning-foreground focus-visible:outline-2 focus-visible:outline-ring dark:text-warning">
-                      <TriangleAlertIcon aria-hidden className="size-3.5" />
-                      {copy.ai.suspected}
+                    <TooltipTrigger className="inline-flex min-h-8 items-center focus-visible:outline-2 focus-visible:outline-ring max-md:min-h-11">
+                      <span className="inline-flex h-5.5 items-center gap-1 rounded-sm border border-warning/40 bg-warning/15 px-1.5 text-meta text-warning-foreground dark:text-warning">
+                        <TriangleAlertIcon aria-hidden className="size-3.5" />
+                        {copy.ai.suspected}
+                      </span>
                     </TooltipTrigger>
                     <TooltipContent>{copy.ai.suspectedHint}</TooltipContent>
                   </Tooltip>
@@ -161,7 +179,7 @@ export function SummaryPanel({ summary, resources, onEvidence }: SummaryPanelPro
                 <li key={anomaly.description} className="flex flex-wrap items-center gap-2">
                   {dataQuality ? (
                     <Tooltip>
-                      <TooltipTrigger className="inline-flex focus-visible:outline-2 focus-visible:outline-ring">
+                      <TooltipTrigger className="inline-flex min-h-8 items-center focus-visible:outline-2 focus-visible:outline-ring max-md:min-h-11">
                         <SeverityBadge severity={anomaly.severity} suffix={copy.ai.dq} />
                       </TooltipTrigger>
                       <TooltipContent>{copy.ai.dqHint}</TooltipContent>
@@ -195,8 +213,9 @@ export function SummaryPanel({ summary, resources, onEvidence }: SummaryPanelPro
         )}
       </Section>
 
-      <div className="border-t pt-4">
-        <ConfidenceMeter confidence={summary.confidence} />
+      <div className="flex flex-col gap-3 border-t pt-4">
+        <ConfidenceMeter confidence={summary.confidence} notes={summary.guardrail_notes} />
+        <SummaryFeedback summary={summary} />
       </div>
     </div>
   );

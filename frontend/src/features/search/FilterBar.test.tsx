@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 
@@ -68,6 +68,16 @@ describe("FilterBar (FR-5.4)", () => {
     const clear = screen.getAllByRole("button", { name: copy.filters.clear });
     await user.click(must(clear.at(-1)));
     expect(changes.at(-1)).toEqual({ types: [], from: null, to: null });
+  });
+
+  it("closes the mobile sheet with Show results (gap 13)", async () => {
+    const user = userEvent.setup();
+    render(<Harness initial={{ types: [], from: null, to: null }} />);
+    await user.click(screen.getByRole("button", { name: copy.filters.mobileButton(0) }));
+    await user.click(await screen.findByRole("button", { name: copy.filters.done }));
+    await waitFor(() => {
+      expect(screen.queryByRole("dialog")).toBeNull();
+    });
   });
 
   it("has no serious axe violations", async () => {

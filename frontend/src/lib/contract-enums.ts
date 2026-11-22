@@ -1,5 +1,5 @@
 /** Enums from docs/04-API-CONTRACT.md section 2.1. */
-import { z } from "zod";
+import { z } from "@/lib/zod";
 
 export const ResourceTypeSchema = z.enum([
   "Patient",

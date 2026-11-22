@@ -16,6 +16,7 @@ export interface RequestOptions {
   method?: "GET" | "POST";
   query?: Record<string, QueryValue>;
   body?: unknown;
+  headers?: Record<string, string>;
   signal?: AbortSignal;
 }
 
@@ -62,6 +63,7 @@ export async function apiRequest<S extends z.ZodType>(
     headers: {
       Accept: "application/json",
       ...(options.body === undefined ? {} : { "Content-Type": "application/json" }),
+      ...options.headers,
     },
   };
   if (options.body !== undefined) init.body = JSON.stringify(options.body);

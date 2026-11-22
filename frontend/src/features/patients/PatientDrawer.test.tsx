@@ -1,6 +1,6 @@
 import { screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { http, HttpResponse } from "msw";
+import { delay, http, HttpResponse } from "msw";
 
 import { copy } from "@/lib/copy";
 import { seriousAxeViolations } from "@/test/axe";
@@ -81,9 +81,10 @@ describe("Patient drawer (FR-5.3)", () => {
       "aria-selected",
       "true",
     );
-    const row = within(drawer)
-      .getByRole("button", { name: copy.records.open("Discharge Summary") })
-      .closest("tr");
+    // The Records table is a lazy chunk.
+    const row = (
+      await within(drawer).findByRole("button", { name: copy.records.open("Discharge Summary") })
+    ).closest("tr");
     expect(row).toHaveAttribute("data-highlighted");
   });
 
@@ -219,6 +220,94 @@ describe("Patient drawer (FR-5.3)", () => {
       await within(drawer).findByText(copy.errors.summaryTitle, {}, { timeout: 4000 }),
     ).toBeInTheDocument();
     expect(within(drawer).queryByText(copy.errors.title)).toBeNull();
+  });
+
+  it.each([
+    ["budget_exceeded", copy.ai.fallbackReasons.budget_exceeded],
+    ["refusal", copy.ai.fallbackReasons.refusal],
+    ["provider_error", copy.ai.fallbackReasons.provider_error],
+  ])("shows the %s fallback reason in the provenance", async (reason, text) => {
+    server.use(
+      http.get("*/api/patients/:key/summary", () =>
+        HttpResponse.json({
+          ...fixtures.summary,
+          provider: "extractive",
+          model: null,
+          guardrail_notes: [`fallback_extractive (${reason})`],
+        }),
+      ),
+    );
+    const { drawer } = await openDrawer();
+    expect(await within(drawer).findByText(text)).toBeInTheDocument();
+  });
+
+  it("has a data quality tab with the patient's audit entries", async () => {
+    const user = userEvent.setup();
+    const asked: string[] = [];
+    server.use(
+      http.get("*/api/patients/:key/audit", ({ request }) => {
+        asked.push(new URL(request.url).searchParams.get("severity") ?? "all");
+        return HttpResponse.json({
+          items: [fixtures.auditEntry],
+          page: 1,
+          page_size: 50,
+          total: 1,
+          total_pages: 1,
+        });
+      }),
+    );
+    const { drawer } = await openDrawer();
+    await user.click(within(drawer).getByRole("tab", { name: copy.drawer.tabs.quality }));
+    expect(await within(drawer).findByText(fixtures.auditEntry.message)).toBeInTheDocument();
+    expect(within(drawer).getByText(fixtures.auditEntry.rule)).toBeInTheDocument();
+    await user.selectOptions(within(drawer).getByLabelText(copy.quality.severity), "warning");
+    await waitFor(() => {
+      expect(asked).toEqual(["all", "warning"]);
+    });
+    expect(await seriousAxeViolations(document.body)).toEqual([]);
+  });
+
+  it("says in visible text that the summary is loading (gap 6)", async () => {
+    server.use(
+      http.get("*/api/patients/:key/summary", async () => {
+        await delay(300);
+        return HttpResponse.json(fixtures.summary);
+      }),
+    );
+    const { drawer } = await openDrawer();
+    const text = within(drawer).getByText(copy.ai.generating);
+    expect(text.closest("[aria-busy]")).toHaveAttribute("aria-busy", "true");
+  });
+
+  it.each([
+    ["patient", "*/api/patients/:key", copy.errors.patientTitle],
+    ["records", "*/api/patients/:key/resources", copy.errors.recordsTitle],
+  ])("names a %s failure, never 'Search failed' (gap 3)", async (part, path, title) => {
+    const user = userEvent.setup();
+    server.use(http.get(path, () => problemResponse(500, "internal_error")));
+    await renderApp(`/?patient=${KEY}`);
+    if (part === "records") await user.click(await screen.findByRole("tab", { name: /^Records/ }));
+    expect(await screen.findByText(title, {}, { timeout: 4000 })).toBeInTheDocument();
+    expect(screen.queryByText(copy.errors.title)).toBeNull();
+  });
+
+  it("shows every citation of an anomaly (gap 12)", async () => {
+    const evidence = ["one", "two", "three", "four"].map((id) => ({
+      resource_type: "Observation",
+      resource_id: `cited-${id}`,
+    }));
+    server.use(
+      http.get("*/api/patients/:key/summary", () =>
+        HttpResponse.json({
+          ...fixtures.summary,
+          key_diagnoses: [],
+          recent_media: [],
+          flagged_anomalies: [{ ...fixtures.summary.flagged_anomalies[0], evidence }],
+        }),
+      ),
+    );
+    const { drawer } = await openDrawer();
+    expect(await within(drawer).findAllByRole("button", { name: /^Open source:/ })).toHaveLength(4);
   });
 
   it("shows the missing-summary state", async () => {

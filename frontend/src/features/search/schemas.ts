@@ -1,5 +1,5 @@
 /** POST /search (docs/04 section 5.1). */
-import { z } from "zod";
+import { z } from "@/lib/zod";
 
 import { PatientRefSchema, ResourceRefSchema } from "@/lib/common-schemas";
 import { MatchTypeSchema, SearchableTypeSchema, SearchModeSchema } from "@/lib/contract-enums";

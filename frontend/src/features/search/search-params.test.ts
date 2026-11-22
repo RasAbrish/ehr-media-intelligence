@@ -38,6 +38,10 @@ describe("search URL params", () => {
     });
   });
 
+  it("keeps a numeric query from a hand-typed MRN link", () => {
+    expect(parseSearchParams({ q: 12345 })).toEqual({ q: "12345" });
+  });
+
   it("blocks an end date before the start date", () => {
     expect(DateRangeSchema.safeParse({ from: "2024-06-02", to: "2024-06-01" }).success).toBe(false);
     expect(DateRangeSchema.safeParse({ from: "2024-06-01", to: "2024-06-01" }).success).toBe(true);

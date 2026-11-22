@@ -1,6 +1,9 @@
-/** Data quality overview (docs/04 section 8.1, P1): schema only, used by the contract test. */
-import { z } from "zod";
+/** Data quality contracts (docs/04 section 8). */
+import { z } from "@/lib/zod";
 
+import { AuditEntryItemSchema } from "@/features/patients/schemas";
+import { pageSchema, PatientRefSchema } from "@/lib/common-schemas";
+import { ResourceTypeSchema, SeveritySchema } from "@/lib/contract-enums";
 import { LastRunSchema } from "@/lib/system-schemas";
 
 const BySeverity = z.strictObject({
@@ -70,3 +73,30 @@ export const QualityOverviewSchema = z.strictObject({
   }),
   last_run: LastRunSchema.nullable(),
 });
+
+export const ValidationIssueItemSchema = z.strictObject({
+  id: z.number().int(),
+  patient: PatientRefSchema,
+  resource_type: z.union([ResourceTypeSchema, z.literal("Bundle")]),
+  resource_id: z.string().nullable(),
+  path: z.string(),
+  severity: SeveritySchema,
+  code: z.string(),
+  message: z.string(),
+});
+
+export const AuditEntryWithPatientSchema = AuditEntryItemSchema.extend({
+  patient: PatientRefSchema.nullable(),
+});
+
+export const QuarantineItemSchema = z.strictObject({
+  id: z.number().int(),
+  run_id: z.string(),
+  source_locator: z.string(),
+  reason: z.string(),
+  payload_preview: z.string().max(200),
+});
+
+export const ValidationPageSchema = pageSchema(ValidationIssueItemSchema);
+export const AuditPageSchema = pageSchema(AuditEntryWithPatientSchema);
+export const QuarantinePageSchema = pageSchema(QuarantineItemSchema);

@@ -43,12 +43,24 @@ describe("AppShell", () => {
   it.each([
     ["/patients", copy.patients.title],
     ["/quality", copy.quality.title],
-  ])("shows the index-empty state on %s", async (path, heading) => {
+  ])("shows the page heading on %s", async (path, heading) => {
     await renderApp(path);
     expect(await screen.findByRole("heading", { level: 1, name: heading })).toBeInTheDocument();
-    const status = screen.getByRole("status");
-    expect(status).toHaveTextContent(copy.indexEmpty.title);
-    expect(status).toHaveTextContent(copy.indexEmpty.command);
+  });
+
+  it("keeps Search current while a query is in the URL", async () => {
+    await renderApp("/?q=potassium");
+    const nav = screen.getByRole("navigation", { name: copy.nav.label });
+    expect(within(nav).getByRole("link", { name: copy.nav.search })).toHaveAttribute(
+      "aria-current",
+      "page",
+    );
+  });
+
+  it("shows the stats pill from /stats", async () => {
+    await renderApp("/");
+    const banner = screen.getByRole("banner");
+    expect(await within(banner).findByText(copy.stats.pill(60, 310))).toBeInTheDocument();
   });
 
   it("shows a not-found page for unknown paths", async () => {

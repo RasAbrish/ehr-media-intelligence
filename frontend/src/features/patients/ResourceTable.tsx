@@ -133,7 +133,7 @@ export function ResourceTable({ items, highlightedId, onOpen }: ResourceTablePro
             onChange={(event) => {
               setType(event.target.value);
             }}
-            className="h-8 rounded-lg border border-input bg-card px-2 text-small focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/25 focus-visible:outline-none"
+            className="h-8 rounded-lg border border-input bg-card px-2 text-small focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/25 focus-visible:outline-none max-md:h-11"
           >
             <option value="">{copy.records.allTypes}</option>
             {TYPE_OPTIONS.map((option) => (
@@ -154,7 +154,7 @@ export function ResourceTable({ items, highlightedId, onOpen }: ResourceTablePro
               setText(event.target.value);
             }}
             placeholder={copy.records.filterPlaceholder}
-            className="h-8"
+            className="h-8 max-md:h-11"
           />
         </div>
       </div>
@@ -184,7 +184,7 @@ export function ResourceTable({ items, highlightedId, onOpen }: ResourceTablePro
                         type="button"
                         onClick={header.column.getToggleSortingHandler()}
                         aria-label={copy.records.sortBy(label)}
-                        className="-ml-1 inline-flex h-8 items-center gap-1 rounded-md px-1 text-meta text-muted-foreground hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring"
+                        className="-ml-1 inline-flex h-8 items-center gap-1 rounded-md px-1 text-meta text-muted-foreground hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring max-md:h-11"
                       >
                         {label}
                         <Icon aria-hidden className="size-3.5" />
@@ -236,7 +236,7 @@ export function ResourceTable({ items, highlightedId, onOpen }: ResourceTablePro
                           event.stopPropagation();
                           onOpen(item);
                         }}
-                        className="block max-w-full truncate rounded-sm text-left font-medium hover:underline focus-visible:outline-2 focus-visible:outline-ring"
+                        className="block min-h-8 w-full truncate rounded-sm text-left font-medium hover:underline focus-visible:outline-2 focus-visible:outline-ring max-md:min-h-11"
                       >
                         {item.title}
                       </button>

@@ -3,9 +3,10 @@
  * Parsing is forgiving: an invalid value is dropped instead of breaking the page, and an
  * inverted range keeps only the start date.
  */
-import { z } from "zod";
+import { z } from "@/lib/zod";
 
 import { SearchableTypeSchema, type SearchableType } from "@/lib/contract-enums";
+import { patientParam, textParam } from "@/lib/url-params";
 
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -32,7 +33,8 @@ export const DateRangeSchema = z
 
 export function parseSearchParams(raw: Record<string, unknown>): SearchPageParams {
   const result: SearchPageParams = {};
-  if (typeof raw.q === "string" && raw.q.trim()) result.q = raw.q.slice(0, 500);
+  const q = textParam(raw.q);
+  if (q) result.q = q;
   const types = Array.isArray(raw.type) ? raw.type : raw.type ? [raw.type] : [];
   const valid = types.filter((t): t is SearchableType => SearchableTypeSchema.safeParse(t).success);
   if (valid.length) result.type = [...new Set(valid)];
@@ -40,8 +42,7 @@ export function parseSearchParams(raw: Record<string, unknown>): SearchPageParam
   const to = typeof raw.to === "string" && isRealDate(raw.to) ? raw.to : undefined;
   if (from) result.from = from;
   if (to && (!from || from <= to)) result.to = to;
-  if (typeof raw.patient === "string" && /^[0-9a-f-]{8,64}$/i.test(raw.patient)) {
-    result.patient = raw.patient;
-  }
+  const patient = patientParam(raw.patient);
+  if (patient) result.patient = patient;
   return result;
 }

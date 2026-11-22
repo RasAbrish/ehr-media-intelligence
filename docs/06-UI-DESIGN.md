@@ -59,7 +59,7 @@ Tailwind v4 + shadcn CSS variables, OKLCH. Light is the default (clinical enviro
 | `--muted-foreground` | `oklch(0.50 0.016 257)` | `oklch(0.70 0.012 257)` | Meta text (dates, labels) |
 | `--accent` | `oklch(0.95 0.02 196)` | `oklch(0.27 0.03 196)` | Hover and selected row/card tint |
 | `--accent-foreground` | `oklch(0.30 0.06 196)` | `oklch(0.92 0.03 196)` | |
-| `--destructive` | `oklch(0.55 0.20 27)` | `oklch(0.68 0.19 25)` | High severity, critical values, errors |
+| `--destructive` | `oklch(0.53 0.20 27)` | `oklch(0.68 0.19 25)` | High severity, critical values, errors |
 | `--border` | `oklch(0.915 0.005 247)` | `oklch(1 0 0 / 9%)` | Hairlines |
 | `--input` | `oklch(0.89 0.006 247)` | `oklch(1 0 0 / 14%)` | Input borders |
 | `--ring` | `oklch(0.58 0.10 196)` | `oklch(0.72 0.10 192)` | Focus ring |
@@ -388,7 +388,7 @@ Implemented with a `useRovingFocus` hook; cards are `<li><button>`; no positive 
   --muted-foreground: oklch(0.50 0.016 257);
   --accent: oklch(0.95 0.02 196);
   --accent-foreground: oklch(0.30 0.06 196);
-  --destructive: oklch(0.55 0.20 27);
+  --destructive: oklch(0.53 0.20 27);
   --border: oklch(0.915 0.005 247);
   --input: oklch(0.89 0.006 247);
   --ring: oklch(0.58 0.10 196);
@@ -563,7 +563,7 @@ Note: if the shadcn CLI generates its own `index.css`, merge these values into t
 | Feedback | Two outline buttons. Not helpful opens an inline popover with reason radio group + optional comment (280 chars counter) + Submit. After submit: "Thanks. Feedback saved for prompt v1." Buttons become a static state. Optimistic update, rollback on error |
 | Regenerate | Ghost button with confirm popover "Regenerate uses the AI service and replaces this summary. Continue?" Disabled with tooltip when budget exceeded or rate limited |
 | Generating state | Skeleton blocks + text "Generating summary…" with `aria-busy="true"`; no spinner longer than 45 s, then error state |
-| Fallback notice | Info alert: "AI service unavailable. Showing an offline summary built from the records." |
+| Fallback notice | Info alert: "AI service unavailable. Showing an offline summary built from the records." The provenance header names the reason: "Daily AI limit reached", "AI declined this record" or "AI request failed" |
 | Missing summary | Empty state: "No summary yet" + "Run the pipeline to generate summaries." |
 
 ### 12.3 "Why this result" (search transparency)
@@ -649,7 +649,7 @@ Centralize all strings in `src/lib/copy.ts` (keeps wording consistent and makes 
 | Table rendering | 60 fps | TanStack Virtual for tables over 100 rows |
 | API perceived latency | results visible < 500 ms after typing stops | 300 ms debounce + p95 search < 300 ms |
 
-Enforced by Lighthouse CI (`lighthouserc.json`: performance, accessibility, best practices ≥ 0.9) and a bundle size check (`size-limit` or `vite-bundle-visualizer` report in CI).
+Enforced by Lighthouse CI (`lighthouserc.json`: performance, accessibility, best practices ≥ 0.9 on the mobile viewport at 4x CPU slowdown without network throttling; `lighthouserc.mobile.json` reports the simulated slow 4G profile and never fails the build) and a bundle size check (`size-limit` or `vite-bundle-visualizer` report in CI).
 
 ## 16. Design system tooling
 

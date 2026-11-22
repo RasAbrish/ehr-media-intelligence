@@ -1,16 +1,20 @@
 import { TriangleAlertIcon } from "lucide-react";
-import type { FocusEvent, KeyboardEvent, Ref } from "react";
+import { useEffect, useRef, type FocusEvent, type KeyboardEvent, type Ref } from "react";
 
 import { AiBadge } from "@/components/common/AiBadge";
 import { CopyButton } from "@/components/common/CopyButton";
 import { Highlight } from "@/components/common/Highlight";
 import { ResourceTypeBadge } from "@/components/common/ResourceTypeBadge";
 import { ScoreMeter } from "@/components/common/ScoreMeter";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import type { SearchResult } from "@/features/search/schemas";
 import { WhyThisResult } from "@/features/search/WhyThisResult";
 import { copy } from "@/lib/copy";
 import { ageSex, formatDate } from "@/lib/format";
 import { cn } from "@/lib/utils";
+
+/** A passing mouse does not prefetch; patient routes are limited to 120 requests a minute. */
+const HOVER_INTENT_MS = 120;
 
 interface ResultCardProps {
   result: SearchResult;
@@ -18,6 +22,8 @@ interface ResultCardProps {
   selected?: boolean;
   buttonRef?: Ref<HTMLButtonElement>;
   tabIndex?: number;
+  /** Called on focus and after a short hover (docs/06 section 8.5). */
+  onPrefetch?: (patientKey: string) => void;
   onFocus?: (event: FocusEvent) => void;
   onKeyDown?: (event: KeyboardEvent) => void;
 }
@@ -35,7 +41,15 @@ export function ResultCard({
   tabIndex,
   onFocus,
   onKeyDown,
+  onPrefetch,
 }: ResultCardProps) {
+  const hoverTimer = useRef<number | undefined>(undefined);
+  useEffect(
+    () => () => {
+      window.clearTimeout(hoverTimer.current);
+    },
+    [],
+  );
   const { patient, resource } = result;
   const who = ageSex(patient.age, patient.gender);
   const date = formatDate(resource.date);
@@ -59,7 +73,10 @@ export function ResultCard({
         data-card-button
         ref={buttonRef}
         tabIndex={tabIndex}
-        onFocus={onFocus}
+        onFocus={(event) => {
+          onFocus?.(event);
+          onPrefetch?.(patient.patient_key);
+        }}
         onKeyDown={onKeyDown}
         onClick={(event) => {
           onOpen(result, event.currentTarget);
@@ -73,6 +90,15 @@ export function ResultCard({
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions -- see comment above */}
       <div
         className="relative flex cursor-pointer flex-col gap-1.5 p-3 md:p-4"
+        onMouseEnter={() => {
+          window.clearTimeout(hoverTimer.current);
+          hoverTimer.current = window.setTimeout(() => {
+            onPrefetch?.(patient.patient_key);
+          }, HOVER_INTENT_MS);
+        }}
+        onMouseLeave={() => {
+          window.clearTimeout(hoverTimer.current);
+        }}
         onClick={(event) => {
           if (window.getSelection()?.toString()) return;
           if ((event.target as HTMLElement).closest("button, a, [role='dialog']")) return;
@@ -83,9 +109,9 @@ export function ResultCard({
       >
         <div className="flex items-start gap-3">
           <div className="flex min-w-0 flex-1 flex-wrap items-center gap-x-2 gap-y-0.5">
-            <h3 id={titleId} className="text-body font-medium">
+            <h2 id={titleId} className="text-body font-medium">
               {patient.display_name}
-            </h3>
+            </h2>
             <span className="inline-flex items-center gap-0.5 font-mono text-mono text-muted-foreground">
               {copy.card.mrn(patient.mrn)}
               <span className="opacity-100 md:opacity-0 md:group-focus-within/card:opacity-100 md:group-hover/card:opacity-100">
@@ -130,9 +156,13 @@ export function ResultCard({
               </span>
             </>
           ) : null}
-          <span className="truncate text-small text-foreground" title={resource.title}>
-            {resource.title}
-          </span>
+          {/* Not a tab stop: the card button's name already carries the full title. */}
+          <Tooltip>
+            <TooltipTrigger render={<span />} className="truncate text-small text-foreground">
+              {resource.title}
+            </TooltipTrigger>
+            <TooltipContent>{resource.title}</TooltipContent>
+          </Tooltip>
         </div>
         <p
           id={`${id}-snippet`}

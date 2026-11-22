@@ -34,7 +34,7 @@ export function TypeCheckboxes({ value, onChange }: Props) {
           <label
             key={type}
             htmlFor={id}
-            className="flex min-h-8 cursor-pointer items-center gap-2.5 rounded-md px-1.5 hover:bg-accent/50"
+            className="flex min-h-8 cursor-pointer items-center gap-2.5 rounded-md px-1.5 hover:bg-accent/50 max-md:min-h-11"
           >
             <Checkbox
               id={id}
@@ -63,7 +63,7 @@ export function ResourceTypeFilter({ value, onChange }: Props) {
           </Button>
         }
       />
-      <PopoverContent align="start" className="w-60 p-2">
+      <PopoverContent align="start" aria-label={copy.filters.typeLabel} className="w-60 p-2">
         <TypeCheckboxes value={value} onChange={onChange} />
       </PopoverContent>
     </Popover>

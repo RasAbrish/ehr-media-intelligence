@@ -1,15 +1,19 @@
 import { parseISO } from "date-fns";
 import { CalendarIcon, ChevronDownIcon } from "lucide-react";
-import { useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useMemo, useRef, useState } from "react";
 import type { DateRange } from "react-day-picker";
 
 import { Button } from "@/components/ui/button";
-import { RangeCalendar } from "@/components/common/RangeCalendar";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { datePresets, iso } from "@/features/search/filters";
 import { DateRangeSchema } from "@/features/search/search-params";
 import { copy } from "@/lib/copy";
 import { formatDate } from "@/lib/format";
+
+const RangeCalendar = lazy(() =>
+  import("@/components/common/RangeCalendar").then((m) => ({ default: m.RangeCalendar })),
+);
 
 interface Props {
   from: string | null;
@@ -58,7 +62,7 @@ export function DateRangePicker({ from, to, onChange, today = new Date(), months
           <Button
             key={preset.id}
             variant={preset.from === from && preset.to === to ? "secondary" : "ghost"}
-            className="h-8 justify-start"
+            className="h-8 justify-start max-md:h-11"
             onClick={() => {
               apply({ from: preset.from, to: preset.to });
             }}
@@ -68,7 +72,7 @@ export function DateRangePicker({ from, to, onChange, today = new Date(), months
         ))}
         <Button
           variant={isCustom ? "secondary" : "ghost"}
-          className="h-8 justify-start"
+          className="h-8 justify-start max-md:h-11"
           onClick={() => {
             calendarRef.current
               ?.querySelector<HTMLButtonElement>(".rdp-day_button:not([disabled])")
@@ -79,7 +83,7 @@ export function DateRangePicker({ from, to, onChange, today = new Date(), months
         </Button>
         <Button
           variant="ghost"
-          className="h-8 justify-start"
+          className="h-8 justify-start max-md:h-11"
           onClick={() => {
             apply({ from: null, to: null });
           }}
@@ -88,18 +92,28 @@ export function DateRangePicker({ from, to, onChange, today = new Date(), months
         </Button>
       </div>
       <div ref={calendarRef} className="flex flex-col gap-2">
-        <RangeCalendar
-          months={months}
-          selected={selected}
-          defaultMonth={selected?.from ?? today}
-          disabled={{ after: today }}
-          onSelect={(range) => {
-            apply({
-              from: range?.from ? iso(range.from) : null,
-              to: range?.to ? iso(range.to) : null,
-            });
-          }}
-        />
+        <Suspense
+          fallback={
+            <Skeleton
+              role="status"
+              aria-label={copy.filters.calendarLoading}
+              className="h-72 w-72 max-w-full"
+            />
+          }
+        >
+          <RangeCalendar
+            months={months}
+            selected={selected}
+            defaultMonth={selected?.from ?? today}
+            disabled={{ after: today }}
+            onSelect={(range) => {
+              apply({
+                from: range?.from ? iso(range.from) : null,
+                to: range?.to ? iso(range.to) : null,
+              });
+            }}
+          />
+        </Suspense>
         {error ? (
           <p role="alert" className="text-small text-destructive">
             {error}
@@ -122,7 +136,7 @@ export function DateRangeFilter(props: Props) {
           </Button>
         }
       />
-      <PopoverContent align="start" className="w-auto p-3">
+      <PopoverContent align="start" aria-label={copy.filters.dateLabel} className="w-auto p-3">
         <DateRangePicker {...props} />
       </PopoverContent>
     </Popover>
