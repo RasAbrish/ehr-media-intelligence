@@ -21,7 +21,7 @@ const DEFAULT_SIZE = 25;
 
 /** Patient directory (FR-5.7): server-side search, sort and paging, all in the URL. */
 export function PatientsPage() {
-  const search = useSearch({ from: "/patients" });
+  const search = useSearch({ from: "/_app/patients" });
   const navigate = useNavigate({ from: "/patients" });
   const openerRef = useRef<HTMLElement | null>(null);
   const ids = { search: useId(), conflict: useId() };

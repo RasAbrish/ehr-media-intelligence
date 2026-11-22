@@ -1,4 +1,4 @@
-import { QueryClient } from "@tanstack/react-query";
+import { MutationCache, QueryCache, QueryClient } from "@tanstack/react-query";
 
 import { ApiError } from "@/lib/problem";
 
@@ -20,9 +20,23 @@ export function retryDelay(failureCount: number, error: unknown): number {
   return Math.min(500 * 2 ** failureCount, 4000);
 }
 
+/** A 401 `not_authenticated` anywhere means the session ended (docs/04 section 3a). */
+export function isSignedOutError(error: unknown): boolean {
+  return (
+    error instanceof ApiError &&
+    error.status === 401 &&
+    error.problem?.code !== "invalid_credentials"
+  );
+}
+
 /** One client per app; per-query staleTime is set by each hook. */
-export function createQueryClient(): QueryClient {
+export function createQueryClient(onSignedOut: () => void = () => undefined): QueryClient {
+  const onError = (error: unknown) => {
+    if (isSignedOutError(error)) onSignedOut();
+  };
   return new QueryClient({
+    queryCache: new QueryCache({ onError }),
+    mutationCache: new MutationCache({ onError }),
     defaultOptions: {
       queries: { staleTime: 30_000, retry: shouldRetry, retryDelay, refetchOnWindowFocus: false },
     },

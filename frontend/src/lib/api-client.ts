@@ -18,6 +18,8 @@ export interface RequestOptions {
   body?: unknown;
   headers?: Record<string, string>;
   signal?: AbortSignal;
+  /** The response has no body (204). */
+  empty?: boolean;
 }
 
 export function buildPath(path: string, query: Record<string, QueryValue> = {}): string {
@@ -62,6 +64,8 @@ export async function apiRequest<S extends z.ZodType>(
     method: options.method ?? "GET",
     headers: {
       Accept: "application/json",
+      // CSRF check: every POST needs it (docs/04 section 3a).
+      "X-Requested-With": "ehr-mip",
       ...(options.body === undefined ? {} : { "Content-Type": "application/json" }),
       ...options.headers,
     },
@@ -76,6 +80,7 @@ export async function apiRequest<S extends z.ZodType>(
     throw new NetworkError(error);
   }
   if (!response.ok) throw await toApiError(response);
+  if (options.empty) return schema.parse(undefined);
   const parsed = schema.safeParse(await response.json());
   if (!parsed.success) throw new ContractError(path, parsed.error);
   return parsed.data;

@@ -28,7 +28,7 @@ const DEFAULT_RETRY_S = 60;
 
 /** Search screen (docs/06 sections 7.1 and 8.3): URL state, debounced live results, drawer. */
 export function SearchPage() {
-  const search = useSearch({ from: "/" });
+  const search = useSearch({ from: "/_app/" });
   const navigate = useNavigate({ from: "/" });
   const listRef = useRef<ResultListHandle>(null);
   const openerRef = useRef<HTMLElement | null>(null);

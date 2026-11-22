@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Playwright session saved by e2e/auth.setup.ts
+e2e/.auth/

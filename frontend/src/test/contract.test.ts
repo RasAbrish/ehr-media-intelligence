@@ -3,6 +3,7 @@
  * docs/04 section 12: every JSON example in the contract parses with its Zod schema, and
  * the fixtures used by MSW handlers are exactly those examples.
  */
+import { CurrentUserSchema, LoginRequestSchema } from "@/features/auth/schemas";
 import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 
@@ -32,6 +33,8 @@ import { extractContractExamples } from "@/test/contract/extract";
 
 const SCHEMAS: Record<string, z.ZodType> = {
   "2.3-1": ProblemSchema,
+  "3a.1-1": LoginRequestSchema,
+  "3a.1-2": CurrentUserSchema,
   "4.1-1": HealthResponseSchema,
   "4.2-1": ReadyResponseSchema,
   "4.3-1": StatsResponseSchema,

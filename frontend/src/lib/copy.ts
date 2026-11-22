@@ -8,8 +8,27 @@ export const copy = {
   loadingPage: "Loading page",
   demo: {
     label: "Demo notice",
-    notice: "Public demo with synthetic patients. Do not enter real patient information.",
+    notice:
+      "Public demo with synthetic patients. Do not type real patient information into search or feedback.",
     waking: "The free server is waking up. This can take up to 4 minutes.",
+  },
+  auth: {
+    title: "Sign in",
+    body: "Use the account your administrator created for you.",
+    email: "Email",
+    password: "Password",
+    show: "Show password",
+    hide: "Hide password",
+    submit: "Sign in",
+    pending: "Signing in",
+    failed: "Email or password is incorrect.",
+    error: "Sign-in failed. Check your connection and try again.",
+    tagline: "Search every patient record in seconds.",
+    demoTitle: "Demo login",
+    demoBody: "Synthetic patients only.",
+    useDemo: "Use demo login",
+    signOut: "Sign out",
+    signedInAs: (name: string) => `Signed in as ${name}`,
   },
   nav: {
     label: "Primary",

@@ -21,7 +21,7 @@ const DEFAULT_SIZE = 50;
 
 /** Data quality dashboard (docs/06 section 6.10, FR-5.8). */
 export function QualityPage() {
-  const search = useSearch({ from: "/quality" });
+  const search = useSearch({ from: "/_app/quality" });
   const navigate = useNavigate({ from: "/quality" });
   const overview = useQuery(overviewQuery());
   const tab = search.tab ?? "issues";

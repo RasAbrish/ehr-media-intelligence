@@ -40,6 +40,7 @@ export const keys = {
   },
   ready: ["ready"] as const,
   health: ["health"] as const,
+  me: ["auth", "me"] as const,
   search: (params: SearchParams) => ["search", params] as const,
   patients: {
     all: ["patients"] as const,

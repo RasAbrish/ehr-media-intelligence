@@ -2,13 +2,12 @@ import { createMemoryHistory } from "@tanstack/react-router";
 import { render, screen } from "@testing-library/react";
 
 import { AppProviders } from "@/app/AppProviders";
-import { createQueryClient } from "@/app/queryClient";
-import { createAppRouter } from "@/router";
+import { createApp } from "@/app/create-app";
 
-/** Render the full app at a path and wait for the shell to mount. */
+/** Render the full app at a path and wait for a page to mount. */
 export async function renderApp(path = "/") {
-  const router = createAppRouter(createMemoryHistory({ initialEntries: [path] }));
-  const view = render(<AppProviders router={router} queryClient={createQueryClient()} />);
-  await screen.findByRole("banner", { hidden: true }); // hidden while a modal drawer is open
-  return { ...view, router };
+  const { router, queryClient } = createApp(createMemoryHistory({ initialEntries: [path] }));
+  const view = render(<AppProviders router={router} queryClient={queryClient} />);
+  await screen.findByRole("main", { hidden: true }); // hidden while a modal drawer is open
+  return { ...view, router, queryClient };
 }

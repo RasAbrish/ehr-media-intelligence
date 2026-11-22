@@ -19,6 +19,7 @@ const features = [
   "ConfidenceMeter",
   "KpiStrip",
   "DirectoryTable",
+  "SignInPhoto",
 ];
 
 describe("Storybook coverage (FR-8.4, docs/06 section 16)", () => {

@@ -1,5 +1,5 @@
 import { useNavigate, useRouterState } from "@tanstack/react-router";
-import { MenuIcon } from "lucide-react";
+import { LogOutIcon, MenuIcon } from "lucide-react";
 
 import { NAV_ITEMS } from "@/components/common/nav-items";
 import { Button } from "@/components/ui/button";
@@ -7,15 +7,19 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuRadioGroup,
+  DropdownMenuItem,
   DropdownMenuRadioItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useSignOut } from "@/features/auth/useSignOut";
 import { copy } from "@/lib/copy";
 
 /** Navigation menu for narrow screens (below md), per docs/06 section 7.3. */
 export function MobileNav() {
   const navigate = useNavigate();
   const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const signOut = useSignOut();
 
   return (
     <div className="md:hidden">
@@ -42,6 +46,16 @@ export function MobileNav() {
               </DropdownMenuRadioItem>
             ))}
           </DropdownMenuRadioGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem
+            className="min-h-11 gap-3"
+            onClick={() => {
+              signOut.mutate();
+            }}
+          >
+            <LogOutIcon aria-hidden="true" strokeWidth={1.75} />
+            {copy.auth.signOut}
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

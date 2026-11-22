@@ -22,6 +22,10 @@ export function problemResponse(status: number, code: string, detail = "Request 
   );
 }
 
+/** docs/04 section 3a example. */
+export const DEMO_USER = { email: "demo@example.org", display_name: "Demo clinician" };
+export const DEMO_PASSWORD = "synthetic-demo-2026";
+
 export function pageOf<T>(items: T[]) {
   return { items, page: 1, page_size: 50, total: items.length, total_pages: 1 };
 }
@@ -57,6 +61,14 @@ export const qualityRows = {
 };
 
 export const handlers = [
+  http.get("*/api/auth/me", () => HttpResponse.json(DEMO_USER)),
+  http.post("*/api/auth/login", async ({ request }) => {
+    const body = (await request.json()) as { email?: string; password?: string };
+    return body.email?.toLowerCase() === DEMO_USER.email && body.password === DEMO_PASSWORD
+      ? HttpResponse.json(DEMO_USER)
+      : problemResponse(401, "invalid_credentials", "Email or password is incorrect.");
+  }),
+  http.post("*/api/auth/logout", () => new HttpResponse(null, { status: 204 })),
   http.get("*/api/stats", () => HttpResponse.json(fixtures.stats)),
   http.get("*/api/patients", () => HttpResponse.json(fixtures.directory)),
   http.get("*/api/patients/:key/audit", () => HttpResponse.json(pageOf([fixtures.auditEntry]))),
