@@ -11,16 +11,29 @@ import { PrimaryNav } from "@/components/common/PrimaryNav";
 import { ShortcutsDialog } from "@/components/common/ShortcutsDialog";
 import { StatsPill } from "@/components/common/StatsPill";
 import { ThemeToggle } from "@/components/common/ThemeToggle";
-import { TopBar } from "@/components/common/TopBar";
+import { Sidebar } from "@/components/common/Sidebar";
 import { copy } from "@/lib/copy";
 
 const meta: Meta = { title: "Common/Shell" };
 export default meta;
 
-export const FullTopBar: StoryObj = { render: () => <TopBar /> };
+export const OpenSidebar: StoryObj = {
+  render: () => (
+    <div data-sidebar="open">
+      <Sidebar open onToggle={() => undefined} />
+    </div>
+  ),
+};
+export const ClosedSidebar: StoryObj = {
+  render: () => (
+    <div data-sidebar="closed">
+      <Sidebar open={false} onToggle={() => undefined} />
+    </div>
+  ),
+};
 export const Navigation: StoryObj = {
   render: () => (
-    <div className="flex h-14 items-center gap-4">
+    <div className="flex w-56 flex-col gap-4">
       <BrandMark />
       <PrimaryNav />
       <MobileNav />
@@ -29,7 +42,7 @@ export const Navigation: StoryObj = {
 };
 export const StatsAndTheme: StoryObj = {
   render: () => (
-    <div className="flex items-center gap-2">
+    <div className="flex w-56 flex-col gap-2">
       <StatsPill />
       <ThemeToggle />
     </div>

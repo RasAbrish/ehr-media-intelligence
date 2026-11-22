@@ -1,21 +1,31 @@
 import { Link } from "@tanstack/react-router";
 
-import { NAV_ITEMS } from "@/components/common/nav-items";
+import { NAV_ITEMS, SIDEBAR_ITEM } from "@/components/common/nav-items";
 import { copy } from "@/lib/copy";
+import { cn } from "@/lib/utils";
 
-/** Desktop navigation (md and up). Active item: foreground text with a 2px primary indicator. */
+/** Sidebar navigation (md and up). Active item: accent fill and the 3px rule of a selected card. */
 export function PrimaryNav() {
   return (
-    <nav aria-label={copy.nav.label} className="hidden h-full md:block">
-      <ul className="flex h-full items-stretch gap-1">
-        {NAV_ITEMS.map((item) => (
-          <li key={item.to} className="flex">
+    <nav aria-label={copy.nav.label} className="hidden md:block">
+      <ul className="flex flex-col gap-1">
+        {NAV_ITEMS.map(({ to, label, Icon }) => (
+          <li key={to}>
             <Link
-              to={item.to}
-              activeOptions={{ exact: item.to === "/", includeSearch: false }}
-              className="relative flex items-center rounded-md px-3 text-muted-foreground outline-offset-[-2px] transition-colors duration-120 hover:text-foreground data-[status=active]:text-foreground data-[status=active]:after:absolute data-[status=active]:after:inset-x-3 data-[status=active]:after:bottom-0 data-[status=active]:after:h-0.5 data-[status=active]:after:rounded-full data-[status=active]:after:bg-primary"
+              to={to}
+              activeOptions={{ exact: to === "/", includeSearch: false }}
+              className={cn(
+                "group/nav flex items-center rounded-lg text-muted-foreground outline-offset-[-2px] transition-colors duration-120 hover:bg-muted hover:text-foreground",
+                "data-[status=active]:bg-accent data-[status=active]:text-accent-foreground data-[status=active]:shadow-[inset_3px_0_0_var(--primary)]",
+                SIDEBAR_ITEM,
+              )}
             >
-              {item.label}
+              <Icon
+                aria-hidden="true"
+                strokeWidth={1.75}
+                className="size-5 shrink-0 group-data-[status=active]/nav:text-primary"
+              />
+              <span>{label}</span>
             </Link>
           </li>
         ))}

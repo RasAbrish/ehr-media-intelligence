@@ -1,6 +1,7 @@
 import { KeyboardIcon, XIcon } from "lucide-react";
 import { Fragment, useEffect, useState } from "react";
 
+import { SIDEBAR_ITEM } from "@/components/common/nav-items";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -15,8 +16,9 @@ import { Kbd } from "@/components/ui/kbd";
 import { copy } from "@/lib/copy";
 import { isTypingTarget } from "@/lib/keyboard";
 import { modalOpen } from "@/lib/modal";
+import { cn } from "@/lib/utils";
 
-/** Top bar button and "?" dialog listing the keyboard model (docs/06 sections 6.1 and 8.4). */
+/** Sidebar button and "?" dialog listing the keyboard model (docs/06 sections 6.1 and 8.4). */
 export function ShortcutsDialog() {
   const [open, setOpen] = useState(false);
   useEffect(() => {
@@ -37,12 +39,13 @@ export function ShortcutsDialog() {
           <Button
             variant="ghost"
             size="icon"
-            className="hidden size-9 md:inline-flex"
+            className={cn("hidden font-normal text-muted-foreground md:inline-flex", SIDEBAR_ITEM)}
             aria-label={copy.shortcuts.open}
           />
         }
       >
-        <KeyboardIcon aria-hidden strokeWidth={1.75} />
+        <KeyboardIcon aria-hidden strokeWidth={1.75} className="size-5" />
+        <span>{copy.shortcuts.label}</span>
       </DialogTrigger>
       <DialogContent
         showCloseButton={false}

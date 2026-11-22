@@ -2,6 +2,7 @@ import { MonitorIcon, MoonIcon, SunIcon } from "lucide-react";
 
 import { isThemePreference } from "@/app/theme";
 import { useTheme } from "@/app/theme-context";
+import { SIDEBAR_ITEM } from "@/components/common/nav-items";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -13,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { copy } from "@/lib/copy";
+import { cn } from "@/lib/utils";
 
 const OPTIONS = [
   { value: "light", label: copy.theme.light, Icon: SunIcon },
@@ -31,14 +33,15 @@ export function ThemeToggle() {
           <Button
             variant="ghost"
             size="icon"
-            className="size-11 md:size-9"
+            className={cn("size-11 font-normal text-muted-foreground", SIDEBAR_ITEM)}
             aria-label={`${copy.theme.trigger} (${copy.theme[preference].toLowerCase()})`}
           />
         }
       >
-        <TriggerIcon aria-hidden="true" strokeWidth={1.75} />
+        <TriggerIcon aria-hidden="true" strokeWidth={1.75} className="size-5" />
+        <span className="max-md:sr-only">{copy.theme.label}</span>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-36">
+      <DropdownMenuContent align="start" className="w-36">
         <DropdownMenuGroup>
           <DropdownMenuLabel>{copy.theme.label}</DropdownMenuLabel>
           <DropdownMenuRadioGroup
