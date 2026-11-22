@@ -17,6 +17,7 @@ from ehr_mip.search.filters import SearchFilters
 from ehr_mip.search.highlights import STOP_WORDS
 
 _TOKEN = re.compile(r"[a-z0-9]+")
+SUMMARY_TYPE = "ClinicalSummary"
 
 
 def tokenize(text: str) -> list[str]:
@@ -65,6 +66,35 @@ class LexicalIndex:
             key=lambda item: (-item[0], item[1]),
         )
         return [chunk_id for _, chunk_id in ranked[:limit]]
+
+    def newest(self, query: str, filters: SearchFilters, limit: int) -> list[IndexedChunk]:
+        """The newest records holding every query word (docs/05 section 4.2, newest order).
+
+        Scans the whole index: a candidate pool cut by score could miss the newest match.
+        AI summaries never match, because their date is the patient's latest record.
+        Returns, per record, the chunk with the most query words (then the earliest).
+        """
+        wanted = {term for term in tokenize(query) if term not in STOP_WORDS}
+        if not wanted:
+            return []
+        records: dict[str, list[tuple[set[str], IndexedChunk]]] = {}
+        for chunk, tokens in zip(self.chunks, self._tokens, strict=True):
+            if chunk.metadata["resource_type"] == SUMMARY_TYPE or not filters.matches(
+                chunk.metadata
+            ):
+                continue
+            records.setdefault(str(chunk.metadata["resource_id"]), []).append(
+                (tokens & wanted, chunk)
+            )
+        matched = {
+            record: min(parts, key=lambda p: (-len(p[0]), int(p[1].metadata["chunk_index"])))[1]
+            for record, parts in records.items()
+            if set().union(*(found for found, _ in parts)) == wanted
+        }
+        ordered = sorted(
+            matched.items(), key=lambda item: (-int(item[1].metadata.get("date_ord") or 0), item[0])
+        )
+        return [chunk for _, chunk in ordered[:limit]]
 
     def for_patient(self, patient_keys: set[str], filters: SearchFilters) -> list[IndexedChunk]:
         return [

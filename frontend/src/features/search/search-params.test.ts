@@ -1,6 +1,12 @@
 import { DateRangeSchema, parseSearchParams } from "@/features/search/search-params";
 
 describe("search URL params", () => {
+  it("keeps only a known non-default sort", () => {
+    expect(parseSearchParams({ sort: "newest" })).toEqual({ sort: "newest" });
+    expect(parseSearchParams({ sort: "relevance" })).toEqual({});
+    expect(parseSearchParams({ sort: "oldest" })).toEqual({});
+  });
+
   it("keeps valid values", () => {
     expect(
       parseSearchParams({

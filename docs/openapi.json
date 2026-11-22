@@ -2490,6 +2490,14 @@
             "title": "Results",
             "type": "array"
           },
+          "sort": {
+            "enum": [
+              "relevance",
+              "newest"
+            ],
+            "title": "Sort",
+            "type": "string"
+          },
           "took_ms": {
             "title": "Took Ms",
             "type": "integer"
@@ -2504,6 +2512,7 @@
           "took_ms",
           "total",
           "mode",
+          "sort",
           "filters",
           "results"
         ],
@@ -4132,6 +4141,20 @@
                 }
               ],
               "title": "Patient Key"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "default": "relevance",
+              "enum": [
+                "relevance",
+                "newest"
+              ],
+              "title": "Sort",
+              "type": "string"
             }
           }
         ],

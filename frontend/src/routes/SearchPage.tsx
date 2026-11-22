@@ -17,7 +17,9 @@ import { ResultList, type ResultListHandle } from "@/features/search/ResultList"
 import { ResultSkeletons } from "@/features/search/ResultSkeletons";
 import { QUERY_MIN, type SearchResult } from "@/features/search/schemas";
 import { SearchInput } from "@/features/search/SearchInput";
+import { SortSelect } from "@/features/search/SortSelect";
 import { useUrlText } from "@/hooks/useUrlText";
+import type { SearchSort } from "@/lib/contract-enums";
 import { copy } from "@/lib/copy";
 import { ApiError } from "@/lib/problem";
 import { readyQuery } from "@/lib/system-api";
@@ -45,7 +47,13 @@ export function SearchPage() {
     from: search.from ?? null,
     to: search.to ?? null,
   };
-  const params = { q: urlQuery, types: filters.types, from: filters.from, to: filters.to };
+  const params = {
+    q: urlQuery,
+    types: filters.types,
+    from: filters.from,
+    to: filters.to,
+    sort: search.sort,
+  };
   const results = useQuery(searchQuery(params));
   const ready = useQuery(readyQuery());
   const active = urlQuery.length >= QUERY_MIN;
@@ -58,6 +66,12 @@ export function SearchPage() {
         from: next.from ?? undefined,
         to: next.to ?? undefined,
       }),
+      replace: true,
+    });
+
+  const setSort = (next: SearchSort) =>
+    void navigate({
+      search: (prev) => ({ ...prev, sort: next === "newest" ? next : undefined }),
       replace: true,
     });
 
@@ -98,7 +112,7 @@ export function SearchPage() {
   // One live region that is always in the page, so the first count is announced too.
   const liveText =
     active && data && !results.isFetching
-      ? copy.search.meta(data.total, Math.round(data.took_ms), data.mode)
+      ? copy.search.meta(data.total, Math.round(data.took_ms), data.mode, data.sort)
       : "";
 
   return (
@@ -164,13 +178,17 @@ export function SearchPage() {
 
       {active && data ? (
         <div className="flex flex-col gap-2">
-          <div className="flex items-baseline justify-between gap-4 text-meta text-muted-foreground">
-            <p>{copy.search.meta(data.total, Math.round(data.took_ms), data.mode)}</p>
-            <p className="hidden md:block">{copy.search.ranked}</p>
+          <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-meta text-muted-foreground">
+            <p>{copy.search.meta(data.total, Math.round(data.took_ms), data.mode, data.sort)}</p>
+            <SortSelect value={search.sort ?? "relevance"} onChange={setSort} />
           </div>
+          {data.sort === "newest" ? (
+            <p className="text-meta text-muted-foreground">{copy.sort.newestNote}</p>
+          ) : null}
           {data.results.length ? (
             <ResultList
               results={data.results}
+              byDate={data.sort === "newest"}
               onOpen={openPatient}
               onPrefetch={prefetchPatient}
               selectedId={search.patient ? openedResource : null}
@@ -178,18 +196,34 @@ export function SearchPage() {
             />
           ) : (
             <EmptyState
-              title={copy.search.noResultsTitle}
-              description={copy.search.noResultsBody}
+              title={data.sort === "newest" ? copy.sort.noneTitle : copy.search.noResultsTitle}
+              description={data.sort === "newest" ? copy.sort.noneBody : copy.search.noResultsBody}
               action={
-                hasFilters ? (
-                  <Button
-                    variant="outline"
-                    onClick={() => {
-                      setFilters({ types: [], from: null, to: null });
-                    }}
-                  >
-                    {copy.filters.clear}
-                  </Button>
+                data.sort === "newest" || hasFilters ? (
+                  <div className="flex flex-wrap gap-2">
+                    {data.sort === "newest" ? (
+                      <Button
+                        variant="outline"
+                        className="max-md:h-11"
+                        onClick={() => {
+                          setSort("relevance");
+                        }}
+                      >
+                        {copy.sort.useRelevance}
+                      </Button>
+                    ) : null}
+                    {hasFilters ? (
+                      <Button
+                        variant="outline"
+                        className="max-md:h-11"
+                        onClick={() => {
+                          setFilters({ types: [], from: null, to: null });
+                        }}
+                      >
+                        {copy.filters.clear}
+                      </Button>
+                    ) : null}
+                  </div>
                 ) : undefined
               }
             />

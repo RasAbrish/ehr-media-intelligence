@@ -11,6 +11,7 @@ from ehr_mip.api.schemas.common import (
     ResourceRef,
     SearchableType,
     SearchMode,
+    SearchSort,
 )
 
 QUERY_MIN, QUERY_MAX = 2, 500
@@ -53,5 +54,6 @@ class SearchResponse(ApiModel):
     took_ms: int
     total: int
     mode: SearchMode
+    sort: SearchSort
     filters: AppliedFilters
     results: list[SearchResult]

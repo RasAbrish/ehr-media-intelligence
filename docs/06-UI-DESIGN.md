@@ -61,7 +61,8 @@ Tailwind v4 + shadcn CSS variables, OKLCH. Light is the default (clinical enviro
 | `--accent-foreground` | `oklch(0.30 0.06 196)` | `oklch(0.92 0.03 196)` | |
 | `--destructive` | `oklch(0.53 0.20 27)` | `oklch(0.68 0.19 25)` | High severity, critical values, errors |
 | `--border` | `oklch(0.915 0.005 247)` | `oklch(1 0 0 / 9%)` | Hairlines |
-| `--input` | `oklch(0.89 0.006 247)` | `oklch(1 0 0 / 14%)` | Input borders |
+| `--input` | `oklch(0.89 0.006 247)` | `oklch(1 0 0 / 14%)` | Input fills |
+| `--input-border` | `oklch(0.64 0.01 247)` | `oklch(0.53 0.01 257)` | Control borders, at least 3:1 |
 | `--ring` | `oklch(0.58 0.10 196)` | `oklch(0.72 0.10 192)` | Focus ring |
 
 ### 3.2 Semantic additions
@@ -136,7 +137,7 @@ Height 56, `bg-background/80` with backdrop blur, bottom border. Left: product m
 Row under input, gap 8: `ResourceTypeFilter` (outline button "Type: All" → popover with checkbox list and colored dots), `DateRangeFilter` (outline button with calendar icon "Any date" → popover with presets column: Last 30 days, Last 6 months, Last year, This year, Custom; and a two-month range calendar), active filter chips (secondary pill with x), "Clear filters" ghost button. On mobile the row collapses into a single "Filters (2)" button opening a bottom sheet.
 
 ### 6.4 Results meta
-`text-meta muted-foreground`: "5 results · 41 ms · Hybrid" on the left, sort note on the right ("Ranked by relevance"). This element is the `aria-live="polite"` region.
+`text-meta muted-foreground`: "5 results · 41 ms · Hybrid" on the left ("5 results · 4 ms · Newest first" in newest order), a labeled "Sort by" select on the right (Relevance, Newest), kept in the URL as `sort=newest`. In newest order a note says what qualifies ("Records with every search word. AI summaries are left out and undated records come last."), score meters and similarity are hidden, and no results offers "Sort by relevance". This element is the `aria-live="polite"` region.
 
 ### 6.5 Result card
 
@@ -391,6 +392,7 @@ Implemented with a `useRovingFocus` hook; cards are `<li><button>`; no positive 
   --destructive: oklch(0.53 0.20 27);
   --border: oklch(0.915 0.005 247);
   --input: oklch(0.89 0.006 247);
+  --input-border: oklch(0.64 0.01 247);
   --ring: oklch(0.58 0.10 196);
   --warning: oklch(0.72 0.15 70);
   --warning-foreground: oklch(0.36 0.08 60);
@@ -424,6 +426,7 @@ Implemented with a `useRovingFocus` hook; cards are `<li><button>`; no positive 
   --destructive: oklch(0.68 0.19 25);
   --border: oklch(1 0 0 / 9%);
   --input: oklch(1 0 0 / 14%);
+  --input-border: oklch(0.53 0.01 257);
   --ring: oklch(0.72 0.10 192);
   --warning: oklch(0.78 0.14 75);
   --warning-foreground: oklch(0.22 0.05 70);
@@ -465,6 +468,7 @@ Implemented with a `useRovingFocus` hook; cards are `<li><button>`; no positive 
   --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
+  --border-color-input: var(--input-border);
   --color-ring: var(--ring);
   --color-warning: var(--warning);
   --color-warning-foreground: var(--warning-foreground);
@@ -555,7 +559,7 @@ Note: if the shadcn CLI generates its own `index.css`, merge these values into t
 |---|---|
 | Provenance header | `text-meta muted-foreground`: AI badge, generated time (absolute), model id in mono, prompt version, Cached badge. Extractive provider shows "Offline summary" badge in `info` instead of model id |
 | Disclaimer | Always visible, first block, `bg-ai-muted`, info icon, not dismissible, not collapsible |
-| Evidence chip | Mono `text-meta`, arrow icon, "{resource label} · {date}"; `aria-label="Open source: Discharge summary, February 4, 2025"`; click → Records tab row highlight |
+| Evidence chip | Mono `text-meta`, arrow icon, "{resource label} · {date}"; `aria-label="Open source: Discharge summary · Feb 4, 2025"` (contains the visible label, WCAG 2.5.3); click → Records tab row highlight |
 | Suspected diagnosis | `warning` badge "Suspected" + tooltip "Not found verbatim in the cited record. Verify in source." |
 | Data quality anomaly | Badge suffix "DQ" with tooltip "Data quality issue, not a clinical finding" |
 | "Not documented" | Muted italic text in place of the value. Never hide the section |

@@ -14,7 +14,13 @@ from starlette.concurrency import run_in_threadpool
 from ehr_mip.api.deps import AppState, get_conn, get_search, get_state
 from ehr_mip.api.errors import validation_problem
 from ehr_mip.api.mappers import patient_ref, subtype_of
-from ehr_mip.api.schemas.common import Problem, ResourceRef, SearchableType, SearchMode
+from ehr_mip.api.schemas.common import (
+    Problem,
+    ResourceRef,
+    SearchableType,
+    SearchMode,
+    SearchSort,
+)
 from ehr_mip.api.schemas.search import AppliedFilters, SearchRequest, SearchResponse, SearchResult
 from ehr_mip.cache.backend import safe_get, safe_set
 from ehr_mip.db.read_models import PatientReader
@@ -60,6 +66,7 @@ async def search(  # noqa: PLR0913, PLR0917 (query parameters of the contract)
     top_k: Annotated[int | None, Query(ge=1, le=20)] = None,
     mode: SearchMode | None = None,
     patient_key: UUID | None = None,
+    sort: SearchSort = "relevance",
     conn: sqlite3.Connection = Depends(get_conn),
     state: AppState = Depends(get_state),
     service: SearchService = Depends(get_search),
@@ -81,13 +88,19 @@ async def search(  # noqa: PLR0913, PLR0917 (query parameters of the contract)
     digits = mrn_digits(body.query)
     mrn_patients = [p.patient_key for p in PatientReader(conn).by_mrn(digits)] if digits else []
 
-    key = cache_key(version, body.query, filters, top_k, mode, mrn_patients)
+    key = cache_key(version, body.query, filters, top_k, mode, mrn_patients, sort)
     payload = await safe_get(state.cache, key)
     if payload is not None:
         outcome, hit = SearchOutcome.from_bytes(payload), True
     else:
         outcome = await run_in_threadpool(
-            service.rank, body.query, filters, top_k=top_k, mode=mode, mrn_patients=mrn_patients
+            service.rank,
+            body.query,
+            filters,
+            top_k=top_k,
+            mode=mode,
+            mrn_patients=mrn_patients,
+            sort=sort,
         )
         hit = False
         await safe_set(state.cache, key, outcome.to_bytes(), settings.search_cache_ttl_s)
@@ -127,6 +140,7 @@ async def search(  # noqa: PLR0913, PLR0917 (query parameters of the contract)
         took_ms=round(took * 1000),
         total=len(results),
         mode=mode,
+        sort=sort,
         filters=AppliedFilters(
             resource_type=list(filters.resource_types),
             date_from=date_from,

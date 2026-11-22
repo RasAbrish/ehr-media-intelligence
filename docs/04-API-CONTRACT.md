@@ -48,6 +48,7 @@ type Severity           = "info" | "warning" | "error"
 type AnomalySeverity    = "low" | "moderate" | "high"
 type ConfidenceLevel    = "low" | "medium" | "high"
 type SearchMode         = "semantic" | "hybrid"
+type SearchSort         = "relevance" | "newest"
 type MatchType          = "semantic" | "lexical" | "hybrid" | "mrn"
 type SummaryProvider    = "anthropic" | "extractive"
 type PipelineStage      = "ingest" | "normalize" | "summarize" | "index"
@@ -227,7 +228,7 @@ Example: `{"patients":60,"resources_by_type":{"Encounter":88,"DocumentReference"
 
 ### 5.1 `POST /search`
 
-Free text search across FHIR document text and AI summaries. Returns the top `top_k` (default 5) records, one result per resource, sorted by `score` descending.
+Free text search across FHIR document text and AI summaries. Returns the top `top_k` (default 5) records, one result per resource, sorted by `score` descending or, with `sort=newest`, the newest records that contain every query word.
 
 **Query parameters**
 
@@ -237,7 +238,8 @@ Free text search across FHIR document text and AI summaries. Returns the top `to
 | `date_from` | `YYYY-MM-DD` | none | Inclusive. Records without a date are excluded when any date filter is set |
 | `date_to` | `YYYY-MM-DD` | none | Inclusive. Must be ≥ `date_from` |
 | `top_k` | int | 5 | 1 to 20 |
-| `mode` | `SearchMode` | `SEARCH_MODE` setting | |
+| `mode` | `SearchMode` | `SEARCH_MODE` setting | No effect with `sort=newest` |
+| `sort` | `SearchSort` | `relevance` | `newest`: see "Newest order" below |
 | `patient_key` | UUID | none | Restrict to one patient (used by drawer "search within patient", P2) |
 
 **Request body**
@@ -252,6 +254,7 @@ interface SearchResponse {
   took_ms: number
   total: number                 // results.length
   mode: SearchMode
+  sort: SearchSort              // the order that was applied
   filters: { resource_type: SearchableType[]; date_from: string | null; date_to: string | null; patient_key: string | null }
   results: SearchResult[]
 }
@@ -282,6 +285,7 @@ curl -s -X POST 'http://localhost:8000/search?resource_type=DiagnosticReport&dat
   "took_ms": 41,
   "total": 2,
   "mode": "hybrid",
+  "sort": "relevance",
   "filters": {"resource_type": ["DiagnosticReport"], "date_from": "2024-06-01", "date_to": null, "patient_key": null},
   "results": [
     {
@@ -323,7 +327,15 @@ curl -s -X POST 'http://localhost:8000/search?resource_type=DiagnosticReport&dat
 | 503 | `search_index_empty` | collection has 0 chunks |
 | 503 | `not_ready` | embedder not loaded |
 
-**Behavioral guarantees**: results sorted by `score` desc, ties broken by newer `date`; `total ≤ top_k`; no two results share a `resource_id`; an empty `results` array with `200` when nothing matches.
+**Newest order** (`sort=newest`):
+
+- A record matches when its indexed text or its patient's name contains every query word, as whole words and ignoring case and stop words. There is no synonym or semantic matching, so every indexed record is considered and the first result is the newest one that matches.
+- AI summaries never match. Their date is that of the patient's latest record, not of the finding they mention.
+- The filters apply first. Results are ordered by `date` descending, undated records last, ties by `resource_id`.
+- `match_type` is `lexical`, `score` is 1.0 and `semantic_score` is 0. An MRN query returns that patient's newest records with `match_type` `mrn`.
+- No record with every word, or a query of stop words only, gives `200` with empty `results`.
+
+**Behavioral guarantees**: with `sort=relevance`, results sorted by `score` desc, ties broken by newer `date`; `total ≤ top_k`; no two results share a `resource_id`; an empty `results` array with `200` when nothing matches.
 
 ---
 

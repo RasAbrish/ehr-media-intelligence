@@ -15,6 +15,8 @@ export interface SearchPageParams {
   type?: SearchableType[];
   from?: string;
   to?: string;
+  /** Relevance is the default and never in the URL. */
+  sort?: "newest";
   patient?: string;
 }
 
@@ -42,6 +44,7 @@ export function parseSearchParams(raw: Record<string, unknown>): SearchPageParam
   const to = typeof raw.to === "string" && isRealDate(raw.to) ? raw.to : undefined;
   if (from) result.from = from;
   if (to && (!from || from <= to)) result.to = to;
+  if (raw.sort === "newest") result.sort = "newest";
   const patient = patientParam(raw.patient);
   if (patient) result.patient = patient;
   return result;
