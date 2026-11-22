@@ -37,7 +37,10 @@ interface ErrorStateProps {
 export function ErrorState({ error, onRetry, title = copy.errors.title }: ErrorStateProps) {
   const requestId = error instanceof ApiError ? error.requestId : null;
   return (
-    <Alert variant="destructive" className="border-destructive/40">
+    <Alert
+      variant="destructive"
+      className="border-destructive/40 has-data-[slot=alert-action]:pr-28"
+    >
       <CircleAlertIcon aria-hidden />
       <AlertTitle>{title}</AlertTitle>
       <AlertDescription>

@@ -149,7 +149,7 @@ export function DrawerBody({ patientKey }: { patientKey: string }) {
     summary.error instanceof ApiError && summary.error.code === "summary_not_found";
 
   return (
-    <div className="flex min-h-full flex-col">
+    <div className="flex min-h-full shrink-0 flex-col">
       <div className="sticky top-0 z-20 flex flex-col gap-3 border-b bg-popover px-5 pt-4 pb-3">
         <div className="flex items-start gap-2">
           <SheetClose

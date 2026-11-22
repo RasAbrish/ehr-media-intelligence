@@ -43,7 +43,9 @@ function PatientLink({ patient }: { patient: PatientRef | null }) {
 }
 
 const mono = (value: string | null) => (
-  <span className="font-mono text-mono break-all whitespace-normal">{value ?? ""}</span>
+  <span className="block min-w-28 font-mono text-mono break-all whitespace-normal">
+    {value ?? ""}
+  </span>
 );
 const preview = (value: string) => (
   <span className="block min-w-64 font-mono text-mono break-all whitespace-normal">{value}</span>
