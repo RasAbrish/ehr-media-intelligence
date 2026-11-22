@@ -2,6 +2,26 @@
   <img src="docs/brand/logo-animated.svg" alt="Media Intelligence" width="640">
 </p>
 
+<p align="center">
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.12-3776AB?style=flat-square&logo=python&logoColor=white">
+  <img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white">
+  <img alt="Pydantic" src="https://img.shields.io/badge/Pydantic-v2-E92063?style=flat-square&logo=pydantic&logoColor=white">
+  <img alt="FHIR" src="https://img.shields.io/badge/FHIR-R4-E34F26?style=flat-square">
+  <img alt="SQLite" src="https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white">
+  <img alt="ChromaDB" src="https://img.shields.io/badge/ChromaDB-FF6446?style=flat-square">
+  <img alt="sentence-transformers" src="https://img.shields.io/badge/sentence--transformers-FFD21E?style=flat-square&logo=huggingface&logoColor=white">
+  <img alt="Claude" src="https://img.shields.io/badge/Claude-D97757?style=flat-square&logo=anthropic&logoColor=white">
+  <img alt="Groq" src="https://img.shields.io/badge/Groq-F55036?style=flat-square">
+  <img alt="React" src="https://img.shields.io/badge/React-19-20232A?style=flat-square&logo=react&logoColor=white">
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white">
+  <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white">
+  <img alt="Vite" src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white">
+  <img alt="pytest" src="https://img.shields.io/badge/pytest-0A9EDC?style=flat-square&logo=pytest&logoColor=white">
+  <img alt="Playwright" src="https://img.shields.io/badge/Playwright-2EAD33?style=flat-square&logo=playwright&logoColor=white">
+  <img alt="Docker" src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white">
+  <img alt="Render" src="https://img.shields.io/badge/Render-46E3B7?style=flat-square&logo=render&logoColor=white">
+</p>
+
 # EHR Media Intelligence Platform
 
 A pipeline and web app for unstructured EHR records. It ingests messy exports (JSON, CSV and text notes), cleans and normalizes them to HL7 FHIR R4, writes summaries that cite their source records, and lets a clinician search every record by meaning. Built for the Onye AI full-stack assessment. All data is synthetic.
@@ -26,6 +46,20 @@ Summaries can come from an AI model (Claude, or the free Groq model `openai/gpt-
 ![Search results on a phone](docs/screenshots/search-phone-light.png)
 
 </details>
+
+## Tech stack
+
+| Layer | Technology |
+|---|---|
+| Backend | Python 3.12, FastAPI, Pydantic v2, Uvicorn, Typer CLI, structlog, uv |
+| FHIR | `fhir.resources` 8 (R4B models for R4 resources), validation report, SQLite bundle store |
+| AI summaries | Claude (`claude-haiku-5-5`) or Groq (`openai/gpt-oss-120b`), guardrails, cache, offline extractive fallback |
+| Search | sentence-transformers `all-MiniLM-L6-v2`, ChromaDB, BM25 with reciprocal rank fusion |
+| Storage and cache | SQLite, in-memory TTL cache, optional Redis |
+| Frontend | React 19, TypeScript, Vite, Tailwind CSS v4, shadcn/ui on Base UI, TanStack Router, Query and Table, Zod |
+| Testing | pytest, Vitest with MSW, Playwright with axe, Storybook, Lighthouse CI |
+| Security and quality | Ruff, mypy strict, ESLint, import-linter, pip-audit, pnpm audit, gitleaks, Trivy |
+| Deployment | Docker Compose (nginx, API, optional Redis), Render free plan |
 
 ## Quick start with Docker
 
