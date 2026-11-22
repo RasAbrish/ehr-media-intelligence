@@ -1,6 +1,6 @@
 # Summary evaluation report
 
-Generated 2026-11-21T14:37:36+00:00. Provider: extractive; model: extractive; prompt `v1`.
+Generated 2026-11-22T14:16:31+00:00. Provider: extractive; model: extractive; prompt `v1`.
 
 ## Gates
 
