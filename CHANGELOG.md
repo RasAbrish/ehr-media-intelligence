@@ -5,6 +5,7 @@ All notable changes to this project are documented here. The format follows [Kee
 ## [Unreleased]
 
 ### Added
+- Sign-in with email and password: server-side sessions in an `HttpOnly` cookie, scrypt password hashes, a CSRF header on every POST, a login rate limit, `ehr-mip users add` and `users disable`, and a sign-in page with a public-domain photo. Every data route now needs a session (`docs/04` section 3a, ADR-013).
 - A free public demo deployment: `render.yaml`, an index built into the API image, a demo banner that also covers cold starts, and `docs/DEPLOY.md`.
 
 ### Changed

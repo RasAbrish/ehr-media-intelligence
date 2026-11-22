@@ -36,6 +36,16 @@ docker compose --profile redis up
 
 [docs/DEPLOY.md](docs/DEPLOY.md) deploys the frontend and API on Render's free plan from [render.yaml](render.yaml), with synthetic data, the offline summarizer and a demo banner.
 
+## Sign-in
+
+Every page and data route needs a session. Create an account once, then sign in at `/signin`:
+
+```bash
+cd backend && uv run ehr-mip users add --email you@example.org --name "Your name"
+```
+
+The password is asked for twice (at least 12 characters). `ehr-mip users disable --email ...` blocks an account and ends its sessions. For a local demo account set `DEMO_ACCOUNT_EMAIL` and `DEMO_ACCOUNT_PASSWORD` in `.env`. `make e2e` and `make lighthouse` create their own test account.
+
 ## Local development
 
 Requirements: Python 3.12, [uv](https://docs.astral.sh/uv/), Node 22, pnpm and git.
@@ -165,7 +175,7 @@ Backend layers import downward only (`api > search > summarization > fhir > inge
 ## Known limitations
 
 - **No automatic CI.** The workflows in `.github/workflows` have never completed a run on GitHub: hosted runners are not available to this account, so the CI, Security and eval workflows are switched off. The checks were run locally with the commands under [Tests](#tests), and the workflow steps were rehearsed on a clean clone. CodeQL has not run at all. The failed runs on earlier commits never started a job.
-- **No authentication or access audit.** Never load real patient data. The only configuration meant to be public is the synthetic demo in [docs/DEPLOY.md](docs/DEPLOY.md).
+- **Simple sign-in only.** Email and password with server-side sessions ([ADR-013](docs/decisions/ADR-013-sessions.md)). No single sign-on, roles, password reset or record of who viewed which patient. Never load real patient data. The only configuration meant to be public is the synthetic demo in [docs/DEPLOY.md](docs/DEPLOY.md), whose login is published.
 - **The Claude provider has never been run against the real API here.** Its quality, cost and latency are unknown. The manual review of summaries is still to be done by a person.
 - **Extractive recall is 87.5 percent.** It misses all 6 expected cases of hyponatremia and 6 of the 12 of hyperlipidemia.
 - **De-identification is partial.** Dates stay, and other people's names inside note text are not detected.

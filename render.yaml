@@ -24,6 +24,11 @@ services:
         value: /app/demo-data/chroma
       - key: CACHE_BACKEND
         value: memory
+      # Not secrets: the sign-in page shows this login, and the data is synthetic (docs/DEPLOY.md).
+      - key: DEMO_ACCOUNT_EMAIL
+        value: demo@example.org
+      - key: DEMO_ACCOUNT_PASSWORD
+        value: synthetic-demo-2026
       # 0.1 CPU and 512 MB
       - key: OMP_NUM_THREADS
         value: "1"
@@ -47,6 +52,10 @@ services:
         value: "true"
       - key: VITE_DEMO_MODE
         value: "true"
+      - key: VITE_DEMO_EMAIL
+        value: demo@example.org
+      - key: VITE_DEMO_PASSWORD
+        value: synthetic-demo-2026
     routes:
       # Order matters. Same origin, so the CSP stays connect-src 'self' and needs no CORS.
       - type: rewrite
