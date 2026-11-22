@@ -20,10 +20,6 @@ RUN := cd $(BACKEND) && $(UV) run
 PIP_AUDIT_IGNORE := PYSEC-2026-311 PYSEC-2026-3813 PYSEC-2026-3814 PYSEC-2026-3815
 CLI := $(RUN) ehr-mip
 
-define pending
-	@echo "make $@: available from Phase $(1) (docs/08-DELIVERY.md)." >&2; exit 2
-endef
-
 .PHONY: help setup data ingest normalize summarize index pipeline api web dev test test-backend \
 	test-frontend e2e lint fmt typecheck check security eval openapi storybook lighthouse \
 	validate-official docker-up docker-up-redis writeup-pdf requirements clean \
@@ -99,7 +95,7 @@ fmt: ## Format Python and TypeScript
 	cd $(FRONTEND) && $(PNPM) -s format
 
 typecheck: ## mypy --strict and tsc
-	$(RUN) mypy src ../scripts/generate_synthetic_data.py ../scripts/export_openapi.py
+	$(RUN) mypy src ../scripts/generate_synthetic_data.py ../scripts/export_openapi.py ../scripts/render_writeup.py
 	cd $(FRONTEND) && $(PNPM) -s typecheck
 
 test-backend: ## pytest with coverage gate (85 percent)
@@ -156,8 +152,8 @@ storybook: ## Component workshop with the a11y addon on :6006
 lighthouse: ## Bundle budget and Lighthouse CI against the built app (needs `make pipeline`)
 	bash scripts/lighthouse.sh
 
-validate-official: ## Optional HL7 validator run (P2)
-	$(call pending,6)
+validate-official: ## Optional HL7 validator run (P2, not built)
+	@echo "make $@: P2, not built (docs/01-SPEC.md FR-2.8)." >&2; exit 2
 
 docker-up: ## Build and start the stack on http://localhost:8080
 	docker compose up --build --detach --wait --wait-timeout 900
@@ -165,8 +161,8 @@ docker-up: ## Build and start the stack on http://localhost:8080
 docker-up-redis: ## The same with Redis for cache and rate limits
 	docker compose --profile redis up --build --detach --wait --wait-timeout 900
 
-writeup-pdf: ## Render docs/WRITEUP.md to PDF (Phase 7)
-	$(call pending,7)
+writeup-pdf: ## Render docs/WRITEUP.md to a one-page docs/WRITEUP.pdf
+	$(RUN) python ../scripts/render_writeup.py
 
 clean: ## Remove generated state and build output (keeps data/raw)
 	rm -rf data/generated $(FRONTEND)/dist $(FRONTEND)/coverage $(BACKEND)/.coverage \

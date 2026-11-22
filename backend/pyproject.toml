@@ -22,7 +22,7 @@ redis = ["redis>=5.0"]
 dev = [
   "pytest>=8", "pytest-cov", "pytest-asyncio", "hypothesis", "httpx", "ruff", "mypy",
   "types-python-dateutil", "types-cachetools", "import-linter>=2.1", "faker", "pre-commit",
-  "fakeredis>=2.23", "pip-audit",
+  "fakeredis>=2.23", "pip-audit", "markdown-it-py>=3",
 ]
 
 [project.scripts]
