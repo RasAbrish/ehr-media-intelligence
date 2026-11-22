@@ -67,11 +67,11 @@ def create_app(
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         with closing(connect(settings.sqlite_path)) as conn:  # schema once, then per request
-            if settings.demo_account_email and settings.demo_account_password:
+            if settings.seed_account_email and settings.seed_account_password:
                 auth_service(conn, settings).ensure_account(
-                    settings.demo_account_email,
-                    "Demo clinician",
-                    settings.demo_account_password.get_secret_value(),
+                    settings.seed_account_email,
+                    settings.seed_account_name,
+                    settings.seed_account_password.get_secret_value(),
                 )
             try:
                 embedder = embedder_factory(settings)
@@ -92,13 +92,14 @@ def create_app(
         await state.cache.aclose()
 
     prod = settings.env == "prod"
+    docs = settings.api_docs_enabled if settings.api_docs_enabled is not None else not prod
     app = FastAPI(
         title="EHR Media Intelligence API",
         version=__version__,
         lifespan=lifespan,
-        docs_url=None if prod else "/docs",
-        redoc_url=None if prod else "/redoc",
-        openapi_url=None if prod else "/openapi.json",
+        docs_url="/docs" if docs else None,
+        redoc_url="/redoc" if docs else None,
+        openapi_url="/openapi.json" if docs else None,
     )
     app.state.ehr = state
     register_error_handlers(app)

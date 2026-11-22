@@ -127,7 +127,7 @@ class SummaryService:
         self._clock = clock
 
     def _model_for(self, provider: Provider) -> str | None:
-        return provider.model if provider.kind == "anthropic" else None
+        return None if provider.kind == "extractive" else provider.model
 
     def _cached(
         self, patient_key: str, bundle_hash: str, provider: Provider
@@ -183,7 +183,7 @@ class SummaryService:
 
         primary = self._provider
         fallback_reason: str | None = None
-        if primary.kind == "anthropic" and self._budget.exceeded(self._clock()):
+        if primary.kind != "extractive" and self._budget.exceeded(self._clock()):
             primary, fallback_reason = self._extractive, "budget_exceeded"
             # A fallback summary for this exact bundle may already exist.
             hit = self._cached(patient_key, bundle_hash, primary) if persist and not force else None
@@ -217,7 +217,7 @@ class SummaryService:
             started = time.perf_counter()
             gen = _Generation(used=primary, fallback_reason=fallback_reason)
             try:
-                gen.calls += primary.kind == "anthropic"
+                gen.calls += primary.kind != "extractive"
                 result = await primary.summarize(request)
             except ProviderError as error:
                 gen.fallback_reason, gen.used = error.reason, self._extractive
@@ -276,7 +276,7 @@ class SummaryService:
                 extractive=extractive,
                 bundle_has_errors=bundle_has_errors,
             ),
-            provider="extractive" if extractive else "anthropic",
+            provider="extractive" if extractive else gen.used.kind,
             model=model,
             prompt_version=self._prompt.version,
             bundle_hash=bundle_hash,
@@ -296,7 +296,7 @@ class SummaryService:
         if not persist:
             return SummaryOutcome(summary=summary, trace=trace, provider_calls=gen.calls)
         self._cache.put(summary, trace)
-        fell_back = gen.fallback_reason is not None and self._provider.kind == "anthropic"
+        fell_back = gen.fallback_reason is not None and self._provider.kind != "extractive"
         status: CallStatus = "fallback" if fell_back else "retried" if gen.attempts > 1 else "ok"
         self._calls.record(
             LlmCall(

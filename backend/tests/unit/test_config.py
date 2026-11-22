@@ -111,3 +111,29 @@ def test_comment_as_secret_means_none(monkeypatch: pytest.MonkeyPatch) -> None:
     settings = _settings()
     assert settings.anthropic_api_key is None
     assert settings.effective_llm_provider == "extractive"
+
+
+@pytest.mark.parametrize(
+    ("provider", "anthropic", "groq", "expected", "model"),
+    [
+        ("auto", "", "gsk-test", "groq", "openai/gpt-oss-120b"),
+        ("auto", "sk-test", "gsk-test", "anthropic", "claude-haiku-5-5"),
+        ("groq", "sk-test", "gsk-test", "groq", "openai/gpt-oss-120b"),
+        ("groq", "sk-test", "", "extractive", None),
+    ],
+)
+def test_groq_selection(
+    monkeypatch: pytest.MonkeyPatch,
+    provider: str,
+    anthropic: str,
+    groq: str,
+    expected: str,
+    model: str | None,
+) -> None:
+    monkeypatch.setenv("LLM_PROVIDER", provider)
+    monkeypatch.setenv("ANTHROPIC_API_KEY", anthropic)
+    monkeypatch.setenv("GROQ_API_KEY", groq)
+    settings = _settings()
+    assert settings.effective_llm_provider == expected
+    assert settings.effective_llm_model == model
+    assert "gsk-test" not in repr(settings)

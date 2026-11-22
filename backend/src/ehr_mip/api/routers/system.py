@@ -93,9 +93,11 @@ async def ready(
     provider = settings.effective_llm_provider
     llm = LlmCheck(
         ok=True,
-        detail="api key present" if provider == "anthropic" else "extractive fallback (no API key)",
+        detail="extractive fallback (no API key)"
+        if provider == "extractive"
+        else "api key present",
         provider=provider,
-        model=settings.llm_model if provider == "anthropic" else None,
+        model=settings.effective_llm_model,
     )
     if search is not None:
         index_version = search.index_version or 0

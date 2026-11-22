@@ -50,8 +50,8 @@ def main() -> None:
             "RATE_LIMIT_ENABLED": "false",  # one client runs every test
             # The browser tests and Lighthouse sign in with this test account.
             "AUTH_ENABLED": "true",
-            "DEMO_ACCOUNT_EMAIL": E2E_EMAIL,
-            "DEMO_ACCOUNT_PASSWORD": E2E_PASSWORD,
+            "SEED_ACCOUNT_EMAIL": E2E_EMAIL,
+            "SEED_ACCOUNT_PASSWORD": E2E_PASSWORD,
         }
         cli = Path(sys.executable).with_name("ehr-mip")
         server = subprocess.Popen(  # noqa: S603 (fixed arguments, no shell)

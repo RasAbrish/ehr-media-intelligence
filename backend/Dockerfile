@@ -35,6 +35,8 @@ RUN pip uninstall --yes --root-user-action=ignore pip \
 COPY --from=build /app/.venv /app/.venv
 COPY --from=model /opt/hf-cache /opt/hf-cache
 COPY data/raw /app/data/raw
+# Model summaries made on a developer machine (ADR-014); run-all imports them, no key needed.
+COPY data/summaries /app/data/summaries
 WORKDIR /app
 ENV PATH=/app/.venv/bin:$PATH \
     PYTHONUNBUFFERED=1 \

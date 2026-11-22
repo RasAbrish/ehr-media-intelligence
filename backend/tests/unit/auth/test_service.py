@@ -97,7 +97,7 @@ def test_sign_out_and_disable_end_sessions(service: AuthService) -> None:
     assert service.authenticate("a@example.org", PASSWORD) is None
 
 
-def test_demo_account_is_created_once_and_not_overwritten(service: AuthService) -> None:
+def test_seed_account_is_created_once_and_not_overwritten(service: AuthService) -> None:
     service.ensure_account("demo@example.org", "Demo clinician", PASSWORD)
     service.ensure_account("demo@example.org", "Changed", "another long password")
     user = service.authenticate("demo@example.org", PASSWORD)

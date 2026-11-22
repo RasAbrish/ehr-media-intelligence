@@ -26,8 +26,8 @@ def make_client(store: Path, **overrides: object) -> TestClient:
     return client_for(
         store,
         auth_enabled=True,
-        demo_account_email=EMAIL,
-        demo_account_password=PASSWORD,
+        seed_account_email=EMAIL,
+        seed_account_password=PASSWORD,
         **overrides,
     )
 
@@ -46,7 +46,7 @@ def sign_in(client: TestClient) -> None:
 def test_sign_in_sets_a_strict_http_only_cookie(client: TestClient) -> None:
     response = client.post("/auth/login", json={"email": "Demo@Example.org", "password": PASSWORD})
     assert response.status_code == 200
-    assert response.json() == {"email": EMAIL, "display_name": "Demo clinician"}
+    assert response.json() == {"email": EMAIL, "display_name": "Clinician"}
     cookie = response.headers["set-cookie"]
     assert cookie.startswith("ehr_session=")
     assert "HttpOnly" in cookie
@@ -130,3 +130,13 @@ def test_login_is_rate_limited(store: Path) -> None:
         ]
     assert codes[:10] == [401] * 10
     assert codes[10] == 429
+
+
+@pytest.mark.parametrize(("enabled", "status"), [(None, 404), (True, 200)])
+def test_swagger_docs_in_prod_follow_the_setting(
+    store: Path, enabled: bool | None, status: int
+) -> None:
+    with make_client(store, env="prod", api_docs_enabled=enabled) as client:
+        assert client.get("/docs").status_code == status
+        assert client.get("/openapi.json").status_code == status
+        assert client.get("/stats").status_code == 401  # data still needs a session

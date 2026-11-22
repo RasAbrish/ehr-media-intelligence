@@ -12,5 +12,5 @@ API_HEADERS: tuple[tuple[bytes, bytes], ...] = (
 )
 HSTS = (b"strict-transport-security", b"max-age=31536000; includeSubDomains")
 NO_STORE = (b"cache-control", b"no-store")
-# Interactive docs (dev only, off in prod) load Swagger UI assets, so they skip the CSP.
+# Interactive docs (API_DOCS_ENABLED; on in dev) load Swagger UI assets, so they skip the CSP.
 DOCS_PATHS = ("/docs", "/redoc", "/openapi.json")

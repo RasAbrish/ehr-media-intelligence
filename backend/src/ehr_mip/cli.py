@@ -10,6 +10,7 @@ import sqlite3
 from collections import Counter
 from contextlib import closing
 from datetime import UTC, datetime
+from pathlib import Path
 
 import typer
 from rich.console import Console
@@ -253,7 +254,8 @@ def evaluate() -> None:
         report, summaries = result.report, result.summaries
         # One sheet per model, so a real-model run never reuses an extractive sheet.
         model = summaries[0].model or "extractive" if summaries else "extractive"
-        review = PROJECT_ROOT / "docs" / "eval" / f"manual_review_{model}.md"
+        # A model id such as openai/gpt-oss-120b must not create a folder.
+        review = PROJECT_ROOT / "docs" / "eval" / f"manual_review_{model.replace('/', '-')}.md"
         created = write_manual_review_template(conn, review, summaries)
     json_path, md_path = write_eval_reports(report, settings.reports_dir)
     console = Console()
@@ -319,9 +321,10 @@ def index() -> None:
 
 @app.command(name="run-all")
 def run_all() -> None:
-    """Run ingest, normalize, summarize and index in order. (Phase 4)"""
+    """Run ingest, normalize, import shipped summaries, summarize and index in order."""
     ingest()
     normalize()
+    summaries_import(SHIPPED)  # shipped model summaries first, so the index includes them
     summarize(force=False)
     index()
 
@@ -335,6 +338,44 @@ def _bootstrap_if_empty(settings: Settings) -> None:
             return
     typer.echo("No indexed data found: running the pipeline (AUTO_BOOTSTRAP=true).")
     run_all()
+
+
+summaries = typer.Typer(help="Ship model summaries as a file (ADR-014).", no_args_is_help=True)
+app.add_typer(summaries, name="summaries")
+SHIPPED = PROJECT_ROOT / "data" / "summaries" / "summaries.json"
+
+
+@summaries.command("export")
+def summaries_export(
+    out: Path = typer.Option(SHIPPED, help="File to write."),  # noqa: B008
+) -> None:
+    """Write the model summaries of the current data to a JSON file."""
+    import json  # noqa: PLC0415
+
+    from ehr_mip.summarization.cache import export_summaries  # noqa: PLC0415
+
+    with closing(connect(get_settings().sqlite_path)) as conn:
+        items = export_summaries(conn)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(items, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    Console().print(f"Exported {len(items)} model summaries to {out}")
+
+
+@summaries.command("import")
+def summaries_import(
+    source: Path = typer.Option(SHIPPED, help="File to read."),  # noqa: B008
+) -> None:
+    """Load shipped summaries; those for data that has changed are skipped."""
+    import json  # noqa: PLC0415
+
+    from ehr_mip.summarization.cache import import_summaries  # noqa: PLC0415
+
+    if not source.exists():
+        Console().print(f"No shipped summaries at {source}; nothing imported.")
+        return
+    with closing(connect(get_settings().sqlite_path)) as conn:
+        imported, skipped = import_summaries(conn, json.loads(source.read_text(encoding="utf-8")))
+    Console().print(f"Imported {imported} model summaries, skipped {skipped} for changed data.")
 
 
 users = typer.Typer(help="Sign-in accounts (ADR-013).", no_args_is_help=True)

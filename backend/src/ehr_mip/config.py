@@ -33,7 +33,7 @@ def _find_project_root() -> Path:
 
 PROJECT_ROOT = _find_project_root()
 
-LlmProvider = Literal["auto", "anthropic", "extractive"]
+LlmProvider = Literal["auto", "anthropic", "groq", "extractive"]
 
 
 class Settings(BaseSettings):
@@ -50,6 +50,8 @@ class Settings(BaseSettings):
     anthropic_api_key: SecretStr | None = None
     llm_provider: LlmProvider = "auto"
     llm_model: str = "claude-haiku-5-5"
+    groq_api_key: SecretStr | None = None
+    groq_model: str = "openai/gpt-oss-120b"
     llm_max_concurrency: int = Field(default=4, ge=1, le=32)
     llm_timeout_s: float = Field(default=30, gt=0, le=300)
     summary_max_words: int = Field(default=200, ge=50, le=400)
@@ -83,13 +85,16 @@ class Settings(BaseSettings):
     feedback_enabled: bool = True
     log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR"] = "INFO"
     env: Literal["dev", "prod"] = "dev"
+    # Swagger UI and the OpenAPI schema; unset means on in dev and off in prod.
+    api_docs_enabled: bool | None = None
 
     # Sign-in (ADR-013)
     auth_enabled: bool = True
     session_hours: float = Field(default=8, gt=0, le=24)
     session_idle_minutes: int = Field(default=60, ge=5, le=24 * 60)
-    demo_account_email: str | None = None
-    demo_account_password: SecretStr | None = None
+    seed_account_email: str | None = None
+    seed_account_name: str = "Clinician"
+    seed_account_password: SecretStr | None = None
 
     # Cache
     cache_backend: Literal["memory", "redis", "auto"] = "memory"
@@ -102,8 +107,9 @@ class Settings(BaseSettings):
     @field_validator(
         "anthropic_api_key",
         "admin_token",
-        "demo_account_email",
-        "demo_account_password",
+        "groq_api_key",
+        "seed_account_email",
+        "seed_account_password",
         mode="before",
     )
     @classmethod
@@ -112,6 +118,11 @@ class Settings(BaseSettings):
         if isinstance(value, str) and (not value.strip() or value.strip().startswith("#")):
             return None
         return value
+
+    @field_validator("api_docs_enabled", mode="before")
+    @classmethod
+    def _blank_is_unset(cls, value: object) -> object:
+        return None if isinstance(value, str) and not value.strip() else value
 
     @field_validator("cors_origins", mode="before")
     @classmethod
@@ -135,13 +146,23 @@ class Settings(BaseSettings):
         return self
 
     @property
-    def effective_llm_provider(self) -> Literal["anthropic", "extractive"]:
-        """Resolve ``auto``: Claude when a key is present, extractive otherwise."""
+    def effective_llm_provider(self) -> Literal["anthropic", "groq", "extractive"]:
+        """Resolve ``auto``: Claude, then Groq, by which key is present; else extractive."""
+        keys: dict[Literal["anthropic", "groq"], SecretStr | None] = {
+            "anthropic": self.anthropic_api_key,
+            "groq": self.groq_api_key,
+        }
         if self.llm_provider == "auto":
-            return "anthropic" if self.anthropic_api_key is not None else "extractive"
-        if self.llm_provider == "anthropic" and self.anthropic_api_key is None:
+            return next((name for name, key in keys.items() if key is not None), "extractive")
+        if self.llm_provider != "extractive" and keys[self.llm_provider] is None:
             return "extractive"
         return self.llm_provider
+
+    @property
+    def effective_llm_model(self) -> str | None:
+        """The model id summaries will report, or None for the extractive provider."""
+        provider = self.effective_llm_provider
+        return {"anthropic": self.llm_model, "groq": self.groq_model}.get(provider)
 
 
 @lru_cache(maxsize=1)

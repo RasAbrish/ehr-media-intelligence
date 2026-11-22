@@ -254,7 +254,9 @@ class StatusReader:
             "SELECT s.patient_key, json_extract(s.summary_json, '$.summary.chief_concern') "  # noqa: S608
             "FROM summary_cache s JOIN fhir_bundles b "
             "  ON b.patient_key = s.patient_key AND b.bundle_hash = s.bundle_hash "
-            f"WHERE s.patient_key IN ({_marks(len(keys))}) ORDER BY s.created_at",
+            # Last row wins: model summaries after offline ones, then by date (ADR-014).
+            f"WHERE s.patient_key IN ({_marks(len(keys))}) "
+            "ORDER BY (s.provider != 'extractive'), s.created_at",
             keys,
         )
         return {key: concern for key, concern in rows if concern}  # newest wins

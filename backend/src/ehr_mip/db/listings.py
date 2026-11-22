@@ -131,7 +131,9 @@ class Listings:
         rows = self._conn.execute(
             "SELECT s.patient_key, s.summary_json FROM summary_cache s JOIN fhir_bundles b "  # noqa: S608
             "  ON b.patient_key = s.patient_key AND b.bundle_hash = s.bundle_hash "
-            f"WHERE s.patient_key IN ({_marks(len(keys))}) ORDER BY s.created_at",
+            # Last row wins: model summaries after offline ones, then by date (ADR-014).
+            f"WHERE s.patient_key IN ({_marks(len(keys))}) "
+            "ORDER BY (s.provider != 'extractive'), s.created_at",
             keys,
         )
         return {key: json.loads(payload)["summary"] for key, payload in rows}

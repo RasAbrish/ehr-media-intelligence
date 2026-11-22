@@ -25,7 +25,7 @@ MediaKind = Literal["imaging", "lab", "pathology", "note"]
 AnomalySeverity = Literal["low", "moderate", "high"]
 AnomalySource = Literal["rule", "model"]
 ConfidenceLevel = Literal["low", "medium", "high"]
-SummaryProvider = Literal["anthropic", "extractive"]
+SummaryProvider = Literal["anthropic", "groq", "extractive"]
 
 # Field limits (docs/03 section 6).
 MAX_CHIEF_CONCERN = 160

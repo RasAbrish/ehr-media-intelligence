@@ -9,6 +9,7 @@ from __future__ import annotations
 import hashlib
 import json
 import sqlite3
+from typing import Any
 
 from ehr_mip.summarization.schemas import ClinicalSummary, SummaryTrace
 
@@ -65,13 +66,43 @@ class SummaryCache:
             )
 
     def latest(self, patient_key: str, bundle_hash: str) -> ClinicalSummary | None:
-        """Newest summary for the patient's current bundle, from any provider or model."""
+        """The summary to serve: a model summary before an offline one, then the newest."""
         row = self._conn.execute(
             "SELECT cache_key FROM summary_cache WHERE patient_key = ? AND bundle_hash = ? "
-            "ORDER BY created_at DESC LIMIT 1",
+            "ORDER BY (provider != 'extractive') DESC, created_at DESC LIMIT 1",
             (patient_key, bundle_hash),
         ).fetchone()
         if row is None:
             return None
         found = self.get(row[0])
         return found[0] if found else None
+
+
+def export_summaries(conn: sqlite3.Connection) -> list[dict[str, Any]]:
+    """Model summaries of every current bundle, as stored payloads (ADR-014)."""
+    rows = conn.execute(
+        "SELECT s.summary_json FROM summary_cache s JOIN fhir_bundles b "
+        "  ON b.patient_key = s.patient_key AND b.bundle_hash = s.bundle_hash "
+        "WHERE s.provider != 'extractive' ORDER BY s.patient_key, s.created_at"
+    )
+    latest: dict[str, dict[str, Any]] = {}
+    for (payload,) in rows:
+        item = json.loads(payload)
+        latest[item["summary"]["patient_key"]] = item  # newest per patient wins
+    return list(latest.values())
+
+
+def import_summaries(conn: sqlite3.Connection, items: list[dict[str, Any]]) -> tuple[int, int]:
+    """Store summaries whose bundle hash matches the current data. Returns (imported, skipped)."""
+    current = dict(conn.execute("SELECT patient_key, bundle_hash FROM fhir_bundles").fetchall())
+    cache = SummaryCache(conn)
+    imported = skipped = 0
+    for item in items:
+        summary = ClinicalSummary.model_validate(item["summary"])
+        if current.get(summary.patient_key) != summary.bundle_hash:
+            skipped += 1
+            continue
+        trace = SummaryTrace.model_validate(item["trace"]) if item.get("trace") else None
+        cache.put(summary, trace)
+        imported += 1
+    return imported, skipped

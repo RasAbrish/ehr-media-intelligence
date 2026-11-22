@@ -11,4 +11,5 @@ backend/*
 !data/
 data/*
 !data/raw/
+!data/summaries/
 data/raw/_ground_truth.json

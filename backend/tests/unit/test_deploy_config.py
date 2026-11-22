@@ -18,7 +18,12 @@ def services() -> dict[str, dict[str, Any]]:
 
 
 def _env(service: dict[str, Any]) -> dict[str, str]:
-    return {item["key"]: str(item["value"]) for item in service["envVars"]}
+    return {item["key"]: str(item["value"]) for item in service["envVars"] if "value" in item}
+
+
+def _prompted(service: dict[str, Any]) -> set[str]:
+    """Keys whose value is entered in the Render dashboard (``sync: false``), never in git."""
+    return {item["key"] for item in service["envVars"] if item.get("sync") is False}
 
 
 def test_only_free_services(services: dict[str, dict[str, Any]]) -> None:
@@ -39,19 +44,26 @@ def test_the_public_demo_cannot_spend_money_on_the_model(
     assert "FORWARDED_ALLOW_IPS" not in env, "never trust a caller's X-Forwarded-For"
 
 
-def test_the_demo_login_is_the_only_credential_and_it_is_published(
+def test_the_login_is_entered_in_the_dashboard_and_never_shown(
     services: dict[str, dict[str, Any]],
 ) -> None:
     api, site = _env(services["docker"]), _env(services["static"])
     assert api.get("AUTH_ENABLED", "true") == "true"
-    assert (api["DEMO_ACCOUNT_EMAIL"], api["DEMO_ACCOUNT_PASSWORD"]) == (
-        site["VITE_DEMO_EMAIL"],
-        site["VITE_DEMO_PASSWORD"],
-    )
-    secret_like = re.compile(r"(^|_)(KEY|TOKEN|SECRET|PASSWORD)(_|$)")
-    allowed = {"DEMO_ACCOUNT_PASSWORD", "VITE_DEMO_PASSWORD"}
+    assert _prompted(services["docker"]) == {"SEED_ACCOUNT_EMAIL", "SEED_ACCOUNT_PASSWORD"}
+    assert not {"VITE_DEMO_EMAIL", "VITE_DEMO_PASSWORD"} & set(site)
+    secret_like = re.compile(r"(^|_)(KEY|TOKEN|SECRET|PASSWORD|EMAIL)(_|$)")
     for env in (api, site):
-        assert {key for key in env if secret_like.search(key)} <= allowed
+        assert not {key for key in env if secret_like.search(key)}
+
+
+def test_the_api_docs_are_published(services: dict[str, dict[str, Any]]) -> None:
+    assert _env(services["docker"])["API_DOCS_ENABLED"] == "true"
+
+
+def test_the_image_ships_the_model_summaries() -> None:
+    dockerfile = (PROJECT_ROOT / "backend/Dockerfile").read_text()
+    assert "COPY data/summaries /app/data/summaries" in dockerfile
+    assert "!data/summaries/" in (PROJECT_ROOT / ".dockerignore").read_text()
 
 
 def test_the_api_serves_the_index_built_into_the_image(
