@@ -1,0 +1,118 @@
+# Only the findings accepted in docs/09-SECURITY.md section 8.1. Each one is limited to the
+# listed package versions, so another advisory or another version fails the scan again.
+#
+# ChromaDB: CVE ids, because Trivy does not know the PYSEC ids in PIP_AUDIT_IGNORE. All four
+# are in the Chroma HTTP server, which this project never runs. Review on every upgrade.
+#
+# Debian: no fix in trixie. These expire, and the scan then fails until they are reviewed.
+vulnerabilities:
+  - id: CVE-2026-45829 # PYSEC-2026-311
+    purls: ["pkg:pypi/chromadb@1.5.9"]
+    statement: Chroma server endpoint; the app uses PersistentClient only.
+  - id: CVE-2026-45833 # PYSEC-2026-3814
+    purls: ["pkg:pypi/chromadb@1.5.9"]
+    statement: Chroma server endpoint; the app uses PersistentClient only.
+  - id: CVE-2026-45831 # PYSEC-2026-3815
+    purls: ["pkg:pypi/chromadb@1.5.9"]
+    statement: Chroma server auth provider; there is no Chroma server.
+  - id: CVE-2026-45830 # PYSEC-2026-3813
+    purls: ["pkg:pypi/chromadb@1.5.9"]
+    statement: Chroma server authorization; there is no Chroma server.
+  - id: CVE-2026-54369 # libacl1: symlink traversal privilege escalation
+    expired_at: 2026-12-22
+    purls:
+      - "pkg:deb/debian/libacl1@2.3.2-2%2Bb1"
+    statement: "Python does not link libacl, the app starts no tools that do, and the process is unprivileged."
+  - id: CVE-2026-119373 # libsqlite3-0: FTS5 heap overflow
+    expired_at: 2026-12-22
+    purls:
+      - "pkg:deb/debian/libsqlite3-0@3.46.1-7%2Bdeb13u2"
+    statement: "The app database has no FTS5 table."
+  - id: CVE-2026-119374 # libsqlite3-0: FTS5 corrupted index overflow
+    expired_at: 2026-12-22
+    purls:
+      - "pkg:deb/debian/libsqlite3-0@3.46.1-7%2Bdeb13u2"
+    statement: "The app database has no FTS5 table and the app accepts no database files."
+  - id: CVE-2026-119379 # libsqlite3-0: session changeset overflow
+    expired_at: 2026-12-22
+    purls:
+      - "pkg:deb/debian/libsqlite3-0@3.46.1-7%2Bdeb13u2"
+    statement: "Python sqlite3 exposes no changeset API."
+  - id: CVE-2025-69720 # ncurses: infocmp buffer overflow
+    expired_at: 2026-12-22
+    purls:
+      - "pkg:deb/debian/libncursesw6@6.5%2B20250216-2"
+      - "pkg:deb/debian/libtinfo6@6.5%2B20250216-2"
+      - "pkg:deb/debian/ncurses-base@6.5%2B20250216-2"
+      - "pkg:deb/debian/ncurses-bin@6.5%2B20250216-2"
+    statement: "The app never runs infocmp or imports curses."
+  - id: CVE-2026-124709 # openssl: QUIC server memory leak
+    expired_at: 2026-12-22
+    purls:
+      - "pkg:deb/debian/libssl3t64@3.5.9-1~deb13u1"
+      - "pkg:deb/debian/openssl-provider-legacy@3.5.9-1~deb13u1"
+      - "pkg:deb/debian/openssl@3.5.9-1~deb13u1"
+    statement: "The API serves no QUIC, and Python ssl exposes no QUIC API."
+  - id: CVE-2026-9538 # perl-base: Archive::Tar denial of service
+    expired_at: 2026-12-22
+    purls:
+      - "pkg:deb/debian/perl-base@5.40.1-6%2Bdeb13u1"
+    statement: "The image has no Archive/Tar.pm and the app runs no Perl."
+  - id: CVE-2026-16742 # systemd libraries: systemd-homed privilege escalation
+    expired_at: 2026-12-22
+    purls:
+      - "pkg:deb/debian/libsystemd0@257.13-1~deb13u1"
+      - "pkg:deb/debian/libudev1@257.13-1~deb13u1"
+    statement: "Only the libraries are installed, with no systemd-homed."
+  - id: CVE-2026-76642 # util-linux: mount helper hooks run privileged
+    expired_at: 2026-12-22
+    purls:
+      - "pkg:deb/debian/bsdutils@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/libblkid1@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/liblastlog2-2@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/libmount1@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/libsmartcols1@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/libuuid1@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/login@4.16.0-2%2Breally2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/mount@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/util-linux@2.41.5-0%2Bdeb13u1"
+    statement: "The container runs as uid 10001 with no capabilities and no-new-privileges."
+  - id: CVE-2026-78408 # util-linux: nsenter leaks cgroup authority
+    expired_at: 2026-12-22
+    purls:
+      - "pkg:deb/debian/bsdutils@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/libblkid1@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/liblastlog2-2@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/libmount1@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/libsmartcols1@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/libuuid1@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/login@4.16.0-2%2Breally2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/mount@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/util-linux@2.41.5-0%2Bdeb13u1"
+    statement: "The container runs as uid 10001 with no capabilities and no-new-privileges."
+  - id: CVE-2026-78409 # util-linux: mount subdirectory escape
+    expired_at: 2026-12-22
+    purls:
+      - "pkg:deb/debian/bsdutils@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/libblkid1@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/liblastlog2-2@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/libmount1@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/libsmartcols1@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/libuuid1@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/login@4.16.0-2%2Breally2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/mount@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/util-linux@2.41.5-0%2Bdeb13u1"
+    statement: "The container runs as uid 10001 with no capabilities and no-new-privileges."
+  - id: CVE-2026-78410 # util-linux: restricted bind mount redirection
+    expired_at: 2026-12-22
+    purls:
+      - "pkg:deb/debian/bsdutils@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/libblkid1@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/liblastlog2-2@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/libmount1@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/libsmartcols1@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/libuuid1@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/login@4.16.0-2%2Breally2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/mount@2.41.5-0%2Bdeb13u1"
+      - "pkg:deb/debian/util-linux@2.41.5-0%2Bdeb13u1"
+    statement: "The container runs as uid 10001 with no capabilities and no-new-privileges."

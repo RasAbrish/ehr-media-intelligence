@@ -27,7 +27,7 @@ endef
 .PHONY: help setup data ingest normalize summarize index pipeline api web dev test test-backend \
 	test-frontend e2e lint fmt typecheck check security eval openapi storybook lighthouse \
 	validate-official docker-up docker-up-redis writeup-pdf requirements clean \
-	audit-python audit-js secrets trivy
+	audit-python audit-js secrets trivy sbom
 
 help: ## List targets
 	@awk 'BEGIN {FS = ":.*## "; printf "Usage: make <target>\n\n"} \
@@ -131,19 +131,19 @@ secrets: ## gitleaks over staged changes and the full git history
 		echo "gitleaks history: skipped (no commits yet)"; \
 	fi
 
-trivy: ## Trivy scan of built images (Phase 6; skipped until images exist)
-	if command -v docker >/dev/null && docker image inspect ehr-mip-api >/dev/null 2>&1; then \
-		for img in ehr-mip-api ehr-mip-web; do \
-			docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
-				aquasec/trivy:0.76.2 image --exit-code 1 --severity HIGH,CRITICAL $$img; \
-		done; \
+trivy: ## Trivy scan of both built images (HIGH, CRITICAL; accepted: .trivyignore.yaml)
+	if command -v docker >/dev/null && docker image inspect ehr-mip-api:local >/dev/null 2>&1; then \
+		bash scripts/image_scan.sh scan; \
 	else \
-		echo "trivy: skipped (no images built yet; Docker images arrive in Phase 6)"; \
+		echo "trivy: skipped (no images built; run docker compose build)"; \
 	fi
+
+sbom: ## CycloneDX SBOM of both built images into reports/
+	bash scripts/image_scan.sh sbom
 
 # ---------------------------------------------------------------- later phases
 
-e2e: ## Playwright end-to-end tests (needs `make pipeline`; reuses `make dev` servers)
+e2e: ## Playwright end-to-end tests (needs `make pipeline`; own servers on a copy of the data)
 	cd $(FRONTEND) && $(PNPM) e2e
 
 openapi: ## Export docs/openapi.json and run the contract snapshot (Phase 4)
@@ -153,17 +153,17 @@ openapi: ## Export docs/openapi.json and run the contract snapshot (Phase 4)
 storybook: ## Component workshop with the a11y addon on :6006
 	cd $(FRONTEND) && $(PNPM) storybook
 
-lighthouse: ## Lighthouse CI against the built app (Phase 6)
-	$(call pending,6)
+lighthouse: ## Bundle budget and Lighthouse CI against the built app (needs `make pipeline`)
+	bash scripts/lighthouse.sh
 
 validate-official: ## Optional HL7 validator run (P2)
 	$(call pending,6)
 
-docker-up: ## docker compose up (Phase 6)
-	$(call pending,6)
+docker-up: ## Build and start the stack on http://localhost:8080
+	docker compose up --build --detach --wait --wait-timeout 900
 
-docker-up-redis: ## docker compose --profile redis up (Phase 6)
-	$(call pending,6)
+docker-up-redis: ## The same with Redis for cache and rate limits
+	docker compose --profile redis up --build --detach --wait --wait-timeout 900
 
 writeup-pdf: ## Render docs/WRITEUP.md to PDF (Phase 7)
 	$(call pending,7)

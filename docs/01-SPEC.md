@@ -150,8 +150,8 @@ Clinical staff using Epic EHR lose time manually reviewing unstructured patient 
 | NFR-07 | Resilience | LLM failures fall back per patient; pipeline never aborts on a bad record |
 | NFR-08 | Observability | JSON logs with request id; `Server-Timing` and `took_ms` on search |
 | NFR-09 | Cost | Cache prevents repeat LLM calls; small model tier by default; cost per run reported |
-| NFR-10 | Security | Zero high or critical findings from `make security`; all `09-SECURITY.md` section 11 tests pass |
-| NFR-11 | Frontend performance | Lighthouse performance, accessibility, best practices ≥ 90; Core Web Vitals within FR-8.3 |
+| NFR-10 | Security | Zero high or critical findings from `make security`, apart from the exceptions listed in `09-SECURITY.md` section 8.1; all `09-SECURITY.md` section 11 tests pass |
+| NFR-11 | Frontend performance | Lighthouse performance, accessibility, best practices ≥ 90 at 4x CPU slowdown without network throttling (`06-UI-DESIGN.md` section 15); Core Web Vitals within FR-8.3 |
 | NFR-12 | AI quality | All gates in `10-AI-DESIGN.md` section 6.2 pass |
 | NFR-13 | Availability of AI feature | Summaries available without API key (extractive) and labeled as such |
 
