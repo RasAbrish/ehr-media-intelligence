@@ -8,12 +8,12 @@ The demo holds **synthetic data only**. Its AI summaries are made on a developer
 
 1. Create a [Render](https://dashboard.render.com/register) account with GitHub and allow access to this repository. Stay on the free plan.
 2. In the dashboard choose **New**, then **Blueprint**, select this repository and the `main` branch.
-3. Check that it lists `ehr-mi-api-7c41` as **Free** and `ehr-mi-demo-7c41` as a static site. Render asks for `SEED_ACCOUNT_EMAIL` and `SEED_ACCOUNT_PASSWORD`: enter the email and password you will sign in with (at least 12 characters). Then apply. Stop if it shows a paid plan.
+3. Check that it lists `ehr-mi-api-7c41` as **Free** and `ehr-mi-demo-7c41` as a static site. Render asks for `SEED_ACCOUNT_EMAIL` and `SEED_ACCOUNT_PASSWORD`: enter the demo login from the README (`clinician.demo@example.org`, `Synthetic-Clinic-2026`), or your own (password at least 12 characters). Then apply. Stop if it shows a paid plan.
 4. Wait for both deploys. The API image is 2.8 GB, so its first build is slow.
 5. Open the API service and compare its URL with the `/api/*` destination in `render.yaml`. Render adds a suffix when a name is taken. If it did, change the destination, push, and sync the Blueprint.
 6. Open the static site's URL, sign in with that email and password, search, and open a patient. The API's Swagger docs are at `/docs` on the API URL.
 
-On an existing Blueprint, add the two settings by hand: open `ehr-mi-api-7c41`, then **Environment**, add `SEED_ACCOUNT_EMAIL` and `SEED_ACCOUNT_PASSWORD`, save, and deploy. The free plan resets the API's files at every start, so the account is created again from these settings each time: changing them and deploying changes the login.
+On an existing Blueprint, add the two settings by hand: open `ehr-mi-api-7c41`, then **Environment**, add `SEED_ACCOUNT_EMAIL` and `SEED_ACCOUNT_PASSWORD` (and `SEED_ACCOUNT_NAME`, for example `Demo clinician`), save, and deploy. The free plan resets the API's files at every start, so the account is created again from these settings each time: changing them and deploying changes the login.
 
 Later deploys are started by hand (**Manual Deploy**), after the checks in the README pass.
 

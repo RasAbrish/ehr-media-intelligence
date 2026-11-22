@@ -10,6 +10,12 @@ A pipeline and web app for unstructured EHR records. It ingests messy exports (J
 
 Live demo: [ehr-mi-demo-7c41.onrender.com](https://ehr-mi-demo-7c41.onrender.com) (sign-in required; the free server can take about 3 minutes to wake). API docs: [ehr-mi-api-7c41.onrender.com/docs](https://ehr-mi-api-7c41.onrender.com/docs).
 
+Demo login (synthetic patients only):
+
+| Email | Password |
+|---|---|
+| `clinician.demo@example.org` | `Synthetic-Clinic-2026` |
+
 Summaries can come from an AI model (Claude, or the free Groq model `openai/gpt-oss-120b`) and are checked against the source records before they are shown. It also runs fully without any key: summaries then come from an offline extractive summarizer, labeled "Offline summary". The one-page write-up is [docs/WRITEUP.pdf](docs/WRITEUP.pdf) and the AI system card is [docs/AI_SYSTEM_CARD.md](docs/AI_SYSTEM_CARD.md).
 
 <details>
