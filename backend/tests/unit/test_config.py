@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 import pytest
@@ -19,7 +20,7 @@ def test_project_root_holds_env_example() -> None:
 def test_defaults_run_without_api_key(settings: Settings) -> None:
     assert settings.anthropic_api_key is None
     assert settings.effective_llm_provider == "extractive"
-    assert settings.search_mode == "semantic"
+    assert settings.search_mode == "hybrid"
     assert settings.cache_backend == "memory"
 
 
@@ -84,7 +85,7 @@ def test_env_example_parses_with_inline_comments() -> None:
     assert parsed.anthropic_api_key is None
     assert parsed.llm_provider == "auto"
     assert parsed.llm_model == "claude-haiku-5-5"
-    assert parsed.search_mode == "semantic"
+    assert parsed.search_mode == "hybrid"
     assert parsed.cors_origins == ["http://localhost:5173", "http://localhost:8080"]
 
 
@@ -96,3 +97,17 @@ def test_env_example_lists_every_setting() -> None:
         if "=" in line and not line.lstrip().startswith("#")
     }
     assert keys == {name.upper() for name in Settings.model_fields}
+
+
+def test_env_example_blank_values_have_no_inline_comment() -> None:
+    """Compose reads `KEY=   # note` as the value "# note", unlike python-dotenv."""
+    lines = (PROJECT_ROOT / ".env.example").read_text().splitlines()
+    assert [line for line in lines if re.match(r"^[A-Z_]+=\s+#", line)] == []
+
+
+def test_comment_as_secret_means_none(monkeypatch: pytest.MonkeyPatch) -> None:
+    """A .env copied from an older example must not become an API key."""
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "# empty → extractive fallback")
+    settings = _settings()
+    assert settings.anthropic_api_key is None
+    assert settings.effective_llm_provider == "extractive"

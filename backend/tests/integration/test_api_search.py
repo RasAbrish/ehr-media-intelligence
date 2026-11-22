@@ -75,7 +75,7 @@ def test_contract_example_request(client: TestClient) -> None:
 
 
 def test_semantic_search_finds_relevant_records(client: TestClient) -> None:
-    results = search(client, "pulmonary embolism CT angiography").json()["results"]
+    results = search(client, "pulmonary embolism CT angiography", mode="semantic").json()["results"]
     assert any("embol" in r["snippet"].lower() for r in results)
     assert all(r["match_type"] == "semantic" for r in results)
 
@@ -86,6 +86,10 @@ def test_hybrid_mode(client: TestClient) -> None:
     assert 0 < body["total"] <= 10
     assert {r["match_type"] for r in body["results"]} <= {"semantic", "lexical", "hybrid"}
     assert any(r["highlights"] for r in body["results"])
+
+
+def test_hybrid_is_the_default_mode(client: TestClient) -> None:
+    assert search(client, "potassium").json()["mode"] == "hybrid"
 
 
 def test_resource_type_filter(client: TestClient) -> None:
