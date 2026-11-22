@@ -10,12 +10,18 @@ export default defineConfig({
   resolve: {
     alias: { "@": path.resolve(import.meta.dirname, "./src") },
   },
+  build: {
+    rolldownOptions: {
+      // One file for what the first paint needs; routes and the drawer body stay lazy.
+      output: { codeSplitting: { groups: [{ name: "app", tags: ["$initial"] }] } },
+    },
+  },
   server: {
     port: 5173,
     strictPort: true,
     proxy: {
       "/api": {
-        target: "http://localhost:8000",
+        target: process.env.API_PROXY_TARGET ?? "http://localhost:8000",
         changeOrigin: true,
         rewrite: (p) => p.replace(/^\/api/, ""),
       },
