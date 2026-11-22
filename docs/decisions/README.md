@@ -11,6 +11,6 @@ One file per decision: context, decision, alternatives rejected, consequences an
 - [ADR-007](ADR-007-conservative-identity.md): Conservative identity resolution
 - [ADR-008](ADR-008-us-date-policy.md): Ambiguous dates parsed as US MM/DD with a warning audit
 - [ADR-009](ADR-009-stdlib-sqlite.md): stdlib sqlite3 with repositories
-- [ADR-010](ADR-010-tanstack-router.md): TanStack Router with Zod search params
+- [ADR-010](ADR-010-tanstack-router.md): Use TanStack Router with validated search params
 - [ADR-011](ADR-011-optional-redis.md): Redis optional, in-memory TTL cache by default
-- [ADR-012](ADR-012-slowapi.md): slowapi for rate limiting
+- [ADR-012](ADR-012-slowapi.md): Use the limits library for rate limiting

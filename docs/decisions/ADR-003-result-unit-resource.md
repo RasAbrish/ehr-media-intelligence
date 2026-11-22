@@ -1,20 +1,23 @@
 # ADR-003: Search result unit is one FHIR resource (best chunk)
 
-- **Status:** Proposed (stub, completed in Phase 7)
-- **Date:** 2026-11-20
+- **Status:** Accepted
+- **Date:** 2026-11-22
 
 ## Context
 
-To be written. Summary row: `docs/02-ARCHITECTURE.md` section 11.
+The brief asks for matching patient records. Long notes are split into overlapping chunks for embedding, so raw vector hits can show the same note several times.
 
 ## Decision
 
-Search result unit is one FHIR resource (best chunk).
+One result is one FHIR resource, represented by its best chunk. Search fetches six candidates per requested result, keeps the best per resource (`search/ranking.py`), and returns the top results with that chunk's snippet, score and match type.
 
 ## Alternatives rejected
 
-Raw chunks.
+- **Raw chunks.** One long note could fill all five results.
+- **One result per patient.** It hides which record matched, and a clinician needs the record.
 
 ## Consequences
 
-To be written.
+- Every result opens a real record and can be cited by type and id.
+- One patient can appear several times through different records.
+- If many candidates belong to the same resource, a search can return fewer results than requested.

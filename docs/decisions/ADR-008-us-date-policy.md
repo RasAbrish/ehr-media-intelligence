@@ -1,20 +1,22 @@
 # ADR-008: Ambiguous dates parsed as US MM/DD with a warning audit
 
-- **Status:** Proposed (stub, completed in Phase 7)
-- **Date:** 2026-11-20
+- **Status:** Accepted
+- **Date:** 2026-11-22
 
 ## Context
 
-To be written. Summary row: `docs/02-ARCHITECTURE.md` section 11.
+The exports mix ISO, named-month and slash dates. A value such as 03/04/2025 has two valid readings, and the source is a US Epic export.
 
 ## Decision
 
-Ambiguous dates parsed as US MM/DD with a warning audit.
+Read an ambiguous `NN/NN/YYYY` as month and day, and record a `date.parse.us_ambiguous` warning. When the first part is above 12, read day and month with an info note. Impossible dates are rejected with an error and never repaired by guessing (`ingestion/cleaners/dates.py`).
 
 ## Alternatives rejected
 
-Silent guess.
+- **A silent guess.** Nobody could find or check the affected records.
+- **Rejecting every ambiguous date.** It would drop valid dates from many records and break date filters.
 
 ## Consequences
 
-To be written.
+- Every guess appears in the audit log and on the data quality page.
+- A feed from a day-first country would be read wrongly, with a warning. Supporting one needs a locale setting per source.

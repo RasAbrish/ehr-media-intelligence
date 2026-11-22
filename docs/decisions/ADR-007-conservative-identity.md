@@ -1,20 +1,23 @@
 # ADR-007: Conservative identity resolution
 
-- **Status:** Proposed (stub, completed in Phase 7)
-- **Date:** 2026-11-20
+- **Status:** Accepted
+- **Date:** 2026-11-22
 
 ## Context
 
-To be written. Summary row: `docs/02-ARCHITECTURE.md` section 11.
+The exports spell names differently, format MRNs differently, omit fields and reuse or change MRNs. A wrong merge shows one patient's history as another's. A missed merge only splits a history.
 
 ## Decision
 
-Conservative identity resolution.
+Merge conservatively (`ingestion/identity.py`). Records with one MRN are one person when birth dates agree or one is missing and the name similarity is at least 90. Otherwise they are split and every side is flagged as a conflict. Different MRNs merge only on exact normalized family name, first given name and birth date, and the merge is audited.
 
 ## Alternatives rejected
 
-Aggressive fuzzy merge.
+- **Fuzzy merging across MRNs.** Twins, relatives and common names make it dangerous.
+- **MRN alone.** It merges two people whenever an MRN is mistyped or reused.
 
 ## Consequences
 
-To be written.
+- Conflicts and merges are visible in the directory, the drawer and the audit log.
+- A misspelled name under a second MRN stays a separate patient until someone resolves it.
+- Two different people with the same name and birth date under different MRNs would still merge. Production needs more identifiers and a review queue.
