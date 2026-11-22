@@ -51,7 +51,7 @@ type ConfidenceLevel    = "low" | "medium" | "high"
 type SearchMode         = "semantic" | "hybrid"
 type SearchSort         = "relevance" | "newest"
 type MatchType          = "semantic" | "lexical" | "hybrid" | "mrn"
-type SummaryProvider    = "anthropic" | "extractive"
+type SummaryProvider    = "anthropic" | "groq" | "extractive"
 type PipelineStage      = "ingest" | "normalize" | "summarize" | "index"
 type RunStatus          = "queued" | "running" | "succeeded" | "failed"
 ```

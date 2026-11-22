@@ -1,10 +1,16 @@
+<p align="center">
+  <img src="docs/brand/logo-animated.svg" alt="Media Intelligence" width="640">
+</p>
+
 # EHR Media Intelligence Platform
 
 A pipeline and web app for unstructured EHR records. It ingests messy exports (JSON, CSV and text notes), cleans and normalizes them to HL7 FHIR R4, writes summaries that cite their source records, and lets a clinician search every record by meaning. Built for the Onye AI full-stack assessment. All data is synthetic.
 
 ![Search results with the patient drawer open, showing an AI summary with disclaimer, provenance and evidence links](docs/screenshots/search-drawer-light.png)
 
-It runs fully without an API key. Summaries then come from an offline extractive summarizer, and the app labels them "Offline summary". The one-page write-up is [docs/WRITEUP.pdf](docs/WRITEUP.pdf) and the AI system card is [docs/AI_SYSTEM_CARD.md](docs/AI_SYSTEM_CARD.md).
+Live demo: [ehr-mi-demo-7c41.onrender.com](https://ehr-mi-demo-7c41.onrender.com) (sign-in required; the free server can take about 3 minutes to wake). API docs: [ehr-mi-api-7c41.onrender.com/docs](https://ehr-mi-api-7c41.onrender.com/docs).
+
+Summaries can come from an AI model (Claude, or the free Groq model `openai/gpt-oss-120b`) and are checked against the source records before they are shown. It also runs fully without any key: summaries then come from an offline extractive summarizer, labeled "Offline summary". The one-page write-up is [docs/WRITEUP.pdf](docs/WRITEUP.pdf) and the AI system card is [docs/AI_SYSTEM_CARD.md](docs/AI_SYSTEM_CARD.md).
 
 <details>
 <summary>More screenshots</summary>
@@ -34,7 +40,7 @@ docker compose --profile redis up
 
 ## Free demo deployment
 
-[docs/DEPLOY.md](docs/DEPLOY.md) deploys the frontend and API on Render's free plan from [render.yaml](render.yaml), with synthetic data, the offline summarizer and a demo banner.
+[docs/DEPLOY.md](docs/DEPLOY.md) deploys the frontend and API on Render's free plan from [render.yaml](render.yaml), with synthetic data and a banner that says so. Render never holds a model key: model summaries are made on a developer machine and shipped in [data/summaries/](data/summaries/) once they pass the quality gates; until then the demo shows offline summaries. You enter your own sign-in email and password once in the Render dashboard. Swagger docs are published at `/docs` on the API URL.
 
 ## Sign-in
 
@@ -44,7 +50,7 @@ Every page and data route needs a session. Create an account once, then sign in 
 cd backend && uv run ehr-mip users add --email you@example.org --name "Your name"
 ```
 
-The password is asked for twice (at least 12 characters). `ehr-mip users disable --email ...` blocks an account and ends its sessions. For a local demo account set `DEMO_ACCOUNT_EMAIL` and `DEMO_ACCOUNT_PASSWORD` in `.env`. `make e2e` and `make lighthouse` create their own test account.
+The password is asked for twice (at least 12 characters). `ehr-mip users disable --email ...` blocks an account and ends its sessions. To create an account when the API starts (as on Render), set `SEED_ACCOUNT_EMAIL`, `SEED_ACCOUNT_PASSWORD` and optionally `SEED_ACCOUNT_NAME` in `.env`. `make e2e` and `make lighthouse` create their own test account.
 
 ## Local development
 
@@ -105,11 +111,30 @@ Run from `backend/` as `uv run ehr-mip <command>`, or use the make target.
 | `serve` | `make api` | Serves the API | Port 8000 |
 | `eval` | `make eval` | Scores summaries against golden, adversarial and ground truth sets | All automatic gates pass |
 
-With `ANTHROPIC_API_KEY` set, `summarize` uses Claude (`claude-haiku-5-5`) and falls back to the extractive summarizer for any patient whose call fails. The rules for every stage are in [docs/05-ALGORITHMS.md](docs/05-ALGORITHMS.md).
+The rules for every stage are in [docs/05-ALGORITHMS.md](docs/05-ALGORITHMS.md).
+
+## AI summaries
+
+| Provider | Key in `.env` | Model | Notes |
+|---|---|---|---|
+| Claude | `ANTHROPIC_API_KEY` | `claude-haiku-5-5` | The brief's choice. Structured output. Needs API credit |
+| Groq | `GROQ_API_KEY` | `openai/gpt-oss-120b` | Free tier with daily limits. JSON schema output ([ADR-014](docs/decisions/ADR-014-groq-and-shipped-summaries.md)) |
+| Offline | none | none | Rule-based extraction, always available |
+
+`LLM_PROVIDER=auto` uses Claude when its key is set, then Groq, else offline. `LLM_PROVIDER=groq` picks Groq even when a Claude key is present. Every provider gets the same de-identified context and the same checks: claims must cite real records, at most 200 words, a confidence score and a disclaimer. A failed call falls back to the offline summary for that patient, and results are cached by patient, data, prompt and model, so a second run makes no calls.
+
+To refresh the summaries the demo ships:
+
+```bash
+make pipeline
+cd backend && uv run ehr-mip summaries export   # writes data/summaries/summaries.json
+```
+
+`run-all` imports that file before summarizing, and a summary is only used while its patient's data is unchanged.
 
 ## API
 
-The contract with examples is [docs/04-API-CONTRACT.md](docs/04-API-CONTRACT.md). A snapshot test compares it with [docs/openapi.json](docs/openapi.json), and the frontend parses every example with its Zod schemas. Interactive docs are at http://localhost:8000/docs in development.
+The contract with examples is [docs/04-API-CONTRACT.md](docs/04-API-CONTRACT.md). A snapshot test compares it with [docs/openapi.json](docs/openapi.json), and the frontend parses every example with its Zod schemas. Swagger docs are at http://localhost:8000/docs in development and at [ehr-mi-api-7c41.onrender.com/docs](https://ehr-mi-api-7c41.onrender.com/docs) on the demo (`API_DOCS_ENABLED`). Data routes need a sign-in.
 
 | Endpoint | Purpose |
 |---|---|
@@ -122,15 +147,18 @@ The contract with examples is [docs/04-API-CONTRACT.md](docs/04-API-CONTRACT.md)
 | `GET /patients/{key}/audit` | Masked audit entries for one patient |
 | `GET /resources/{type}/{id}` | One resource as readable text and FHIR JSON |
 | `GET /quality/overview`, `/validation`, `/audit`, `/quarantine` | Data quality, all under `/quality` |
+| `POST /auth/login`, `/auth/logout`, `GET /auth/me` | Sign-in and the session cookie |
 | `GET /stats`, `/health`, `/ready`, `/metrics` | Counts, probes and Prometheus metrics |
 
 ```bash
-curl -s -X POST 'http://localhost:8000/search?resource_type=DiagnosticReport&date_from=2024-06-01' \
-  -H 'Content-Type: application/json' \
+curl -s -c cookies -X POST http://localhost:8000/auth/login -H 'X-Requested-With: ehr-mip' \
+  -H 'Content-Type: application/json' -d '{"email": "you@example.org", "password": "..."}'
+curl -s -b cookies -X POST 'http://localhost:8000/search?resource_type=DiagnosticReport&date_from=2024-06-01' \
+  -H 'Content-Type: application/json' -H 'X-Requested-With: ehr-mip' \
   -d '{"query": "worsening kidney function with high potassium"}'
 ```
 
-Errors are RFC 9457 problem documents. Routes are rate limited and answer with `RateLimit-*` headers.
+Every POST needs the `X-Requested-With: ehr-mip` header. Errors are RFC 9457 problem documents. Routes are rate limited and answer with `RateLimit-*` headers.
 
 ## Design decisions
 
@@ -166,6 +194,7 @@ backend/    Python package ehr_mip (uv): ingestion, fhir, summarization, search,
 frontend/   React 19, Vite, Tailwind v4, shadcn/ui (Base UI), TanStack Router, Query and Table
 scripts/    data generator, isolated e2e API, Lighthouse, image scan and write-up renderer
 data/raw/   committed synthetic input; data/generated/ holds local state (gitignored)
+data/summaries/  AI summaries made offline and shipped with the demo
 docs/       specification, architecture, contract, design system, ADRs, system card, write-up
 reports/    committed samples of the validation and evaluation reports
 ```
@@ -175,8 +204,8 @@ Backend layers import downward only (`api > search > summarization > fhir > inge
 ## Known limitations
 
 - **No automatic CI.** The workflows in `.github/workflows` have never completed a run on GitHub: hosted runners are not available to this account, so the CI, Security and eval workflows are switched off. The checks were run locally with the commands under [Tests](#tests), and the workflow steps were rehearsed on a clean clone. CodeQL has not run at all. The failed runs on earlier commits never started a job.
-- **Simple sign-in only.** Email and password with server-side sessions ([ADR-013](docs/decisions/ADR-013-sessions.md)). No single sign-on, roles, password reset or record of who viewed which patient. Never load real patient data. The only configuration meant to be public is the synthetic demo in [docs/DEPLOY.md](docs/DEPLOY.md), whose login is published.
-- **The Claude provider has never been run against the real API here.** Its quality, cost and latency are unknown. The manual review of summaries is still to be done by a person.
+- **Simple sign-in only.** Email and password with server-side sessions ([ADR-013](docs/decisions/ADR-013-sessions.md)). No single sign-on, roles, password reset or record of who viewed which patient. Never load real patient data. The only configuration meant to be public is the synthetic demo in [docs/DEPLOY.md](docs/DEPLOY.md).
+- **Claude has not produced a summary here.** The trial account had no credit, so the API refused every call. Groq's open model was run on all 60 patients instead: every claim cited a real record, but it failed 4 of 7 quality gates ([report](docs/eval/eval_report_groq.md)), so its summaries are not shipped as the default yet ([ADR-014](docs/decisions/ADR-014-groq-and-shipped-summaries.md)). The manual review of summaries is still to be done by a person.
 - **Extractive recall is 87.5 percent.** It misses all 6 expected cases of hyponatremia and 6 of the 12 of hyperlipidemia.
 - **De-identification is partial.** Dates stay, and other people's names inside note text are not detected.
 - **Accepted vulnerabilities.** Four ChromaDB server advisories (the server is never run) and 12 Debian advisories without a fix, the latter until 2026-12-22 ([docs/09](docs/09-SECURITY.md) section 8.1). After that date `make security` fails until they are reviewed.

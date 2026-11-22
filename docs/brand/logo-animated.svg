@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="168" viewBox="0 0 760 168" role="img" aria-labelledby="t d">
+  <title id="t">Media Intelligence</title>
+  <desc id="d">The product mark: three patient records, a search line passing over them and one record found.</desc>
+  <style>
+    .word { font: 600 44px ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; letter-spacing: -0.02em; fill: #1f2733; }
+    .tag { font: 400 19px ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; fill: #5b6675; }
+    .tile { fill: #00757a; }
+    .rec { fill: #ffffff; opacity: 0.38; transform-box: fill-box; transform-origin: left center; animation: grow 6s ease-out infinite; }
+    .r2 { animation-delay: 0.15s; } .r3 { animation-delay: 0.3s; }
+    .found { fill: #ffffff; transform-box: fill-box; transform-origin: left center; opacity: 0; animation: found 6s ease-out infinite; }
+    .scan { fill: #9ff0ea; opacity: 0; animation: scan 6s ease-in-out infinite; }
+    .wordmark { animation: rise 6s ease-out infinite; }
+    @keyframes grow { 0% { transform: scaleX(0); } 12%, 100% { transform: scaleX(1); } }
+    @keyframes scan { 0%, 16% { opacity: 0; transform: translateY(0); } 20% { opacity: 1; } 46% { opacity: 1; transform: translateY(70px); } 52%, 100% { opacity: 0; transform: translateY(70px); } }
+    @keyframes found { 0%, 34% { opacity: 0; transform: scaleX(0.2); } 42%, 92% { opacity: 1; transform: scaleX(1); } 100% { opacity: 0; transform: scaleX(1); } }
+    @keyframes rise { 0% { opacity: 0; transform: translateX(-8px); } 14%, 100% { opacity: 1; transform: translateX(0); } }
+    @media (prefers-color-scheme: dark) {
+      .word { fill: #eef1f5; } .tag { fill: #a3adbb; } .tile { fill: #4fbdb6; } .scan { fill: #e8fffc; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .rec, .found, .scan, .wordmark { animation: none; }
+      .found { opacity: 1; }
+    }
+  </style>
+  <rect class="tile" x="24" y="28" width="112" height="112" rx="22"/>
+  <rect class="rec r1" x="46" y="52" width="68" height="12" rx="6"/>
+  <rect class="rec r2" x="46" y="78" width="54" height="12" rx="6"/>
+  <rect class="rec r3" x="46" y="104" width="62" height="12" rx="6"/>
+  <rect class="found" x="46" y="78" width="54" height="12" rx="6"/>
+  <rect class="scan" x="38" y="44" width="84" height="3" rx="1.5"/>
+  <g class="wordmark">
+    <text class="word" x="164" y="88">Media Intelligence</text>
+    <text class="tag" x="166" y="122">Search and summarize patient records in seconds.</text>
+  </g>
+</svg>

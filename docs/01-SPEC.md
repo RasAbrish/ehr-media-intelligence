@@ -68,6 +68,7 @@ Clinical staff using Epic EHR lose time manually reviewing unstructured patient 
 | FR-3.4 | Cache keyed by patient id + record hash; no repeat API calls on re-run | R |
 | FR-3.5 | Confidence field and AI disclaimer on every summary | R |
 | FR-3.6 | Evidence references from each claim to source resources | P1 |
+| FR-3.7 | A free alternative model (Groq, open weights) behind the same guardrails, and summaries generated offline and shipped with the demo so the host never holds a key (ADR-014) | P1 |
 | FR-3.7 | Offline extractive fallback when no API key | P1 |
 | FR-3.8 | Evaluation harness with metrics report | P1 |
 | FR-3.9 | Regenerate summary on demand (cache bypass) | P2 |
@@ -107,7 +108,7 @@ Clinical staff using Epic EHR lose time manually reviewing unstructured patient 
 | FR-6.6 | Supply chain scanning (pip-audit, pnpm audit, gitleaks, Trivy, CodeQL, Dependabot) | P1 |
 | FR-6.7 | Hardened containers (non-root, read-only, dropped capabilities) | P1 |
 | FR-6.8 | Admin endpoints off by default, token protected when on | P2 |
-| FR-6.9 | Sign-in with email and password, server-side sessions, every data route behind a session; accounts created by command; a published demo login for the synthetic demo | P1 |
+| FR-6.9 | Sign-in with email and password, server-side sessions, every data route behind a session; accounts created by command, or from settings on hosts without a terminal | P1 |
 
 ### Cross-cutting: AI governance (detail in `10-AI-DESIGN.md`)
 | ID | Requirement | Tier |

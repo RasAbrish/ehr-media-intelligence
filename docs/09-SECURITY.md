@@ -39,7 +39,7 @@ flowchart LR
     fs --> api
 ```
 
-| Data element | Browser | API logs | SQLite | Chroma | Redis | Claude API |
+| Data element | Browser | API logs | SQLite | Chroma | Redis | LLM API (Claude or Groq) |
 |---|---|---|---|---|---|---|
 | Name, MRN, DOB | shown to user | never | yes | never | never (cache keys hashed, values are ids and scores only) | never |
 | Clinical text | snippets | never | yes | chunk text | never | yes (de-identified) |
@@ -124,7 +124,7 @@ Body ≤ 16 KB (search, feedback), query 2 to 500 chars, `page_size ≤ 100`, `t
 | Audit masking | API masks PHI in audit `before`/`after` (`J*** D**`, `19**-**-14`) |
 | Admin | `ENABLE_ADMIN_ENDPOINTS=false` default; token required when on |
 | Sign-in | Accounts by `ehr-mip users add` (password asked twice, never an argument, at least 12 characters); sessions stored as SHA-256 of the token; `email` and `password` keys dropped from logs |
-| API docs | `/docs`, `/redoc`, `/openapi.json` disabled when `ENV=prod` |
+| API docs | `/docs`, `/redoc`, `/openapi.json` off when `ENV=prod` unless `API_DOCS_ENABLED=true`. The Render demo turns them on: they describe the API, and every data route still needs a session |
 | File access | Readers only open files under `DATA_RAW_DIR` (resolved path check) |
 
 ## 7. LLM-specific security

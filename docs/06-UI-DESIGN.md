@@ -145,7 +145,7 @@ Active item: `bg-accent`, `text-accent-foreground`, a primary icon and the 3 px 
 - From 1024 px two equal columns. Left: one licensed photo (`docs/ASSETS.md`), full height, `object-cover`, a dark gradient at the bottom with the product mark and one line, "Search every patient record in seconds". Right: the form, centered, 24rem wide.
 - Below 1024 px the photo is a 10rem band above the form.
 - Form: heading "Sign in", Email and Password with visible labels, a show-password button, "Sign in" (primary, full width, pending text "Signing in"). A wrong login shows one alert: "Email or password is incorrect."
-- Demo builds add a muted box with the demo email and password in mono and a "Use demo login" button that fills both fields.
+- Builds with `VITE_DEMO_EMAIL` and `VITE_DEMO_PASSWORD` add a muted box with that login in mono and a "Use demo login" button that fills both fields. The Render demo does not set them.
 - The photo is a `<picture>` (AVIF, WebP, JPEG at 960, 1440 and 2400 px) with empty alt text, as it is decoration.
 - Signed out, every page goes to `/signin?next=<path>`; `next` must start with a single `/`.
 - The sidebar shows the user's name above Theme, and "Sign out" with an icon below Shortcuts. The phone menu has Sign out too.

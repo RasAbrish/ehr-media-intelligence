@@ -15,3 +15,4 @@ One file per decision: context, decision, alternatives rejected, consequences an
 - [ADR-011](ADR-011-optional-redis.md): Redis optional, in-memory TTL cache by default
 - [ADR-012](ADR-012-slowapi.md): Use the limits library for rate limiting
 - [ADR-013](ADR-013-sessions.md): Server-side sessions with scrypt password hashes
+- [ADR-014](ADR-014-groq-and-shipped-summaries.md): Optional Groq provider and summaries shipped as a file

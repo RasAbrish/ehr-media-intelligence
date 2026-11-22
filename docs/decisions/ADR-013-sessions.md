@@ -9,7 +9,7 @@ The app shows patient records, so the API must not answer anyone who is not sign
 
 ## Decision
 
-Accounts live in SQLite and are created by `ehr-mip users add`. Passwords are hashed with the standard library's scrypt (N=2^14, r=8, p=5, 16 byte salt). Signing in creates a random 256 bit token. The browser keeps it in an `HttpOnly`, `SameSite=Strict` cookie, `Secure` when `ENV=prod`, and the database keeps only its SHA-256. Every POST must carry `X-Requested-With: ehr-mip` as a CSRF check. A session ends after 8 hours, or 60 minutes without a request, or at sign-out. Every route except `/health`, `/ready`, `/metrics` and `/auth/login` needs a session.
+Accounts live in SQLite and are created by `ehr-mip users add`, or once at startup from `SEED_ACCOUNT_*` settings. Passwords are hashed with the standard library's scrypt (N=2^14, r=8, p=5, 16 byte salt). Signing in creates a random 256 bit token. The browser keeps it in an `HttpOnly`, `SameSite=Strict` cookie, `Secure` when `ENV=prod`, and the database keeps only its SHA-256. Every POST must carry `X-Requested-With: ehr-mip` as a CSRF check. A session ends after 8 hours, or 60 minutes without a request, or at sign-out. Every route except `/health`, `/ready`, `/metrics` and `/auth/login` needs a session.
 
 ## Alternatives rejected
 
@@ -21,4 +21,4 @@ Accounts live in SQLite and are created by `ehr-mip users add`. Passwords are ha
 
 - Sign-out and disabling a user take effect on the next request.
 - Each sign-in costs about 16 MB and a few tens of milliseconds of CPU, and sign-in is limited to 10 per minute per IP.
-- The public demo publishes its login on the sign-in page. Its data is synthetic.
+- Hosts without a terminal, such as Render's free plan, create one account at startup from `SEED_ACCOUNT_EMAIL` and `SEED_ACCOUNT_PASSWORD`, entered as secret settings.

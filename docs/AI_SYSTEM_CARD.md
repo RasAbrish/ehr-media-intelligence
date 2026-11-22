@@ -2,7 +2,7 @@
 
 The design behind this card is in [10-AI-DESIGN.md](10-AI-DESIGN.md). This card reports what is built and what has been measured.
 
-> **Evaluation status.** Only the offline extractive provider has been evaluated on this repository. The Claude provider is implemented and tested with a fake provider. It has not been run against the real API, so its quality, cost and latency are unknown.
+> **Evaluation status.** The offline extractive provider is evaluated below. The Claude provider is implemented and tested with a fake provider; a real run on 2026-11-23 was refused by the API because the account had no credit, so its quality, cost and latency are unknown. The Groq provider (ADR-014) was run on all 60 patients on 2026-11-23 ([report](eval/eval_report_groq.md)): every claim cited a real record and every high severity anomaly was kept, but it **failed 4 of 7 gates**: diagnosis support 81.2% (target 95%), ground truth recall 82.3% (target 85%), 1 of 5 golden cases and 3 of 5 adversarial cases (it did not flag an identity conflict, and named hypokalemia from lab values alone). The extractive provider passes all 7. Groq summaries are therefore not shipped as the default.
 
 | Item | Value |
 |---|---|
@@ -10,7 +10,7 @@ The design behind this card is in [10-AI-DESIGN.md](10-AI-DESIGN.md). This card 
 | Intended users | Licensed clinicians reviewing records |
 | Intended use | Faster orientation to a patient's existing documents, with a link to each source |
 | Out of scope | Diagnosis, triage, treatment, billing codes, patient-facing text, real patient data |
-| Model | Claude, small tier (`LLM_MODEL`, default `claude-haiku-5-5`), effort `low`, structured output, no sampling parameters |
+| Model | Claude, small tier (`LLM_MODEL`, default `claude-haiku-5-5`), effort `low`, structured output. Or Groq (`GROQ_MODEL`, default `openai/gpt-oss-120b`, open weights), reasoning effort `low`, JSON schema output. The model id is stored on every summary |
 | Fallback | Deterministic extractive summarizer, used without a key, when a call fails or is refused, and when the daily token budget is spent |
 | Prompt | Versioned files, currently `v1`. A released version is never edited |
 | Owner and version | The repository owner. Prompt version and model id are stored on every summary |
@@ -58,6 +58,7 @@ Grounding and support are close to guaranteed for an extractive provider, becaus
 - **Wording.** Synonyms can lower the diagnosis support score of a correct diagnosis.
 - **Text only.** Images are not read.
 - **Fragments.** Extractive summaries read as copied fragments and always report low confidence.
+- **Open model on the demo.** When the shipped summaries come from Groq, they are from an open-weights model, not Claude.
 - **No regenerate.** Regenerating from the interface is a P2 feature and is not built.
 - **Synthetic, self-authored data.** The generator, dictionary and golden set come from the same project, so the scores are optimistic. No clinician has reviewed the output.
 
