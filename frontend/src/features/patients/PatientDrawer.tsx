@@ -54,7 +54,7 @@ export function PatientDrawer({ patientKey, onClose, returnFocusRef }: PatientDr
         side="right"
         showCloseButton={false}
         finalFocus={returnFocusRef}
-        className="w-full gap-0 overflow-x-hidden overflow-y-auto p-0 shadow-overlay data-[side=right]:w-full data-[side=right]:sm:max-w-none md:data-[side=right]:w-[480px] lg:data-[side=right]:w-[560px]"
+        className="w-full gap-0 overflow-x-hidden overflow-y-auto p-0 shadow-overlay data-[side=right]:w-full data-[side=right]:sm:max-w-none md:data-[side=right]:w-120 lg:data-[side=right]:w-140 2xl:data-[side=right]:w-160"
       >
         {/* Keyed: switching patients starts on the Summary tab with no stale highlight.
             The last patient stays rendered while the sheet slides out. */}

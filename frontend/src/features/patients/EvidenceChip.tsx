@@ -44,10 +44,10 @@ export function EvidenceChip({ evidence, resources, onOpen, iconOnly = false }: 
       }}
       aria-label={name}
       title={text}
-      className="inline-flex h-8 max-w-72 items-center gap-1 rounded-md border bg-card px-2 font-mono text-meta text-muted-foreground hover:border-ring hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring max-md:h-11"
+      className="inline-flex min-h-8 max-w-full items-center gap-1 rounded-md border bg-card px-2 font-mono text-meta text-muted-foreground hover:border-ring hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring max-md:min-h-11"
     >
       <ArrowUpRightIcon aria-hidden className="size-3.5 shrink-0" />
-      <span className="truncate">{text}</span>
+      <span className="min-w-0 py-1 text-left wrap-anywhere">{text}</span>
     </button>
   );
 }

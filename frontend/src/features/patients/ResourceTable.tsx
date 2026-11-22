@@ -239,7 +239,7 @@ export function ResourceTable({ items, highlightedId, onOpen }: ResourceTablePro
                           event.stopPropagation();
                           onOpen(item);
                         }}
-                        className="block min-h-8 w-full rounded-sm text-left font-medium break-words hover:underline focus-visible:outline-2 focus-visible:outline-ring max-md:min-h-11 md:truncate"
+                        className="block min-h-8 w-full rounded-sm text-left font-medium break-words hover:underline focus-visible:outline-2 focus-visible:outline-ring max-md:min-h-11"
                       >
                         {item.title}
                       </button>
