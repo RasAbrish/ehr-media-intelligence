@@ -1,7 +1,6 @@
 """``ehr-mip`` command line interface.
 
-Each pipeline stage becomes real in the phase listed in ``docs/08-DELIVERY.md``.
-Until then the command exits with ``EXIT_NOT_IMPLEMENTED`` and says which phase delivers it.
+One command per pipeline stage, plus ``run-all``, ``serve`` and ``eval``.
 """
 
 from __future__ import annotations
@@ -21,7 +20,6 @@ from ehr_mip.config import PROJECT_ROOT, Settings, get_settings
 from ehr_mip.db.connection import connect
 from ehr_mip.db.read_models import StatusReader
 from ehr_mip.db.repositories import PipelineRunRepository
-from ehr_mip.errors import NotImplementedYetError
 from ehr_mip.fhir.models import NormalizedBundle
 from ehr_mip.fhir.pipeline import run_normalization
 from ehr_mip.fhir.report import build_report, write_reports
@@ -42,21 +40,12 @@ from ehr_mip.summarization.evaluate import (
 from ehr_mip.summarization.providers import make_provider
 from ehr_mip.summarization.service import SummaryBatch, SummaryService
 
-# Distinct from 1 (failure) and 2 (usage error) so automation can tell "not built yet" apart.
-EXIT_NOT_IMPLEMENTED = 3
-
 app = typer.Typer(
     name="ehr-mip",
     help="EHR Media Intelligence Platform pipeline and server.",
     no_args_is_help=True,
     add_completion=False,
 )
-
-
-def _pending(stage: str, phase: int) -> None:
-    err = NotImplementedYetError(stage, phase)
-    typer.secho(str(err), fg=typer.colors.YELLOW, err=True)
-    raise typer.Exit(code=EXIT_NOT_IMPLEMENTED)
 
 
 def _stats_table(stats: IngestionStats) -> Table:
