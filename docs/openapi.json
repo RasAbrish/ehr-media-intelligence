@@ -58,6 +58,30 @@
         "title": "AddressOut",
         "type": "object"
       },
+      "AnomalyCounts": {
+        "additionalProperties": false,
+        "properties": {
+          "high": {
+            "title": "High",
+            "type": "integer"
+          },
+          "low": {
+            "title": "Low",
+            "type": "integer"
+          },
+          "moderate": {
+            "title": "Moderate",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "high",
+          "moderate",
+          "low"
+        ],
+        "title": "AnomalyCounts",
+        "type": "object"
+      },
       "AnomalyOut": {
         "additionalProperties": false,
         "properties": {
@@ -158,6 +182,199 @@
         "title": "AppliedFilters",
         "type": "object"
       },
+      "AuditEntryItem": {
+        "additionalProperties": false,
+        "properties": {
+          "after": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "After"
+          },
+          "before": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Before"
+          },
+          "field": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Field"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "record_id": {
+            "title": "Record Id",
+            "type": "string"
+          },
+          "rule": {
+            "title": "Rule",
+            "type": "string"
+          },
+          "run_id": {
+            "title": "Run Id",
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "info",
+              "warning",
+              "error"
+            ],
+            "title": "Severity",
+            "type": "string"
+          },
+          "stage": {
+            "enum": [
+              "read",
+              "clean",
+              "identity",
+              "dedupe"
+            ],
+            "title": "Stage",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "run_id",
+          "record_id",
+          "stage",
+          "field",
+          "rule",
+          "before",
+          "after",
+          "severity",
+          "message"
+        ],
+        "title": "AuditEntryItem",
+        "type": "object"
+      },
+      "AuditEntryWithPatient": {
+        "additionalProperties": false,
+        "properties": {
+          "after": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "After"
+          },
+          "before": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Before"
+          },
+          "field": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Field"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "patient": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PatientRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "record_id": {
+            "title": "Record Id",
+            "type": "string"
+          },
+          "rule": {
+            "title": "Rule",
+            "type": "string"
+          },
+          "run_id": {
+            "title": "Run Id",
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "info",
+              "warning",
+              "error"
+            ],
+            "title": "Severity",
+            "type": "string"
+          },
+          "stage": {
+            "enum": [
+              "read",
+              "clean",
+              "identity",
+              "dedupe"
+            ],
+            "title": "Stage",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "run_id",
+          "record_id",
+          "stage",
+          "field",
+          "rule",
+          "before",
+          "after",
+          "severity",
+          "message",
+          "patient"
+        ],
+        "title": "AuditEntryWithPatient",
+        "type": "object"
+      },
       "BundleStatus": {
         "additionalProperties": false,
         "properties": {
@@ -185,6 +402,30 @@
           "bundle_hash"
         ],
         "title": "BundleStatus",
+        "type": "object"
+      },
+      "BySeverity": {
+        "additionalProperties": false,
+        "properties": {
+          "error": {
+            "title": "Error",
+            "type": "integer"
+          },
+          "info": {
+            "title": "Info",
+            "type": "integer"
+          },
+          "warning": {
+            "title": "Warning",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "info",
+          "warning",
+          "error"
+        ],
+        "title": "BySeverity",
         "type": "object"
       },
       "CacheStatus": {
@@ -348,6 +589,25 @@
           "guardrail_notes"
         ],
         "title": "ClinicalSummaryResponse",
+        "type": "object"
+      },
+      "CodeCount": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "count": {
+            "title": "Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "code",
+          "count"
+        ],
+        "title": "CodeCount",
         "type": "object"
       },
       "ConfidenceOut": {
@@ -518,6 +778,64 @@
         "title": "EvidenceRef",
         "type": "object"
       },
+      "FeedbackOverview": {
+        "additionalProperties": false,
+        "properties": {
+          "by_prompt_version": {
+            "items": {
+              "$ref": "#/components/schemas/PromptFeedback"
+            },
+            "title": "By Prompt Version",
+            "type": "array"
+          },
+          "helpful": {
+            "title": "Helpful",
+            "type": "integer"
+          },
+          "helpful_rate": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Helpful Rate"
+          },
+          "not_helpful": {
+            "title": "Not Helpful",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "helpful",
+          "not_helpful",
+          "helpful_rate",
+          "by_prompt_version"
+        ],
+        "title": "FeedbackOverview",
+        "type": "object"
+      },
+      "FeedbackTotalsOut": {
+        "additionalProperties": false,
+        "properties": {
+          "helpful": {
+            "title": "Helpful",
+            "type": "integer"
+          },
+          "not_helpful": {
+            "title": "Not Helpful",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "helpful",
+          "not_helpful"
+        ],
+        "title": "FeedbackTotalsOut",
+        "type": "object"
+      },
       "FieldError": {
         "additionalProperties": false,
         "properties": {
@@ -590,6 +908,87 @@
         "title": "Identifier",
         "type": "object"
       },
+      "IngestionOverview": {
+        "additionalProperties": false,
+        "properties": {
+          "audit_by_severity": {
+            "$ref": "#/components/schemas/BySeverity"
+          },
+          "by_format": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "propertyNames": {
+              "enum": [
+                "json",
+                "csv",
+                "txt"
+              ]
+            },
+            "title": "By Format",
+            "type": "object"
+          },
+          "documents": {
+            "title": "Documents",
+            "type": "integer"
+          },
+          "exact_duplicates_removed": {
+            "title": "Exact Duplicates Removed",
+            "type": "integer"
+          },
+          "identities_merged": {
+            "title": "Identities Merged",
+            "type": "integer"
+          },
+          "identity_conflicts": {
+            "title": "Identity Conflicts",
+            "type": "integer"
+          },
+          "lab_results": {
+            "title": "Lab Results",
+            "type": "integer"
+          },
+          "near_duplicates_removed": {
+            "title": "Near Duplicates Removed",
+            "type": "integer"
+          },
+          "patients": {
+            "title": "Patients",
+            "type": "integer"
+          },
+          "quarantined": {
+            "title": "Quarantined",
+            "type": "integer"
+          },
+          "records_read": {
+            "title": "Records Read",
+            "type": "integer"
+          },
+          "top_rules": {
+            "items": {
+              "$ref": "#/components/schemas/RuleCount"
+            },
+            "title": "Top Rules",
+            "type": "array"
+          }
+        },
+        "required": [
+          "records_read",
+          "by_format",
+          "patients",
+          "documents",
+          "lab_results",
+          "exact_duplicates_removed",
+          "near_duplicates_removed",
+          "identities_merged",
+          "identity_conflicts",
+          "quarantined",
+          "audit_by_severity",
+          "top_rules"
+        ],
+        "title": "IngestionOverview",
+        "type": "object"
+      },
       "LastRun": {
         "additionalProperties": false,
         "properties": {
@@ -625,6 +1024,43 @@
           "status"
         ],
         "title": "LastRun",
+        "type": "object"
+      },
+      "LastRunOut": {
+        "additionalProperties": false,
+        "properties": {
+          "finished_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finished At"
+          },
+          "run_id": {
+            "title": "Run Id",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "queued",
+              "running",
+              "succeeded",
+              "failed"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "run_id",
+          "finished_at",
+          "status"
+        ],
+        "title": "LastRunOut",
         "type": "object"
       },
       "LlmCheck": {
@@ -665,6 +1101,50 @@
           "model"
         ],
         "title": "LlmCheck",
+        "type": "object"
+      },
+      "LlmOverview": {
+        "additionalProperties": false,
+        "properties": {
+          "calls": {
+            "title": "Calls",
+            "type": "integer"
+          },
+          "cost_usd_estimate": {
+            "title": "Cost Usd Estimate",
+            "type": "number"
+          },
+          "failed_calls": {
+            "title": "Failed Calls",
+            "type": "integer"
+          },
+          "fallback_calls": {
+            "title": "Fallback Calls",
+            "type": "integer"
+          },
+          "input_tokens": {
+            "title": "Input Tokens",
+            "type": "integer"
+          },
+          "output_tokens": {
+            "title": "Output Tokens",
+            "type": "integer"
+          },
+          "p95_latency_ms": {
+            "title": "P95 Latency Ms",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "calls",
+          "fallback_calls",
+          "failed_calls",
+          "input_tokens",
+          "output_tokens",
+          "cost_usd_estimate",
+          "p95_latency_ms"
+        ],
+        "title": "LlmOverview",
         "type": "object"
       },
       "MediaOut": {
@@ -773,6 +1253,191 @@
           "reference_range"
         ],
         "title": "ObservationRow",
+        "type": "object"
+      },
+      "Page_AuditEntryItem_": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/AuditEntryItem"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "page": {
+            "title": "Page",
+            "type": "integer"
+          },
+          "page_size": {
+            "title": "Page Size",
+            "type": "integer"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          },
+          "total_pages": {
+            "title": "Total Pages",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "items",
+          "page",
+          "page_size",
+          "total",
+          "total_pages"
+        ],
+        "title": "Page[AuditEntryItem]",
+        "type": "object"
+      },
+      "Page_AuditEntryWithPatient_": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/AuditEntryWithPatient"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "page": {
+            "title": "Page",
+            "type": "integer"
+          },
+          "page_size": {
+            "title": "Page Size",
+            "type": "integer"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          },
+          "total_pages": {
+            "title": "Total Pages",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "items",
+          "page",
+          "page_size",
+          "total",
+          "total_pages"
+        ],
+        "title": "Page[AuditEntryWithPatient]",
+        "type": "object"
+      },
+      "Page_PatientListItem_": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/PatientListItem"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "page": {
+            "title": "Page",
+            "type": "integer"
+          },
+          "page_size": {
+            "title": "Page Size",
+            "type": "integer"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          },
+          "total_pages": {
+            "title": "Total Pages",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "items",
+          "page",
+          "page_size",
+          "total",
+          "total_pages"
+        ],
+        "title": "Page[PatientListItem]",
+        "type": "object"
+      },
+      "Page_QuarantineItem_": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/QuarantineItem"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "page": {
+            "title": "Page",
+            "type": "integer"
+          },
+          "page_size": {
+            "title": "Page Size",
+            "type": "integer"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          },
+          "total_pages": {
+            "title": "Total Pages",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "items",
+          "page",
+          "page_size",
+          "total",
+          "total_pages"
+        ],
+        "title": "Page[QuarantineItem]",
+        "type": "object"
+      },
+      "Page_ValidationIssueItem_": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationIssueItem"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "page": {
+            "title": "Page",
+            "type": "integer"
+          },
+          "page_size": {
+            "title": "Page Size",
+            "type": "integer"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          },
+          "total_pages": {
+            "title": "Total Pages",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "items",
+          "page",
+          "page_size",
+          "total",
+          "total_pages"
+        ],
+        "title": "Page[ValidationIssueItem]",
         "type": "object"
       },
       "PatientDetail": {
@@ -924,6 +1589,108 @@
           "data_quality"
         ],
         "title": "PatientDetail",
+        "type": "object"
+      },
+      "PatientListItem": {
+        "additionalProperties": false,
+        "properties": {
+          "age": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Age"
+          },
+          "anomaly_counts": {
+            "$ref": "#/components/schemas/AnomalyCounts"
+          },
+          "birth_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Birth Date"
+          },
+          "chief_concern": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Chief Concern"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "gender": {
+            "enum": [
+              "male",
+              "female",
+              "other",
+              "unknown"
+            ],
+            "title": "Gender",
+            "type": "string"
+          },
+          "has_summary": {
+            "title": "Has Summary",
+            "type": "boolean"
+          },
+          "identity_conflict": {
+            "title": "Identity Conflict",
+            "type": "boolean"
+          },
+          "last_activity": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Activity"
+          },
+          "mrn": {
+            "title": "Mrn",
+            "type": "string"
+          },
+          "patient_key": {
+            "title": "Patient Key",
+            "type": "string"
+          },
+          "resource_count": {
+            "title": "Resource Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "patient_key",
+          "display_name",
+          "mrn",
+          "birth_date",
+          "age",
+          "gender",
+          "identity_conflict",
+          "last_activity",
+          "resource_count",
+          "has_summary",
+          "chief_concern",
+          "anomaly_counts"
+        ],
+        "title": "PatientListItem",
         "type": "object"
       },
       "PatientRef": {
@@ -1200,6 +1967,103 @@
           "errors"
         ],
         "title": "Problem",
+        "type": "object"
+      },
+      "PromptFeedback": {
+        "additionalProperties": false,
+        "properties": {
+          "helpful_rate": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Helpful Rate"
+          },
+          "prompt_version": {
+            "title": "Prompt Version",
+            "type": "string"
+          },
+          "votes": {
+            "title": "Votes",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "prompt_version",
+          "helpful_rate",
+          "votes"
+        ],
+        "title": "PromptFeedback",
+        "type": "object"
+      },
+      "QualityOverview": {
+        "additionalProperties": false,
+        "properties": {
+          "ingestion": {
+            "$ref": "#/components/schemas/IngestionOverview"
+          },
+          "last_run": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LastRunOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "summaries": {
+            "$ref": "#/components/schemas/SummaryOverview"
+          },
+          "validation": {
+            "$ref": "#/components/schemas/ValidationOverview"
+          }
+        },
+        "required": [
+          "ingestion",
+          "validation",
+          "summaries",
+          "last_run"
+        ],
+        "title": "QualityOverview",
+        "type": "object"
+      },
+      "QuarantineItem": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "payload_preview": {
+            "title": "Payload Preview",
+            "type": "string"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "run_id": {
+            "title": "Run Id",
+            "type": "string"
+          },
+          "source_locator": {
+            "title": "Source Locator",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "run_id",
+          "source_locator",
+          "reason",
+          "payload_preview"
+        ],
+        "title": "QuarantineItem",
         "type": "object"
       },
       "ReadyChecks": {
@@ -1538,6 +2402,54 @@
         "title": "ResourceRef",
         "type": "object"
       },
+      "ResourcesByType": {
+        "additionalProperties": false,
+        "properties": {
+          "DiagnosticReport": {
+            "title": "Diagnosticreport",
+            "type": "integer"
+          },
+          "DocumentReference": {
+            "title": "Documentreference",
+            "type": "integer"
+          },
+          "Encounter": {
+            "title": "Encounter",
+            "type": "integer"
+          },
+          "Observation": {
+            "title": "Observation",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "Encounter",
+          "DocumentReference",
+          "DiagnosticReport",
+          "Observation"
+        ],
+        "title": "ResourcesByType",
+        "type": "object"
+      },
+      "RuleCount": {
+        "additionalProperties": false,
+        "properties": {
+          "count": {
+            "title": "Count",
+            "type": "integer"
+          },
+          "rule": {
+            "title": "Rule",
+            "type": "string"
+          }
+        },
+        "required": [
+          "rule",
+          "count"
+        ],
+        "title": "RuleCount",
+        "type": "object"
+      },
       "SearchRequest": {
         "additionalProperties": false,
         "properties": {
@@ -1695,6 +2607,307 @@
         "title": "Section",
         "type": "object"
       },
+      "StatsResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "last_pipeline_run_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Pipeline Run At"
+          },
+          "patients": {
+            "title": "Patients",
+            "type": "integer"
+          },
+          "resources_by_type": {
+            "$ref": "#/components/schemas/ResourcesByType"
+          },
+          "searchable_records": {
+            "title": "Searchable Records",
+            "type": "integer"
+          },
+          "summaries": {
+            "title": "Summaries",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "patients",
+          "resources_by_type",
+          "searchable_records",
+          "summaries",
+          "last_pipeline_run_at"
+        ],
+        "title": "StatsResponse",
+        "type": "object"
+      },
+      "SummaryFeedbackRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "cache_key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Cache Key",
+            "type": "string"
+          },
+          "comment": {
+            "anyOf": [
+              {
+                "maxLength": 280,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Comment"
+          },
+          "rating": {
+            "enum": [
+              "helpful",
+              "not_helpful"
+            ],
+            "title": "Rating",
+            "type": "string"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "enum": [
+                  "inaccurate",
+                  "missing_information",
+                  "too_long",
+                  "unclear",
+                  "other"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          }
+        },
+        "required": [
+          "cache_key",
+          "rating",
+          "reason",
+          "comment"
+        ],
+        "title": "SummaryFeedbackRequest",
+        "type": "object"
+      },
+      "SummaryFeedbackResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "cache_key": {
+            "title": "Cache Key",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "rating": {
+            "enum": [
+              "helpful",
+              "not_helpful"
+            ],
+            "title": "Rating",
+            "type": "string"
+          },
+          "totals": {
+            "$ref": "#/components/schemas/FeedbackTotalsOut"
+          }
+        },
+        "required": [
+          "id",
+          "cache_key",
+          "rating",
+          "totals"
+        ],
+        "title": "SummaryFeedbackResponse",
+        "type": "object"
+      },
+      "SummaryOverview": {
+        "additionalProperties": false,
+        "properties": {
+          "avg_word_count": {
+            "title": "Avg Word Count",
+            "type": "number"
+          },
+          "by_provider": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "propertyNames": {
+              "enum": [
+                "anthropic",
+                "extractive"
+              ]
+            },
+            "title": "By Provider",
+            "type": "object"
+          },
+          "confidence": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "propertyNames": {
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ]
+            },
+            "title": "Confidence",
+            "type": "object"
+          },
+          "feedback": {
+            "$ref": "#/components/schemas/FeedbackOverview"
+          },
+          "guardrail_interventions": {
+            "title": "Guardrail Interventions",
+            "type": "integer"
+          },
+          "llm": {
+            "$ref": "#/components/schemas/LlmOverview"
+          },
+          "max_word_count": {
+            "title": "Max Word Count",
+            "type": "integer"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "total",
+          "by_provider",
+          "avg_word_count",
+          "max_word_count",
+          "confidence",
+          "guardrail_interventions",
+          "llm",
+          "feedback"
+        ],
+        "title": "SummaryOverview",
+        "type": "object"
+      },
+      "ValidationIssueItem": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "path": {
+            "title": "Path",
+            "type": "string"
+          },
+          "patient": {
+            "$ref": "#/components/schemas/PatientRef"
+          },
+          "resource_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resource Id"
+          },
+          "resource_type": {
+            "anyOf": [
+              {
+                "enum": [
+                  "Patient",
+                  "Encounter",
+                  "DocumentReference",
+                  "DiagnosticReport",
+                  "Observation"
+                ],
+                "type": "string"
+              },
+              {
+                "const": "Bundle",
+                "type": "string"
+              }
+            ],
+            "title": "Resource Type"
+          },
+          "severity": {
+            "enum": [
+              "info",
+              "warning",
+              "error"
+            ],
+            "title": "Severity",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "patient",
+          "resource_type",
+          "resource_id",
+          "path",
+          "severity",
+          "code",
+          "message"
+        ],
+        "title": "ValidationIssueItem",
+        "type": "object"
+      },
+      "ValidationOverview": {
+        "additionalProperties": false,
+        "properties": {
+          "bundles": {
+            "title": "Bundles",
+            "type": "integer"
+          },
+          "issues_by_severity": {
+            "$ref": "#/components/schemas/BySeverity"
+          },
+          "top_codes": {
+            "items": {
+              "$ref": "#/components/schemas/CodeCount"
+            },
+            "title": "Top Codes",
+            "type": "array"
+          },
+          "valid_bundles": {
+            "title": "Valid Bundles",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "bundles",
+          "valid_bundles",
+          "issues_by_severity",
+          "top_codes"
+        ],
+        "title": "ValidationOverview",
+        "type": "object"
+      },
       "VectorStoreCheck": {
         "additionalProperties": false,
         "properties": {
@@ -1745,6 +2958,130 @@
         "summary": "Liveness",
         "tags": [
           "system"
+        ]
+      }
+    },
+    "/patients": {
+      "get": {
+        "operationId": "patient_directory_patients_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 100,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Q"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "title": "Page",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "required": false,
+            "schema": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Page Size",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "default": "last_activity",
+              "enum": [
+                "name",
+                "mrn",
+                "birth_date",
+                "last_activity",
+                "resource_count"
+              ],
+              "title": "Sort",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "schema": {
+              "default": "desc",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "title": "Order",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "conflict_only",
+            "required": false,
+            "schema": {
+              "default": false,
+              "title": "Conflict Only",
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page_PatientListItem_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          }
+        },
+        "summary": "Paginated patient directory",
+        "tags": [
+          "patients"
         ]
       }
     },
@@ -1806,6 +3143,110 @@
           }
         },
         "summary": "Patient detail for the drawer header",
+        "tags": [
+          "patients"
+        ]
+      }
+    },
+    "/patients/{patient_key}/audit": {
+      "get": {
+        "operationId": "patient_audit_patients__patient_key__audit_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "patient_key",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Patient Key",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "severity",
+            "required": false,
+            "schema": {
+              "default": [],
+              "items": {
+                "enum": [
+                  "info",
+                  "warning",
+                  "error"
+                ],
+                "type": "string"
+              },
+              "title": "Severity",
+              "type": "array"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "title": "Page",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Page Size",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page_AuditEntryItem_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          }
+        },
+        "summary": "Audit entries for one patient (PHI masked)",
         "tags": [
           "patients"
         ]
@@ -2002,6 +3443,473 @@
         "summary": "Latest AI summary for the current bundle",
         "tags": [
           "patients"
+        ]
+      }
+    },
+    "/patients/{patient_key}/summary/feedback": {
+      "post": {
+        "operationId": "summary_feedback_patients__patient_key__summary_feedback_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "patient_key",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Patient Key",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "x-client-id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 64,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Client-Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SummaryFeedbackRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SummaryFeedbackResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          }
+        },
+        "summary": "Rate the summary version currently served",
+        "tags": [
+          "patients"
+        ]
+      }
+    },
+    "/quality/audit": {
+      "get": {
+        "operationId": "audit_log_quality_audit_get",
+        "parameters": [
+          {
+            "description": "Prefix, e.g. date.",
+            "in": "query",
+            "name": "rule",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 100,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Prefix, e.g. date.",
+              "title": "Rule"
+            }
+          },
+          {
+            "in": "query",
+            "name": "stage",
+            "required": false,
+            "schema": {
+              "default": [],
+              "items": {
+                "enum": [
+                  "read",
+                  "clean",
+                  "identity",
+                  "dedupe"
+                ],
+                "type": "string"
+              },
+              "title": "Stage",
+              "type": "array"
+            }
+          },
+          {
+            "in": "query",
+            "name": "severity",
+            "required": false,
+            "schema": {
+              "default": [],
+              "items": {
+                "enum": [
+                  "info",
+                  "warning",
+                  "error"
+                ],
+                "type": "string"
+              },
+              "title": "Severity",
+              "type": "array"
+            }
+          },
+          {
+            "in": "query",
+            "name": "patient_key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Patient Key"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "title": "Page",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Page Size",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page_AuditEntryWithPatient_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          }
+        },
+        "summary": "Audit log with masked values",
+        "tags": [
+          "quality"
+        ]
+      }
+    },
+    "/quality/overview": {
+      "get": {
+        "operationId": "quality_overview_quality_overview_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QualityOverview"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          }
+        },
+        "summary": "Ingestion, validation and summary KPIs",
+        "tags": [
+          "quality"
+        ]
+      }
+    },
+    "/quality/quarantine": {
+      "get": {
+        "operationId": "quarantine_quality_quarantine_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "title": "Page",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Page Size",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page_QuarantineItem_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          }
+        },
+        "summary": "Quarantined records with masked previews",
+        "tags": [
+          "quality"
+        ]
+      }
+    },
+    "/quality/validation": {
+      "get": {
+        "operationId": "validation_issues_quality_validation_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "severity",
+            "required": false,
+            "schema": {
+              "default": [],
+              "items": {
+                "enum": [
+                  "info",
+                  "warning",
+                  "error"
+                ],
+                "type": "string"
+              },
+              "title": "Severity",
+              "type": "array"
+            }
+          },
+          {
+            "in": "query",
+            "name": "resource_type",
+            "required": false,
+            "schema": {
+              "default": [],
+              "items": {
+                "enum": [
+                  "Patient",
+                  "Encounter",
+                  "DocumentReference",
+                  "DiagnosticReport",
+                  "Observation"
+                ],
+                "type": "string"
+              },
+              "title": "Resource Type",
+              "type": "array"
+            }
+          },
+          {
+            "in": "query",
+            "name": "code",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 100,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Code"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "title": "Page",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Page Size",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page_ValidationIssueItem_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          }
+        },
+        "summary": "Validation issues",
+        "tags": [
+          "quality"
         ]
       }
     },
@@ -2292,6 +4200,27 @@
         "summary": "Semantic search across FHIR records and AI summaries",
         "tags": [
           "search"
+        ]
+      }
+    },
+    "/stats": {
+      "get": {
+        "operationId": "stats_stats_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatsResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Counts for the top bar",
+        "tags": [
+          "system"
         ]
       }
     }

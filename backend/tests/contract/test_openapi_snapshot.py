@@ -32,12 +32,20 @@ def test_openapi_matches_snapshot() -> None:
     )
 
 
-def test_snapshot_documents_every_r_endpoint() -> None:
+def test_snapshot_documents_every_built_endpoint() -> None:
     paths = json.loads((PROJECT_ROOT / "docs" / "openapi.json").read_text(encoding="utf-8"))[
         "paths"
     ]
     expected = {
         "/health": {"get"},
+        "/stats": {"get"},
+        "/patients": {"get"},
+        "/patients/{patient_key}/audit": {"get"},
+        "/patients/{patient_key}/summary/feedback": {"post"},
+        "/quality/overview": {"get"},
+        "/quality/validation": {"get"},
+        "/quality/audit": {"get"},
+        "/quality/quarantine": {"get"},
         "/ready": {"get"},
         "/search": {"post"},
         "/patients/{patient_key}": {"get"},

@@ -21,13 +21,14 @@ from ehr_mip import __version__
 from ehr_mip.api.deps import AppState
 from ehr_mip.api.errors import register_error_handlers
 from ehr_mip.api.middleware import BodyLimitMiddleware, RequestContextMiddleware
-from ehr_mip.api.rate_limit import RateLimitMiddleware
-from ehr_mip.api.routers import patients, resources, search, system
+from ehr_mip.api.rate_limit import RateLimitMiddleware, build_storage
+from ehr_mip.api.routers import patients, quality, resources, search, system
 from ehr_mip.cache.backend import CacheBackend, build_cache
 from ehr_mip.config import Settings, get_settings
 from ehr_mip.db.connection import connect
 from ehr_mip.logging import configure_logging
 from ehr_mip.observability.log_redaction import redact_phi
+from ehr_mip.observability.metrics import CACHE_ERRORS
 from ehr_mip.search.embedder import Embedder, SentenceTransformerEmbedder
 from ehr_mip.search.service import SearchService
 from ehr_mip.search.vector_store import VectorStore, open_client
@@ -53,7 +54,10 @@ def create_app(
     settings = settings or get_settings()
     if configure_logs:
         configure_logging(settings.log_level, extra_processors=[redact_phi])
-    state = AppState(settings=settings, cache=cache or build_cache(settings))
+    state = AppState(
+        settings=settings,
+        cache=cache or build_cache(settings, lambda: CACHE_ERRORS.labels(store="cache").inc()),
+    )
 
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
@@ -69,9 +73,12 @@ def create_app(
                 state.embedder_error = type(error).__name__
                 log.error("search_unavailable", error_type=type(error).__name__)
         app.state.ehr = state
+        if not await state.cache.ping():
+            log.warning("cache_unreachable", using=state.cache.name)
         log.info("api_started", version=__version__, search_ready=state.search is not None)
         yield
         log.info("api_stopping")
+        await state.cache.aclose()
 
     prod = settings.env == "prod"
     app = FastAPI(
@@ -84,7 +91,7 @@ def create_app(
     )
     app.state.ehr = state
     register_error_handlers(app)
-    for router in (system.router, search.router, patients.router, resources.router):
+    for router in (system.router, search.router, patients.router, resources.router, quality.router):
         app.include_router(router)
     Instrumentator(should_group_status_codes=False, excluded_handlers=["/metrics"]).instrument(
         app
@@ -100,7 +107,13 @@ def create_app(
         expose_headers=EXPOSED_HEADERS,
     )
     app.add_middleware(BodyLimitMiddleware, max_bytes=MAX_BODY_BYTES)
-    app.add_middleware(RateLimitMiddleware, enabled=settings.rate_limit_enabled)
+    app.add_middleware(
+        RateLimitMiddleware,
+        enabled=settings.rate_limit_enabled,
+        storage=build_storage(settings),
+        # auto: count on Redis only while the cache sees one
+        shared=lambda: settings.cache_backend != "auto" or state.cache.name == "redis",
+    )
     app.add_middleware(RequestContextMiddleware)
     # Outermost: the client IP the rate limiter sees comes from X-Forwarded-For only when
     # the direct peer is a trusted proxy (FORWARDED_ALLOW_IPS), never from any caller.

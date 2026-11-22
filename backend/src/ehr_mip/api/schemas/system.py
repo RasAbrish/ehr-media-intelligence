@@ -71,3 +71,18 @@ class ReadyResponse(ApiModel):
     last_run: LastRun | None
     flags: ReadyFlags
     cache: CacheStatus
+
+
+class ResourcesByType(ApiModel):
+    Encounter: int
+    DocumentReference: int
+    DiagnosticReport: int
+    Observation: int
+
+
+class StatsResponse(ApiModel):
+    patients: int
+    resources_by_type: ResourcesByType
+    searchable_records: int
+    summaries: int
+    last_pipeline_run_at: str | None
