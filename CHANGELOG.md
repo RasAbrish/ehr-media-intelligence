@@ -4,6 +4,9 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+### Added
+- A free public demo deployment: `render.yaml`, an index built into the API image, a demo banner that also covers cold starts, and `docs/DEPLOY.md`.
+
 ### Changed
 - GitHub Actions is switched off because no hosted runner is available. The README, write-up and docs/07, 09 and 10 now say that the gates run by hand, and no longer claim an automated container hardening check.
 

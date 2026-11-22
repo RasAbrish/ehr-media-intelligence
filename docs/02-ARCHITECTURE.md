@@ -360,6 +360,8 @@ sequenceDiagram
 
 ## 7. Deployment
 
+Docker Compose, below, is the main deployment. An optional free public demo (`render.yaml`, `docs/DEPLOY.md`) runs the same API image with the index built into it at `/app/demo-data`, and the frontend as a static site that proxies `/api/*`.
+
 ```mermaid
 flowchart LR
     subgraph compose["docker compose"]

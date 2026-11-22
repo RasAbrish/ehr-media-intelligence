@@ -182,6 +182,10 @@ Every accepted finding is listed here and, for the tool that reports it, in `PIP
 
 **Not covered by the scan.** The ChromaDB wheel contains its own SQLite 3.46.0, which Trivy does not see. That version is in the affected range of CVE-2026-119373 and CVE-2026-119374 (fixed in SQLite 3.54.0) and Chroma uses an FTS5 table. The reasons above do not apply to that copy, and its reachability has not been established. Review it on every ChromaDB upgrade.
 
+### 8.2 Public demo
+
+The optional Render demo (`render.yaml`) has no login, so it holds synthetic data only, pins the extractive provider, carries no secrets and shows a banner. It keeps non-root, the security headers and rate limits. Render's free plan does not offer the read-only file system and dropped capabilities of section 9, and rate limits there count by proxy address because forwarded addresses are not trusted.
+
 ## 9. Container hardening
 
 ```yaml

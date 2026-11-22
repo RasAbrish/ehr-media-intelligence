@@ -133,6 +133,9 @@ Height 56, `bg-background/80` with backdrop blur, bottom border. Left: product m
 - Placeholder: "Search records, e.g. 'rising creatinine' or 'CT chest pulmonary embolism'".
 - Visible label above in `text-meta` ("Search patient records"); may be visually hidden on desktop only if the placeholder is not the only label (keep `aria-label`).
 
+### 6.2a Demo banner
+Only in builds with `VITE_DEMO_MODE=true`: a `bg-warning/15` strip above the top bar, "Public demo with synthetic patients. Do not enter real patient information.", and while the free host wakes a status line "The free server is waking up. This can take up to 4 minutes."
+
 ### 6.3 Filter bar
 Row under input, gap 8: `ResourceTypeFilter` (outline button "Type: All" → popover with checkbox list and colored dots), `DateRangeFilter` (outline button with calendar icon "Any date" → popover with presets column: Last 30 days, Last 6 months, Last year, This year, Custom; and a two-month range calendar), active filter chips (secondary pill with x), "Clear filters" ghost button. On mobile the row collapses into a single "Filters (2)" button opening a bottom sheet.
 
