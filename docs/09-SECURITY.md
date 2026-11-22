@@ -141,7 +141,7 @@ Body ≤ 16 KB (search, feedback), query 2 to 500 chars, `page_size ≤ 100`, `t
 | Lockfiles committed | `uv.lock`, `pnpm-lock.yaml` |
 | Vulnerability scan Python | `pip-audit` (CI, fail on high) |
 | Vulnerability scan JS | `pnpm audit --audit-level=high` (CI) |
-| Container scan | Trivy on both images (CI, fail on critical) |
+| Container scan | Trivy on both images (CI and `make security`, fail on high or critical outside section 8.1) |
 | Secret scan | gitleaks (pre-commit + CI) |
 | Static analysis | ruff `S` (bandit rules), ESLint security-relevant rules, GitHub CodeQL (Python and JS) |
 | Dependency updates | Dependabot weekly for pip, npm, docker, GitHub Actions |
@@ -151,7 +151,7 @@ Body ≤ 16 KB (search, feedback), query 2 to 500 chars, `page_size ≤ 100`, `t
 
 ### 8.1 Accepted dependency findings
 
-Every accepted finding is listed here and in `PIP_AUDIT_IGNORE` in the `Makefile`. Review the list on every upgrade of the affected package.
+Every accepted finding is listed here and, for the tool that reports it, in `PIP_AUDIT_IGNORE` in the `Makefile` or in `.trivyignore.yaml`. Review the list on every upgrade of the affected package.
 
 | Package | Advisory | Why it does not apply | Guard |
 |---|---|---|---|
@@ -160,6 +160,25 @@ Every accepted finding is listed here and in `PIP_AUDIT_IGNORE` in the `Makefile
 | chromadb 1.5.9 | PYSEC-2026-3815 (CVE-2026-45831), `SimpleRBACAuthorizationProvider` ignores tenant scope | Server auth provider only; the app has a single local tenant and no Chroma auth | Same |
 | chromadb 1.5.9 | PYSEC-2026-3813 (CVE-2026-45830), missing tenant authorization in the server | Server only | Same |
 | torch 2.15.0+cpu | Not auditable by pip-audit (CPU wheel is served from the PyTorch index, not PyPI) | Scanned by Trivy on the API image instead | CI image job (Phase 6) |
+
+**Debian packages in the API image, accepted until 2026-12-22.** The owner accepted these 12 high severity advisories on 2026-11-22 because trixie has no fix. The vulnerable packages remain in the image. Each exception is limited to the installed package versions and expires on 2026-12-22, after which `make security` and CI fail until the list is reviewed.
+
+| Package | Advisory | Why the risk is low here |
+|---|---|---|
+| libacl1 | CVE-2026-54369, symlink traversal privilege escalation | Python does not link libacl, the app starts no tools that do, and the process is unprivileged |
+| libsqlite3-0 | CVE-2026-119373, FTS5 heap overflow | The app database has no FTS5 table |
+| libsqlite3-0 | CVE-2026-119374, FTS5 corrupted index overflow | The app database has no FTS5 table and the app accepts no database files |
+| libsqlite3-0 | CVE-2026-119379, session changeset overflow | Python sqlite3 exposes no changeset API |
+| ncurses | CVE-2025-69720, infocmp buffer overflow | The app never runs infocmp or imports curses |
+| openssl | CVE-2026-124709, QUIC server memory leak | The API serves no QUIC, and Python ssl exposes no QUIC API |
+| perl-base | CVE-2026-9538, Archive::Tar denial of service | The image has no Archive/Tar.pm and the app runs no Perl |
+| systemd libraries | CVE-2026-16742, systemd-homed privilege escalation | Only the libraries are installed, with no systemd-homed |
+| util-linux | CVE-2026-76642, mount helper hooks run privileged | The container runs as uid 10001 with no capabilities and no-new-privileges |
+| util-linux | CVE-2026-78408, nsenter leaks cgroup authority | The container runs as uid 10001 with no capabilities and no-new-privileges |
+| util-linux | CVE-2026-78409, mount subdirectory escape | The container runs as uid 10001 with no capabilities and no-new-privileges |
+| util-linux | CVE-2026-78410, restricted bind mount redirection | The container runs as uid 10001 with no capabilities and no-new-privileges |
+
+**Not covered by the scan.** The ChromaDB wheel contains its own SQLite 3.46.0, which Trivy does not see. That version is in the affected range of CVE-2026-119373 and CVE-2026-119374 (fixed in SQLite 3.54.0) and Chroma uses an FTS5 table. The reasons above do not apply to that copy, and its reachability has not been established. Review it on every ChromaDB upgrade.
 
 ## 9. Container hardening
 
@@ -176,10 +195,9 @@ services:
     healthcheck: { test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://localhost:8000/ready')"], interval: 15s }
   web:
     read_only: true
-    tmpfs: ["/var/cache/nginx", "/var/run"]
+    tmpfs: ["/tmp"]   # unprivileged nginx: user 101, port 8080, so no capability is added
     security_opt: ["no-new-privileges:true"]
     cap_drop: ["ALL"]
-    cap_add: ["NET_BIND_SERVICE"]
   redis:
     profiles: ["redis"]
     image: redis:7-alpine
