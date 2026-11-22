@@ -75,7 +75,7 @@ chore: scaffold monorepo, tooling, CI and synthetic EHR data generator
 ## 4. Makefile targets
 
 `help, setup, data, ingest, normalize, summarize, index, pipeline, api, web, dev, test, test-backend, test-frontend, e2e, lint, fmt, typecheck, check, security, eval, openapi, storybook, lighthouse, validate-official (P2), docker-up, docker-up-redis, writeup-pdf, clean`.
-`writeup-pdf`: `npx md-to-pdf docs/WRITEUP.md` (or pandoc if installed).
+`writeup-pdf`: `scripts/render_writeup.py` (markdown-it-py and the Playwright Chromium, nothing to download). It fails if the write-up is longer than one page.
 
 ## 5. README outline
 
