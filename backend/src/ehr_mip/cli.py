@@ -19,6 +19,7 @@ from rich.table import Table
 from ehr_mip import __version__
 from ehr_mip.config import PROJECT_ROOT, Settings, get_settings
 from ehr_mip.db.connection import connect
+from ehr_mip.db.read_models import StatusReader
 from ehr_mip.db.repositories import PipelineRunRepository
 from ehr_mip.errors import NotImplementedYetError
 from ehr_mip.fhir.models import NormalizedBundle
@@ -336,6 +337,17 @@ def run_all() -> None:
     index()
 
 
+def _bootstrap_if_empty(settings: Settings) -> None:
+    """AUTO_BOOTSTRAP: fill a store that was never indexed, before the port opens."""
+    if not settings.auto_bootstrap:
+        return
+    with closing(connect(settings.sqlite_path)) as conn:
+        if StatusReader(conn).index_version():
+            return
+    typer.echo("No indexed data found: running the pipeline (AUTO_BOOTSTRAP=true).")
+    run_all()
+
+
 @app.command()
 def serve(
     host: str = typer.Option("127.0.0.1", help="Bind address."),
@@ -346,10 +358,12 @@ def serve(
 
     from ehr_mip.api.main import create_app  # noqa: PLC0415
 
+    _bootstrap_if_empty(get_settings())
     uvicorn.run(
         create_app(),
         host=host,
         port=port,
+        access_log=False,  # it prints query strings (patient names); ours logs routes
         limit_concurrency=64,
         timeout_keep_alive=5,
         timeout_graceful_shutdown=10,

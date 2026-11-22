@@ -40,8 +40,9 @@ def build_store(root: Path, embedder: Embedder | None = None) -> Path:
     with closing(connect(root / "ehr.db")) as conn:
         runs = PipelineRunRepository(conn)
         run_id = runs.start("ingest")
-        IngestionRepository(conn).save(run_id, run_ingestion(RAW, today=TODAY))
-        runs.finish(run_id, {})
+        ingested = run_ingestion(RAW, today=TODAY)
+        IngestionRepository(conn).save(run_id, ingested)
+        runs.finish(run_id, ingested.stats.model_dump())
         BundleStore(conn).save(
             run_normalization(conn, today=TODAY, timestamp=NOW), created_at=NOW, full_refresh=True
         )
