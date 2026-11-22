@@ -6,6 +6,11 @@ export const copy = {
   product: "Media Intelligence",
   skipLink: "Skip to content",
   loadingPage: "Loading page",
+  demo: {
+    label: "Demo notice",
+    notice: "Public demo with synthetic patients. Do not enter real patient information.",
+    waking: "The free server is waking up. This can take up to 4 minutes.",
+  },
   nav: {
     label: "Primary",
     menu: "Open navigation menu",

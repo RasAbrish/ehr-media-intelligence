@@ -1,5 +1,6 @@
 import { Outlet } from "@tanstack/react-router";
 
+import { DemoBanner } from "@/components/common/DemoBanner";
 import { TopBar } from "@/components/common/TopBar";
 import { useSearchShortcut } from "@/hooks/useSearchShortcut";
 import { copy } from "@/lib/copy";
@@ -14,6 +15,7 @@ export function AppShell() {
       >
         {copy.skipLink}
       </a>
+      {import.meta.env.VITE_DEMO_MODE === "true" ? <DemoBanner /> : null}
       <TopBar />
       <main id="main" tabIndex={-1} className="flex-1 outline-none">
         <div className="mx-auto w-full max-w-280 px-4 py-8 md:px-6 md:py-12">

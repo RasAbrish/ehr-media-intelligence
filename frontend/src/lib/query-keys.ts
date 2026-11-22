@@ -39,6 +39,7 @@ export const keys = {
     quarantine: (params: PageParams) => ["quality", "quarantine", params] as const,
   },
   ready: ["ready"] as const,
+  health: ["health"] as const,
   search: (params: SearchParams) => ["search", params] as const,
   patients: {
     all: ["patients"] as const,
