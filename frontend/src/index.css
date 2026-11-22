@@ -7,6 +7,20 @@
 @import "react-day-picker/style.css" layer(components);
 
 @custom-variant dark (&:is(.dark *));
+/* The open sidebar, never on phones (docs/06 section 6.1). */
+@custom-variant sidebar-open {
+  @media (width >= 48rem) {
+    &:is([data-sidebar="open"] *) {
+      @slot;
+    }
+  }
+}
+/* A data table whose container is too narrow for columns (docs/06 section 6.8). */
+@custom-variant stacked {
+  @container data-table (width < 60rem) {
+    @slot;
+  }
+}
 
 /* Design tokens: docs/06-UI-DESIGN.md sections 3 to 5. Components use these, never raw colors. */
 
@@ -177,6 +191,17 @@
   kbd,
   .font-mono {
     font-feature-settings: "zero" 1;
+  }
+  /* docs/06 section 8.6: everything in rem grows on large screens, user font scaling included. */
+  @media (min-width: 120rem) {
+    html {
+      font-size: 112.5%;
+    }
+  }
+  @media (min-width: 160rem) {
+    html {
+      font-size: 125%;
+    }
   }
   @media (prefers-reduced-motion: reduce) {
     *,
