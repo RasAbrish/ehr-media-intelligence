@@ -1,0 +1,14 @@
+# Build context of the API image: an allowlist, so .env, data and tests never enter it.
+*
+!backend/
+backend/*
+!backend/pyproject.toml
+!backend/uv.lock
+!backend/README.md
+!backend/src/
+**/__pycache__
+**/*.py[cod]
+!data/
+data/*
+!data/raw/
+data/raw/_ground_truth.json
