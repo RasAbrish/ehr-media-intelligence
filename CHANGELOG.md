@@ -4,6 +4,9 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+### Fixed
+- The scheduled eval workflow failed on every run: a fresh runner has no bundles, so it now runs ingest and normalize before eval.
+
 ## Phase 7
 
 ### Added

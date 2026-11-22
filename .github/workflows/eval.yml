@@ -21,6 +21,8 @@ jobs:
           enable-cache: true
           cache-dependency-glob: backend/uv.lock
       - run: cd backend && uv sync --locked --extra dev
+      - name: Build the bundles to score
+        run: cd backend && uv run ehr-mip ingest && uv run ehr-mip normalize
       - name: Run eval
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}

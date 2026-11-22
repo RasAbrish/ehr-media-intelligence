@@ -102,3 +102,12 @@ def test_ci_chrome_flags_do_not_replace_the_gate_settings() -> None:
     assert "LHCI_COLLECT__" not in ci
     assert "LIGHTHOUSE_CHROME_FLAGS" in ci
     assert "--settings.chromeFlags=" in script
+
+
+def test_eval_workflow_builds_the_bundles_it_scores() -> None:
+    # A runner starts without a database, and `ehr-mip eval` exits 1 when it has no bundles.
+    workflow = yaml.safe_load((PROJECT_ROOT / ".github/workflows/eval.yml").read_text())
+    script = "\n".join(step.get("run", "") for step in workflow["jobs"]["eval"]["steps"])
+    stages = [script.find(f"ehr-mip {stage}") for stage in ("ingest", "normalize", "eval")]
+    assert -1 not in stages
+    assert stages == sorted(stages)
