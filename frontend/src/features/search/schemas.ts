@@ -2,7 +2,12 @@
 import { z } from "@/lib/zod";
 
 import { PatientRefSchema, ResourceRefSchema } from "@/lib/common-schemas";
-import { MatchTypeSchema, SearchableTypeSchema, SearchModeSchema } from "@/lib/contract-enums";
+import {
+  MatchTypeSchema,
+  SearchableTypeSchema,
+  SearchModeSchema,
+  SearchSortSchema,
+} from "@/lib/contract-enums";
 
 export const QUERY_MIN = 2;
 export const QUERY_MAX = 500;
@@ -28,6 +33,7 @@ export const SearchResponseSchema = z.strictObject({
   took_ms: z.number(),
   total: z.number().int(),
   mode: SearchModeSchema,
+  sort: SearchSortSchema,
   filters: z.strictObject({
     resource_type: z.array(SearchableTypeSchema),
     date_from: z.string().nullable(),

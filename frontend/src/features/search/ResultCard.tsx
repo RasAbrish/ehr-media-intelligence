@@ -20,6 +20,8 @@ interface ResultCardProps {
   result: SearchResult;
   onOpen: (result: SearchResult, element: HTMLElement) => void;
   selected?: boolean;
+  /** Newest order: no relevance to show. */
+  byDate?: boolean;
   buttonRef?: Ref<HTMLButtonElement>;
   tabIndex?: number;
   /** Called on focus and after a short hover (docs/06 section 8.5). */
@@ -37,6 +39,7 @@ export function ResultCard({
   result,
   onOpen,
   selected,
+  byDate = false,
   buttonRef,
   tabIndex,
   onFocus,
@@ -57,7 +60,12 @@ export function ResultCard({
   const titleId = `${id}-title`;
   // Screen readers hear the whole card from the button: type, date, title, finding,
   // AI line and score (FR-5.2, FR-5.6).
-  const describedBy = [`${id}-meta`, `${id}-snippet`, `${id}-ai`, `${id}-score`].join(" ");
+  const describedBy = [
+    `${id}-meta`,
+    `${id}-snippet`,
+    `${id}-ai`,
+    ...(byDate ? [] : [`${id}-score`]),
+  ].join(" ");
   return (
     <article
       aria-labelledby={titleId}
@@ -137,8 +145,8 @@ export function ResultCard({
             ) : null}
           </div>
           <div className="flex shrink-0 items-center gap-0.5">
-            <ScoreMeter id={`${id}-score`} score={result.score} compact />
-            <WhyThisResult result={result} />
+            {byDate ? null : <ScoreMeter id={`${id}-score`} score={result.score} compact />}
+            <WhyThisResult result={result} byDate={byDate} />
           </div>
         </div>
         <div id={`${id}-meta`} className="flex min-w-0 items-center gap-2">

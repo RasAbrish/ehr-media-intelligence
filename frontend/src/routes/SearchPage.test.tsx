@@ -313,6 +313,43 @@ describe("Search page", () => {
     expect(calls).toBe(0);
   });
 
+  it("sorts by newest through the URL, and says what qualifies", async () => {
+    const user = userEvent.setup();
+    server.use(
+      http.post("*/api/search", ({ request }) => {
+        const sort = new URL(request.url).searchParams.get("sort") ?? "relevance";
+        return HttpResponse.json({ ...fixtures.search, sort });
+      }),
+    );
+    const { router, container } = await renderApp("/?q=potassium");
+    await resultsList();
+    await user.selectOptions(screen.getByRole("combobox", { name: copy.sort.label }), "newest");
+    expect(await screen.findByText(copy.sort.newestNote)).toBeInTheDocument();
+    expect(router.state.location.search).toMatchObject({ sort: "newest" });
+    // No relevance is shown for an order that is not by relevance.
+    expect(screen.queryByLabelText(/^Relevance \d+ percent$/)).toBeNull();
+    await user.click(must(screen.getAllByRole("button", { name: copy.why.trigger })[0]));
+    expect(await screen.findByText(copy.why.title)).toBeInTheDocument();
+    expect(screen.queryByText(copy.why.similarity)).toBeNull();
+    expect(await seriousAxeViolations(container)).toEqual([]);
+  });
+
+  it("offers relevance when no record has every word", async () => {
+    const user = userEvent.setup();
+    server.use(
+      http.post("*/api/search", ({ request }) =>
+        new URL(request.url).searchParams.get("sort") === "newest"
+          ? HttpResponse.json({ ...fixtures.search, sort: "newest", results: [], total: 0 })
+          : HttpResponse.json(fixtures.search),
+      ),
+    );
+    const { router } = await renderApp("/?q=potassium&sort=newest");
+    expect(await screen.findByRole("heading", { name: copy.sort.noneTitle })).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: copy.sort.useRelevance }));
+    expect(await screen.findByText(firstName)).toBeInTheDocument();
+    expect(router.state.location.search).not.toHaveProperty("sort");
+  });
+
   it("has no serious axe violations with results", async () => {
     const { container } = await renderApp("/?q=potassium");
     await screen.findByText(firstName);

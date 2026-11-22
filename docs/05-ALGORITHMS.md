@@ -306,6 +306,8 @@ flowchart TD
     SNIP --> OUT["SearchResponse + took_ms"]
 ```
 
+**Newest order** (`sort=newest`) skips embedding, fusion and the candidate limit. It scans the whole lexical index for resources whose words, together with the patient name tokens, include every query word after stop words, leaves out ClinicalSummary, applies the filters, and sorts by date descending with undated records last. Near-identical records differ in relevance by noise, so cutting a candidate list by score and then sorting it by date cannot promise the newest one. A semantic threshold was rejected: on held-out queries it presented unrelated records as the newest matches.
+
 ### 4.3 Where clause
 ```python
 def build_where(types, date_from, date_to, patient_key=None) -> dict | None:

@@ -22,9 +22,9 @@ import orjson
 from ehr_mip.db.read_models import PatientReader, PatientRow, ResourceReader, StatusReader
 from ehr_mip.errors import SearchIndexEmptyError
 from ehr_mip.search.embedder import Embedder
-from ehr_mip.search.filters import SearchFilters, SearchMode, build_where
+from ehr_mip.search.filters import SearchFilters, SearchMode, SearchSort, build_where
 from ehr_mip.search.highlights import highlight_ranges, query_terms, snippet
-from ehr_mip.search.lexical import IndexedChunk, LexicalIndex
+from ehr_mip.search.lexical import SUMMARY_TYPE, IndexedChunk, LexicalIndex
 from ehr_mip.search.ranking import (
     Candidate,
     MatchType,
@@ -101,6 +101,7 @@ def cache_key(
     top_k: int,
     mode: SearchMode,
     mrn_patients: Sequence[str],
+    sort: SearchSort,
 ) -> str:
     """``ehr-mip:search:{index_version}:{sha256}`` over the normalized request."""
     payload = orjson.dumps(
@@ -113,6 +114,7 @@ def cache_key(
             "top_k": top_k,
             "mode": mode,
             "mrn": sorted(mrn_patients),
+            "sort": sort,
         }
     )
     return f"ehr-mip:search:{index_version}:{hashlib.sha256(payload).hexdigest()}"
@@ -152,15 +154,27 @@ class SearchService:
         top_k: int,
         mode: SearchMode,
         mrn_patients: Sequence[str] = (),
+        sort: SearchSort = "relevance",
     ) -> SearchOutcome:
         if self.store.count() == 0:
             msg = "Nothing is indexed yet. Run `make pipeline`."
             raise SearchIndexEmptyError(msg)
         terms = query_terms(query)
         if mrn_patients:
-            return SearchOutcome(self._by_mrn(set(mrn_patients), filters, top_k))
+            return SearchOutcome(self._by_mrn(set(mrn_patients), filters, top_k, sort))
         timings: dict[str, float] = {}
         started = time.perf_counter()
+        if sort == "newest":
+            with self._lock:
+                found = self._lexical.newest(query, filters, top_k)
+            timings["lexical"] = _ms(started)
+            return SearchOutcome(
+                [
+                    self._result(position, 1.0, 0.0, "lexical", chunk, terms)
+                    for position, chunk in enumerate(found, start=1)
+                ],
+                timings,
+            )
         vector = self.embedder.embed([query])[0]
         timings["embed"] = _ms(started)
 
@@ -202,10 +216,14 @@ class SearchService:
         ]
         return SearchOutcome(results, timings)
 
-    def _by_mrn(self, patients: set[str], filters: SearchFilters, top_k: int) -> list[RankedResult]:
+    def _by_mrn(
+        self, patients: set[str], filters: SearchFilters, top_k: int, sort: SearchSort
+    ) -> list[RankedResult]:
         """Newest records of the patients the MRN names, score 1.0 (docs/05 section 4.2)."""
         with self._lock:
             chunks = self._lexical.for_patient(patients, filters)
+        if sort == "newest":
+            chunks = [c for c in chunks if c.metadata["resource_type"] != SUMMARY_TYPE]
         first: dict[str, IndexedChunk] = {}
         for chunk in sorted(chunks, key=lambda c: int(c.metadata["chunk_index"])):
             first.setdefault(str(chunk.metadata["resource_id"]), chunk)

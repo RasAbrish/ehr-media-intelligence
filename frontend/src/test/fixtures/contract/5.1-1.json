@@ -3,6 +3,7 @@
   "took_ms": 41,
   "total": 2,
   "mode": "hybrid",
+  "sort": "relevance",
   "filters": {
     "resource_type": ["DiagnosticReport"],
     "date_from": "2024-06-01",

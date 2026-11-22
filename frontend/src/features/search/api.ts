@@ -17,6 +17,7 @@ export function searchQuery(params: SearchParams) {
           date_from: params.from,
           date_to: params.to,
           mode: params.mode,
+          sort: params.sort,
         },
         signal,
       }),

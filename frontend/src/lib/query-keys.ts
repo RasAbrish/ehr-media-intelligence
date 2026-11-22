@@ -1,5 +1,5 @@
 /** Query key factory (docs/04 section 11.1). */
-import type { SearchableType, SearchMode, Severity } from "@/lib/contract-enums";
+import type { SearchableType, SearchMode, SearchSort, Severity } from "@/lib/contract-enums";
 
 export interface SearchParams {
   q: string;
@@ -7,6 +7,7 @@ export interface SearchParams {
   from: string | null;
   to: string | null;
   mode?: SearchMode;
+  sort?: SearchSort | undefined;
 }
 
 export interface ResourceListParams {

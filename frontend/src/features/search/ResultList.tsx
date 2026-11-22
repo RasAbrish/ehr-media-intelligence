@@ -15,6 +15,7 @@ interface ResultListProps {
   /** The record whose card opened the drawer (one card, not every card of that patient). */
   selectedId?: string | null;
   onPrefetch?: (patientKey: string) => void;
+  byDate?: boolean;
   handleRef?: Ref<ResultListHandle>;
 }
 
@@ -23,6 +24,7 @@ export function ResultList({
   results,
   onOpen,
   selectedId,
+  byDate = false,
   handleRef,
   onPrefetch,
 }: ResultListProps) {
@@ -44,6 +46,7 @@ export function ResultList({
           <li key={result.resource.resource_id}>
             <ResultCard
               result={result}
+              byDate={byDate}
               onOpen={onOpen}
               {...(onPrefetch ? { onPrefetch } : {})}
               selected={selectedId === result.resource.resource_id}

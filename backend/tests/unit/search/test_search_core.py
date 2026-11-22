@@ -247,3 +247,99 @@ def test_windows_never_exceed_size_with_long_sentences() -> None:
     parts = windows(text, size=180, overlap=30)
     assert all(len(p.split()) <= 180 for p in parts)
     assert sum(len(p.split()) for p in parts) >= 170
+
+
+# ---------------------------------------------------------------- newest order
+
+
+def _chunk(
+    chunk_id: str,
+    resource: str,
+    text: str,
+    day: date | None,
+    *,
+    kind: str = "DiagnosticReport",
+    patient: str = "p",
+) -> IndexedChunk:
+    return IndexedChunk(
+        chunk_id,
+        text,
+        {
+            "resource_id": resource,
+            "resource_type": kind,
+            "patient_key": patient,
+            "date_ord": day.toordinal() if day else 0,
+            "chunk_index": int(chunk_id[-1]),
+        },
+    )
+
+
+def _newest(index: LexicalIndex, query: str, filters: SearchFilters | None = None) -> list[str]:
+    found = index.newest(query, filters or SearchFilters(), 5)
+    return [str(chunk.metadata["resource_id"]) for chunk in found]
+
+
+def test_newest_finds_the_newest_beyond_any_candidate_pool() -> None:
+    old = [_chunk(f"o{i}-0", f"old{i}", "pulmonary embolism " * 5, D1) for i in range(60)]
+    new = _chunk("new-0", "new", "long report " * 40 + "Pulmonary embolism.", D2)
+    assert _newest(LexicalIndex([*old, new]), "pulmonary embolism")[0] == "new"
+
+
+def test_newest_needs_every_word_as_a_whole_word() -> None:
+    index = LexicalIndex(
+        [
+            _chunk("a-0", "a", "pulmonary nodule", D2),
+            _chunk("b-0", "b", "pulmonary embolisms", D2),
+            _chunk("c-0", "c", "Embolism, pulmonary.", D1),
+        ]
+    )
+    assert _newest(index, "the pulmonary embolism") == ["c"]
+    assert _newest(index, "pulmonary embolism zzqx") == []
+    assert _newest(index, "the of") == []
+
+
+def test_newest_matches_across_the_chunks_of_one_record_once() -> None:
+    index = LexicalIndex(
+        [_chunk("r-0", "r", "pulmonary", D2), _chunk("r-1", "r", "embolism embolism", D2)]
+    )
+    assert _newest(index, "pulmonary embolism") == ["r"]
+
+
+def test_newest_puts_undated_last_and_breaks_ties_by_id() -> None:
+    index = LexicalIndex(
+        [
+            _chunk("u-0", "undated", "sepsis", None),
+            _chunk("b-0", "b", "sepsis", D2),
+            _chunk("a-0", "a", "sepsis", D2),
+            _chunk("o-0", "old", "sepsis", D1),
+        ]
+    )
+    assert _newest(index, "sepsis") == ["a", "b", "old", "undated"]
+
+
+def test_newest_never_returns_an_ai_summary() -> None:
+    index = LexicalIndex(
+        [
+            _chunk("s-0", "summary", "sepsis", D2, kind="ClinicalSummary"),
+            _chunk("r-0", "r", "sepsis", D1),
+        ]
+    )
+    assert _newest(index, "sepsis") == ["r"]
+    assert _newest(index, "sepsis", SearchFilters(resource_types=("ClinicalSummary",))) == []
+
+
+def test_newest_applies_filters_and_knows_patient_names() -> None:
+    index = LexicalIndex(
+        [
+            _chunk("a-0", "a", "sepsis", D2, kind="DocumentReference"),
+            _chunk("b-0", "b", "sepsis", D1),
+            _chunk("c-0", "c", "sepsis", D1, patient="q"),
+        ],
+        {"q": "Rivera"},
+    )
+    assert _newest(index, "sepsis", SearchFilters(resource_types=("DiagnosticReport",))) == [
+        "b",
+        "c",
+    ]
+    assert _newest(index, "sepsis", SearchFilters(date_to=D1, patient_key="p")) == ["b"]
+    assert _newest(index, "rivera sepsis") == ["c"]

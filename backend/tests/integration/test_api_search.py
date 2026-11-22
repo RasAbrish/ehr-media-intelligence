@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import sqlite3
 from collections.abc import Iterator
 from contextlib import closing
@@ -45,7 +46,16 @@ def test_contract_example_request(client: TestClient) -> None:
     response = search(client, EXAMPLE, resource_type="DiagnosticReport", date_from="2024-06-01")
     assert response.status_code == 200
     body = SearchResponse.model_validate(response.json()).model_dump()
-    assert set(response.json()) == {"query", "took_ms", "total", "mode", "filters", "results"}
+    assert set(response.json()) == {
+        "query",
+        "took_ms",
+        "total",
+        "mode",
+        "sort",
+        "filters",
+        "results",
+    }
+    assert response.json()["sort"] == "relevance"
     assert body["filters"] == {
         "resource_type": ["DiagnosticReport"],
         "date_from": "2024-06-01",
@@ -222,3 +232,59 @@ def test_embedder_failure_is_not_ready(api_store: Path) -> None:
             "detail": "OSError",
             "model": "sentence-transformers/all-MiniLM-L6-v2",
         }
+
+
+def test_newest_returns_the_newest_report_mentioning_the_words(
+    client: TestClient, api_store: Path
+) -> None:
+    with closing(connect(api_store / "ehr.db", apply_schema=False)) as conn:
+        bundles = [
+            json.loads(row[0]) for row in conn.execute("SELECT bundle_json FROM fhir_bundles")
+        ]
+    dates = [
+        str(resource.get("effectiveDateTime", ""))[:10]
+        for bundle in bundles
+        for resource in (entry["resource"] for entry in bundle["entry"])
+        if resource["resourceType"] == "DiagnosticReport"
+        and "pulmonary embolism" in str(resource.get("conclusion", "")).lower()
+    ]
+    body = search(
+        client, "pulmonary embolism", sort="newest", resource_type="DiagnosticReport"
+    ).json()
+    assert body["sort"] == "newest"
+    results = body["results"]
+    assert results[0]["resource"]["date"] == max(dates)
+    assert [r["resource"]["date"] for r in results] == sorted(dates, reverse=True)[:5]
+    assert all(r["match_type"] == "lexical" and r["semantic_score"] == 0 for r in results)
+
+
+def test_newest_leaves_out_ai_summaries(client: TestClient) -> None:
+    results = search(client, "pulmonary embolism", sort="newest", top_k=20).json()["results"]
+    assert results
+    assert all(r["resource"]["resource_type"] != "ClinicalSummary" for r in results)
+
+
+def test_newest_mrn_lookup_leaves_out_ai_summaries(client: TestClient) -> None:
+    mrn = search(client, EXAMPLE).json()["results"][0]["patient"]["mrn"]
+    results = search(client, mrn, sort="newest", top_k=20).json()["results"]
+    assert results
+    assert all(r["match_type"] == "mrn" for r in results)
+    assert all(r["resource"]["resource_type"] != "ClinicalSummary" for r in results)
+
+
+def test_newest_without_a_match_is_empty(client: TestClient) -> None:
+    response = search(client, "zzqx qwv", sort="newest")
+    assert response.status_code == 200
+    assert response.json()["results"] == []
+
+
+def test_sort_orders_do_not_share_a_cache_entry(client: TestClient) -> None:
+    query = "acute ischemic stroke"
+    assert search(client, query).json()["sort"] == "relevance"
+    newest = search(client, query, sort="newest").json()
+    assert newest["sort"] == "newest"
+    assert all(r["match_type"] == "lexical" for r in newest["results"])
+
+
+def test_unknown_sort_is_rejected(client: TestClient) -> None:
+    _problem(search(client, EXAMPLE, sort="oldest"), 422, "validation_error", "query.sort")

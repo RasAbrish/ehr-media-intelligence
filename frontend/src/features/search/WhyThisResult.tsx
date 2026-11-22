@@ -7,7 +7,14 @@ import { copy } from "@/lib/copy";
 import { formatDate, formatScore } from "@/lib/format";
 
 /** Search transparency popover (docs/06 section 12.3). */
-export function WhyThisResult({ result }: { result: SearchResult }) {
+export function WhyThisResult({
+  result,
+  byDate = false,
+}: {
+  result: SearchResult;
+  /** Newest order: similarity was not computed. */
+  byDate?: boolean;
+}) {
   const terms = matchedTerms(result.snippet, result.highlights);
   const date = formatDate(result.resource.date);
   const record = [copy.resourceLabels[result.resource.resource_type], date]
@@ -35,8 +42,14 @@ export function WhyThisResult({ result }: { result: SearchResult }) {
         <dl className="mt-2 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1.5 text-small">
           <dt className="text-muted-foreground">{copy.why.match}</dt>
           <dd>{copy.why.matchTypes[result.match_type]}</dd>
-          <dt className="text-muted-foreground">{copy.why.similarity}</dt>
-          <dd className="font-mono text-mono tabular-nums">{formatScore(result.semantic_score)}</dd>
+          {byDate ? null : (
+            <>
+              <dt className="text-muted-foreground">{copy.why.similarity}</dt>
+              <dd className="font-mono text-mono tabular-nums">
+                {formatScore(result.semantic_score)}
+              </dd>
+            </>
+          )}
           <dt className="text-muted-foreground">{copy.why.terms}</dt>
           <dd>{terms.length ? terms.join(", ") : copy.why.noTerms}</dd>
           <dt className="text-muted-foreground">{copy.why.record}</dt>

@@ -36,12 +36,23 @@ export const copy = {
       "pneumonia on chest x-ray",
     ],
     resultsLabel: "Search results",
-    ranked: "Ranked by relevance",
     noResultsTitle: "No records match",
     noResultsBody: "Try broader terms or remove a filter.",
-    meta: (count: number, ms: number, mode: string) =>
-      `${count} ${count === 1 ? "result" : "results"} · ${ms} ms · ${mode === "hybrid" ? "Hybrid" : "Semantic"}`,
+    meta: (count: number, ms: number, mode: string, sort = "relevance") =>
+      `${count} ${count === 1 ? "result" : "results"} · ${ms} ms · ${
+        sort === "newest" ? "Newest first" : mode === "hybrid" ? "Hybrid" : "Semantic"
+      }`,
     loading: "Loading results",
+  },
+  sort: {
+    label: "Sort by",
+    options: { relevance: "Relevance", newest: "Newest" },
+    newestNote:
+      "Records with every search word. AI summaries are left out and undated records come last.",
+    noneTitle: "No records have every search word",
+    noneBody:
+      "Newest matches exact words, not meaning. Use fewer words, remove a filter, or sort by relevance.",
+    useRelevance: "Sort by relevance",
   },
   filters: {
     label: "Filters",

@@ -9,6 +9,7 @@ from typing import Any, Literal
 
 SearchableType = Literal["DocumentReference", "DiagnosticReport", "Observation", "ClinicalSummary"]
 SearchMode = Literal["semantic", "hybrid"]
+SearchSort = Literal["relevance", "newest"]
 
 
 @dataclass(frozen=True)

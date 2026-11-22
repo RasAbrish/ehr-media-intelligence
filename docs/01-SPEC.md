@@ -183,7 +183,7 @@ Clinical staff using Epic EHR lose time manually reviewing unstructured patient 
 | FR-3.3 | `word_count ≤ 200` for 100 percent; grounding 100 percent after guardrails | guardrail tests, eval |
 | FR-3.4 | Second run: 0 provider calls, 100 percent cache hits | `test_cache_prevents_repeat_calls` |
 | FR-4.1/4.2 | `ehr-mip index` reports chunks and resources | index test |
-| FR-4.3 | ≤ 5 results, sorted by score desc, contract-conformant | API tests + contract snapshot |
+| FR-4.3 | ≤ 5 results, sorted by score desc (by date with `sort=newest`), contract-conformant | API tests + contract snapshot |
 | FR-4.4 | Type filter and inclusive date range work; bad range → 422 | filter tests |
 | NFR-01 | Max latency under 2 s across 20 queries | `tests/perf/test_search_latency.py` |
 | FR-5.1 | Results appear while typing; stale results kept during refetch | component + e2e |
