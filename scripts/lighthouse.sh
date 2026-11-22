@@ -51,16 +51,29 @@ CHROME_PATH="$(PLAYWRIGHT_BROWSERS_PATH=0 node -e \
   'process.stdout.write(require("@playwright/test").chromium.executablePath())')"
 export CHROME_PATH
 
+# Data pages need a session (docs/04 section 3a): sign in through the API and send the
+# cookie with every audited request. scripts/e2e_api.py creates this test account.
+session="$(LH_BASE="$base" LH_EMAIL="${LIGHTHOUSE_EMAIL:-e2e@example.org}" \
+  LH_PASSWORD="${LIGHTHOUSE_PASSWORD:-e2e-test-password}" python3 -I -c '
+import json, os, urllib.request
+body = json.dumps({"email": os.environ["LH_EMAIL"], "password": os.environ["LH_PASSWORD"]}).encode()
+request = urllib.request.Request(os.environ["LH_BASE"] + "/api/auth/login", data=body, headers={
+    "Content-Type": "application/json", "X-Requested-With": "ehr-mip"})
+cookie = urllib.request.urlopen(request, timeout=60).headers["Set-Cookie"].split(";")[0]
+print(json.dumps({"Cookie": cookie}))')"
+
 urls=(--url="$base/" --url="$base/?q=kidney" --url="$base/patients" --url="$base/quality")
-flags=()
+flags=("--settings.extraHeaders=$session")
+signin=(--url="$base/signin")
+chrome=()
 if [[ -n "${LIGHTHOUSE_CHROME_FLAGS:-}" ]]; then
-  flags=("--settings.chromeFlags=$LIGHTHOUSE_CHROME_FLAGS")
+  chrome=("--settings.chromeFlags=$LIGHTHOUSE_CHROME_FLAGS")
 fi
 rm -rf .lighthouseci
 
 mobile=--config=lighthouserc.mobile.json
 mobile_report() {
-  pnpm -s lhci collect "$mobile" "${flags[@]}" "${urls[@]}" &&
+  pnpm -s lhci collect "$mobile" "${chrome[@]}" "${flags[@]}" "${urls[@]}" &&
     pnpm -s lhci upload "$mobile" &&
     echo "Simulated slow 4G mobile, reported and not gated:" &&
     node -e 'for (const r of require("./.lighthouseci/reports/mobile/manifest.json"))
@@ -68,6 +81,12 @@ mobile_report() {
 }
 mobile_report || echo "The slow 4G report failed; it does not gate the build." >&2
 
-pnpm -s lhci collect "${flags[@]}" "${urls[@]}"
+pnpm -s lhci collect "${chrome[@]}" "${flags[@]}" "${urls[@]}"
 pnpm -s lhci upload
+pnpm -s lhci assert
+
+# The sign-in page is audited signed out (with the cookie it would redirect to search), in a
+# cycle of its own: collect replaces the previous runs.
+pnpm -s lhci collect "${chrome[@]}" "${signin[@]}"
+pnpm -s lhci upload --outputDir=.lighthouseci/reports/signin
 pnpm -s lhci assert

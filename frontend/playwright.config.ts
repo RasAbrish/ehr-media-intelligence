@@ -1,5 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
+import { SESSION_FILE } from "./e2e/session.ts";
+
 const API_PORT = "8010";
 const WEB_PORT = "5183";
 /** Set to test a stack that is already running (docker compose in CI). */
@@ -19,9 +21,16 @@ export default defineConfig({
   reporter: [["list"]],
   use: { baseURL: external ?? `http://localhost:${WEB_PORT}`, trace: "retain-on-failure" },
   projects: [
+    // Signs in once through the page; the other tests reuse that session.
+    { name: "setup", testMatch: /auth\.setup\.ts$/ },
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 900 } },
+      dependencies: ["setup"],
+      use: {
+        ...devices["Desktop Chrome"],
+        viewport: { width: 1440, height: 900 },
+        storageState: SESSION_FILE,
+      },
     },
   ],
   ...(external

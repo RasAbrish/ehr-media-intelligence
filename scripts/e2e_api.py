@@ -19,6 +19,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "data" / "generated"
+# Test values for this throwaway copy only (frontend/e2e/auth.setup.ts uses the same).
+E2E_EMAIL = "e2e@example.org"
+E2E_PASSWORD = "e2e-test-password"  # noqa: S105
 
 
 def copy_data(target: Path) -> None:
@@ -45,6 +48,10 @@ def main() -> None:
             "CHROMA_DIR": str(target / "chroma"),
             "REPORTS_DIR": str(target / "reports"),
             "RATE_LIMIT_ENABLED": "false",  # one client runs every test
+            # The browser tests and Lighthouse sign in with this test account.
+            "AUTH_ENABLED": "true",
+            "DEMO_ACCOUNT_EMAIL": E2E_EMAIL,
+            "DEMO_ACCOUNT_PASSWORD": E2E_PASSWORD,
         }
         cli = Path(sys.executable).with_name("ehr-mip")
         server = subprocess.Popen(  # noqa: S603 (fixed arguments, no shell)
