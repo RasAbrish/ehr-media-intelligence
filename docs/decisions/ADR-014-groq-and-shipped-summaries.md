@@ -22,4 +22,5 @@ The brief asks for the Claude API or the OpenAI API. The Claude integration is b
 
 - The summaries on the demo come from an open-weights model, not Claude. The interface shows the model id on every summary.
 - Groq's free tier allows about 200,000 tokens a day for this model. A full run of 60 patients fits; the cache makes a stopped run resume where it ended.
+- The first Groq run failed 4 of 7 evaluation gates (`docs/eval/eval_report_groq.md`). Its summaries were shipped anyway so the demo shows real model output, and the gaps are stated in the README and the system card.
 - Claude stays the first choice and needs only a key with credit.

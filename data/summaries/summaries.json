@@ -1,0 +1,6226 @@
+[
+ {
+  "summary": {
+   "chief_concern": "Fatigue, cold intolerance and weight gain reported at primary care visit.",
+   "key_diagnoses": [
+    {
+     "name": "Primary hypothyroidism",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "2b5d6c7d-f378-5c0e-9b94-6cce879f6806"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "b09cdc7a-452b-5e28-87b0-762b4befe86d"
+     },
+     "kind": "imaging",
+     "date": "2024-12-27",
+     "finding": "Thyroid US: diffusely heterogeneous gland, no nodules, suggestive of chronic thyroiditis"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "004f2699-5031-5627-bd7a-306f220bba02"
+     },
+     "kind": "lab",
+     "date": "2024-09-03",
+     "finding": "TSH 9.56 H; Free T4 0.55 L"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "2b5d6c7d-f378-5c0e-9b94-6cce879f6806"
+     },
+     "kind": "note",
+     "date": "2024-09-02",
+     "finding": "Primary care note documenting hypothyroidism assessment and levothyroxine plan"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "TSH 9.56 mIU/L, above reference range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "506fcc9c-39cc-5136-bf8b-9d12177e2e1b"
+      }
+     ]
+    },
+    {
+     "description": "Free T4 0.55 ng/dL, below reference range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "abc72937-e747-5302-a158-18b3b5179025"
+      }
+     ]
+    }
+   ],
+   "overview": "27-year-old male with primary hypothyroidism; ultrasound shows chronic thyroiditis; started on levothyroxine.",
+   "self_reported_confidence": "high",
+   "patient_key": "0bee14f6-065e-5563-a058-c56ff45319f1",
+   "word_count": 65,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "051031dc209c2d7f1aeba2b18f20347f3b44812c20a6ae81bb2af416dae50f3d",
+   "generated_at": "2026-11-22T22:58:53.323734Z",
+   "cached": false,
+   "cache_key": "2723d21e43c6dad5f3164273b7f248e3d74bd93470a29b9231f4cc1bee824441",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 6,
+   "grounded_ids": 6,
+   "interventions": [],
+   "attempts": 1,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Acute exacerbation of COPD presenting with increased dyspnea and sputum.",
+   "key_diagnoses": [
+    {
+     "name": "Acute exacerbation of COPD",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "672ac90f-b58e-50af-9a1b-4f4f4ab77efc"
+      }
+     ]
+    },
+    {
+     "name": "Emphysematous changes of lung",
+     "status": "suspected",
+     "evidence": [
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "d672fb2c-a927-5459-b177-5ff13adc7bee"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "d672fb2c-a927-5459-b177-5ff13adc7bee"
+     },
+     "kind": "imaging",
+     "date": "2025-02-08",
+     "finding": "Chest X-ray: hyperinflated lungs, flattened diaphragms, no acute infiltrate"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "aeaee4b4-acb1-5ba9-be14-429166b02799"
+     },
+     "kind": "lab",
+     "date": "2025-02-04",
+     "finding": "WBC 12.9 H"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "12546a46-6b82-58e9-a40a-32ffbe58842e"
+     },
+     "kind": "lab",
+     "date": "2025-02-04",
+     "finding": "Basic metabolic panel within normal limits"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Elevated WBC 12.9 ×10³/µL, moderate severity",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "418463b6-f663-58e3-8a1b-6618e144b07b"
+      }
+     ]
+    }
+   ],
+   "overview": "68‑year‑old female with known COPD admitted for an acute exacerbation; imaging shows emphysematous changes, labs reveal leukocytosis.",
+   "self_reported_confidence": "high",
+   "patient_key": "0f6e25ff-b865-56a3-bec9-d56eb2677327",
+   "word_count": 59,
+   "confidence": {
+    "level": "high",
+    "score": 0.75,
+    "rationale": "1 guardrail intervention."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "16eee3ac5b42506997ee541ca473f47da121d31fd52b2913487d5a5f05a48002",
+   "generated_at": "2026-11-22T22:58:55.619863Z",
+   "cached": false,
+   "cache_key": "028e067ea4b82b8f13019eb704a6c87fbb918c207d8e1a795ee1cb7742fd8a99",
+   "guardrail_notes": [
+    "unsupported_diagnosis (1)"
+   ]
+  },
+  "trace": {
+   "cited_ids": 6,
+   "grounded_ids": 6,
+   "interventions": [
+    "unsupported_diagnosis (1)"
+   ],
+   "attempts": 1,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Worsening glycemic control with elevated HbA1c and fasting glucose.",
+   "key_diagnoses": [
+    {
+     "name": "Type 2 diabetes mellitus",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "bfb96430-e0c1-5899-bf4a-83224f0e9861"
+      },
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "44b19af9-de48-5a6f-a488-62d4073e1048"
+      },
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "73fb1f88-db84-50fa-a246-65b3def0b25d"
+      }
+     ]
+    },
+    {
+     "name": "Hyperlipidemia",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "9b18a095-c9ab-57d4-b57d-fc020297f5e3"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "44b19af9-de48-5a6f-a488-62d4073e1048"
+     },
+     "kind": "lab",
+     "date": "2024-08-30",
+     "finding": "HbA1c 8.9% (high)"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "bfb96430-e0c1-5899-bf4a-83224f0e9861"
+     },
+     "kind": "note",
+     "date": "2024-08-30",
+     "finding": "Endocrinology follow-up: polyuria, fatigue, HbA1c 8.9%, glucose 233"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "c97d4e79-02a2-5f49-a893-1c2696fb77ef"
+     },
+     "kind": "lab",
+     "date": "2024-05-17",
+     "finding": "Glucose 233 mg/dL (high), other chemistries normal"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "73fb1f88-db84-50fa-a246-65b3def0b25d"
+     },
+     "kind": "lab",
+     "date": "2024-05-17",
+     "finding": "HbA1c 7.5% (high)"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Hemoglobin A1c 8.9% above target",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "61c5d71f-77e3-5024-b58a-5c48b6dd74ff"
+      }
+     ]
+    },
+    {
+     "description": "Glucose 233 mg/dL above reference range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "55fca6e8-eba6-5cf5-bba8-f34fc2c87f03"
+      }
+     ]
+    },
+    {
+     "description": "Hemoglobin A1c 7.5% above target (prior visit)",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "8e236b11-54c6-5fe9-b042-564b285e37e0"
+      }
+     ]
+    }
+   ],
+   "overview": "72-year-old female with type 2 diabetes experiencing rising HbA1c and fasting glucose; hyperlipidemia noted; empagliflozin added, atorvastatin planned.",
+   "self_reported_confidence": "medium",
+   "patient_key": "0fc4f6da-c621-5bac-8f11-9cdb0fff29bf",
+   "word_count": 71,
+   "confidence": {
+    "level": "medium",
+    "score": 0.65,
+    "rationale": "Model reported medium confidence."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "19f611a82bc2c3609c194acf4e99e3a72d06d3a9b451a7379e63aeac1bad9f82",
+   "generated_at": "2026-11-22T22:58:58.309273Z",
+   "cached": false,
+   "cache_key": "90fa1317b39e4824b1c3dd0ebb97d86af6e5f270744fa82c6023983435b74cbb",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 11,
+   "grounded_ids": 11,
+   "interventions": [],
+   "attempts": 1,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Admission for community‑acquired right lower lobe pneumonia.",
+   "key_diagnoses": [
+    {
+     "name": "Community‑acquired pneumonia",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "4e6caf8a-3d8a-574b-94f9-c01f4d867a94"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "f17a3ea3-1731-5fbd-b9da-02565c14b01d"
+     },
+     "kind": "imaging",
+     "date": "2025-03-15",
+     "finding": "Chest X‑ray: right lower lobe consolidation with air bronchograms"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "b0abf827-639f-523a-a06b-51afdcfdca64"
+     },
+     "kind": "lab",
+     "date": "2025-03-14",
+     "finding": "WBC 17.1 H; platelets 290 N; hemoglobin 14.5 N"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "4e6caf8a-3d8a-574b-94f9-c01f4d867a94"
+     },
+     "kind": "note",
+     "date": "2025-03-17",
+     "finding": "Admission H&P: CURB‑65 2, plan ceftriaxone + azithromycin"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "469d6de3-66c9-5a78-ad03-f6e53d42b909"
+     },
+     "kind": "note",
+     "date": "2025-03-18",
+     "finding": "Discharge: completed IV antibiotics, prescribed 5 days oral amoxicillin‑clavulanate"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "WBC 17.1 ×10^3/uL, elevated",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "8d1db807-5a82-5f7d-82ca-ad771fde45b4"
+      }
+     ]
+    }
+   ],
+   "overview": "36‑year‑old female with community‑acquired right lower lobe pneumonia (CURB‑65 2), treated with IV ceftriaxone/azithromycin, transitioned to oral amoxicillin‑clavulanate, discharged afebrile.",
+   "self_reported_confidence": "high",
+   "patient_key": "11bd5ba2-e3b2-5b19-bdc9-0e6d0943f5b8",
+   "word_count": 68,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "19ba3fda1c3db7702fc5b8ba9617ce56960a88969c0eefe60f6513bf7a715de7",
+   "generated_at": "2026-11-22T22:59:23.445285Z",
+   "cached": false,
+   "cache_key": "2b95b7ab2eab6d2036d261f1ae3650fd9960b265cb2bd5aecbb0f52ece06c99f",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 6,
+   "grounded_ids": 6,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Admitted for acute left MCA ischemic stroke.",
+   "key_diagnoses": [
+    {
+     "name": "Acute ischemic stroke, left MCA territory",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "c731fed0-3de1-506e-b09d-2682cd5f5e7d"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "5a566d28-8711-5a32-a042-25e141e9f146"
+     },
+     "kind": "note",
+     "date": "2025-04-19",
+     "finding": "Discharge summary: left MCA stroke, deficits improved with therapy, aspirin and atorvastatin prescribed"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "fb38e9d2-be6d-5941-ab4a-7fa7dad6dd6f"
+     },
+     "kind": "imaging",
+     "date": "2025-02-08",
+     "finding": "MRI: acute left MCA territory infarct, no hemorrhage"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "4d95c7b8-d220-5bde-baf6-84c85b0517ba"
+     },
+     "kind": "lab",
+     "date": "2025-02-06",
+     "finding": "LDL cholesterol 171 mg/dL (high)"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "LDL cholesterol 171 mg/dL, high",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "64f4eca3-d91a-553a-bd69-89b778886817"
+      }
+     ]
+    }
+   ],
+   "overview": "53-year-old female with acute left MCA ischemic stroke; LDL elevated; discharged on aspirin 81 mg daily and high‑intensity atorvastatin 80 mg nightly, with outpatient speech therapy.",
+   "self_reported_confidence": "medium",
+   "patient_key": "14991f10-04cc-51a8-bae6-fdbbda5fe4b4",
+   "word_count": 70,
+   "confidence": {
+    "level": "medium",
+    "score": 0.65,
+    "rationale": "Model reported medium confidence."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "a3550631c9bda45ec03f935f7eacffcf342190778a17f3aba78fa989be333269",
+   "generated_at": "2026-11-22T22:59:42.178106Z",
+   "cached": false,
+   "cache_key": "bf0223843725a0ddd60eb398d5aca54f4a6455c52d738955fccdcf38c12d354f",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 5,
+   "grounded_ids": 5,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Diabetes follow-up for worsening glycemic control, polyuria and fatigue.",
+   "key_diagnoses": [
+    {
+     "name": "Type 2 diabetes mellitus",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "38e114ca-5b09-5989-874f-62e4672c5e22"
+      },
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "85c02b71-4f28-5570-bab3-42d874fe3d08"
+      }
+     ]
+    },
+    {
+     "name": "Mild nonproliferative diabetic retinopathy",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "8dea998e-f705-5cd7-9073-93cb2796b08d"
+      }
+     ]
+    },
+    {
+     "name": "Hyperlipidemia",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "126739b1-7713-57e9-ad37-2bdc31e5916b"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "85c02b71-4f28-5570-bab3-42d874fe3d08"
+     },
+     "kind": "lab",
+     "date": "2024-12-14",
+     "finding": "HbA1c 8.8% (high)"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "8dea998e-f705-5cd7-9073-93cb2796b08d"
+     },
+     "kind": "note",
+     "date": "2024-12-14",
+     "finding": "Mild NPDR bilaterally, no macular edema"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "138434a9-f70b-52e0-9a6d-b4a7994f449f"
+     },
+     "kind": "lab",
+     "date": "2024-08-20",
+     "finding": "HbA1c 7.5% (high)"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "27f4355d-5c6b-575a-9a80-e8c657e1ed7f"
+     },
+     "kind": "lab",
+     "date": "2024-08-19",
+     "finding": "Glucose 193 mg/dL (high); other chemistries within normal"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "126739b1-7713-57e9-ad37-2bdc31e5916b"
+     },
+     "kind": "note",
+     "date": null,
+     "finding": "Hyperlipidemia, LDL 140 mg/dL"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Hemoglobin A1c 8.8% above target",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "681599ab-96b2-5829-a2bd-98affde855cb"
+      }
+     ]
+    },
+    {
+     "description": "Hemoglobin A1c 7.5% above target",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "0eb25c29-5f85-5c71-bde5-33407795b3c5"
+      }
+     ]
+    },
+    {
+     "description": "Glucose 193 mg/dL above normal fasting range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "6a1ece40-d0eb-5bb0-847a-bbe22721ce46"
+      }
+     ]
+    }
+   ],
+   "overview": "81-year-old female with type 2 diabetes, recent HbA1c rise to 8.8%, mild NPDR, and hyperlipidemia; started empagliflozin and atorvastatin.",
+   "self_reported_confidence": "medium",
+   "patient_key": "163fae77-74fc-52c5-80de-e27e50da0d70",
+   "word_count": 78,
+   "confidence": {
+    "level": "medium",
+    "score": 0.65,
+    "rationale": "Model reported medium confidence."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "c5ef4277931539c9dc5c71a3852524708e62d6ed38fe13e79d868229cc2eca65",
+   "generated_at": "2026-11-22T23:00:12.386787Z",
+   "cached": false,
+   "cache_key": "81eea7fb0a7895cd295401f284d49e2b0a5f4caca36802f89c4ff37de86fc4a3",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 12,
+   "grounded_ids": 12,
+   "interventions": [],
+   "attempts": 3,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Sepsis from urinary source presenting with fever, confusion, and dysuria.",
+   "key_diagnoses": [
+    {
+     "name": "Urosepsis",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "60a725e2-ab82-5ba3-a1a2-9fd0870f383c"
+      },
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "70036a21-f3bc-5f74-bee2-61d143d19e15"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "4372204f-2c5e-5f34-b673-8de1b1c87afa"
+     },
+     "kind": "lab",
+     "date": "2025-02-05",
+     "finding": "WBC 19.7 H"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "01c7fffe-5fc3-5be1-b67d-9bb30d0a34ca"
+     },
+     "kind": "lab",
+     "date": "2024-10-28",
+     "finding": "Lactate 4.7 HH"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "70036a21-f3bc-5f74-bee2-61d143d19e15"
+     },
+     "kind": "note",
+     "date": null,
+     "finding": "ED assessment of sepsis, lactate 4.7, WBC 19.7"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Lactate 4.7 mmol/L, critically high",
+     "severity": "high",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "20e1cf1f-7b8d-58c6-8657-1a38a0ed24e2"
+      }
+     ]
+    },
+    {
+     "description": "WBC 19.7 x10^3/uL, elevated",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "ec469681-752d-54f4-8afe-c4a5cb770b1d"
+      }
+     ]
+    }
+   ],
+   "overview": "70-year-old male treated for urinary source sepsis; cultures grew E. coli, received cefpodoxime; lactate and WBC normalized after fluids.",
+   "self_reported_confidence": "high",
+   "patient_key": "218cd559-8aa9-5fa8-b755-355f699bb599",
+   "word_count": 53,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "450835bb4c27489f08d2db6a1d4b703406e6d18c0640073bbd8c036884a22fea",
+   "generated_at": "2026-11-22T23:00:38.081405Z",
+   "cached": false,
+   "cache_key": "3592c936494e4977a455934b06b942ba160d9e5b700595fe94eca660f3970f10",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 7,
+   "grounded_ids": 7,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Treated for right lower lobe community-acquired pneumonia.",
+   "key_diagnoses": [
+    {
+     "name": "Community-acquired pneumonia",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "0f47e441-17cb-53e1-a27d-3af8d6ab25c7"
+      },
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "b1b66cbb-b0d2-51ae-86ee-2bf47f24d981"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "e685a239-a6cd-5783-aa2b-919cf3d27693"
+     },
+     "kind": "imaging",
+     "date": "2024-03-25",
+     "finding": "Chest X-ray: right lower lobe consolidation with air bronchograms"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "b4c73276-0c19-57fe-98df-5aa97a539c66"
+     },
+     "kind": "lab",
+     "date": "2024-03-26",
+     "finding": "WBC 16.3 ×10^3/µL (high), platelets 202, hemoglobin 14"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "b1b66cbb-b0d2-51ae-86ee-2bf47f24d981"
+     },
+     "kind": "note",
+     "date": "2024-05-23",
+     "finding": "Discharge summary: completed IV antibiotics, plan oral amoxicillin‑clavulanate"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Elevated WBC 16.3 ×10^3/µL, moderate severity",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "e833b5ca-2701-59f8-95d0-4ff16e3eff61"
+      }
+     ]
+    }
+   ],
+   "overview": "75‑year‑old female admitted with community‑acquired pneumonia, CURB‑65 2; treated with ceftriaxone, azithromycin, then oral amoxicillin‑clavulanate; WBC elevated during admission.",
+   "self_reported_confidence": "high",
+   "patient_key": "2d4abc2d-9d2a-5cd0-8fa5-062d82f33c5d",
+   "word_count": 59,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "78ee8151426eae81fac99d165ae32844a7c08572e343d9e064e089485c874c19",
+   "generated_at": "2026-11-22T23:00:50.651602Z",
+   "cached": false,
+   "cache_key": "aab6c20062e10157ff7b05b3ead4620029f9f44ef5c78a6476d61ebd96aafdd5",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 6,
+   "grounded_ids": 6,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Fatigue, cold intolerance and weight gain; labs reveal primary hypothyroidism.",
+   "key_diagnoses": [
+    {
+     "name": "Primary hypothyroidism",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "e87f1594-046d-5a0a-ac8d-dcf557569689"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "49ac52ba-30e9-5390-80a5-a4ed1abea75e"
+     },
+     "kind": "lab",
+     "date": "2024-02-25",
+     "finding": "TSH 11.22 H; Free T4 0.5 L"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "5fddf4ac-dd92-5b2f-a308-8dc619f3081f"
+     },
+     "kind": "lab",
+     "date": "2024-02-25",
+     "finding": "HDL 46 N; LDL 91 N; Cholesterol 198 N; Triglycerides 122 N"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "0af6217a-ef75-57c8-9d99-8934ad094465"
+     },
+     "kind": "imaging",
+     "date": "2024-02-24",
+     "finding": "Thyroid US: diffusely heterogeneous gland, no nodules – suggests chronic thyroiditis"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "TSH 11.22 mIU/L, above reference range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "ad79c570-8dca-5b5b-a6c6-8f8305180b23"
+      }
+     ]
+    },
+    {
+     "description": "Free T4 0.5 ng/dL, below reference range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "d6b893ac-fcc8-5c1d-bfa2-91ab927100dc"
+      }
+     ]
+    },
+    {
+     "description": "MRN shared with another person; identity flagged for review",
+     "severity": "low",
+     "source": "rule",
+     "evidence": []
+    }
+   ],
+   "overview": "29-year-old male with primary hypothyroidism; elevated TSH, low free T4, ultrasound consistent with chronic thyroiditis; started levothyroxine.",
+   "self_reported_confidence": "high",
+   "patient_key": "320afa77-5348-5e0d-83c2-f46f8ce750e9",
+   "word_count": 81,
+   "confidence": {
+    "level": "low",
+    "score": 0.4,
+    "rationale": "Identity conflict."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "78f4d85d0aa307875385b99cbee42d354bf90c44080ee17951f42e91c7d5d2da",
+   "generated_at": "2026-11-22T23:01:13.113033Z",
+   "cached": false,
+   "cache_key": "6b14eaf04e59b6959a1cae1b9915df461b9c7ce62e054da03152f65405e313ad",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 6,
+   "grounded_ids": 6,
+   "interventions": [],
+   "attempts": 4,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Worsening glycemic control in a 69‑year‑old woman with type 2 diabetes.",
+   "key_diagnoses": [
+    {
+     "name": "Type 2 diabetes mellitus",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "83195122-44b9-5903-84bb-62886d62393d"
+      }
+     ]
+    },
+    {
+     "name": "Hyperlipidemia",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "b2682a73-bab3-5bb8-baed-46fc7adcfa08"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "aa3f6f2f-b44d-5483-a005-338f4faf315b"
+     },
+     "kind": "lab",
+     "date": "2025-05-19",
+     "finding": "HbA1c 8.5% H"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "96be4c8a-b826-59d2-a239-7b3bcdca1db5"
+     },
+     "kind": "lab",
+     "date": "2025-01-19",
+     "finding": "HbA1c 7.5% H"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "7be29da4-6d53-5e0d-a0e6-5bd29f2fd02b"
+     },
+     "kind": "lab",
+     "date": "2025-01-19",
+     "finding": "Glucose 178 mg/dL H; other chemistries N"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "83195122-44b9-5903-84bb-62886d62393d"
+     },
+     "kind": "note",
+     "date": "2025-05-19",
+     "finding": "Endocrinology follow‑up note"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "b2682a73-bab3-5bb8-baed-46fc7adcfa08"
+     },
+     "kind": "note",
+     "date": "2025-05-19",
+     "finding": "Primary care visit note"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Hemoglobin A1c 8.5% above target",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "c19f847c-68bd-5748-b262-5eb7d9f408a4"
+      }
+     ]
+    },
+    {
+     "description": "Glucose 178 mg/dL high",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "b5471a69-d9b6-58b0-ac5a-7b98dc3b59b6"
+      }
+     ]
+    },
+    {
+     "description": "Hemoglobin A1c 7.5% above target (prior visit)",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "03a33c4f-b2db-5fa1-8fde-993472c4331a"
+      }
+     ]
+    }
+   ],
+   "overview": "69‑year‑old female with type 2 diabetes and hyperlipidemia; recent labs show rising HbA1c (8.5%) and fasting glucose 178 mg/dL; treatment plan adds empagliflozin and atorvastatin.",
+   "self_reported_confidence": "medium",
+   "patient_key": "334ca017-fe0c-5bfd-9e65-15a1653dff99",
+   "word_count": 77,
+   "confidence": {
+    "level": "medium",
+    "score": 0.65,
+    "rationale": "Model reported medium confidence."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "06f2d807bb37b9000d887deb0da6b5dc780458d397566086cab307fa562f24a8",
+   "generated_at": "2026-11-22T23:01:37.440582Z",
+   "cached": false,
+   "cache_key": "7af91a18ba097936d7a90bab3dbbe6f39e2dde8878bf6b7c03b1c25c08550137",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 10,
+   "grounded_ids": 10,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Sepsis from a urinary source presenting with fever, confusion, and dysuria.",
+   "key_diagnoses": [
+    {
+     "name": "Urosepsis",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "0859132e-7527-58b4-a94a-c20eb54e3ee1"
+      },
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "9664b2d5-d1c2-5e50-8258-1dd926245eb2"
+      }
+     ]
+    },
+    {
+     "name": "E. coli urinary infection",
+     "status": "suspected",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "9664b2d5-d1c2-5e50-8258-1dd926245eb2"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "64f7c9b9-a7c1-5f59-953e-eb704ff46f4a"
+     },
+     "kind": "lab",
+     "date": "2024-06-29",
+     "finding": "Lactate 4 HH"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "ed560462-7d4d-5a2f-8823-b9610bf2595e"
+     },
+     "kind": "lab",
+     "date": "2024-06-29",
+     "finding": "WBC 22 H; Platelets 273 N; Hemoglobin 14.5 N"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "0859132e-7527-58b4-a94a-c20eb54e3ee1"
+     },
+     "kind": "note",
+     "date": "2024-06-28",
+     "finding": "ED note: sepsis assessment, lactate 4, WBC 22"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "9664b2d5-d1c2-5e50-8258-1dd926245eb2"
+     },
+     "kind": "note",
+     "date": "2024-06-28",
+     "finding": "Discharge summary: treated urosepsis, lactate normalized, cefpodoxime prescribed"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Lactate 4 mmol/L, critical high",
+     "severity": "high",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "db576143-fc6b-5c67-92d3-0ab3da5a99c3"
+      }
+     ]
+    },
+    {
+     "description": "WBC 22 x10^3/uL, above reference range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "b3bbb27d-9bc1-5dbf-9a5d-84ef5413719a"
+      }
+     ]
+    }
+   ],
+   "overview": "51-year-old male with urosepsis due to E. coli; presented with fever, confusion, elevated lactate (4) and WBC (22); treated with fluids and piperacillin‑tazobactam, lactate normalized, discharged on cefpodoxime.",
+   "self_reported_confidence": "high",
+   "patient_key": "3545f026-f30d-54c9-b7d3-d5544bbcdf89",
+   "word_count": 83,
+   "confidence": {
+    "level": "high",
+    "score": 0.75,
+    "rationale": "1 guardrail intervention."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "9dbf658ed49721e6c4735c5939b5deab72e6c198cda9abc2b9034bda2ac64f8a",
+   "generated_at": "2026-11-22T23:02:04.460913Z",
+   "cached": false,
+   "cache_key": "a7d921cf0c823356530d2bfa4bd93e293434ddbb8f0aedc6b04fde04ffbed031",
+   "guardrail_notes": [
+    "unsupported_diagnosis (1)"
+   ]
+  },
+  "trace": {
+   "cited_ids": 9,
+   "grounded_ids": 9,
+   "interventions": [
+    "unsupported_diagnosis (1)"
+   ],
+   "attempts": 3,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Community-acquired pneumonia presenting with fever, productive cough, and pleuritic chest pain.",
+   "key_diagnoses": [
+    {
+     "name": "Community-acquired pneumonia",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "b741a323-fb47-55bc-8717-d7d293f6e938"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "234ec86a-9bc0-58f0-8f0a-406516f141ec"
+     },
+     "kind": "lab",
+     "date": "2024-05-27",
+     "finding": "Basic metabolic panel within normal limits"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "e06a078a-73c6-513e-9cc8-a6d081ecb219"
+     },
+     "kind": "imaging",
+     "date": "2024-02-15",
+     "finding": "Right lower lobe pneumonia with focal consolidation"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "dd39335d-9969-5553-a601-a1aa68a22643"
+     },
+     "kind": "lab",
+     "date": "2024-02-16",
+     "finding": "Leukocytosis WBC 14.4 H"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Leukocytosis WBC 14.4 x10^3/uL, above reference range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "10922ea2-0c3f-533a-8739-191a89c412ea"
+      }
+     ]
+    }
+   ],
+   "overview": "46-year-old female with community-acquired pneumonia (CURB-65 2) and leukocytosis; treated with ceftriaxone and azithromycin.",
+   "self_reported_confidence": "high",
+   "patient_key": "35d365f0-a559-59d7-8178-e70f43fa5027",
+   "word_count": 51,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "4beab92ae6f48e1afdd5835946a386fbe03d3b24e10dec129a7bccc3799839c6",
+   "generated_at": "2026-11-22T23:02:16.094710Z",
+   "cached": false,
+   "cache_key": "5bf850c11a30deffb5dd858fb13343f0e8f175625435456b970cad94425f47fc",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 5,
+   "grounded_ids": 5,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Diabetes follow-up for worsening glycemic control.",
+   "key_diagnoses": [
+    {
+     "name": "Type 2 diabetes mellitus",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "ca7b8e00-0fd8-5af8-b77b-2c1edb802727"
+      }
+     ]
+    },
+    {
+     "name": "Mild nonproliferative diabetic retinopathy",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "e398feab-83c5-591a-83aa-199f500ec746"
+      }
+     ]
+    },
+    {
+     "name": "Hyperlipidemia",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "f72dec8b-154f-5fee-a55c-2eca134cea87"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "2a62e5b5-9f6b-5577-a243-fe5166c1050a"
+     },
+     "kind": "lab",
+     "date": "2024-08-26",
+     "finding": "HbA1c 8.4% (high)"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "e398feab-83c5-591a-83aa-199f500ec746"
+     },
+     "kind": "note",
+     "date": "2024-08-25",
+     "finding": "Mild nonproliferative diabetic retinopathy, no macular edema"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "ca7b8e00-0fd8-5af8-b77b-2c1edb802727"
+     },
+     "kind": "note",
+     "date": "2024-08-25",
+     "finding": "HbA1c 8.4% (up from 7.6%); fasting glucose 208 mg/dL"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "7d717557-9406-5a26-a5a2-40dbd2ec6a0c"
+     },
+     "kind": "lab",
+     "date": "2024-05-08",
+     "finding": "Glucose 208 mg/dL (high)"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "699bb510-d575-5ea5-a9fc-7ae7feec920d"
+     },
+     "kind": "lab",
+     "date": "2024-05-07",
+     "finding": "HbA1c 7.6% (high)"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Hemoglobin A1c 8.4% above target",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "2fd49249-478c-5249-9614-aeea922fef89"
+      }
+     ]
+    },
+    {
+     "description": "Glucose 208 mg/dL above reference range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "032d9231-102f-521c-b55f-237be932dc95"
+      }
+     ]
+    },
+    {
+     "description": "Hemoglobin A1c 7.6% above target",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "8de75281-22ba-5e60-a873-1b62341cf77e"
+      }
+     ]
+    }
+   ],
+   "overview": "34-year-old patient with type 2 diabetes, recent HbA1c rise to 8.4%, fasting glucose 208, mild nonproliferative diabetic retinopathy, and hyperlipidemia.",
+   "self_reported_confidence": "high",
+   "patient_key": "3944a7e3-6a23-53e2-9fc0-d245b009b2a4",
+   "word_count": 77,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "5fddc54aecb637835f5e22c8342cdcd55c4ae64309ebc60abbc6168536e70a98",
+   "generated_at": "2026-11-22T23:02:41.788437Z",
+   "cached": false,
+   "cache_key": "23a273390d5760745bb315985f43743b0ffd3ebfa7405cf2561b6a13c2ddf25d",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 11,
+   "grounded_ids": 11,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Acute COPD exacerbation with increased dyspnea and sputum production.",
+   "key_diagnoses": [
+    {
+     "name": "Acute exacerbation of COPD",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "e155865c-45e3-5549-8eb4-79f0a7e40c4f"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "dd802a6b-9437-5f24-a786-95e37f11623d"
+     },
+     "kind": "imaging",
+     "date": "2025-03-01",
+     "finding": "Chest X-ray: hyperinflated lungs, flattened diaphragms, no infiltrate"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "a38e0ca6-8e01-5d63-90e1-ff7753a44e8b"
+     },
+     "kind": "lab",
+     "date": "2025-02-28",
+     "finding": "WBC 12 H, Hemoglobin 13.4 N, Platelets 238 N"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Elevated WBC 12 ×10³/µL, moderate leukocytosis",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "91939d57-c8f0-520e-9924-945cf6ce27fa"
+      }
+     ]
+    }
+   ],
+   "overview": "38‑year‑old female with known COPD presents with acute exacerbation (dyspnea, sputum, SpO₂ 86%). Imaging shows emphysematous changes; labs reveal leukocytosis.",
+   "self_reported_confidence": "medium",
+   "patient_key": "3ed862b6-dc40-5a61-b043-4d2ba391e346",
+   "word_count": 56,
+   "confidence": {
+    "level": "medium",
+    "score": 0.65,
+    "rationale": "Model reported medium confidence."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "29772849ba4cc90f1059391d50d315f0f9749528173564628830857edb1fbade",
+   "generated_at": "2026-11-22T23:03:05.068441Z",
+   "cached": false,
+   "cache_key": "763fcca6a8f8331a4d43ae07cf4f14c3abb4fb8b3a6efbcb4e480ab0f8901ff6",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 4,
+   "grounded_ids": 4,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Treated for urosepsis during recent admission.",
+   "key_diagnoses": [
+    {
+     "name": "Urosepsis",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "15fce8cf-e87b-53cb-9c84-d47b067ff3e2"
+      },
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "e9a2afc6-de05-5ca0-8fa6-27e1a9dc92e9"
+      }
+     ]
+    },
+    {
+     "name": "E. coli urinary tract infection",
+     "status": "suspected",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "e9a2afc6-de05-5ca0-8fa6-27e1a9dc92e9"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "66d36a5e-4f73-5829-9a4d-c7796f09d2f1"
+     },
+     "kind": "lab",
+     "date": "2024-08-23",
+     "finding": "Lactate 3.7 mmol/L (high)"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "15fce8cf-e87b-53cb-9c84-d47b067ff3e2"
+     },
+     "kind": "note",
+     "date": "2024-08-22",
+     "finding": "ED note: sepsis, lactate 3.7, WBC 23.1"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Lactate 3.7 mmol/L, above reference range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "43d8b958-40e2-557e-bb14-e8d8e92abada"
+      }
+     ]
+    }
+   ],
+   "overview": "36‑year‑old male admitted for urosepsis; urine culture grew E. coli; elevated lactate normalized after fluids; discharged on cefpodoxime.",
+   "self_reported_confidence": "high",
+   "patient_key": "4603a76a-5a91-57e0-8fae-290b6e68b1af",
+   "word_count": 47,
+   "confidence": {
+    "level": "high",
+    "score": 0.75,
+    "rationale": "1 guardrail intervention."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "d0006331067d0a8823fdeefc8f161de11bf0698a2df19603e415e1e43f7a1fb0",
+   "generated_at": "2026-11-22T23:03:16.053475Z",
+   "cached": false,
+   "cache_key": "8658c627b4aecb4f1fd281e7ca50c39d0276e37f199037715e84f90edf184809",
+   "guardrail_notes": [
+    "unsupported_diagnosis (1)"
+   ]
+  },
+  "trace": {
+   "cited_ids": 6,
+   "grounded_ids": 6,
+   "interventions": [
+    "unsupported_diagnosis (1)"
+   ],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "New diagnosis of left breast invasive ductal carcinoma.",
+   "key_diagnoses": [
+    {
+     "name": "Invasive ductal carcinoma of left breast, ER/PR positive, HER2 negative",
+     "status": "suspected",
+     "evidence": [
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "60f45b08-c964-51a9-9f6b-13097b25c162"
+      },
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "e7f6051d-b5c2-5a6a-81cc-827e3e33f7ea"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "da28fad1-9ec4-50c7-a4dd-870dd171124f"
+     },
+     "kind": "lab",
+     "date": "2025-02-10",
+     "finding": "CBC: Hgb 14.6 N, Plt 283 N, WBC 5.8 N"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "120e1578-0440-52a6-b6e8-9c321ca75a41"
+     },
+     "kind": "imaging",
+     "date": "2025-02-09",
+     "finding": "Mammogram/US: BI-RADS 5, 2.4 cm spiculated mass left breast, no axillary adenopathy"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "60f45b08-c964-51a9-9f6b-13097b25c162"
+     },
+     "kind": "pathology",
+     "date": "2025-02-09",
+     "finding": "Core needle biopsy: invasive ductal carcinoma, Nottingham grade 2, ER+/PR+, HER2-"
+    }
+   ],
+   "flagged_anomalies": [],
+   "overview": "78‑year‑old male with newly identified left breast invasive ductal carcinoma, hormone‑receptor positive; imaging shows BI‑RADS 5 lesion, pathology confirms grade 2 cancer; plan lumpectomy with sentinel node biopsy.",
+   "self_reported_confidence": "high",
+   "patient_key": "4a95631a-e561-5cb3-abd7-bd9c21cd03d5",
+   "word_count": 79,
+   "confidence": {
+    "level": "high",
+    "score": 0.75,
+    "rationale": "1 guardrail intervention."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "017310db8eb5890e62e012318436e5c7461af898c0f0b8c5b039a09622d8f5b0",
+   "generated_at": "2026-11-22T23:03:25.292510Z",
+   "cached": false,
+   "cache_key": "64ce17ca13a0e6c9f8929393583aec233c4cff658c4bb5c44b7951a3a1b49f48",
+   "guardrail_notes": [
+    "unsupported_diagnosis (1)"
+   ]
+  },
+  "trace": {
+   "cited_ids": 5,
+   "grounded_ids": 5,
+   "interventions": [
+    "unsupported_diagnosis (1)"
+   ],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Dyspnea with pulmonary edema due to acute on chronic systolic heart failure.",
+   "key_diagnoses": [
+    {
+     "name": "Acute on chronic systolic heart failure",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "0177704f-4251-57f9-ad6a-1cb2a33ea766"
+      }
+     ]
+    },
+    {
+     "name": "Pulmonary edema",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "c5b70e31-2a5d-50db-98d1-5981936518dd"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "c5b70e31-2a5d-50db-98d1-5981936518dd"
+     },
+     "kind": "imaging",
+     "date": "2025-07-06",
+     "finding": "Chest X-ray: cardiomegaly, bilateral interstitial opacities, small pleural effusions consistent with pulmonary edema"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "814a4c20-7712-5ef7-85d9-20cea7793862"
+     },
+     "kind": "lab",
+     "date": "2025-07-04",
+     "finding": "Troponin I 0.01 N"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "29a3de90-1f98-562f-96a8-3c7829b2d591"
+     },
+     "kind": "imaging",
+     "date": "2025-04-17",
+     "finding": "Echo: LVEF ~25%, dilated LV, global hypokinesis, moderate MR"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "873fa1af-0a63-5fb3-b991-534592886141"
+     },
+     "kind": "lab",
+     "date": "2025-04-16",
+     "finding": "BNP 1003 H"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "BNP 1003 pg/mL, markedly elevated",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "0e6780d1-b2d2-59da-8e21-4c2c24fd46a9"
+      }
+     ]
+    }
+   ],
+   "overview": "84-year-old with acute on chronic systolic HF (EF 25%) presenting with dyspnea, orthopnea, leg edema; CXR shows pulmonary edema; BNP markedly high; treated with IV furosemide (4 kg loss) and discharged on oral furosemide and carvedilol.",
+   "self_reported_confidence": "medium",
+   "patient_key": "4daa2bbd-3c2a-54fb-8b49-8920819cb8b2",
+   "word_count": 90,
+   "confidence": {
+    "level": "medium",
+    "score": 0.65,
+    "rationale": "Model reported medium confidence."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "4e47d64c62ab83a01abf7247335b659c8965df24a953aa8782eab2064ba5ea86",
+   "generated_at": "2026-11-22T23:03:36.005972Z",
+   "cached": false,
+   "cache_key": "765ee215d3d84638e2b5f5438922009ad92542c3720a62e0dda7339f5131cea5",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 7,
+   "grounded_ids": 7,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Evaluation of chronic kidney disease with ongoing hyperkalemia.",
+   "key_diagnoses": [
+    {
+     "name": "Chronic kidney disease stage 3b",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "993d0bbc-4912-52e4-a640-5fb9cb81c92e"
+      },
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "c19bfb3e-8032-5217-a0d5-7cfd6cb07342"
+      }
+     ]
+    },
+    {
+     "name": "Hyperkalemia",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "993d0bbc-4912-52e4-a640-5fb9cb81c92e"
+      },
+      {
+       "resource_type": "Observation",
+       "resource_id": "09585e88-029f-5f1e-a429-5888a1fb75e0"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "c19bfb3e-8032-5217-a0d5-7cfd6cb07342"
+     },
+     "kind": "imaging",
+     "date": "2024-08-17",
+     "finding": "Renal US: small kidneys, increased echogenicity, no hydronephrosis"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "ab103184-3e3a-5c2b-80e9-f4479ca6bc85"
+     },
+     "kind": "lab",
+     "date": "2024-08-17",
+     "finding": "CBC: WBC 7.7 N, Platelets 222 N, Hemoglobin 13.6 N"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "15c686d4-0e19-5baa-8872-1e619ffce830"
+     },
+     "kind": "lab",
+     "date": "2024-05-22",
+     "finding": "BMP: K 5.8 H, Creatinine 2.61 H, BUN 37 H"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Potassium 5.8 mmol/L, moderately high",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "09585e88-029f-5f1e-a429-5888a1fb75e0"
+      }
+     ]
+    },
+    {
+     "description": "Creatinine 2.61 mg/dL, moderately high",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "c33bfe05-c1d1-5000-bf61-935ea224c3e4"
+      }
+     ]
+    },
+    {
+     "description": "Urea nitrogen 37 mg/dL, moderately high",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "ee7e3b02-88a9-575e-b9cc-15b108725c5a"
+      }
+     ]
+    }
+   ],
+   "overview": "26-year-old male with CKD stage 3b and hyperkalemia; lisinopril discontinued, potassium binder initiated, imaging confirms chronic renal changes.",
+   "self_reported_confidence": "medium",
+   "patient_key": "4f262ef9-5924-5442-89b3-8414fe174f2d",
+   "word_count": 76,
+   "confidence": {
+    "level": "medium",
+    "score": 0.65,
+    "rationale": "Model reported medium confidence."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "15d6e95b1bf9826a4797316a4a917452e99dccd505de10b0b7df0ee149ed2707",
+   "generated_at": "2026-11-22T23:03:49.270844Z",
+   "cached": false,
+   "cache_key": "c3872ff93bff88800bee39f56d7b46845766e35cb2e06cae145609742a2658b5",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 10,
+   "grounded_ids": 10,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Nephrology consult for rising creatinine and hyperkalemia.",
+   "key_diagnoses": [
+    {
+     "name": "Chronic kidney disease stage 3b",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "7a5b980c-41e7-5d33-885a-3deed002a4fd"
+      },
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "8c868762-69e4-572a-a1ed-343644cd6b7c"
+      }
+     ]
+    },
+    {
+     "name": "Hyperkalemia",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "7a5b980c-41e7-5d33-885a-3deed002a4fd"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "766cf284-1b00-504d-95c4-d7f1d2860cb9"
+     },
+     "kind": "lab",
+     "date": "2024-11-01",
+     "finding": "CBC normal (Hb 12.9, WBC 7.8, Plt 208)."
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "8c868762-69e4-572a-a1ed-343644cd6b7c"
+     },
+     "kind": "imaging",
+     "date": "2024-10-31",
+     "finding": "Renal US: small kidneys, increased cortical echogenicity, no hydronephrosis (chronic renal disease)."
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "1f12f0b3-f904-59b3-8edb-c6b79f7d9a2d"
+     },
+     "kind": "lab",
+     "date": "2024-09-05",
+     "finding": "BMP: K 5.9 H, BUN 46 H, Creatinine 2.09 H, Na 143, Glucose 88."
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Potassium 5.9 mmol/L, moderate high",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "51edf35d-9876-5931-a217-d0edc46153b8"
+      }
+     ]
+    },
+    {
+     "description": "Urea nitrogen 46 mg/dL, moderate high",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "8239b8c7-1aeb-5725-8318-fe3de78657f7"
+      }
+     ]
+    },
+    {
+     "description": "Creatinine 2.09 mg/dL, moderate high",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "d01bcadc-45e3-5a8b-9935-35c3bdfe337e"
+      }
+     ]
+    }
+   ],
+   "overview": "65-year-old patient with CKD stage 3b, hyperkalemia, and elevated BUN/creatinine; nephrology recommends stopping lisinopril, initiating potassium binder, and diet modification.",
+   "self_reported_confidence": "medium",
+   "patient_key": "53f5e5b2-8704-595e-a620-f1303b89831c",
+   "word_count": 83,
+   "confidence": {
+    "level": "medium",
+    "score": 0.65,
+    "rationale": "Model reported medium confidence."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "84f034c2e1f5a8709db31a6711757ab9a56c34639dd6deb320b91c42f89150e0",
+   "generated_at": "2026-11-22T23:04:02.903150Z",
+   "cached": false,
+   "cache_key": "b0e351ceed0adfd1269ea3a25525613982af30dd3bc2ac43627311b4b6fafa9d",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 9,
+   "grounded_ids": 9,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Dyspnea, orthopnea, and leg edema due to acute decompensated systolic heart failure.",
+   "key_diagnoses": [
+    {
+     "name": "Acute on chronic systolic heart failure",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "d02382b3-f3da-5734-8dd2-1bbdc44f2eb3"
+      }
+     ]
+    },
+    {
+     "name": "Reduced left ventricular ejection fraction (30%)",
+     "status": "suspected",
+     "evidence": [
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "498cdd0f-847b-5516-a141-1e964e0d2e20"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "f04a3512-f9a1-5045-9885-6e893ba4902d"
+     },
+     "kind": "imaging",
+     "date": "2025-05-01",
+     "finding": "Chest X-ray: cardiomegaly, bilateral interstitial opacities, small pleural effusions suggesting pulmonary edema"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "498cdd0f-847b-5516-a141-1e964e0d2e20"
+     },
+     "kind": "imaging",
+     "date": "2025-02-16",
+     "finding": "TTE: LVEF 30%, dilated LV, global hypokinesis, moderate MR"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "45145e69-ec3d-51af-873f-8010374d5077"
+     },
+     "kind": "lab",
+     "date": "2025-02-15",
+     "finding": "BNP 885 pg/mL (high)"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "BNP 885 pg/mL, markedly elevated",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "d9d844db-d6a9-5211-a06b-7ba54074d967"
+      }
+     ]
+    }
+   ],
+   "overview": "26-year-old male with chronic systolic cardiomyopathy presents with acute decompensation; imaging shows pulmonary edema, echo EF 30%, BNP markedly elevated; treated with IV furosemide and discharged on diuretics and carvedilol.",
+   "self_reported_confidence": "high",
+   "patient_key": "5412eee9-772e-59fe-8a91-8ec861d4d3cb",
+   "word_count": 84,
+   "confidence": {
+    "level": "high",
+    "score": 0.75,
+    "rationale": "1 guardrail intervention."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "af675c2713f64d51bf7263cd229992d3c583d074b46adfcab32d49ecb78af571",
+   "generated_at": "2026-11-22T23:04:25.851052Z",
+   "cached": false,
+   "cache_key": "06c1c70cebfd99dbf0cb56515e838ef81f6f440639bb2263440eba0df1b300f9",
+   "guardrail_notes": [
+    "unsupported_diagnosis (1)"
+   ]
+  },
+  "trace": {
+   "cited_ids": 6,
+   "grounded_ids": 6,
+   "interventions": [
+    "unsupported_diagnosis (1)"
+   ],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Fatigue and decreased appetite noted at primary care visit.",
+   "key_diagnoses": [
+    {
+     "name": "Chronic kidney disease stage 3b",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "656954bc-bf2f-5cb2-b210-50603aaaf4b0"
+      },
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "d8ed4243-385d-5700-aa16-c139bd312beb"
+      }
+     ]
+    },
+    {
+     "name": "Hyperkalemia",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "d8ed4243-385d-5700-aa16-c139bd312beb"
+      },
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "013b6fb6-915e-599b-972d-0640ef82823b"
+      }
+     ]
+    },
+    {
+     "name": "Hypertension",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "656954bc-bf2f-5cb2-b210-50603aaaf4b0"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "013b6fb6-915e-599b-972d-0640ef82823b"
+     },
+     "kind": "lab",
+     "date": "2025-01-10",
+     "finding": "K 6.1 HH, BUN 47 H, Creatinine 2.04 H; other electrolytes normal"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "6b0641e6-259d-56b6-a6f7-9b2ae8860c94"
+     },
+     "kind": "lab",
+     "date": "2025-01-10",
+     "finding": "CBC normal"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "a219e2c4-d249-5199-9949-ca4c47c93bc9"
+     },
+     "kind": "imaging",
+     "date": "2025-01-09",
+     "finding": "Renal US: small kidneys, increased cortical echogenicity, no hydronephrosis"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "656954bc-bf2f-5cb2-b210-50603aaaf4b0"
+     },
+     "kind": "note",
+     "date": "2025-01-09",
+     "finding": "Primary care note: fatigue, decreased appetite, CKD, HTN"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "d8ed4243-385d-5700-aa16-c139bd312beb"
+     },
+     "kind": "note",
+     "date": null,
+     "finding": "Nephrology consult: CKD stage 3b with hyperkalemia, stop lisinopril, start SZC"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Potassium 6.1 mmol/L, critical high",
+     "severity": "high",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "8ea4b498-0e74-5aac-9481-42cd67badfb6"
+      }
+     ]
+    },
+    {
+     "description": "Urea nitrogen 47 mg/dL above reference range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "992c6ad8-8a64-5280-9a3a-6de126b78165"
+      }
+     ]
+    },
+    {
+     "description": "Creatinine 2.04 mg/dL above reference range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "aafddbb1-4fc1-51ef-8505-8bf3f35c69d1"
+      }
+     ]
+    }
+   ],
+   "overview": "34-year-old male with CKD stage 3b, hypertension, hyperkalemia and elevated BUN/creatinine; renal US shows chronic changes; nephrology referral initiated, lisinopril stopped, sodium zirconium cyclosilicate started.",
+   "self_reported_confidence": "medium",
+   "patient_key": "5a12db87-4fc7-5ead-b134-e7e6a3ae8bd5",
+   "word_count": 101,
+   "confidence": {
+    "level": "medium",
+    "score": 0.65,
+    "rationale": "Model reported medium confidence."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "5e97b7f3189be351eb75d9972aacd142ee4d2c3c5b2eaf6e922d8f8c36368b67",
+   "generated_at": "2026-11-22T23:04:50.855782Z",
+   "cached": false,
+   "cache_key": "dc8edf710e71c669f3715ed45f2e807147bdf3d31eeba81dfe04c32bce4df282",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 13,
+   "grounded_ids": 13,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Sudden shortness of breath and pleuritic chest pain prompting evaluation for pulmonary embolism.",
+   "key_diagnoses": [
+    {
+     "name": "Acute pulmonary embolism",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "55f3fde1-609b-52c5-8b75-a757eb957ce8"
+      },
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "b86ea2ab-c8ec-57aa-a286-74a066765386"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "20029c07-e44a-5c13-b9ca-63c462b7c270"
+     },
+     "kind": "lab",
+     "date": "2024-09-02",
+     "finding": "Troponin I 0.136 H"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "b86ea2ab-c8ec-57aa-a286-74a066765386"
+     },
+     "kind": "imaging",
+     "date": "2024-09-01",
+     "finding": "Acute PE with mild right heart strain"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "0b26f40f-bb2d-52df-b99b-823e1d4a1b46"
+     },
+     "kind": "lab",
+     "date": "2024-09-01",
+     "finding": "Hb 13.3 N, WBC 4.7 N, Platelets 164 N"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Troponin I 0.136 ng/mL, high",
+     "severity": "high",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "e90f8e0f-118d-5619-84ed-b1c1643d76ee"
+      }
+     ]
+    }
+   ],
+   "overview": "54‑year‑old female with acute pulmonary embolism after prolonged flight, mild RV strain, elevated troponin, started on heparin infusion.",
+   "self_reported_confidence": "medium",
+   "patient_key": "5e8de5c1-54d1-5b91-8604-6d2f382f6823",
+   "word_count": 59,
+   "confidence": {
+    "level": "medium",
+    "score": 0.65,
+    "rationale": "Model reported medium confidence."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "ed698448764095ab93afbcfd6a4a7c9b86911341bcc686ef81a80af8470a370d",
+   "generated_at": "2026-11-22T23:05:15.768269Z",
+   "cached": false,
+   "cache_key": "e92534223b80b25a6b046034e930706850f62b4ee24650b025035b28005acf32",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 6,
+   "grounded_ids": 6,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Admitted for acute pulmonary embolism.",
+   "key_diagnoses": [
+    {
+     "name": "Acute pulmonary embolism",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "e318a759-a68c-5726-85fd-66c11d42ebc3"
+      },
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "3d48eb5f-277a-587b-b383-59c4c412f4b6"
+      }
+     ]
+    },
+    {
+     "name": "Mild right heart strain",
+     "status": "suspected",
+     "evidence": [
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "3d48eb5f-277a-587b-b383-59c4c412f4b6"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "76984801-38bf-5346-aafd-f5ac3257d7cb"
+     },
+     "kind": "lab",
+     "date": "2024-11-24",
+     "finding": "Platelets 217 N; Hemoglobin 15.3 N; WBC 8.3 N"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "925a3b07-4d2f-542e-8e32-18ea2616d9ec"
+     },
+     "kind": "lab",
+     "date": "2024-09-28",
+     "finding": "Troponin I 0.126 H"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "3d48eb5f-277a-587b-b383-59c4c412f4b6"
+     },
+     "kind": "imaging",
+     "date": "2024-09-27",
+     "finding": "CT chest: acute PE with mild RV strain, RV/LV ratio 1.1"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "fa6bd238-2cfd-50d4-93d5-a8a86b00d1c9"
+     },
+     "kind": "note",
+     "date": "2024-11-24",
+     "finding": "Discharge: apixaban 10 mg bid → 5 mg bid; PE admission"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "e318a759-a68c-5726-85fd-66c11d42ebc3"
+     },
+     "kind": "note",
+     "date": "2024-09-27",
+     "finding": "ED note: suspected PE, troponin 0.126, started heparin"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Troponin I 0.126 ng/mL, elevated",
+     "severity": "high",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "66724aff-1b9d-5275-a5d0-7c7f67c82775"
+      }
+     ]
+    }
+   ],
+   "overview": "26‑year‑old female with acute pulmonary embolism and mild right‑heart strain; troponin elevated; transitioned from heparin to apixaban on discharge.",
+   "self_reported_confidence": "high",
+   "patient_key": "60c69174-3bf4-5fc1-aecb-e15a22d44599",
+   "word_count": 79,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "353fd608b315f93d5842e6e9b44b66bf35cef33db839261502011c4a73b8e0d1",
+   "generated_at": "2026-11-22T23:05:27.294936Z",
+   "cached": false,
+   "cache_key": "4ef4802bb3c19472a85c7bd5e36f95802077e095bd6500e60ec1272bc6baab8c",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 9,
+   "grounded_ids": 9,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Acute exacerbation of COPD presenting with increased dyspnea and sputum.",
+   "key_diagnoses": [
+    {
+     "name": "Acute exacerbation of COPD",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "949f655e-26b1-5557-8bf3-1c7c822e4392"
+      }
+     ]
+    },
+    {
+     "name": "COPD",
+     "status": "historical",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "949f655e-26b1-5557-8bf3-1c7c822e4392"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "6f6a3d2b-d6aa-5d0b-9752-6a2298740bb4"
+     },
+     "kind": "imaging",
+     "date": "2024-08-09",
+     "finding": "Chest X-ray: emphysematous changes, hyperinflated lungs, no acute infiltrate"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "25555283-10d2-50b4-9d13-982c3a6bd38c"
+     },
+     "kind": "lab",
+     "date": "2024-08-08",
+     "finding": "WBC 12.5 H; Hemoglobin 14 N; Platelets 215 N"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "cfbeb428-9300-59ce-a75e-9b08a92934f1"
+     },
+     "kind": "lab",
+     "date": "2024-08-07",
+     "finding": "BMP within normal limits"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Elevated WBC 12.5 x10^3/uL, moderate severity",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "fbae554a-5e75-5af7-abd5-c2d92a3a242c"
+      }
+     ]
+    }
+   ],
+   "overview": "85-year-old female with known COPD admitted for acute exacerbation; treated with bronchodilators, steroids, antibiotics; discharged with prednisone taper and pulmonary rehab referral.",
+   "self_reported_confidence": "medium",
+   "patient_key": "63347060-70d8-588a-8e7e-cc6b1093eb7e",
+   "word_count": 65,
+   "confidence": {
+    "level": "medium",
+    "score": 0.65,
+    "rationale": "Model reported medium confidence."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "dd9968fab53363167995e95b36958a676a1d42a20c1f7f2a0857c689320d0639",
+   "generated_at": "2026-11-22T23:05:52.321918Z",
+   "cached": false,
+   "cache_key": "188245f00f6c44047d155f4ac7898f4e9a6d9486b6203780bcb04893a0724250",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 6,
+   "grounded_ids": 6,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Dyspnea, orthopnea and peripheral edema due to acute on chronic systolic heart failure.",
+   "key_diagnoses": [
+    {
+     "name": "Acute on chronic systolic heart failure",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "491c1bee-5df5-534e-8655-d5b7bd510550"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "d9710cf5-cb18-5074-835c-757f36980cef"
+     },
+     "kind": "imaging",
+     "date": "2024-07-03",
+     "finding": "Chest X‑ray: cardiomegaly, bilateral interstitial opacities, small pleural effusions – pulmonary edema."
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "1aafd885-c35d-5ec8-b00a-a9c4cd7b1e76"
+     },
+     "kind": "imaging",
+     "date": "2024-04-28",
+     "finding": "TTE: LVEF 35%, dilated LV, global hypokinesis, moderate MR – systolic heart failure."
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "25d1fe53-fb94-5b9c-9247-3e6e238b73fe"
+     },
+     "kind": "lab",
+     "date": "2024-04-27",
+     "finding": "BNP 867 pg/mL – markedly elevated."
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "BNP 867 pg/mL, high",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "028072c6-39a4-50f0-8e68-7603c7f1f760"
+      }
+     ]
+    }
+   ],
+   "overview": "64‑year‑old male with acute decompensated systolic heart failure, pulmonary edema, and elevated BNP; treated with IV furosemide and discharged on oral diuretics and carvedilol.",
+   "self_reported_confidence": "medium",
+   "patient_key": "67ff9298-43d1-5a81-8b68-ab95b70e2b4f",
+   "word_count": 78,
+   "confidence": {
+    "level": "medium",
+    "score": 0.65,
+    "rationale": "Model reported medium confidence."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "fae229242a733e9c1404a973c5b91e8b6cf9587af391311bce8c725766511adf",
+   "generated_at": "2026-11-22T23:06:15.033333Z",
+   "cached": false,
+   "cache_key": "88c6bbc7af7cf397122aad0d09032d72896b95f282fe08214c534b58df3e140e",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 5,
+   "grounded_ids": 5,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Sudden dyspnea and pleuritic chest pain leading to diagnosis of acute pulmonary embolism.",
+   "key_diagnoses": [
+    {
+     "name": "Acute pulmonary embolism",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "a83a0493-0a7b-5f47-9167-1791e3f8738c"
+      },
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "d2d87a9e-c075-5eb5-b04f-44a91e577058"
+      }
+     ]
+    },
+    {
+     "name": "Mild right heart strain",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "d2d87a9e-c075-5eb5-b04f-44a91e577058"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "d2d87a9e-c075-5eb5-b04f-44a91e577058"
+     },
+     "kind": "imaging",
+     "date": "2024-07-19",
+     "finding": "CT angiography: acute PE with right‑main and lower‑lobe artery filling defects, RV/LV ratio 1.1"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "3489f767-29e4-5c85-9d3f-c6a054a9f816"
+     },
+     "kind": "lab",
+     "date": "2024-07-19",
+     "finding": "Troponin I 0.075 ng/mL (high)"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "3d2f22f8-1483-587d-bde1-369d085f4f26"
+     },
+     "kind": "note",
+     "date": "2024-10-30",
+     "finding": "Discharge: transitioned to apixaban, PE resolved, oxygen off"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Troponin I 0.075 ng/mL, above upper limit",
+     "severity": "high",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "97cb0708-99a8-52cd-9c64-d3ccb5a2c02b"
+      }
+     ]
+    }
+   ],
+   "overview": "67‑year‑old female with acute PE after long flight, mild RV strain, elevated troponin; treated with heparin then apixaban, discharged on anticoagulation.",
+   "self_reported_confidence": "high",
+   "patient_key": "6d955f61-265c-5707-a165-b704d6d3b290",
+   "word_count": 75,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "3798ab327e1cb7b6374bd14648b1e8fb5a924980420d49ee2dabc19320fdc81d",
+   "generated_at": "2026-11-22T23:06:35.280644Z",
+   "cached": false,
+   "cache_key": "754b3152a524032fdb35a3e21eb8fa181c27f9a98987f6ef9c824874d37e7e26",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 7,
+   "grounded_ids": 7,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Acute right arm weakness and expressive aphasia from left MCA ischemic stroke.",
+   "key_diagnoses": [
+    {
+     "name": "Acute ischemic stroke left MCA territory",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "381d2bc4-3ae5-5012-bf25-c5b280cc1b95"
+      },
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "07b08fc7-5174-5afd-b376-c6c0e52616e8"
+      }
+     ]
+    },
+    {
+     "name": "Elevated LDL cholesterol",
+     "status": "suspected",
+     "evidence": [
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "7f8c010c-2936-5e02-8d77-50d00b8df806"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "1df6faa7-1e8f-5691-a961-b88e7eb52fcb"
+     },
+     "kind": "lab",
+     "date": "2025-03-23",
+     "finding": "Troponin I <0.01 N"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "07b08fc7-5174-5afd-b376-c6c0e52616e8"
+     },
+     "kind": "imaging",
+     "date": "2025-01-08",
+     "finding": "Acute left MCA infarct, diffusion restriction, no hemorrhage"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "7f8c010c-2936-5e02-8d77-50d00b8df806"
+     },
+     "kind": "lab",
+     "date": "2025-01-06",
+     "finding": "LDL 158 H, triglycerides 123 N, HDL 44 N, total cholesterol 184 N"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "LDL cholesterol 158 mg/dL, above target",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "6dd7c1f1-1461-5e4a-a887-ddb3e878ccc5"
+      }
+     ]
+    }
+   ],
+   "overview": "75‑year‑old female presented with acute left MCA stroke (NIHSS 9); started on aspirin and high‑intensity atorvastatin for elevated LDL.",
+   "self_reported_confidence": "medium",
+   "patient_key": "6e2114f3-9d7f-5e01-8ec4-f72f7e4c032f",
+   "word_count": 71,
+   "confidence": {
+    "level": "medium",
+    "score": 0.55,
+    "rationale": "Model reported medium confidence; 1 guardrail intervention."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "b26b9aab6c0d06afb9957b705e8c0ac61cbf7402f3d48faab9027659261aa886",
+   "generated_at": "2026-11-22T23:06:46.346370Z",
+   "cached": false,
+   "cache_key": "f8ae77166cf4262157ed1a5f3c369a10e95af37f4fc2f3249fb72fd91e166c10",
+   "guardrail_notes": [
+    "unsupported_diagnosis (1)"
+   ]
+  },
+  "trace": {
+   "cited_ids": 7,
+   "grounded_ids": 7,
+   "interventions": [
+    "unsupported_diagnosis (1)"
+   ],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Presenting with fever, confusion, dysuria and septic physiology.",
+   "key_diagnoses": [
+    {
+     "name": "Urosepsis",
+     "status": "suspected",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "eeb92ece-428c-510c-b5bf-9a97966f0456"
+      }
+     ]
+    },
+    {
+     "name": "Elevated lactate",
+     "status": "suspected",
+     "evidence": [
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "d2945296-072f-5506-8518-be6a7aa39639"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "d2945296-072f-5506-8518-be6a7aa39639"
+     },
+     "kind": "lab",
+     "date": "2024-03-27",
+     "finding": "Lactate 4.9 HH"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "eeb92ece-428c-510c-b5bf-9a97966f0456"
+     },
+     "kind": "note",
+     "date": "2024-03-26",
+     "finding": "ED note: fever, MAP 60 mmHg, lactate 4.9, WBC 20.7"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "6cdae5b7-191e-54ba-8293-9921c1d69935"
+     },
+     "kind": "note",
+     "date": "2024-03-26",
+     "finding": "Discharge: treated urosepsis, lactate normalized, cefpodoxime 10 d"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Lactate 4.9 mmol/L, critically high",
+     "severity": "high",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "e0fd79c3-8db7-5a7e-978d-47726a749316"
+      }
+     ]
+    }
+   ],
+   "overview": "76‑year‑old male with urosepsis; initial lactate 4.9 mmol/L, treated with fluids and piperacillin‑tazobactam, transitioned to oral cefpodoxime, lactate normalized.",
+   "self_reported_confidence": "high",
+   "patient_key": "73c422bf-ea0c-50dc-a07e-d3e1b6f4f4cc",
+   "word_count": 56,
+   "confidence": {
+    "level": "high",
+    "score": 0.75,
+    "rationale": "1 guardrail intervention."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "cd6652f0cb901c2c74d776d302bbf1eb5a59f39919236528b39c3240a530eb88",
+   "generated_at": "2026-11-22T23:06:57.063715Z",
+   "cached": false,
+   "cache_key": "f865b089670f7e283e0b8d86f30292e96718752fa0933979c4719cf3102fd342",
+   "guardrail_notes": [
+    "unsupported_diagnosis (2)"
+   ]
+  },
+  "trace": {
+   "cited_ids": 6,
+   "grounded_ids": 6,
+   "interventions": [
+    "unsupported_diagnosis (2)"
+   ],
+   "attempts": 3,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Dyspnea, orthopnea and leg edema from acute on chronic systolic heart failure.",
+   "key_diagnoses": [
+    {
+     "name": "Acute on chronic systolic heart failure",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "a061cf0f-7c24-562b-bc8c-c7f915505c8c"
+      }
+     ]
+    },
+    {
+     "name": "Pulmonary edema",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "226cff23-01ea-5d22-96d1-40ee6ea706c8"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "226cff23-01ea-5d22-96d1-40ee6ea706c8"
+     },
+     "kind": "imaging",
+     "date": "2024-11-14",
+     "finding": "Chest X-ray: cardiomegaly, bilateral interstitial opacities, small pleural effusions consistent with pulmonary edema"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "b4b4a593-d840-5fb0-bbe4-a3e19d5f3a2f"
+     },
+     "kind": "imaging",
+     "date": "2024-09-16",
+     "finding": "Echo: LV dilation, global hypokinesis, EF ≈30%, moderate MR"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "01c71149-e821-55b5-b3f7-faa7edc72215"
+     },
+     "kind": "lab",
+     "date": "2024-09-14",
+     "finding": "BNP 967 pg/mL (high)"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "BNP 967 pg/mL, markedly elevated",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "50932d82-f090-5609-a7ac-909bce3ac294"
+      }
+     ]
+    }
+   ],
+   "overview": "46‑year‑old male with acute decompensated systolic HF (EF 30%) and pulmonary edema; BNP 967, treated with IV furosemide, net 4 kg loss, now on oral diuretics and carvedilol.",
+   "self_reported_confidence": "medium",
+   "patient_key": "76f99514-d341-5224-ac2c-69b41b6bf884",
+   "word_count": 79,
+   "confidence": {
+    "level": "low",
+    "score": 0.4,
+    "rationale": "Model reported medium confidence; 1 guardrail intervention; identity conflict."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "8ec857c8f1a60221e9a7b9c86c3cde67a6cc8b449c5031e2651df140ca9eb3cb",
+   "generated_at": "2026-11-22T23:07:17.885609Z",
+   "cached": false,
+   "cache_key": "55adce035414de3f6eb944eb33a48b554bff12259ab4d975fb032f3cde7c0d2b",
+   "guardrail_notes": [
+    "ungrounded_removed (1)"
+   ]
+  },
+  "trace": {
+   "cited_ids": 6,
+   "grounded_ids": 6,
+   "interventions": [
+    "ungrounded_removed (1)"
+   ],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Acute left MCA ischemic stroke presenting with right arm weakness and expressive aphasia.",
+   "key_diagnoses": [
+    {
+     "name": "Acute ischemic stroke left MCA territory",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "7bd702fd-8089-5cb5-9be8-2597549ff9c1"
+      },
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "8c3797d9-f2e2-5bc1-a5b0-aa6cd3be2f0e"
+      }
+     ]
+    },
+    {
+     "name": "Hyperlipidemia (elevated LDL)",
+     "status": "suspected",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "e9645e1d-a3b9-5d03-befa-196ad093fe0d"
+      },
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "399e8377-a22b-516f-9e4f-f3c8429252d9"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "8c3797d9-f2e2-5bc1-a5b0-aa6cd3be2f0e"
+     },
+     "kind": "imaging",
+     "date": "2024-03-03",
+     "finding": "MRI brain: acute left MCA infarct, diffusion restriction, no hemorrhage"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "399e8377-a22b-516f-9e4f-f3c8429252d9"
+     },
+     "kind": "lab",
+     "date": "2024-03-02",
+     "finding": "LDL 184 H; HDL 60 N; Total cholesterol 161 N; Triglycerides 127 N"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "2cbb2719-078f-50dc-bd0f-84dcdc74ed65"
+     },
+     "kind": "note",
+     "date": "2024-03-03",
+     "finding": "Discharge plan: aspirin 81 mg daily, atorvastatin 80 mg nightly, speech therapy"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "7bd702fd-8089-5cb5-9be8-2597549ff9c1"
+     },
+     "kind": "note",
+     "date": "2024-03-02",
+     "finding": "Neurology consult: acute ischemic stroke, telemetry for AFib"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "LDL cholesterol 184 mg/dL, above reference range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "e9645e1d-a3b9-5d03-befa-196ad093fe0d"
+      }
+     ]
+    }
+   ],
+   "overview": "74-year-old female with acute left MCA stroke and elevated LDL; initiated on aspirin and high‑intensity atorvastatin, scheduled for outpatient speech therapy.",
+   "self_reported_confidence": "medium",
+   "patient_key": "78382737-2401-5717-9291-2cd8c60fe537",
+   "word_count": 93,
+   "confidence": {
+    "level": "medium",
+    "score": 0.55,
+    "rationale": "Model reported medium confidence; 1 guardrail intervention."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "6e2f48f1c938b759a5114d9472d4a49ddbc4983d9f58d93eb03a54dd5debffe5",
+   "generated_at": "2026-11-22T23:07:30.380927Z",
+   "cached": false,
+   "cache_key": "87e8d1ca57c63d9b9d8d6b9698cdcf62454ba9ae1f299592e86f6b52b40d7227",
+   "guardrail_notes": [
+    "unsupported_diagnosis (1)"
+   ]
+  },
+  "trace": {
+   "cited_ids": 9,
+   "grounded_ids": 9,
+   "interventions": [
+    "unsupported_diagnosis (1)"
+   ],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Evaluation of left breast mass revealing invasive ductal carcinoma.",
+   "key_diagnoses": [
+    {
+     "name": "Invasive ductal carcinoma, Nottingham grade 2, ER positive, PR positive, HER2…",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "49f569e4-8e85-5546-a373-acb32d7386e3"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "49f569e4-8e85-5546-a373-acb32d7386e3"
+     },
+     "kind": "pathology",
+     "date": "2024-08-23",
+     "finding": "Invasive ductal carcinoma, grade 2, ER+/PR+, HER2-"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "3f7cbdc8-79d7-5d05-817a-20036b84b97b"
+     },
+     "kind": "lab",
+     "date": "2024-06-25",
+     "finding": "Platelets 307 N; WBC 8.2 N; Hemoglobin 15.3 N"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "910b43b6-e42b-533c-8638-3da1187aad19"
+     },
+     "kind": "imaging",
+     "date": "2024-06-24",
+     "finding": "BI-RADS 5 left breast mass 2.6 cm, spiculated, no axillary adenopathy"
+    }
+   ],
+   "flagged_anomalies": [],
+   "overview": "63-year-old male with left breast invasive ductal carcinoma (grade 2, ER/PR+, HER2-); imaging shows 2.6 cm spiculated mass, BI-RADS 5, no nodal involvement; labs within normal limits.",
+   "self_reported_confidence": "high",
+   "patient_key": "808dc36d-9196-50fb-b34a-5ac176ac3571",
+   "word_count": 74,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "10e3a39f3457afa2d67e408bf2c15ea97d72e9b6c3bd2b5967b4356eacce9ea9",
+   "generated_at": "2026-11-22T23:07:50.964101Z",
+   "cached": false,
+   "cache_key": "cf5ed73e8895208af82e351e9450f9df9f948c99864be932a57fdcd87c22b231",
+   "guardrail_notes": [
+    "field_limits_applied"
+   ]
+  },
+  "trace": {
+   "cited_ids": 4,
+   "grounded_ids": 4,
+   "interventions": [
+    "field_limits_applied"
+   ],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "New diagnosis of left breast invasive ductal carcinoma.",
+   "key_diagnoses": [
+    {
+     "name": "Invasive ductal carcinoma of left breast",
+     "status": "suspected",
+     "evidence": [
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "2a90e5ef-e2f7-5ad0-9c47-ab996ce0ba6d"
+      },
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "6dbdad61-352e-5343-b8e3-d51590bf5871"
+      }
+     ]
+    },
+    {
+     "name": "Hormone receptor positive breast cancer (ER+, PR+, HER2-)",
+     "status": "suspected",
+     "evidence": [
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "2a90e5ef-e2f7-5ad0-9c47-ab996ce0ba6d"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "f1299004-1ebd-540b-a9cf-36c37b0c60ce"
+     },
+     "kind": "lab",
+     "date": "2025-04-03",
+     "finding": "WBC 6.9 N; Hgb 15.7 N; Plt 258 N"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "052b6933-d587-5a39-a8aa-fcd80e4c48c6"
+     },
+     "kind": "imaging",
+     "date": "2025-04-02",
+     "finding": "BI-RADS 5, 2.3 cm spiculated left breast mass, no axillary adenopathy"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "2a90e5ef-e2f7-5ad0-9c47-ab996ce0ba6d"
+     },
+     "kind": "pathology",
+     "date": "2025-04-02",
+     "finding": "Invasive ductal carcinoma, Nottingham grade 2, ER+/PR+, HER2-"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "6dbdad61-352e-5343-b8e3-d51590bf5871"
+     },
+     "kind": "note",
+     "date": "2025-04-02",
+     "finding": "Surgical oncology consult recommending lumpectomy with sentinel node biopsy"
+    }
+   ],
+   "flagged_anomalies": [],
+   "overview": "83‑year‑old male with newly diagnosed left‑breast invasive ductal carcinoma, hormone‑receptor positive, BI‑RADS 5 lesion; work‑up includes imaging, core biopsy, and surgical oncology consult.",
+   "self_reported_confidence": "high",
+   "patient_key": "8167427c-1efd-59cc-89bd-3cc96844ceb3",
+   "word_count": 82,
+   "confidence": {
+    "level": "high",
+    "score": 0.75,
+    "rationale": "1 guardrail intervention."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "423bbab7469489080f74278cf1e5254843fab2b7f70fa840e63fdfd67224b56d",
+   "generated_at": "2026-11-22T23:08:12.582859Z",
+   "cached": false,
+   "cache_key": "d82a8a8bb4f422b33fe978aa79554d0e387c9c294148446e075b71cf9fa08707",
+   "guardrail_notes": [
+    "unsupported_diagnosis (2)"
+   ]
+  },
+  "trace": {
+   "cited_ids": 7,
+   "grounded_ids": 7,
+   "interventions": [
+    "unsupported_diagnosis (2)"
+   ],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Admitted for left MCA ischemic stroke.",
+   "key_diagnoses": [
+    {
+     "name": "Acute left MCA territory infarct",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "6437013b-f1b0-5453-82e4-bcb193726b3a"
+      },
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "ece8b173-1c0d-5bc5-8723-a095a3079512"
+      }
+     ]
+    },
+    {
+     "name": "Elevated LDL cholesterol",
+     "status": "suspected",
+     "evidence": [
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "fe46c7a3-a9eb-560b-aeaa-540705fd113e"
+      },
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "ece8b173-1c0d-5bc5-8723-a095a3079512"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "1b806f85-4dbf-58bf-a02a-91f75e0412cc"
+     },
+     "kind": "note",
+     "date": "2025-07-21",
+     "finding": "Discharge summary: stroke admission, aspirin 81 mg, atorvastatin 80 mg, speech therapy"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "6437013b-f1b0-5453-82e4-bcb193726b3a"
+     },
+     "kind": "imaging",
+     "date": "2025-05-28",
+     "finding": "MRI brain: acute left MCA infarct, restricted diffusion, no hemorrhage"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "fe46c7a3-a9eb-560b-aeaa-540705fd113e"
+     },
+     "kind": "lab",
+     "date": "2025-05-28",
+     "finding": "LDL 163 mg/dL (high), triglycerides 97 mg/dL, HDL 54 mg/dL"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "ece8b173-1c0d-5bc5-8723-a095a3079512"
+     },
+     "kind": "note",
+     "date": "2025-05-27",
+     "finding": "Neurology consult: acute ischemic stroke, aspirin and high‑intensity atorvastatin planned"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "LDL cholesterol 163 mg/dL, above reference range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "b0b546f3-823d-5663-a44e-f1b65ec54822"
+      }
+     ]
+    }
+   ],
+   "overview": "34‑year‑old female with acute left MCA ischemic stroke; initiated aspirin and high‑intensity atorvastatin; LDL elevated.",
+   "self_reported_confidence": "medium",
+   "patient_key": "824ffb52-7a92-57e3-b5d0-9b25de860cc9",
+   "word_count": 78,
+   "confidence": {
+    "level": "low",
+    "score": 0.4,
+    "rationale": "Model reported medium confidence; 1 guardrail intervention; identity conflict."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "ba1f858443edbd74cd6b718cebaf530618949f7a5e5f88c39eaf6473b4757c18",
+   "generated_at": "2026-11-22T23:08:23.826329Z",
+   "cached": false,
+   "cache_key": "93c4f5054628ff6cec9438d9071935f31acfb0ec978f8f7cc46d79cbc6e8a473",
+   "guardrail_notes": [
+    "unsupported_diagnosis (1)"
+   ]
+  },
+  "trace": {
+   "cited_ids": 9,
+   "grounded_ids": 9,
+   "interventions": [
+    "unsupported_diagnosis (1)"
+   ],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Admission for community‑acquired pneumonia with fever and productive cough.",
+   "key_diagnoses": [
+    {
+     "name": "Community‑acquired pneumonia",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "cfaed4d6-5832-5cfa-b265-be03c8898575"
+      },
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "69c61ea0-b69e-5fed-87d2-db5f13c3939c"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "d43d2691-6e9f-55b2-b5a3-3018da6a956b"
+     },
+     "kind": "note",
+     "date": "2024-03-22",
+     "finding": "Discharge plan: 5 days oral amoxicillin‑clavulanate, repeat CXR in 6 weeks"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "69c61ea0-b69e-5fed-87d2-db5f13c3939c"
+     },
+     "kind": "imaging",
+     "date": "2024-03-19",
+     "finding": "Right lower lobe pneumonia, focal consolidation with air bronchograms"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "916ed083-3f92-5d65-82b1-23cb492ae4ec"
+     },
+     "kind": "lab",
+     "date": "2024-03-19",
+     "finding": "WBC 18.1 ×10³/µL (high), Hb 13.9 N, Platelets 233 N"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "WBC 18.1 ×10³/µL, above reference range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "ad1b7613-e057-5383-b8b3-9464e006d649"
+      }
+     ]
+    },
+    {
+     "description": "MRN shared with another person; identity flagged for review",
+     "severity": "low",
+     "source": "rule",
+     "evidence": []
+    }
+   ],
+   "overview": "64‑year‑old female presented with fever, cough, and pleuritic pain; diagnosed with community‑acquired right lower lobe pneumonia, treated with IV ceftriaxone/azithromycin, discharged on oral amoxicillin‑clavulanate.",
+   "self_reported_confidence": "high",
+   "patient_key": "890b1081-11b0-5365-8d5d-0b315ad02da1",
+   "word_count": 80,
+   "confidence": {
+    "level": "low",
+    "score": 0.4,
+    "rationale": "Identity conflict."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "703cb9b482c0e80450e027ab50d52d585245c43a90a1c46b8c029d5f71c19452",
+   "generated_at": "2026-11-22T23:08:35.301093Z",
+   "cached": false,
+   "cache_key": "1829e0025967ef217570409ea49d0fd502a61c76acd15a811aa26d894385aa04",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 6,
+   "grounded_ids": 6,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Presentation with fever, confusion, dysuria and septic physiology.",
+   "key_diagnoses": [
+    {
+     "name": "Sepsis from urinary source (urosepsis)",
+     "status": "suspected",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "45ff4829-de1b-5746-b9ea-dd369253a2a0"
+      },
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "ed1776cb-123e-525f-81aa-5ebf183761da"
+      }
+     ]
+    },
+    {
+     "name": "E. coli urinary tract infection",
+     "status": "suspected",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "ed1776cb-123e-525f-81aa-5ebf183761da"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "e6d3a537-7d83-5c98-aa59-dd92f655ed7a"
+     },
+     "kind": "lab",
+     "date": "2024-02-27",
+     "finding": "Lactate 4.6 HH"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "ed1776cb-123e-525f-81aa-5ebf183761da"
+     },
+     "kind": "note",
+     "date": null,
+     "finding": "Discharge summary: urosepsis treated, lactate normalized"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Lactate 4.6 mmol/L, high",
+     "severity": "high",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "0e6e5a3a-d976-5e82-92df-83733ff765b4"
+      }
+     ]
+    }
+   ],
+   "overview": "34-year-old male with urosepsis, elevated lactate, treated with fluids and piperacillin‑tazobactam, transitioned to oral cefpodoxime.",
+   "self_reported_confidence": "medium",
+   "patient_key": "91f0d472-c298-5e77-8df6-3cec2534ed1d",
+   "word_count": 46,
+   "confidence": {
+    "level": "medium",
+    "score": 0.55,
+    "rationale": "Model reported medium confidence; 1 guardrail intervention."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "39cb6f3e74bd04132f42a5e7e43e89e2380d5e8adace9fe83dfbe7a94ca5d437",
+   "generated_at": "2026-11-22T23:08:54.954137Z",
+   "cached": false,
+   "cache_key": "bf5d48901326f480208b41460e2287444a373bcbecbe206fc81dd0bdeb7fa5fa",
+   "guardrail_notes": [
+    "unsupported_diagnosis (2)"
+   ]
+  },
+  "trace": {
+   "cited_ids": 6,
+   "grounded_ids": 6,
+   "interventions": [
+    "unsupported_diagnosis (2)"
+   ],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Admission for community‑acquired pneumonia presenting with fever and productive cough.",
+   "key_diagnoses": [
+    {
+     "name": "Community‑acquired pneumonia",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "c9721d8a-08a6-5932-9e23-d349a5b4fa1d"
+      },
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "f7c54db9-a2f8-5bbc-833d-e0436814cdf9"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "f7c54db9-a2f8-5bbc-833d-e0436814cdf9"
+     },
+     "kind": "imaging",
+     "date": "2025-05-11",
+     "finding": "Chest X‑ray: right lower lobe consolidation with air bronchograms"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "8fd1ce09-a46f-580c-a75e-c054de2a0f9e"
+     },
+     "kind": "lab",
+     "date": "2025-05-09",
+     "finding": "WBC 14.8 H, platelets 317 N, hemoglobin 15.2 N"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "a5d1215d-77f4-5c2d-aea0-c740e12e57a9"
+     },
+     "kind": "lab",
+     "date": "2025-05-09",
+     "finding": "Electrolytes and renal panel within normal limits"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "WBC 14.8 ×10³/µL, above reference range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "2193b2fb-25d4-52e7-a407-d2bdcb953682"
+      }
+     ]
+    }
+   ],
+   "overview": "68‑year‑old female admitted for CAP; imaging confirms right lower lobe pneumonia; leukocytosis noted.",
+   "self_reported_confidence": "medium",
+   "patient_key": "94b18bc8-d362-53fe-9308-0096e238a9d0",
+   "word_count": 56,
+   "confidence": {
+    "level": "medium",
+    "score": 0.65,
+    "rationale": "Model reported medium confidence."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "6f37ed39abcf6cf5a0e8d8b7a7381d184c8c51a4c626097459a7427c9391e6e9",
+   "generated_at": "2026-11-22T23:09:15.304127Z",
+   "cached": false,
+   "cache_key": "764f2d073d8e62abad53ac55222896658b73b4e6c71d8e3d2054a34cb920dcde",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 6,
+   "grounded_ids": 6,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Admission for acute pulmonary embolism presenting with dyspnea and pleuritic chest pain.",
+   "key_diagnoses": [
+    {
+     "name": "Acute pulmonary embolism",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "5ec5feb7-e1a8-5ac6-9993-1dd1689b776c"
+      },
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "523e5926-d74e-51c7-9c6e-8b3edb2aceaa"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "5ec5feb7-e1a8-5ac6-9993-1dd1689b776c"
+     },
+     "kind": "note",
+     "date": "2025-03-29",
+     "finding": "Discharge summary: apixaban initiated after PE admission, oxygen weaned."
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "523e5926-d74e-51c7-9c6e-8b3edb2aceaa"
+     },
+     "kind": "imaging",
+     "date": "2025-01-08",
+     "finding": "CT angiography: acute PE with mild right heart strain, RV/LV ratio 1.1."
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "10067d75-a7e6-5547-90c1-7784cdf7a02e"
+     },
+     "kind": "lab",
+     "date": "2025-01-08",
+     "finding": "Troponin I 0.112 H."
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "935f8673-471f-58b2-9f2e-85272dc76617"
+     },
+     "kind": "note",
+     "date": "2025-01-08",
+     "finding": "ED note: SOB, pleuritic pain, HR 115, SpO2 89%, troponin elevated."
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Troponin I 0.112 ng/mL, high",
+     "severity": "high",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "00d7a1a4-32e2-5817-9666-b5b9c058f50f"
+      }
+     ]
+    }
+   ],
+   "overview": "67‑year‑old female with acute pulmonary embolism; mild right heart strain; troponin elevation; transitioned from heparin to apixaban.",
+   "self_reported_confidence": "high",
+   "patient_key": "9825056f-2b2b-5677-a192-9b1c17cc003b",
+   "word_count": 73,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "e47b4d99b507bfda70fc016833530c5c4184e6b7ac1829b3e632c7a7d09b8cdc",
+   "generated_at": "2026-11-22T23:09:26.699971Z",
+   "cached": false,
+   "cache_key": "399394c0393de240c11bbe9fac2bca2e17ffb871b4bb871e0c74bfd9268c1d54",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 7,
+   "grounded_ids": 7,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Acute exacerbation of COPD presenting with increased dyspnea and sputum.",
+   "key_diagnoses": [
+    {
+     "name": "COPD",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "3c4e30c8-657f-52fe-a346-b402d9e1fc03"
+      }
+     ]
+    },
+    {
+     "name": "Acute exacerbation of COPD",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "3c4e30c8-657f-52fe-a346-b402d9e1fc03"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "c927309d-8619-531b-915d-683aa0208ed6"
+     },
+     "kind": "note",
+     "date": "2025-07-29",
+     "finding": "Discharge plan: prednisone taper, pulmonary rehab referral."
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "c687f5a2-584d-5750-9ae4-505bf2c8db24"
+     },
+     "kind": "imaging",
+     "date": "2025-06-05",
+     "finding": "Chest X-ray: hyperinflated lungs, flattened diaphragms, no infiltrate."
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "f9f68af8-c196-5163-b11d-c14ddfc4e1bc"
+     },
+     "kind": "lab",
+     "date": "2025-06-02",
+     "finding": "WBC 12.9 H, Hb 15.2 N, Platelets 294 N."
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Elevated WBC 12.9 10³/µL (moderate leukocytosis)",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "52d679bf-31cd-5c97-8635-71b868f378e8"
+      }
+     ]
+    }
+   ],
+   "overview": "40‑year‑old patient with known COPD, recent acute exacerbation treated with albuterol/ipratropium, prednisone 40 mg, and doxycycline; imaging shows emphysema; labs reveal mild leukocytosis; discharged with taper and rehab.",
+   "self_reported_confidence": "medium",
+   "patient_key": "982709e7-92d1-59e2-8e57-87fcb1b6bd2b",
+   "word_count": 73,
+   "confidence": {
+    "level": "medium",
+    "score": 0.65,
+    "rationale": "Model reported medium confidence."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "1c160826341453e96975818251b74c7efa4f20e7587834c3c037f3c88121f71c",
+   "generated_at": "2026-11-22T23:09:36.739589Z",
+   "cached": false,
+   "cache_key": "f07449359e099f3ab0c349140d9da1b99923ddc79d0247d3a1b1cbbf7776b624",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 6,
+   "grounded_ids": 6,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Sepsis from a urinary source presenting with fever, confusion, and dysuria.",
+   "key_diagnoses": [
+    {
+     "name": "Urosepsis",
+     "status": "suspected",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "df92f8bb-8e7f-5eb0-8526-30e9a5feeaad"
+      }
+     ]
+    },
+    {
+     "name": "Escherichia coli urinary infection",
+     "status": "suspected",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "902c4adc-ddbf-5d25-948a-82b609f64436"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "19485eee-4ee7-511f-8672-c8b83d9d93bf"
+     },
+     "kind": "lab",
+     "date": "2024-04-26",
+     "finding": "WBC 21.6 H; Platelets 276 N; Hemoglobin 13.8 N"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "259e9c93-1fa4-52c1-b3fb-e183d7719012"
+     },
+     "kind": "lab",
+     "date": "2024-02-02",
+     "finding": "Lactate 5.1 HH"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "df92f8bb-8e7f-5eb0-8526-30e9a5feeaad"
+     },
+     "kind": "note",
+     "date": "2024-02-01",
+     "finding": "ED Provider Note: assessment of sepsis, lactate 5.1, WBC 21.6"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "902c4adc-ddbf-5d25-948a-82b609f64436"
+     },
+     "kind": "note",
+     "date": null,
+     "finding": "Discharge Summary: treated urosepsis, E. coli cultured, lactate normalized, oral cefpodoxime prescribed"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Lactate 5.1 mmol/L, critical high",
+     "severity": "high",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "4ae17415-2c23-5420-88ab-022e4654972e"
+      }
+     ]
+    },
+    {
+     "description": "WBC 21.6 x10^3/uL, above reference range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "9ab60258-f575-5908-82d4-8a247909d74f"
+      }
+     ]
+    }
+   ],
+   "overview": "26-year-old male with urosepsis (E. coli), marked leukocytosis and hyperlactatemia; received fluids and piperacillin‑tazobactam, transitioned to oral cefpodoxime on discharge.",
+   "self_reported_confidence": "high",
+   "patient_key": "a6f98525-e349-5912-9b5a-f1810b759b5a",
+   "word_count": 81,
+   "confidence": {
+    "level": "high",
+    "score": 0.75,
+    "rationale": "1 guardrail intervention."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "91a0976b9bac82fb29b0f50c084c279c6258fcadce0f0fe2ce55b57e6564793e",
+   "generated_at": "2026-11-22T23:09:49.753591Z",
+   "cached": false,
+   "cache_key": "de3030c105bd4911f1765e2909846581bdab024d1dfad0d9b4a27b524d45c9eb",
+   "guardrail_notes": [
+    "unsupported_diagnosis (2)"
+   ]
+  },
+  "trace": {
+   "cited_ids": 8,
+   "grounded_ids": 8,
+   "interventions": [
+    "unsupported_diagnosis (2)"
+   ],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Acute exacerbation of COPD presenting with dyspnea and increased sputum.",
+   "key_diagnoses": [
+    {
+     "name": "Acute exacerbation of COPD",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "727c325c-296e-5145-a028-e45064b958bd"
+      }
+     ]
+    },
+    {
+     "name": "Emphysematous changes",
+     "status": "historical",
+     "evidence": [
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "b95311f7-25c8-5b11-bada-f38babcc6487"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "6801a7f9-1124-53b0-ae54-820f708bf5ae"
+     },
+     "kind": "note",
+     "date": "2024-08-23",
+     "finding": "Discharge summary: prednisone taper, pulmonary rehab referral, improved with bronchodilators."
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "dd0919a4-42cc-5d34-82b2-a697cc012eb4"
+     },
+     "kind": "lab",
+     "date": "2024-08-22",
+     "finding": "BMP normal: creatinine 0.79, electrolytes within limits."
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "b95311f7-25c8-5b11-bada-f38babcc6487"
+     },
+     "kind": "imaging",
+     "date": "2024-07-05",
+     "finding": "Chest X-ray: emphysematous changes, hyperinflated lungs, no infiltrate."
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "df1d3ec1-6c39-59c3-a73a-91567cff9a89"
+     },
+     "kind": "lab",
+     "date": "2024-07-05",
+     "finding": "WBC 12.5 H; platelets 273; hemoglobin 13.9."
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "WBC 12.5 x10^3/uL, mildly elevated",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "5f07abd1-d021-5c4f-9081-d6deb0fa6341"
+      }
+     ]
+    }
+   ],
+   "overview": "37-year-old female with known COPD presented with acute exacerbation; treated with bronchodilators, steroids, antibiotics; imaging shows emphysema, labs reveal transient leukocytosis; discharged improving.",
+   "self_reported_confidence": "medium",
+   "patient_key": "a82d7ff7-4ee9-5572-ad0f-55e73efd5c10",
+   "word_count": 76,
+   "confidence": {
+    "level": "medium",
+    "score": 0.65,
+    "rationale": "Model reported medium confidence."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "9e85d70368b4108aed9e6bd7f5a0da30f5c12f33e73e8b9feeee34e6d4cb024c",
+   "generated_at": "2026-11-22T23:10:13.605293Z",
+   "cached": false,
+   "cache_key": "09c851e435bf303a6c6f2fe4423d7d700437785ed84a230cac9ae0268ad10377",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 7,
+   "grounded_ids": 7,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Acute ischemic stroke presenting with right arm weakness and expressive aphasia.",
+   "key_diagnoses": [
+    {
+     "name": "Acute ischemic stroke left MCA territory",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "1abcf5c8-285d-55c5-b7f0-a6962ad42e87"
+      },
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "61f72608-083e-5f68-aa1b-5e76f49447a9"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "060c3943-e5b3-5a4c-ab4d-7b7d76a15be2"
+     },
+     "kind": "lab",
+     "date": "2025-08-12",
+     "finding": "Troponin I <0.01 N"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "61f72608-083e-5f68-aa1b-5e76f49447a9"
+     },
+     "kind": "imaging",
+     "date": "2025-05-23",
+     "finding": "Acute left MCA infarct, diffusion restriction, no hemorrhage"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "26b04539-760c-5fe8-83f2-f1d1438e48ef"
+     },
+     "kind": "lab",
+     "date": "2025-05-19",
+     "finding": "LDL 168 H, HDL 52 N, Triglycerides 88 N, total cholesterol 179 N"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "1abcf5c8-285d-55c5-b7f0-a6962ad42e87"
+     },
+     "kind": "note",
+     "date": "2025-08-16",
+     "finding": "Neurology consult: stroke assessment, aspirin, high‑intensity atorvastatin"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "LDL cholesterol 168 mg/dL, above reference range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "9b526026-4b35-5999-a904-d5f1b69eb178"
+      }
+     ]
+    }
+   ],
+   "overview": "34‑year‑old female with acute left MCA ischemic stroke; labs show elevated LDL; started on aspirin and high‑intensity atorvastatin.",
+   "self_reported_confidence": "high",
+   "patient_key": "b09c3338-b85f-574e-bb8e-96122179329a",
+   "word_count": 74,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "45a5e0d8054450b5633f9ec2314e91e85b67b1e005602f1e22af95fe4055f6a5",
+   "generated_at": "2026-11-22T23:10:36.946614Z",
+   "cached": false,
+   "cache_key": "98a6bc710aeddfd357e35857d200086cd128e79e23613b33a1fabedde1f163c6",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 7,
+   "grounded_ids": 7,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Acute pulmonary embolism presenting with dyspnea and pleuritic chest pain.",
+   "key_diagnoses": [
+    {
+     "name": "Acute pulmonary embolism",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "ea43c110-e27a-529e-bbb0-b439f26cc6c3"
+      },
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "3448c97c-72fc-527e-bd3b-41c00c4209e3"
+      }
+     ]
+    },
+    {
+     "name": "Mild right heart strain",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "3448c97c-72fc-527e-bd3b-41c00c4209e3"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "2a48dd51-08f2-5650-9f3f-c08c42d99c9a"
+     },
+     "kind": "lab",
+     "date": "2024-06-10",
+     "finding": "Hb 12.2 N, WBC 9.2 N, Platelets 200 N"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "3448c97c-72fc-527e-bd3b-41c00c4209e3"
+     },
+     "kind": "imaging",
+     "date": "2024-03-08",
+     "finding": "CT chest: acute PE with mild RV strain, RV/LV ratio 1.1"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "7ba11f73-e8f0-588e-85b5-5f1a5fa3a068"
+     },
+     "kind": "lab",
+     "date": "2024-03-08",
+     "finding": "Troponin I 0.2 H"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Troponin I 0.2 ng/mL, high",
+     "severity": "high",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "bf6d607d-3bb5-583f-9a66-558f1fb6b2a4"
+      }
+     ]
+    }
+   ],
+   "overview": "26-year-old female admitted for acute pulmonary embolism after long flight; treated with heparin then transitioned to apixaban; mild right heart strain noted; troponin elevated.",
+   "self_reported_confidence": "high",
+   "patient_key": "b4a49e4e-479f-5466-b73a-8e672443f132",
+   "word_count": 70,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "801e8b21e67f14f686cc82e654a3df40971d12d8155ed54d01d9117d9dbf175f",
+   "generated_at": "2026-11-22T23:11:00.398287Z",
+   "cached": false,
+   "cache_key": "cac4ad4c8cefa5db5f66107ef662fbc4c977ff9950b4d7421c0211be6a7682a9",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 7,
+   "grounded_ids": 7,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Evaluation of left breast core needle biopsy revealing invasive ductal carcinoma.",
+   "key_diagnoses": [
+    {
+     "name": "Invasive ductal carcinoma, Nottingham grade 2, ER positive, PR positive, HER2…",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "efd654ea-87e2-5ef0-b450-fb7fc72a0a22"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "efd654ea-87e2-5ef0-b450-fb7fc72a0a22"
+     },
+     "kind": "pathology",
+     "date": "2024-06-19",
+     "finding": "Invasive ductal carcinoma, grade 2, ER/PR+, HER2-"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "80c7607d-2588-5cd1-850f-782752d43a15"
+     },
+     "kind": "lab",
+     "date": "2024-03-11",
+     "finding": "Hemoglobin 15.7 N, WBC 9.5 N, Platelets 228 N"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "538061ae-50c7-5c81-ba8d-27d9b7f5b836"
+     },
+     "kind": "imaging",
+     "date": "2024-03-10",
+     "finding": "BI-RADS 5 left breast mass 1.8 cm, spiculated, no axillary adenopathy"
+    }
+   ],
+   "flagged_anomalies": [],
+   "overview": "62‑year‑old male with newly diagnosed left breast invasive ductal carcinoma, grade 2, hormone receptor positive.",
+   "self_reported_confidence": "high",
+   "patient_key": "bfaf0201-5ac7-5729-a160-938968e07d21",
+   "word_count": 64,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "b5e5286671ea3f6a8b94705e44a576f80d8e75fe682c8d702308b72594228d61",
+   "generated_at": "2026-11-22T23:11:09.749102Z",
+   "cached": false,
+   "cache_key": "73a2e1c5c33f0db81c2408abe63d3ce9fdb38bc3db13ab73db2ca7f1260f8429",
+   "guardrail_notes": [
+    "field_limits_applied"
+   ]
+  },
+  "trace": {
+   "cited_ids": 4,
+   "grounded_ids": 4,
+   "interventions": [
+    "field_limits_applied"
+   ],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Admitted for acute pulmonary embolism.",
+   "key_diagnoses": [
+    {
+     "name": "Acute pulmonary embolism",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "6e798c8c-ed1f-545a-a602-1699ac63ce28"
+      },
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "d8f61e37-1757-55bd-8a7a-d3d98b53aaf6"
+      }
+     ]
+    },
+    {
+     "name": "Mild right heart strain",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "d8f61e37-1757-55bd-8a7a-d3d98b53aaf6"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "6e798c8c-ed1f-545a-a602-1699ac63ce28"
+     },
+     "kind": "note",
+     "date": "2025-04-05",
+     "finding": "Discharge summary: apixaban initiated after acute PE; oxygen weaned."
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "5b4507b7-b8c1-5b84-ae5f-292f1c54a7bd"
+     },
+     "kind": "lab",
+     "date": "2025-01-12",
+     "finding": "Troponin I 0.199 H"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "d8f61e37-1757-55bd-8a7a-d3d98b53aaf6"
+     },
+     "kind": "imaging",
+     "date": "2025-01-11",
+     "finding": "CT angiography: acute PE with mild right heart strain, RV/LV ratio 1.1"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Troponin I 0.199 ng/mL, elevated above reference",
+     "severity": "high",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "e0d0db36-082c-5c1e-860f-c4831959b95b"
+      }
+     ]
+    }
+   ],
+   "overview": "87-year-old female with acute pulmonary embolism and mild right heart strain; treated with heparin then apixaban, discharged on oral anticoagulation.",
+   "self_reported_confidence": "high",
+   "patient_key": "ca8aeac9-1378-5219-b078-bb7e2e1c88fa",
+   "word_count": 64,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "c8504cb6b6ee92b8a053b9f7349165d24e9179d8e7558a2b577ca7a6047a4e0c",
+   "generated_at": "2026-11-22T23:11:19.140680Z",
+   "cached": false,
+   "cache_key": "e943f035712f129fb17ba5b870bafca890e5e2a5ed2f99364d90bbabc6551d9f",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 7,
+   "grounded_ids": 7,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Acute ischemic stroke presenting with right arm weakness and expressive aphasia.",
+   "key_diagnoses": [
+    {
+     "name": "Acute ischemic stroke, left MCA territory",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "1de4934d-4c14-5847-afda-f14478fe0d01"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "cff44296-c066-5726-b6b7-8dffea928232"
+     },
+     "kind": "imaging",
+     "date": "2025-03-08",
+     "finding": "MRI: acute left MCA territory infarct, diffusion restriction, no hemorrhage"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "d80fc861-4596-5993-a41d-5e585a8025db"
+     },
+     "kind": "lab",
+     "date": "2025-03-07",
+     "finding": "LDL 164 H; HDL 49 N; total cholesterol 172 N; triglycerides 127 N"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "5c608272-9ae7-5c8f-8096-8227bb692abb"
+     },
+     "kind": "lab",
+     "date": "2025-03-08",
+     "finding": "Troponin I <0.01 N"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "LDL cholesterol 164 mg/dL, elevated",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "3add42e1-73c6-5d9c-b8c6-b7dce111e8f1"
+      }
+     ]
+    }
+   ],
+   "overview": "46-year-old female with acute left MCA stroke; initiated aspirin and high‑intensity atorvastatin; LDL elevated.",
+   "self_reported_confidence": "high",
+   "patient_key": "ca911f85-6235-501c-911a-d36f7bc781fb",
+   "word_count": 63,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "2c0248e462d3f41e8d0418e33c13d1e85358aec1e0d41322a0f0d891d580ab4b",
+   "generated_at": "2026-11-22T23:11:29.885076Z",
+   "cached": false,
+   "cache_key": "6acb967a0f6f581b49717ff92787df6bcbb1d876cd101cfe880e47d17496d28e",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 5,
+   "grounded_ids": 5,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Admission for dyspnea, orthopnea and peripheral edema secondary to acute on chronic systolic heart failure.",
+   "key_diagnoses": [
+    {
+     "name": "Acute on chronic systolic heart failure",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "d9a4fb65-d044-5aaa-b173-a437f6bac245"
+      },
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "1fd1a3ad-ee92-5cd7-a5ca-5e90e138fa28"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "1fd1a3ad-ee92-5cd7-a5ca-5e90e138fa28"
+     },
+     "kind": "imaging",
+     "date": "2024-10-06",
+     "finding": "Echo: LVEF 35%, dilated LV, global hypokinesis, moderate MR"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "40dba479-5bb3-5a46-994f-2ea9e2b329d9"
+     },
+     "kind": "imaging",
+     "date": "2024-10-05",
+     "finding": "CXR: cardiomegaly, bilateral interstitial opacities, small pleural effusions (pulmonary edema)"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "e78effa8-971c-5824-a906-3529a965d470"
+     },
+     "kind": "lab",
+     "date": "2024-10-03",
+     "finding": "BNP 1416 pg/mL (high)"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "d9a4fb65-d044-5aaa-b173-a437f6bac245"
+     },
+     "kind": "note",
+     "date": "2024-10-06",
+     "finding": "Discharge summary: diuresed 4 kg, admission Na 129 mmol/L"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "BNP 1416 pg/mL markedly elevated",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "c55e65e0-8a4c-5a96-8cbd-5af99526a40e"
+      }
+     ]
+    }
+   ],
+   "overview": "80-year-old patient with chronic systolic dysfunction now decompensated, presenting with volume overload, high BNP, reduced EF, pulmonary edema; treated with IV furosemide and discharged on oral diuretic and carvedilol.",
+   "self_reported_confidence": "high",
+   "patient_key": "cb8130da-7e67-586d-bf2e-8d04d2f8fe77",
+   "word_count": 87,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "d632a5dcb3ec9e784fd176eedc2735e7f2ee4eeb0778acf9036b74d8c944acab",
+   "generated_at": "2026-11-22T23:15:51.551994Z",
+   "cached": false,
+   "cache_key": "2dfdce6ffbcb159a7d93775a598fbca101f77e53874d6635b603876894efa86c",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 7,
+   "grounded_ids": 7,
+   "interventions": [],
+   "attempts": 1,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Type 2 diabetes mellitus with worsening glycemic control.",
+   "key_diagnoses": [
+    {
+     "name": "Type 2 diabetes mellitus",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "7c27f0f3-424a-56bc-8a86-1deeae626ce3"
+      }
+     ]
+    },
+    {
+     "name": "Mild nonproliferative diabetic retinopathy",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "9f81c98c-00e3-5532-a68f-bda1d4805384"
+      }
+     ]
+    },
+    {
+     "name": "Hyperlipidemia",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "68fa394a-6c54-5423-a73c-9bbedee8bc7e"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "7d232b05-c6b5-5945-9a6b-5f628dad2c45"
+     },
+     "kind": "lab",
+     "date": "2025-08-12",
+     "finding": "HbA1c 8.3% (high)"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "7c27f0f3-424a-56bc-8a86-1deeae626ce3"
+     },
+     "kind": "note",
+     "date": "2025-08-11",
+     "finding": "Endocrinology follow-up: worsening glycemic control, glucose 231 mg/dL"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "9f81c98c-00e3-5532-a68f-bda1d4805384"
+     },
+     "kind": "note",
+     "date": "2025-08-11",
+     "finding": "Ophthalmology consult: mild nonproliferative diabetic retinopathy"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "9585bd64-06b2-5f1a-8cf9-85403fa8601e"
+     },
+     "kind": "lab",
+     "date": "2025-04-26",
+     "finding": "Glucose 231 mg/dL (high), electrolytes normal"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "19040655-4d1c-5762-a0d7-14b664e37697"
+     },
+     "kind": "lab",
+     "date": "2025-04-26",
+     "finding": "HbA1c 7.4% (high)"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Hemoglobin A1c 8.3% above target",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "dd96bb2f-9f1c-5b32-859d-e55165b3abd6"
+      }
+     ]
+    },
+    {
+     "description": "Glucose 231 mg/dL elevated",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "cbb0331f-dc7b-5b78-a131-ba50a33d5233"
+      }
+     ]
+    },
+    {
+     "description": "Hemoglobin A1c 7.4% above target",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "530bea1d-b7aa-58e2-b655-37a5e3f2373d"
+      }
+     ]
+    }
+   ],
+   "overview": "62‑year‑old female with type 2 diabetes, recent rise in HbA1c to 8.3%, fasting glucose 231 mg/dL, mild nonproliferative diabetic retinopathy, and hyperlipidemia; treatment adjustments include empagliflozin and atorvastatin.",
+   "self_reported_confidence": "medium",
+   "patient_key": "d79b4f3f-30f6-536b-b02d-aafc4b9c0c94",
+   "word_count": 85,
+   "confidence": {
+    "level": "medium",
+    "score": 0.65,
+    "rationale": "Model reported medium confidence."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "596b9dcef50db02c282a5cca64c98a115304f45d800435ff1327f1ce1aaeafc2",
+   "generated_at": "2026-11-22T23:12:05.421428Z",
+   "cached": false,
+   "cache_key": "854109cf7f3d839519ff54fa51f3d0d3ed76c1dafc2b05b482be46761493ccd3",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 11,
+   "grounded_ids": 11,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Community-acquired pneumonia presenting with fever, productive cough, and pleuritic chest pain.",
+   "key_diagnoses": [
+    {
+     "name": "Community-acquired pneumonia",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "a71ab8d1-4b72-5689-8ee7-fe267a3d4dbc"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "50a56a46-c6c2-5fbb-807b-32336e371308"
+     },
+     "kind": "imaging",
+     "date": "2024-11-25",
+     "finding": "Chest X-ray: focal right lower lobe consolidation with air bronchograms, consistent with pneumonia."
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "bd6efa78-2d60-520b-bb87-1257e1234f53"
+     },
+     "kind": "lab",
+     "date": "2024-11-21",
+     "finding": "WBC 17.1 x10^3/uL (high)."
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "WBC 17.1 x10^3/uL, markedly elevated",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "642621d0-ab5e-577a-a7aa-6160e5bcf8d0"
+      }
+     ]
+    }
+   ],
+   "overview": "22-year-old female admitted for community-acquired pneumonia; imaging confirms right lower lobe infiltrate; labs show leukocytosis; started on ceftriaxone and azithromycin.",
+   "self_reported_confidence": "high",
+   "patient_key": "dae3655d-23fb-5567-8ed0-ec11f2c68f74",
+   "word_count": 55,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "4e8b791df0fdb99bb3933fc9155dbadda245c550f67d0eb102671b6308c9716b",
+   "generated_at": "2026-11-22T23:12:29.141406Z",
+   "cached": false,
+   "cache_key": "1baaf3deb064ffa54a7403a3699878b5b1f0694b0367116085bf725d122793f6",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 4,
+   "grounded_ids": 4,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "New diagnosis of left breast invasive ductal carcinoma.",
+   "key_diagnoses": [
+    {
+     "name": "Invasive ductal carcinoma of left breast",
+     "status": "suspected",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "2cd0d1cb-9e78-5478-881e-73872652cb4d"
+      },
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "2ed9cd5b-1a91-5e63-aa4b-cb04e215e78f"
+      }
+     ]
+    },
+    {
+     "name": "Hormone receptor positive (ER+, PR+), HER2 negative tumor",
+     "status": "suspected",
+     "evidence": [
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "2ed9cd5b-1a91-5e63-aa4b-cb04e215e78f"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "2cd0d1cb-9e78-5478-881e-73872652cb4d"
+     },
+     "kind": "note",
+     "date": "2024-04-16",
+     "finding": "Consult: 1.7 cm HR+ tumor, plan lumpectomy with sentinel node biopsy"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "fc1c236b-00f8-5fee-80a0-68cc54ddbbf2"
+     },
+     "kind": "imaging",
+     "date": "2024-01-29",
+     "finding": "Mammogram/US: BI-RADS 5 spiculated 1.7 cm left breast mass, no axillary adenopathy"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "2ed9cd5b-1a91-5e63-aa4b-cb04e215e78f"
+     },
+     "kind": "pathology",
+     "date": "2024-01-29",
+     "finding": "Core biopsy: invasive ductal carcinoma, grade 2, ER+/PR+, HER2-"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "b26b37e1-d0bf-5b77-900c-ffa1fb9acdb0"
+     },
+     "kind": "lab",
+     "date": "2024-01-30",
+     "finding": "CBC normal: platelets 233, WBC 8.6, Hgb 14.6"
+    }
+   ],
+   "flagged_anomalies": [],
+   "overview": "79-year-old male with newly identified left breast invasive ductal carcinoma, 1.7 cm, ER/PR positive, HER2 negative; imaging confirms BI-RADS 5 lesion; pathology grade 2; plan lumpectomy with sentinel node biopsy.",
+   "self_reported_confidence": "high",
+   "patient_key": "dede8ad9-316e-54d2-bb03-ce186c240349",
+   "word_count": 92,
+   "confidence": {
+    "level": "high",
+    "score": 0.75,
+    "rationale": "1 guardrail intervention."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "a8bd2673f6c6a766fe2e9f1f1c563d367adc1c47db81d014751daac284b4c937",
+   "generated_at": "2026-11-22T23:12:49.455832Z",
+   "cached": false,
+   "cache_key": "a56a3e089f24c17c5943bbcaceec6092ab4cd11799cc6a7772fc88778dbf2f46",
+   "guardrail_notes": [
+    "unsupported_diagnosis (2)"
+   ]
+  },
+  "trace": {
+   "cited_ids": 7,
+   "grounded_ids": 7,
+   "interventions": [
+    "unsupported_diagnosis (2)"
+   ],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Nephrology consult for rising creatinine and hyperkalemia.",
+   "key_diagnoses": [
+    {
+     "name": "Chronic kidney disease stage 3b",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "184f0f19-c13d-5aa9-9df3-f19240db4a06"
+      }
+     ]
+    },
+    {
+     "name": "Hyperkalemia",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "184f0f19-c13d-5aa9-9df3-f19240db4a06"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "383ae4a1-52f0-5705-af2f-c95b79fc8991"
+     },
+     "kind": "imaging",
+     "date": "2024-12-09",
+     "finding": "Renal US: small kidneys, increased echogenicity, no hydronephrosis"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "4ac81a86-38af-5796-981d-074589fbbc53"
+     },
+     "kind": "lab",
+     "date": "2024-12-09",
+     "finding": "BUN 43 H, creatinine 2.39 H, potassium 5.9 H"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "5e97cf08-b73a-5f93-a659-ef61391f3d5b"
+     },
+     "kind": "lab",
+     "date": "2024-12-10",
+     "finding": "WBC 5.6 N, platelets 194 N, hemoglobin 13.8 N"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Urea nitrogen 43 mg/dL, moderately high",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "1a49ded0-6631-58f0-9ccc-57b31a7302e2"
+      }
+     ]
+    },
+    {
+     "description": "Creatinine 2.39 mg/dL, moderately high",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "47532213-2713-514d-988d-0d5cba256b0f"
+      }
+     ]
+    },
+    {
+     "description": "Potassium 5.9 mmol/L, moderately high",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "d14df57c-86d8-5afc-9344-9fbb4fe58a1f"
+      }
+     ]
+    }
+   ],
+   "overview": "53-year-old male with CKD stage 3b, elevated BUN/creatinine and hyperkalemia; lisinopril stopped, potassium binder started.",
+   "self_reported_confidence": "medium",
+   "patient_key": "e54f8e79-2e60-5ea8-8f2e-456967aec5c6",
+   "word_count": 70,
+   "confidence": {
+    "level": "medium",
+    "score": 0.65,
+    "rationale": "Model reported medium confidence."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "42f4f77300edb71cb81f5e08ea5fd09dbfdd312c9bbef1f3e1fa4ba42f3e5194",
+   "generated_at": "2026-11-22T23:13:02.558832Z",
+   "cached": false,
+   "cache_key": "e1117b6e922686c3978fb85ea8441498a18e5610d2478dc897c016ca1e29ef3f",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 8,
+   "grounded_ids": 8,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Evaluation of a left breast mass with imaging suggesting malignancy.",
+   "key_diagnoses": [
+    {
+     "name": "Invasive ductal carcinoma, Nottingham grade 2, ER+/PR+, HER2-",
+     "status": "suspected",
+     "evidence": [
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "78554920-1f46-50e1-80ad-8c2e8ad8833c"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "b5fddaa4-878c-594a-a220-92db970cb6b2"
+     },
+     "kind": "lab",
+     "date": "2024-06-25",
+     "finding": "Platelets 231 N; WBC 5.2 N; Hemoglobin 14 N"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "e3b33e4b-63bd-5cd2-879f-a5bd168673ab"
+     },
+     "kind": "imaging",
+     "date": "2024-06-24",
+     "finding": "BI-RADS 5; irregular spiculated 2.6 cm mass left breast 2 o’clock; no axillary adenopathy"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "78554920-1f46-50e1-80ad-8c2e8ad8833c"
+     },
+     "kind": "pathology",
+     "date": "2024-06-24",
+     "finding": "Invasive ductal carcinoma, grade 2, ER+/PR+, HER2-"
+    }
+   ],
+   "flagged_anomalies": [],
+   "overview": "38‑year‑old male with a left breast mass; imaging BI‑RADS 5 and pathology confirm invasive ductal carcinoma.",
+   "self_reported_confidence": "high",
+   "patient_key": "e817ac40-aac0-50fc-8c89-11c4f44bd721",
+   "word_count": 64,
+   "confidence": {
+    "level": "high",
+    "score": 0.75,
+    "rationale": "1 guardrail intervention."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "5a4e5eb969ec208708b1a64aecce5849a728720d832e42abcd851e2012c8be91",
+   "generated_at": "2026-11-22T23:13:11.289795Z",
+   "cached": false,
+   "cache_key": "559e7a451c5506b1bed7d8e96b4e9c754882d1a730600d6621bfdbaf1aa347df",
+   "guardrail_notes": [
+    "unsupported_diagnosis (1)"
+   ]
+  },
+  "trace": {
+   "cited_ids": 4,
+   "grounded_ids": 4,
+   "interventions": [
+    "unsupported_diagnosis (1)"
+   ],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Nephrology consult for rising creatinine and hyperkalemia.",
+   "key_diagnoses": [
+    {
+     "name": "Chronic kidney disease stage 3b",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "469fc6bc-ccd6-5aff-9bd9-53b6ea43a5e4"
+      }
+     ]
+    },
+    {
+     "name": "Hyperkalemia",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "469fc6bc-ccd6-5aff-9bd9-53b6ea43a5e4"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "f832c0b1-3ab0-5c0a-b8eb-3c5f7115acb8"
+     },
+     "kind": "lab",
+     "date": "2024-04-05",
+     "finding": "K 6.3 HH; Creatinine 2.58 H; BUN 40 H"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "f7c30445-0fa8-52c8-a8de-d3801fe30499"
+     },
+     "kind": "imaging",
+     "date": "2024-04-04",
+     "finding": "Renal US: small kidneys, increased cortical echogenicity, no hydronephrosis"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "469fc6bc-ccd6-5aff-9bd9-53b6ea43a5e4"
+     },
+     "kind": "note",
+     "date": "2024-04-04",
+     "finding": "Nephrology consult: CKD 3b, hyperkalemia, plan to stop lisinopril"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Potassium 6.3 mmol/L, critically high",
+     "severity": "high",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "396952a7-4dd9-5a39-ab03-3fb9e19d1d57"
+      }
+     ]
+    },
+    {
+     "description": "Creatinine 2.58 mg/dL, above reference",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "7baf3246-ceab-58e4-8155-03d84480de41"
+      }
+     ]
+    },
+    {
+     "description": "Urea nitrogen 40 mg/dL, above reference",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "b9e792a5-47d0-5e62-aeb5-ce91d2a78fa0"
+      }
+     ]
+    }
+   ],
+   "overview": "31-year-old male with CKD stage 3b and hyperkalemia; recent labs show elevated K, Cr, BUN; nephrology consult initiated, lisinopril stopped.",
+   "self_reported_confidence": "high",
+   "patient_key": "eae22d65-78d5-56e5-b355-f4d6c4780d96",
+   "word_count": 76,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "37430ac639e0fa2a9a65208535e3612eeeb57f72c217c1de83d09d6315f488a7",
+   "generated_at": "2026-11-22T23:13:22.226735Z",
+   "cached": false,
+   "cache_key": "86c140a3133d71221420df5ecd4b8edf8c56dd373e309f27c2073db98aec8856",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 8,
+   "grounded_ids": 8,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Chronic kidney disease stage 3b with hyperkalemia.",
+   "key_diagnoses": [
+    {
+     "name": "Chronic kidney disease stage 3b",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "b655bbe7-00a4-524e-b990-4340ba6b1c72"
+      },
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "669f2677-1b0c-5e5d-8a9c-d7bd53b6b9e8"
+      }
+     ]
+    },
+    {
+     "name": "Hyperkalemia",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "b655bbe7-00a4-524e-b990-4340ba6b1c72"
+      },
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "ef85d2a6-9b22-54a4-a981-638a54e68278"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "ef85d2a6-9b22-54a4-a981-638a54e68278"
+     },
+     "kind": "lab",
+     "date": "2024-04-26",
+     "finding": "Urea nitrogen 52 H, potassium 6.1 HH, creatinine 2.39 H"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "669f2677-1b0c-5e5d-8a9c-d7bd53b6b9e8"
+     },
+     "kind": "imaging",
+     "date": "2024-04-25",
+     "finding": "Renal US: small kidneys, increased echogenicity, no hydronephrosis"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "7d986849-9788-5f38-81bb-9567385a14dd"
+     },
+     "kind": "lab",
+     "date": "2024-04-26",
+     "finding": "Platelets 217 N, WBC 6.8 N, Hemoglobin 13.1 N"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "b655bbe7-00a4-524e-b990-4340ba6b1c72"
+     },
+     "kind": "note",
+     "date": "2024-04-25",
+     "finding": "Nephrology consult: CKD 3b, hyperkalemia, stop lisinopril"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "ec858739-84a5-54d5-815c-f90232fd616f"
+     },
+     "kind": "note",
+     "date": "2024-04-25",
+     "finding": "Primary care: fatigue, decreased appetite, CKD, hypertension"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Potassium 6.1 mmol/L, critically high",
+     "severity": "high",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "bb23b63e-0b36-5ae9-98bd-7c16fcecef10"
+      }
+     ]
+    },
+    {
+     "description": "Urea nitrogen 52 mg/dL, above reference range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "2d698bec-e80a-5b86-9c64-b94aaff6ee81"
+      }
+     ]
+    },
+    {
+     "description": "Creatinine 2.39 mg/dL, above reference range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "d9533420-690f-5176-8aa1-d73e351fafd3"
+      }
+     ]
+    }
+   ],
+   "overview": "62-year-old male with CKD stage 3b, recent rise in creatinine and potassium; hyperkalemia treated, lisinopril stopped, nephrology referral placed.",
+   "self_reported_confidence": "high",
+   "patient_key": "ee58a528-0a42-5db5-aa98-6b87098c2ee7",
+   "word_count": 91,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "0e314d181b5c3e619c5043500b268b9b357d51ef90d01a979178c1fd4287875f",
+   "generated_at": "2026-11-22T23:13:36.651748Z",
+   "cached": false,
+   "cache_key": "6b46f6971194799aba32a391e19bdc669170f005ec5e1ef59d3c3019e816d2cd",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 12,
+   "grounded_ids": 12,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Acute exacerbation of COPD with increased dyspnea and sputum.",
+   "key_diagnoses": [
+    {
+     "name": "COPD",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "0f78f4da-ecb2-56a6-8705-30b09376e7a3"
+      }
+     ]
+    },
+    {
+     "name": "Acute exacerbation of COPD",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "0f78f4da-ecb2-56a6-8705-30b09376e7a3"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "1d81cbbb-1dc6-5258-ae32-cd9a01046ba8"
+     },
+     "kind": "imaging",
+     "date": "2025-03-24",
+     "finding": "Chest X-ray: hyperinflated lungs, flattened diaphragms, emphysematous changes, no infiltrate"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "fb495f9a-fb73-5c77-90db-863b056cf382"
+     },
+     "kind": "lab",
+     "date": "2025-03-22",
+     "finding": "Metabolic panel within normal limits"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "023926ec-a573-571d-a041-300c3b574d76"
+     },
+     "kind": "lab",
+     "date": "2024-12-02",
+     "finding": "WBC 12.6 H, Hb 14.1 N, Platelets 270 N"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Elevated WBC 12.6 ×10³/µL, moderate severity",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "5f8a2da1-8f66-5ebd-80d9-2b4621853a24"
+      }
+     ]
+    }
+   ],
+   "overview": "29‑year‑old female with known COPD presents with acute exacerbation; chest X‑ray shows emphysematous changes, labs notable for mild leukocytosis.",
+   "self_reported_confidence": "medium",
+   "patient_key": "ef3644f8-763a-545a-bcca-10036bc4972a",
+   "word_count": 63,
+   "confidence": {
+    "level": "medium",
+    "score": 0.65,
+    "rationale": "Model reported medium confidence."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "c76b2b13f1f3e82f33997114f5c4d14b2df0013c9bc6f7a0b2fdf3820ae12b84",
+   "generated_at": "2026-11-22T23:14:00.582041Z",
+   "cached": false,
+   "cache_key": "3d966f5b1202b66e77540694accff03115f213402197bf46d7c339d809142b6c",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 6,
+   "grounded_ids": 6,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Fatigue, cold intolerance, and weight gain attributed to primary hypothyroidism.",
+   "key_diagnoses": [
+    {
+     "name": "Primary hypothyroidism",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "e96c91ac-6ff9-5010-b407-d7416b64b9d1"
+      },
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "bf225e6b-8d5b-55f4-ad52-91e6cc9aaa7e"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "e8524903-96fc-51e1-aa4c-5ada2785a406"
+     },
+     "kind": "imaging",
+     "date": "2024-09-12",
+     "finding": "Thyroid US: diffuse heterogeneity, no nodules, consistent with chronic thyroiditis"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "bf225e6b-8d5b-55f4-ad52-91e6cc9aaa7e"
+     },
+     "kind": "lab",
+     "date": "2024-09-12",
+     "finding": "TSH 13.96 H; Free T4 0.71 L"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Elevated TSH 13.96 mIU/L (moderate severity)",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "82734a14-d61d-50d9-aa71-c8dbab701d42"
+      }
+     ]
+    },
+    {
+     "description": "Low free T4 0.71 ng/dL (moderate severity)",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "e037de90-af31-5272-957a-ed732cfed0d2"
+      }
+     ]
+    }
+   ],
+   "overview": "50‑year‑old male with 6‑month history of fatigue, cold intolerance, weight gain; labs show high TSH, low free T4; thyroid US suggests chronic thyroiditis; started levothyroxine 50 µg.",
+   "self_reported_confidence": "high",
+   "patient_key": "efa28ef5-eec3-52df-a9d3-f2feb97dc9b1",
+   "word_count": 69,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "db19e718c7075ba689eec574b06071a10efe54b2891fc62af0ddce809a51af72",
+   "generated_at": "2026-11-22T23:14:09.942898Z",
+   "cached": false,
+   "cache_key": "8ac5e154f111d9d5a9bb1a80fe97d0248fa515e23290563d6ae3c98817b2fc40",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 6,
+   "grounded_ids": 6,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Admission for dyspnea, orthopnea and leg edema due to acute on chronic systolic heart failure.",
+   "key_diagnoses": [
+    {
+     "name": "Acute on chronic systolic heart failure",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "538c275c-fc1b-5927-a27e-7d34882a7335"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "7d483d0a-97dc-5565-9944-5b153a379239"
+     },
+     "kind": "imaging",
+     "date": "2024-11-04",
+     "finding": "Echo: LVEF 30%, dilated LV, global hypokinesis, moderate MR"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "b62da6aa-bc80-58eb-b4d4-cac29a78f953"
+     },
+     "kind": "imaging",
+     "date": "2024-11-01",
+     "finding": "Chest X-ray: cardiomegaly, bilateral interstitial opacities, small pleural effusions (pulmonary edema)"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "3da437fc-89c3-54b1-8f18-beedf68e6ceb"
+     },
+     "kind": "lab",
+     "date": "2024-11-01",
+     "finding": "BNP 1190 pg/mL (high)"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "BNP 1190 pg/mL, markedly elevated",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "6906cc80-7930-5948-9d32-d092b16da1e1"
+      }
+     ]
+    }
+   ],
+   "overview": "66-year-old male with chronic systolic dysfunction now presenting with acute decompensation, elevated BNP, pulmonary edema, and reduced EF.",
+   "self_reported_confidence": "high",
+   "patient_key": "f41bad5e-0865-546e-b428-69cbc0f7bb54",
+   "word_count": 68,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "809c3ba101fb0a4b08f1a510e1e565006222bbe39a38800b16af7ff9fa9a3433",
+   "generated_at": "2026-11-22T23:14:20.063790Z",
+   "cached": false,
+   "cache_key": "1c29c5dd415de4ed755605d9cdd2a19fd2e2335247b233eee3727e78d54a8a38",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 5,
+   "grounded_ids": 5,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Fatigue, cold intolerance, and weight gain concerning primary hypothyroidism.",
+   "key_diagnoses": [
+    {
+     "name": "Primary hypothyroidism",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "4de58895-e3fe-5b87-82ba-2fcccef7f75a"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "22a208cf-b13c-5dc2-8c03-7b18a9b6e946"
+     },
+     "kind": "lab",
+     "date": "2024-02-15",
+     "finding": "Free T4 0.61 L, TSH 13.12 H"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "2121b970-aac2-572d-95a9-af158994d7cb"
+     },
+     "kind": "imaging",
+     "date": "2024-02-15",
+     "finding": "Thyroid US: diffusely heterogeneous gland, no nodules (suggestive of chronic thyroiditis)"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Free T4 0.61 ng/dL below reference range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "461729da-a58d-5280-8e41-9440d06c1a43"
+      }
+     ]
+    },
+    {
+     "description": "TSH 13.12 mIU/L above reference range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "e3519ac2-aee1-5848-8723-3e1742007d38"
+      }
+     ]
+    }
+   ],
+   "overview": "31-year-old male with primary hypothyroidism; labs confirm high TSH and low free T4, ultrasound suggests chronic thyroiditis; started levothyroxine.",
+   "self_reported_confidence": "high",
+   "patient_key": "f4b38133-769f-5c3b-8bdc-9958c66c2960",
+   "word_count": 61,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "3b51491892b7046c4284d9bd90488efd84c3d1a4f11619786dfe900e3f82bdf3",
+   "generated_at": "2026-11-22T23:14:29.557891Z",
+   "cached": false,
+   "cache_key": "ec2f8684c330a3940104f72afc44addc7b97710c92ffb8b78f591068ced5a889",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 5,
+   "grounded_ids": 5,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "40-year-old woman presents for diabetes follow-up with polyuria, fatigue and worsening glycemic control.",
+   "key_diagnoses": [
+    {
+     "name": "Type 2 diabetes mellitus",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "a1a86371-84b7-51d8-88a6-9971548accbb"
+      }
+     ]
+    },
+    {
+     "name": "Mild nonproliferative diabetic retinopathy",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "e2747d11-e486-5006-8abb-4f10c5443382"
+      }
+     ]
+    },
+    {
+     "name": "Hyperlipidemia",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "d0e9e294-9893-5f79-b45a-a1cff62d4b38"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "60a182cb-0a9b-5df7-9e52-5debb644cdcf"
+     },
+     "kind": "lab",
+     "date": "2025-08-09",
+     "finding": "HbA1c 8.3% (high)"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "e2747d11-e486-5006-8abb-4f10c5443382"
+     },
+     "kind": "note",
+     "date": "2025-08-08",
+     "finding": "Ophthalmology consult: mild NPDR, no macular edema"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "a1a86371-84b7-51d8-88a6-9971548accbb"
+     },
+     "kind": "note",
+     "date": "2025-08-08",
+     "finding": "Endocrinology visit: HbA1c 8.3%, glucose 208 mg/dL"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "7382905c-820e-5bd2-a120-1d0f5e4283e6"
+     },
+     "kind": "lab",
+     "date": "2025-04-17",
+     "finding": "Glucose 208 mg/dL (high), other chemistries normal"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "4379a63c-22e1-53fc-a511-d6523df2bcd1"
+     },
+     "kind": "lab",
+     "date": "2025-04-17",
+     "finding": "HbA1c 7.5% (high)"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Hemoglobin A1c 8.3% above target",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "af181b9c-8b25-5500-b519-bf3021afe67d"
+      }
+     ]
+    },
+    {
+     "description": "Glucose 208 mg/dL above normal range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "22d157af-d4c3-53de-88fa-7d48509f44e2"
+      }
+     ]
+    },
+    {
+     "description": "Hemoglobin A1c 7.5% above target (previous visit)",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "9557d5b5-d6d5-548b-9681-1d18b38e4b92"
+      }
+     ]
+    }
+   ],
+   "overview": "40F with type 2 diabetes, worsening control (HbA1c 8.3%), mild NPDR, hyperlipidemia; started empagliflozin and atorvastatin.",
+   "self_reported_confidence": "medium",
+   "patient_key": "fa1a29ee-4e7f-5587-adae-5f7433b02340",
+   "word_count": 83,
+   "confidence": {
+    "level": "medium",
+    "score": 0.65,
+    "rationale": "Model reported medium confidence."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "47c376bed95d10a6fa5d69509e0eb984c0c70b50c6aa91a2fa85cb67e180c0e3",
+   "generated_at": "2026-11-22T23:14:42.257932Z",
+   "cached": false,
+   "cache_key": "f08462319610326071a1ba72215401b275682d5872da6ec734d95a7e7ad543b1",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 11,
+   "grounded_ids": 11,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Fatigue, cold intolerance and weight gain; labs show primary hypothyroidism.",
+   "key_diagnoses": [
+    {
+     "name": "Primary hypothyroidism",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "a797da8a-cce8-5813-890f-7d143096bb08"
+      }
+     ]
+    },
+    {
+     "name": "Chronic thyroiditis",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "9c4baca1-1972-512a-8eb1-1709096cc33b"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "9c4baca1-1972-512a-8eb1-1709096cc33b"
+     },
+     "kind": "imaging",
+     "date": "2024-07-10",
+     "finding": "Thyroid US: diffuse heterogeneous gland, no nodules (chronic thyroiditis)."
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "56af75cc-9c0e-5ad7-a321-47f34545259c"
+     },
+     "kind": "lab",
+     "date": "2024-07-10",
+     "finding": "Lipid panel: LDL 94, TG 133, HDL 63, total cholesterol 198 (all normal)."
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "38914cd6-767d-56eb-88a1-d31e239f5caa"
+     },
+     "kind": "lab",
+     "date": "2024-05-24",
+     "finding": "Free T4 0.55 L, TSH 9.56 H."
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Free T4 0.55 ng/dL (low)",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "2597d033-8115-5339-8d6d-8515859fec9d"
+      }
+     ]
+    },
+    {
+     "description": "TSH 9.56 mIU/L (high)",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "c2db14a6-71b2-5108-b491-bfd865e11100"
+      }
+     ]
+    }
+   ],
+   "overview": "76-year-old male with primary hypothyroidism confirmed by elevated TSH and low free T4, ultrasound shows chronic thyroiditis; started levothyroxine 50 mcg.",
+   "self_reported_confidence": "high",
+   "patient_key": "fa5100af-fba0-540b-8e20-8a2d42e7efa4",
+   "word_count": 73,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "c0bc5a59456c6de729522f92ffdb82be3b761f7740002366da410c133ef1fd1a",
+   "generated_at": "2026-11-22T23:14:55.819023Z",
+   "cached": false,
+   "cache_key": "2efd8875673e34144721abe17a8288757797b08d297ab61363de86c065c93b50",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 7,
+   "grounded_ids": 7,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ },
+ {
+  "summary": {
+   "chief_concern": "Fatigue, cold intolerance and weight gain; labs show elevated TSH and low free T4 indicating hypothyroidism.",
+   "key_diagnoses": [
+    {
+     "name": "Primary hypothyroidism",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DocumentReference",
+       "resource_id": "b1245cd3-8b5c-5ed2-bd57-0137056787f4"
+      }
+     ]
+    },
+    {
+     "name": "Chronic thyroiditis",
+     "status": "active",
+     "evidence": [
+      {
+       "resource_type": "DiagnosticReport",
+       "resource_id": "0947d881-22a4-5b23-8c00-12b2f53192db"
+      }
+     ]
+    }
+   ],
+   "recent_media": [
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "0947d881-22a4-5b23-8c00-12b2f53192db"
+     },
+     "kind": "imaging",
+     "date": "2024-10-22",
+     "finding": "Thyroid US: diffusely heterogeneous gland, no nodules, suggestive of chronic thyroiditis"
+    },
+    {
+     "resource": {
+      "resource_type": "DiagnosticReport",
+      "resource_id": "8e6e8bcf-96eb-5f3b-8769-3a1b15083c71"
+     },
+     "kind": "lab",
+     "date": "2024-08-27",
+     "finding": "Free T4 0.61 L, TSH 8.73 H"
+    },
+    {
+     "resource": {
+      "resource_type": "DocumentReference",
+      "resource_id": "b1245cd3-8b5c-5ed2-bd57-0137056787f4"
+     },
+     "kind": "note",
+     "date": "2024-08-26",
+     "finding": "Progress note documenting primary hypothyroidism and levothyroxine prescription"
+    }
+   ],
+   "flagged_anomalies": [
+    {
+     "description": "Free T4 0.61 ng/dL, below normal range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "58b80467-2396-555e-af0b-6cf897d48fbe"
+      }
+     ]
+    },
+    {
+     "description": "TSH 8.73 mIU/L, above normal range",
+     "severity": "moderate",
+     "source": "rule",
+     "evidence": [
+      {
+       "resource_type": "Observation",
+       "resource_id": "7643f5af-c474-5c1e-9e8f-0afd6171c23a"
+      }
+     ]
+    }
+   ],
+   "overview": "66-year-old male with primary hypothyroidism secondary to chronic thyroiditis; started on levothyroxine 50 µg daily, follow‑up labs pending.",
+   "self_reported_confidence": "high",
+   "patient_key": "fdd646b9-46b9-5074-a47e-dffb50e76a63",
+   "word_count": 77,
+   "confidence": {
+    "level": "high",
+    "score": 0.85,
+    "rationale": "Records consistent; no guardrail interventions."
+   },
+   "disclaimer": "AI-generated summary for information retrieval only. Not a clinical decision. Verify against source records before acting.",
+   "provider": "groq",
+   "model": "openai/gpt-oss-120b",
+   "prompt_version": "v1",
+   "bundle_hash": "f86607627acff206caf474ae709d8f5537a96e638b2d1a0dc1cbb3505e069d0a",
+   "generated_at": "2026-11-22T23:15:07.079661Z",
+   "cached": false,
+   "cache_key": "8c98adad891348d23ffaa67b4d8bd60d3c30d9f702abc4414ddbf3c8dfc0959a",
+   "guardrail_notes": []
+  },
+  "trace": {
+   "cited_ids": 7,
+   "grounded_ids": 7,
+   "interventions": [],
+   "attempts": 2,
+   "shortened": false,
+   "fallback_reason": null
+  }
+ }
+]

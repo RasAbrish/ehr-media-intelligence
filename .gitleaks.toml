@@ -5,8 +5,8 @@ title = "ehr-mip gitleaks config"
 useDefault = true
 
 [[allowlists]]
-description = "Example patient_key and cache_key hashes in the API contract (and its extracted test fixtures) are not secrets"
+description = "patient_key and cache_key hashes in the API contract, its test fixtures and the shipped summaries are ids, not secrets"
 condition = "AND"
-paths = ['''^docs/04-API-CONTRACT\.md$''', '''^frontend/src/test/fixtures/contract/[^/]+\.json$''']
+paths = ['''^docs/04-API-CONTRACT\.md$''', '''^frontend/src/test/fixtures/contract/[^/]+\.json$''', '''^data/summaries/summaries\.json$''']
 regexTarget = "line"
 regexes = ['''"(patient_key|cache_key)":\s*"[0-9a-f-]{8,64}"''']

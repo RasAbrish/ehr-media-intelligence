@@ -40,7 +40,7 @@ docker compose --profile redis up
 
 ## Free demo deployment
 
-[docs/DEPLOY.md](docs/DEPLOY.md) deploys the frontend and API on Render's free plan from [render.yaml](render.yaml), with synthetic data and a banner that says so. Render never holds a model key: model summaries are made on a developer machine and shipped in [data/summaries/](data/summaries/) once they pass the quality gates; until then the demo shows offline summaries. You enter your own sign-in email and password once in the Render dashboard. Swagger docs are published at `/docs` on the API URL.
+[docs/DEPLOY.md](docs/DEPLOY.md) deploys the frontend and API on Render's free plan from [render.yaml](render.yaml), with synthetic data and a banner that says so. Render never holds a model key: model summaries are made on a developer machine and shipped in [data/summaries/](data/summaries/). The current file holds 60 Groq summaries. You enter your own sign-in email and password once in the Render dashboard. Swagger docs are published at `/docs` on the API URL.
 
 ## Sign-in
 
@@ -205,7 +205,7 @@ Backend layers import downward only (`api > search > summarization > fhir > inge
 
 - **No automatic CI.** The workflows in `.github/workflows` have never completed a run on GitHub: hosted runners are not available to this account, so the CI, Security and eval workflows are switched off. The checks were run locally with the commands under [Tests](#tests), and the workflow steps were rehearsed on a clean clone. CodeQL has not run at all. The failed runs on earlier commits never started a job.
 - **Simple sign-in only.** Email and password with server-side sessions ([ADR-013](docs/decisions/ADR-013-sessions.md)). No single sign-on, roles, password reset or record of who viewed which patient. Never load real patient data. The only configuration meant to be public is the synthetic demo in [docs/DEPLOY.md](docs/DEPLOY.md).
-- **Claude has not produced a summary here.** The trial account had no credit, so the API refused every call. Groq's open model was run on all 60 patients instead: every claim cited a real record, but it failed 4 of 7 quality gates ([report](docs/eval/eval_report_groq.md)), so its summaries are not shipped as the default yet ([ADR-014](docs/decisions/ADR-014-groq-and-shipped-summaries.md)). The manual review of summaries is still to be done by a person.
+- **Claude has not produced a summary here.** The trial account had no credit, so the API refused every call. Groq's open model was run on all 60 patients instead: every claim cited a real record, but it failed 4 of 7 quality gates ([report](docs/eval/eval_report_groq.md)), but its summaries are shipped on the demo, labeled with the model id; a better prompt is the next step ([ADR-014](docs/decisions/ADR-014-groq-and-shipped-summaries.md)). The manual review of summaries is still to be done by a person.
 - **Extractive recall is 87.5 percent.** It misses all 6 expected cases of hyponatremia and 6 of the 12 of hyperlipidemia.
 - **De-identification is partial.** Dates stay, and other people's names inside note text are not detected.
 - **Accepted vulnerabilities.** Four ChromaDB server advisories (the server is never run) and 12 Debian advisories without a fix, the latter until 2026-12-22 ([docs/09](docs/09-SECURITY.md) section 8.1). After that date `make security` fails until they are reviewed.
