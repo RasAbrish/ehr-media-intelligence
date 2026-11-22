@@ -30,8 +30,8 @@ RUN apt-get update \
 RUN pip uninstall --yes --root-user-action=ignore pip \
     && groupadd --gid 10001 app \
     && useradd --uid 10001 --gid 10001 --no-create-home --shell /usr/sbin/nologin app \
-    && mkdir -p /app/data/generated \
-    && chown 10001:10001 /app/data/generated
+    && mkdir -p /app/data/generated /app/demo-data \
+    && chown 10001:10001 /app/data/generated /app/demo-data
 COPY --from=build /app/.venv /app/.venv
 COPY --from=model /opt/hf-cache /opt/hf-cache
 COPY data/raw /app/data/raw
@@ -47,5 +47,9 @@ ENV PATH=/app/.venv/bin:$PATH \
     TRANSFORMERS_OFFLINE=1 \
     REPORTS_DIR=/app/data/generated/reports
 USER 10001:10001
+# A ready synthetic index for hosts with too little memory or CPU to run the pipeline at start
+# (render.yaml). Compose ignores it and fills its own volume.
+RUN SQLITE_PATH=/app/demo-data/ehr_mip.db CHROMA_DIR=/app/demo-data/chroma \
+    REPORTS_DIR=/tmp/reports LLM_PROVIDER=extractive ehr-mip run-all
 EXPOSE 8000
 CMD ["ehr-mip", "serve", "--host", "0.0.0.0", "--port", "8000"]
