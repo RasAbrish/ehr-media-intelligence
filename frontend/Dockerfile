@@ -1,7 +1,7 @@
 # Web image (docs/02 section 7, docs/09 section 9): static files on unprivileged nginx.
 # Types, lint and tests run in CI; this only bundles.
 
-FROM node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a AS build
+FROM node:26-alpine@sha256:6bd9ab43c0ec0190ca7b2d193906cb8b7edf6e7f4afa43ddeccd6452710bffb5 AS build
 RUN npm install --global --no-audit --no-fund pnpm@12.16.1
 WORKDIR /web
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
