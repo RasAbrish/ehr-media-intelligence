@@ -30,6 +30,7 @@ from ehr_mip.summarization.providers.extractive import ExtractiveProvider
 from ehr_mip.summarization.service import SummaryService
 
 RAW = PROJECT_ROOT / "data" / "raw"
+CSRF = ("X-Requested-With", "ehr-mip")  # every POST needs it (docs/04 section 3a)
 TODAY = date(2026, 11, 21)
 NOW = datetime(2026, 11, 21, 12, 0, tzinfo=UTC)
 
@@ -69,6 +70,8 @@ def settings_for(root: Path, **overrides: Any) -> Settings:
         "sqlite_path": root / "ehr.db",
         "chroma_dir": root / "chroma",
         "rate_limit_enabled": False,
+        # Data-route tests run without the session gate; test_api_auth turns it on.
+        "auth_enabled": False,
         **overrides,
     }
     return Settings(_env_file=None, **values)  # type: ignore[call-arg]
@@ -84,4 +87,4 @@ def client_for(
     app = create_app(
         settings_for(root, **overrides), embedder_factory=embedder_factory, configure_logs=False
     )
-    return TestClient(app, raise_server_exceptions=raise_server_exceptions)
+    return TestClient(app, raise_server_exceptions=raise_server_exceptions, headers=dict([CSRF]))

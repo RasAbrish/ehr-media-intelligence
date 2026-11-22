@@ -27,13 +27,14 @@ from ehr_mip.observability.metrics import CACHE_ERRORS, RATE_LIMITED
 log = structlog.get_logger(__name__)
 
 _RULES: tuple[tuple[str, re.Pattern[str], str], ...] = (
+    ("login", re.compile(r"^/auth/login/?$"), "10/minute"),
     ("search", re.compile(r"^/search/?$"), "60/minute"),
     ("regenerate", re.compile(r"^/patients/[^/]+/summary/regenerate/?$"), "5/minute"),
     ("feedback", re.compile(r"^/patients/[^/]+/summary/feedback/?$"), "20/minute"),
     ("patients", re.compile(r"^/(patients|resources)(/|$)"), "120/minute"),
 )
 _DEFAULT = ("default", "300/minute")
-_METHODS = {"search": "POST", "regenerate": "POST", "feedback": "POST"}
+_METHODS = {"login": "POST", "search": "POST", "regenerate": "POST", "feedback": "POST"}
 
 
 def rule_for(method: str, path: str) -> tuple[str, RateLimitItem]:

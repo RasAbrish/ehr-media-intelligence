@@ -84,6 +84,13 @@ class Settings(BaseSettings):
     log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR"] = "INFO"
     env: Literal["dev", "prod"] = "dev"
 
+    # Sign-in (ADR-013)
+    auth_enabled: bool = True
+    session_hours: float = Field(default=8, gt=0, le=24)
+    session_idle_minutes: int = Field(default=60, ge=5, le=24 * 60)
+    demo_account_email: str | None = None
+    demo_account_password: SecretStr | None = None
+
     # Cache
     cache_backend: Literal["memory", "redis", "auto"] = "memory"
     redis_url: str = "redis://redis:6379/0"
@@ -92,7 +99,13 @@ class Settings(BaseSettings):
     synth_seed: int = 42
     synth_patients: int = Field(default=60, ge=1, le=10_000)
 
-    @field_validator("anthropic_api_key", "admin_token", mode="before")
+    @field_validator(
+        "anthropic_api_key",
+        "admin_token",
+        "demo_account_email",
+        "demo_account_password",
+        mode="before",
+    )
     @classmethod
     def _blank_secret_is_none(cls, value: object) -> object:
         # "#…" is an inline comment that Docker Compose passed through as the value.

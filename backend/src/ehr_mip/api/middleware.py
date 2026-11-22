@@ -90,6 +90,48 @@ class RequestContextMiddleware:
                 )
 
 
+CSRF_HEADER = (b"x-requested-with", "ehr-mip")
+
+
+class CsrfHeaderMiddleware:
+    """Every POST needs ``X-Requested-With: ehr-mip`` (docs/04 section 3a).
+
+    A form on another site cannot send it, and a script on another origin would need a
+    CORS preflight that the allowlist refuses.
+    """
+
+    def __init__(self, app: ASGIApp) -> None:
+        self.app = app
+
+    async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
+        if (
+            scope["type"] != "http"
+            or scope["method"] not in BODY_METHODS
+            or _header(scope, CSRF_HEADER[0]) == CSRF_HEADER[1]
+        ):
+            await self.app(scope, receive, send)
+            return
+        body = problem_body(
+            status=403,
+            code="csrf_check_failed",
+            title="Request refused",
+            detail="Requests that change data need the X-Requested-With: ehr-mip header.",
+            instance=scope["path"],
+            request_id=str(scope.get("state", {}).get("request_id", "")),
+        )
+        await send(
+            {
+                "type": "http.response.start",
+                "status": 403,
+                "headers": [
+                    (b"content-type", PROBLEM_TYPE.encode()),
+                    (b"content-length", str(len(body)).encode()),
+                ],
+            }
+        )
+        await send({"type": "http.response.body", "body": body})
+
+
 class BodyLimitMiddleware:
     """Refuse bodies over ``max_bytes`` with 413, whether or not Content-Length is sent."""
 

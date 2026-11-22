@@ -38,6 +38,9 @@ def test_snapshot_documents_every_built_endpoint() -> None:
     ]
     expected = {
         "/health": {"get"},
+        "/auth/login": {"post"},
+        "/auth/logout": {"post"},
+        "/auth/me": {"get"},
         "/stats": {"get"},
         "/patients": {"get"},
         "/patients/{patient_key}/audit": {"get"},

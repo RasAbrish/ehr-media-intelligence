@@ -219,14 +219,14 @@ def test_patient_responses_never_reach_the_shared_cache(
             await super().set(key, value, ttl_s)
 
     spy = Spy()
-    from tests.support.api import settings_for  # noqa: PLC0415
+    from tests.support.api import CSRF, settings_for  # noqa: PLC0415
 
     from ehr_mip.api.main import create_app  # noqa: PLC0415
     from ehr_mip.search.embedder import HashEmbedder  # noqa: PLC0415
 
     app = create_app(settings_for(api_store), embedder_factory=lambda _: HashEmbedder(),
                      cache=spy, configure_logs=False)  # fmt: skip
-    with TestClient(app) as test_client:
+    with TestClient(app, headers=dict([CSRF])) as test_client:
         key = merged["patient_key"]
         assert test_client.get(f"/patients/{key}").status_code == 200
         assert test_client.get(f"/patients/{key}").headers["x-cache"] == "HIT"

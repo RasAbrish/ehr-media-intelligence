@@ -93,3 +93,21 @@ CREATE TABLE IF NOT EXISTS summary_feedback (
   client_id_hash TEXT,           -- sha256 of an anonymous browser id, for one-vote-per-client
   created_at TEXT NOT NULL);
 CREATE UNIQUE INDEX IF NOT EXISTS ux_feedback_client ON summary_feedback(cache_key, client_id_hash);
+
+-- Sign-in (ADR-013). Only the SHA-256 of a session token is stored.
+CREATE TABLE IF NOT EXISTS users (
+  id INTEGER PRIMARY KEY,
+  email TEXT NOT NULL UNIQUE,
+  display_name TEXT NOT NULL,
+  password_hash TEXT NOT NULL,
+  disabled INTEGER NOT NULL DEFAULT 0,
+  created_at TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS sessions (
+  token_hash TEXT PRIMARY KEY,
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  created_at TEXT NOT NULL,
+  expires_at TEXT NOT NULL,
+  last_seen_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_sessions_user ON sessions(user_id);

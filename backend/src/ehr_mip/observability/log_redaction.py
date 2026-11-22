@@ -28,6 +28,8 @@ PHI_KEYS = frozenset(
         "snippet",
         "note",
         "content",
+        "email",
+        "password",
     }
 )
 REDACTED = "[redacted]"

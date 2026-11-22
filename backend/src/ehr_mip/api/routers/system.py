@@ -9,6 +9,7 @@ from fastapi import APIRouter, Depends, Response
 
 from ehr_mip import __version__
 from ehr_mip.api import quality_views
+from ehr_mip.api.auth import require_user
 from ehr_mip.api.deps import AppState, get_conn, get_state
 from ehr_mip.api.schemas.system import (
     CacheStatus,
@@ -35,7 +36,12 @@ async def health() -> HealthResponse:
     return HealthResponse(status="ok", version=__version__)
 
 
-@router.get("/stats", response_model=StatsResponse, summary="Counts for the top bar")
+@router.get(
+    "/stats",
+    response_model=StatsResponse,
+    summary="Counts for the sidebar",
+    dependencies=[Depends(require_user)],
+)
 async def stats(response: Response, conn: sqlite3.Connection = Depends(get_conn)) -> StatsResponse:
     response.headers["Cache-Control"] = "max-age=5"
     return quality_views.stats(conn)

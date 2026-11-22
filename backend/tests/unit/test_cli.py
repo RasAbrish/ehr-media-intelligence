@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 
 import pytest
 import structlog
@@ -37,3 +38,26 @@ def test_logging_emits_json(capsys: pytest.CaptureFixture[str]) -> None:
     assert payload["run_id"] == "r1"
     assert payload["level"] == "info"
     assert "ts" in payload
+
+
+def test_users_add_asks_for_the_password_and_never_shows_it(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from typer.testing import CliRunner  # noqa: PLC0415
+
+    from ehr_mip.cli import app  # noqa: PLC0415
+
+    monkeypatch.setenv("SQLITE_PATH", str(tmp_path / "users.db"))
+    secret = "a very secret password"  # noqa: S105 (test value)
+    runner = CliRunner()
+    args = ["users", "add", "--email", "Ana@Example.org", "--name", "Ana"]
+    result = runner.invoke(app, args, input=f"{secret}\n{secret}\n")
+    assert result.exit_code == 0, result.output
+    assert secret not in result.output
+    again = runner.invoke(app, args, input=f"{secret}\n{secret}\n")
+    assert again.exit_code == 1
+    short = runner.invoke(
+        app, ["users", "add", "--email", "b@example.org", "--name", "B"], input="short\nshort\n"
+    )
+    assert short.exit_code == 1
+    assert runner.invoke(app, ["users", "disable", "--email", "ana@example.org"]).exit_code == 0

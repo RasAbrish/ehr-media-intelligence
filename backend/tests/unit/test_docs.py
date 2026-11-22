@@ -55,7 +55,7 @@ def _prose(text: str) -> list[str]:
 
 
 def test_there_are_twelve_decision_records() -> None:
-    assert len(ADRS) == 12
+    assert len(ADRS) == 13
 
 
 @pytest.mark.parametrize("path", ADRS, ids=lambda p: p.stem)

@@ -12,17 +12,22 @@ from contextlib import asynccontextmanager, closing
 
 import structlog
 from chromadb.api import ClientAPI
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from prometheus_fastapi_instrumentator import Instrumentator
 from uvicorn.middleware.proxy_headers import ProxyHeadersMiddleware
 
 from ehr_mip import __version__
+from ehr_mip.api.auth import auth_service, require_user
 from ehr_mip.api.deps import AppState
 from ehr_mip.api.errors import register_error_handlers
-from ehr_mip.api.middleware import BodyLimitMiddleware, RequestContextMiddleware
+from ehr_mip.api.middleware import (
+    BodyLimitMiddleware,
+    CsrfHeaderMiddleware,
+    RequestContextMiddleware,
+)
 from ehr_mip.api.rate_limit import RateLimitMiddleware, build_storage
-from ehr_mip.api.routers import patients, quality, resources, search, system
+from ehr_mip.api.routers import auth, patients, quality, resources, search, system
 from ehr_mip.cache.backend import CacheBackend, build_cache
 from ehr_mip.config import Settings, get_settings
 from ehr_mip.db.connection import connect
@@ -62,6 +67,12 @@ def create_app(
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         with closing(connect(settings.sqlite_path)) as conn:  # schema once, then per request
+            if settings.demo_account_email and settings.demo_account_password:
+                auth_service(conn, settings).ensure_account(
+                    settings.demo_account_email,
+                    "Demo clinician",
+                    settings.demo_account_password.get_secret_value(),
+                )
             try:
                 embedder = embedder_factory(settings)
                 store = VectorStore(chroma_client or open_client(settings.chroma_dir))
@@ -91,8 +102,11 @@ def create_app(
     )
     app.state.ehr = state
     register_error_handlers(app)
-    for router in (system.router, search.router, patients.router, resources.router, quality.router):
-        app.include_router(router)
+    app.include_router(system.router)  # /health and /ready are public; /stats checks itself
+    app.include_router(auth.router)
+    signed_in = [Depends(require_user)]
+    for router in (search.router, patients.router, resources.router, quality.router):
+        app.include_router(router, dependencies=signed_in)
     Instrumentator(should_group_status_codes=False, excluded_handlers=["/metrics"]).instrument(
         app
     ).expose(app, include_in_schema=False)
@@ -103,9 +117,16 @@ def create_app(
         allow_origins=settings.cors_origins,
         allow_credentials=False,
         allow_methods=["GET", "POST"],
-        allow_headers=["Content-Type", "X-Request-ID", "X-Client-Id", "If-None-Match"],
+        allow_headers=[
+            "Content-Type",
+            "X-Request-ID",
+            "X-Client-Id",
+            "X-Requested-With",
+            "If-None-Match",
+        ],
         expose_headers=EXPOSED_HEADERS,
     )
+    app.add_middleware(CsrfHeaderMiddleware)
     app.add_middleware(BodyLimitMiddleware, max_bytes=MAX_BODY_BYTES)
     app.add_middleware(
         RateLimitMiddleware,

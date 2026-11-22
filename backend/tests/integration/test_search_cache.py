@@ -9,7 +9,7 @@ import fakeredis
 import pytest
 from fastapi.testclient import TestClient
 from limits.aio.storage import MemoryStorage, RedisStorage
-from tests.support.api import settings_for
+from tests.support.api import CSRF, settings_for
 
 from ehr_mip.api.main import create_app
 from ehr_mip.api.rate_limit import RateLimitMiddleware, build_storage
@@ -25,7 +25,7 @@ def redis_client(root: Path, server: fakeredis.FakeServer) -> TestClient:
         cache=FallbackCache(RedisBackend(fakeredis.FakeAsyncRedis(server=server))),
         configure_logs=False,
     )
-    return TestClient(app)
+    return TestClient(app, headers=dict([CSRF]))
 
 
 def test_search_cache_hits_on_redis_without_identifiers(api_store: Path) -> None:

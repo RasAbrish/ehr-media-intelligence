@@ -82,7 +82,7 @@ type = "layers"
 layers = [
   "ehr_mip.cli",
   "ehr_mip.api",
-  "ehr_mip.search",
+  "ehr_mip.search | ehr_mip.auth",
   "ehr_mip.summarization",
   "ehr_mip.fhir",
   "ehr_mip.ingestion",

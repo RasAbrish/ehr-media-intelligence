@@ -337,6 +337,51 @@ def _bootstrap_if_empty(settings: Settings) -> None:
     run_all()
 
 
+users = typer.Typer(help="Sign-in accounts (ADR-013).", no_args_is_help=True)
+app.add_typer(users, name="users")
+
+
+@users.command("add")
+def users_add(
+    email: str = typer.Option(..., help="Sign-in email."),
+    name: str = typer.Option(..., help="Name shown in the app."),
+) -> None:
+    """Create an account. The password is asked for twice and never echoed."""
+    from ehr_mip.auth.passwords import PasswordTooShortError  # noqa: PLC0415
+    from ehr_mip.auth.service import AccountExistsError, AuthService  # noqa: PLC0415
+
+    console = Console()
+    settings = get_settings()
+    password = typer.prompt("Password", hide_input=True, confirmation_prompt=True)
+    with closing(connect(settings.sqlite_path)) as conn:
+        service = AuthService(
+            conn, session_hours=settings.session_hours, idle_minutes=settings.session_idle_minutes
+        )
+        try:
+            service.create_user(email, name, password)
+        except (AccountExistsError, PasswordTooShortError) as error:
+            console.print(f"[red]{error}[/red]")
+            raise typer.Exit(1) from error
+    console.print("Account created.")
+
+
+@users.command("disable")
+def users_disable(email: str = typer.Option(..., help="Sign-in email.")) -> None:
+    """Block an account and end its sessions."""
+    from ehr_mip.auth.service import AuthService  # noqa: PLC0415
+
+    console = Console()
+    settings = get_settings()
+    with closing(connect(settings.sqlite_path)) as conn:
+        service = AuthService(
+            conn, session_hours=settings.session_hours, idle_minutes=settings.session_idle_minutes
+        )
+        if not service.disable(email):
+            console.print("[red]No account with that email.[/red]")
+            raise typer.Exit(1)
+    console.print("Account disabled and signed out.")
+
+
 @app.command()
 def serve(
     host: str = typer.Option("127.0.0.1", help="Bind address."),

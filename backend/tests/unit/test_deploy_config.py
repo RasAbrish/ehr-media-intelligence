@@ -39,6 +39,21 @@ def test_the_public_demo_cannot_spend_money_on_the_model(
     assert "FORWARDED_ALLOW_IPS" not in env, "never trust a caller's X-Forwarded-For"
 
 
+def test_the_demo_login_is_the_only_credential_and_it_is_published(
+    services: dict[str, dict[str, Any]],
+) -> None:
+    api, site = _env(services["docker"]), _env(services["static"])
+    assert api.get("AUTH_ENABLED", "true") == "true"
+    assert (api["DEMO_ACCOUNT_EMAIL"], api["DEMO_ACCOUNT_PASSWORD"]) == (
+        site["VITE_DEMO_EMAIL"],
+        site["VITE_DEMO_PASSWORD"],
+    )
+    secret_like = re.compile(r"(^|_)(KEY|TOKEN|SECRET|PASSWORD)(_|$)")
+    allowed = {"DEMO_ACCOUNT_PASSWORD", "VITE_DEMO_PASSWORD"}
+    for env in (api, site):
+        assert {key for key in env if secret_like.search(key)} <= allowed
+
+
 def test_the_api_serves_the_index_built_into_the_image(
     services: dict[str, dict[str, Any]],
 ) -> None:
