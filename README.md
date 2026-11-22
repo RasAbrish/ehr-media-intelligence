@@ -2,11 +2,26 @@
 
 An AI pipeline that ingests raw EHR exports, cleans and normalizes them to HL7 FHIR R4, writes grounded clinical summaries with Claude and gives clinicians a fast semantic search interface. Built for the Onye AI full-stack assessment. All data is synthetic.
 
-> Status: Phase 5 (clinician UI). Plus features and Docker arrive in Phase 6; see [docs/08-DELIVERY.md](docs/08-DELIVERY.md).
+> Status: Phase 6, P1 features complete. P2 features and the final write-up are still open; see [docs/08-DELIVERY.md](docs/08-DELIVERY.md).
 
-## Quick start
+## Quick start with Docker
 
-Requirements: Python 3.12, [uv](https://docs.astral.sh/uv/), Node 20.11 or newer, pnpm, git. Docker is needed from Phase 6.
+```bash
+cp .env.example .env        # optional, and no API key is needed
+docker compose up           # http://localhost:8080
+```
+
+The first start builds both images (the API image is about 2.8 GB, mostly CPU PyTorch and the embedding model) and fills the empty volume by running the pipeline. To add Redis for the search cache and rate limits:
+
+```bash
+docker compose --profile redis up   # /api/ready then shows "cache_backend": "redis"
+```
+
+The web port listens on 127.0.0.1 only, because the app has no login. `WEB_BIND` and `WEB_PORT` change that.
+
+## Quick start without Docker
+
+Requirements: Python 3.12, [uv](https://docs.astral.sh/uv/), Node 22, pnpm, git.
 
 ```bash
 make setup     # backend (uv) and frontend (pnpm) dependencies, git hooks
@@ -120,7 +135,7 @@ curl -s -X POST 'http://localhost:8000/search?resource_type=DiagnosticReport&dat
   -d '{"query": "worsening kidney function with high potassium"}'
 ```
 
-- **Ranking** ([docs/05](docs/05-ALGORITHMS.md) section 4). Semantic by default; `mode=hybrid` fuses BM25 and vector ranks with reciprocal rank fusion. A query shaped like an MRN returns that patient's newest records. Results are one per resource, sorted by score, with a snippet, highlight ranges and the patient's chief concern.
+- **Ranking** ([docs/05](docs/05-ALGORITHMS.md) section 4). Hybrid by default, fusing BM25 and vector ranks with reciprocal rank fusion; `mode=semantic` uses vectors only. A query shaped like an MRN returns that patient's newest records. Results are one per resource, sorted by score, with a snippet, highlight ranges and the patient's chief concern.
 - **Filters.** Repeatable `resource_type`, inclusive `date_from` and `date_to` (undated records are excluded once a date is set), `top_k` up to 20, `patient_key`.
 - **Caching.** Search results are cached for 60 s under the index version, so a reindex invalidates them; responses carry `X-Cache`. The cache holds ids, scores and scrubbed snippets only; patient details are joined afterwards. Patient responses are cached in process for 5 minutes and never in a shared backend.
 - **Reindexing while serving** builds the new collection next to the live one and swaps it in, so searches keep working during `make index`.
@@ -142,12 +157,29 @@ curl -s -X POST 'http://localhost:8000/search?resource_type=DiagnosticReport&dat
 
 Every JSON example in [docs/04-API-CONTRACT.md](docs/04-API-CONTRACT.md) is extracted into fixtures (`pnpm contract:fixtures`) and must parse with the Zod schemas; component tests and Storybook use the same fixtures. `make e2e` runs Playwright against the real API (keyboard-only and mobile paths, axe with color contrast in both themes); `make storybook` opens the component workshop.
 
+## Plus features (Phase 6)
+
+- **Patients** (`/patients`): a directory with server-side search by name or MRN, sorting, paging and a conflict filter. A row opens the same patient drawer.
+- **Data quality** (`/quality`): six KPIs, validation issues, the audit log and quarantined records, plus a Data quality tab in the drawer. Identity values are masked: names keep initials, ISO birth dates keep century and day, and birth dates in any other format keep only their separators.
+- **Summary feedback**: helpful or not helpful with a reason, one vote per browser and summary version. The server stores a hash of an anonymous client id. An info button next to the confidence score explains it in plain language.
+- **Discoverability**: press `?` for the shortcuts, and a dismissible tip greets a first visit.
+- **Caching**: `CACHE_BACKEND` is `memory`, `redis` or `auto`. A Redis failure never fails a request. The process counts and caches in memory until Redis returns, and `/ready` reports `degraded` meanwhile. Patient responses never go to Redis.
+- **Containers** ([docs/09](docs/09-SECURITY.md) section 9): non-root, read-only root file system, no capabilities, base images pinned by digest, a strict Content-Security-Policy on the web app and no query strings in any log.
+- **Performance budget**: at most 250 KB gzip of initial JS (239.5 KB now) in one initial bundle, both enforced by size-limit. Lighthouse CI requires 0.9 for performance, accessibility and best practices on four pages at 4x CPU slowdown.
+
+### Known gaps
+
+- Lighthouse is gated at 4x CPU slowdown without network throttling (docs/06 section 15). Under simulated slow 4G, which is reported and not gated, performance is below 0.9: on a development laptop on battery the medians were 0.72 to 0.75 for search results and 0.84 to 0.88 for the other three pages. These scores follow the CPU speed of the machine.
+- The API image contains 12 high severity Debian advisories with no fix in trixie. They are accepted until 2026-12-22 ([docs/09](docs/09-SECURITY.md) section 8.1), when the scan starts failing again.
+- Trivy does not see the SQLite 3.46.0 compiled into the ChromaDB wheel. Its version is in the affected range of the FTS5 advisories CVE-2026-119373 and CVE-2026-119374 (fixed in SQLite 3.54.0), and Chroma uses an FTS5 table. Whether either is reachable has not been established.
+- The CI workflows have not run yet, because the repository has no remote.
+
 ## Project structure
 
 ```
 backend/    Python package ehr_mip (uv): ingestion, fhir, summarization, search, api layers
 frontend/   React 19, Vite, Tailwind v4, shadcn/ui (Base UI), TanStack Router and Query
-scripts/    synthetic data generator
+scripts/    synthetic data generator, isolated e2e API, Lighthouse and image scan runners
 data/raw/   committed synthetic input; data/generated/ holds local state (gitignored)
 docs/       specification, architecture, contracts, design system, ADRs
 ```
@@ -159,8 +191,11 @@ Backend layers only import downward (`api > search > summarization > fhir > inge
 | Command | What it runs |
 |---|---|
 | `make check` | ruff, import-linter, mypy `--strict`, pytest with an 85 percent coverage gate, ESLint (type-checked, jsx-a11y), Prettier, tsc, Vitest with axe and the contract fixture test |
-| `make e2e` | Playwright end-to-end tests against the real API, with axe including color contrast |
-| `make security` | pip-audit, pnpm audit, gitleaks, and Trivy once images exist |
+| `make e2e` | Playwright end-to-end tests on their own servers and a copy of the data, with axe including color contrast |
+| `cd frontend && pnpm test-storybook` | Builds Storybook, then runs axe and the play functions on every story in both themes |
+| `make lighthouse` | Bundle budget and Lighthouse CI against the production build |
+| `make security` | pip-audit, pnpm audit, gitleaks, and Trivy once images are built |
+| `make sbom` | CycloneDX SBOM of both images into `reports/` |
 
 Pre-commit runs the same linters plus gitleaks and private key detection; commit messages follow Conventional Commits. Accepted dependency findings and their reasons are listed in [docs/09-SECURITY.md](docs/09-SECURITY.md) section 8.1.
 
@@ -170,4 +205,4 @@ The specification lives in [docs/](docs/): requirements in [01-SPEC.md](docs/01-
 
 ## Data and privacy
 
-The repository contains synthetic data only. Logs carry ids, never names, MRNs, dates of birth or note text, and the language model only ever sees de-identified context (age, sex and clinical text).
+The repository contains synthetic data only. Logs carry ids and routes without query strings, never names, MRNs, dates of birth or note text, and the language model only ever sees de-identified context (age, sex and clinical text).

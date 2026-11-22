@@ -5,6 +5,24 @@ All notable changes to this project are documented here. The format follows [Kee
 ## [Unreleased]
 
 ### Added
+- Phase 6, P1 features: hybrid search by default, hover prefetch, summary feedback with a confidence popover, the data quality page and drawer tab, the patient directory, `/stats`, the shortcuts dialog and first-run tip, Storybook coverage with an axe sweep, route-level code splitting with a 250 KB budget and Lighthouse CI.
+- Redis cache and rate limit storage behind `CACHE_BACKEND` (`memory`, `redis`, `auto`) with fallback to memory, `AUTO_BOOTSTRAP`, hardened API and web images, Docker Compose with a redis profile, Trivy scans, CycloneDX SBOMs and the CI jobs for them.
+
+### Fixed
+- `make setup` failed on a clean clone: pnpm 12 rejects an undecided esbuild install script. The script is now explicitly denied.
+- `.env.example` made Docker Compose read a comment as `ANTHROPIC_API_KEY`.
+- The server access log printed query strings. It is off, and nginx no longer logs them.
+- Phase 5 defects: filter popovers had no accessible name, calendar day labels failed label in name, the calendar ignored the design tokens, many hit targets were below 32 and 44 px, the card title had no tooltip, and Forward left the search box empty. Several review fixes reported in Phase 5 had no test and now have one.
+
+### Changed
+- `docs/04`: `cache_errors_total`, and 404 for feedback when `FEEDBACK_ENABLED=false`. `docs/06`: fallback reason in the provenance, and the light `--destructive` token darkened to 0.53 for AA contrast. `docs/07`: hybrid default and the `auto` cache backend. `docs/09`: the web container needs no added capability.
+- `make e2e` starts its own servers on a copy of the data instead of reusing `make dev`.
+- Gate policy, decided by the owner: Lighthouse gates at 4x CPU slowdown without network throttling and only reports slow 4G (`docs/01`, `docs/06`). Twelve Debian advisories without a fix are accepted until 2026-12-22, and CI now fails on any other high finding as well as critical ones (`docs/01`, `docs/09`).
+- The first paint loads one app bundle instead of 11 files (239.5 KB gzip), and size-limit fails if the initial bundle splits again.
+
+## Phase 5
+
+### Added
 - Phase 5, clinician UI (Task 5): live search with debounce and stale-while-refetching results, result cards with highlights and "why this result", type and date range filters in the URL, the patient drawer with the AI summary panel (disclaimer, provenance, suspected and data quality markers, confidence) and the linked records table (TanStack Table v9) with a record dialog; loading, idle, no results, error and index-empty states; the keyboard model, responsive layouts and light and dark themes. Zod schemas for the whole contract with a fixture test over every docs/04 example, MSW component tests, Storybook stories, and Playwright end-to-end tests with axe.
 
 ### Changed

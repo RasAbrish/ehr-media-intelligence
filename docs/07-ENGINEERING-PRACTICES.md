@@ -72,7 +72,7 @@ HF_HOME=data/generated/hf-cache
 REPORTS_DIR=reports
 EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
 SEARCH_DEFAULT_TOP_K=5
-SEARCH_MODE=semantic          # semantic | hybrid (default flips to hybrid in Phase 6 when FR-4.5 ships)
+SEARCH_MODE=hybrid            # semantic | hybrid (meaning + keywords, FR-4.5)
 INDEX_OBSERVATIONS=false
 CORS_ORIGINS=http://localhost:5173,http://localhost:8080
 ENABLE_ADMIN_ENDPOINTS=false
@@ -238,7 +238,8 @@ def build_cache(settings) -> CacheBackend:   # redis if configured and ping ok, 
 - Values serialized with `orjson`; keys namespaced (`ehr-mip:search:…`).
 - Redis failures never fail a request: catch, log `cache_error`, count it, continue uncached.
 - Tests: `MemoryBackend` and `RedisBackend` (with `fakeredis`) share one parametrized test suite.
-- Rate limiting uses the same backend choice: slowapi storage `memory://` or `REDIS_URL`.
+- `CACHE_BACKEND=auto` (set by compose) follows Redis while the API runs, so `--profile redis` alone switches it on. Redis never seen is plain memory; Redis seen and then lost is degraded.
+- Rate limiting uses the same backend choice: `limits` storage in memory or on `REDIS_URL`, counting in memory while Redis fails.
 
 ## 7. Observability
 
